@@ -139,14 +139,20 @@ class Zigbee2mqtt extends utils.Adapter {
 				break;
 			default:
 				// States
-				adapter.log.debug(JSON.stringify(dataObj));
-				this.setDeviceState(dataObj, this.findDevice(dataObj.topic));
+				{
+					adapter.log.debug(JSON.stringify(dataObj));
+					const device = this.findDevice(dataObj.topic);
+					if (device) {
+						this.setDeviceState(dataObj, device);
+					}
+				}
 				break;
 
 		}
 	}
 
 	setDeviceState(dataObj, device) {
+
 		for (const [key, value] of Object.entries(dataObj.payload)) {
 
 			const stateName = `${device.ieee_address}.${key}`;
