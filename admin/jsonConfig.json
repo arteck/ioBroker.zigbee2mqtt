@@ -1,0 +1,16 @@
+{
+	"i18n": true,
+	"type": "panel",
+	"items": {
+		"server": {
+			"type": "text",
+			"label": "Server",
+			"newLine": true
+		},
+		"port": {
+			"type": "number",
+			"label": "Port",
+			"newLine": true
+		}
+	}
+}
