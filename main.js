@@ -160,34 +160,47 @@ class Zigbee2mqtt extends utils.Adapter {
 			}
 
 			for (const exposes of device.definition.exposes) {
-				if (!deviceCreateCache[device.ieee_address][exposes.name]) {
-					const stateObj = {
-						type: 'state',
-						common: {
-							name: exposes.description,
-							type: this.typeMapper(exposes.type),
-							role: 'indicator',
-							unit: exposes.unit,
-							read: true,
-							write: exposes.access != 1
-						},
-						native: {},
-					};
 
-					if (exposes.type == 'enum') {
-						for (const val of exposes.values) {
-							stateObj.common.states += `${val}:${val};`;
-						}
-						if (stateObj.common.states.length > 1) {
-							stateObj.common.states = stateObj.common.states.slice(0, -1);
-						}
+				if (exposes.features) {
+					for (const feature of exposes.features) {
+						await this.createDeviceState(device, feature);
 					}
+					continue;
+				}
 
-					// @ts-ignore
-					await this.setObjectNotExistsAsync(`${device.ieee_address}.${exposes.name}`, stateObj);
-					deviceCreateCache[device.ieee_address][exposes.name] = {};
+				await this.createDeviceState(device, exposes);
+			}
+		}
+	}
+
+	async createDeviceState(device, exposes) {
+
+		if (!deviceCreateCache[device.ieee_address][exposes.name]) {
+			const stateObj = {
+				type: 'state',
+				common: {
+					name: exposes.description,
+					type: this.typeMapper(exposes.type),
+					role: 'indicator',
+					unit: exposes.unit,
+					read: true,
+					write: exposes.access != 1
+				},
+				native: {},
+			};
+
+			if (exposes.type == 'enum') {
+				for (const val of exposes.values) {
+					stateObj.common.states += `${val}:${val};`;
+				}
+				if (stateObj.common.states.length > 1) {
+					stateObj.common.states = stateObj.common.states.slice(0, -1);
 				}
 			}
+
+			// @ts-ignore
+			await this.setObjectNotExistsAsync(`${device.ieee_address}.${exposes.name}`, stateObj);
+			deviceCreateCache[device.ieee_address][exposes.name] = {};
 		}
 	}
 
@@ -201,7 +214,6 @@ class Zigbee2mqtt extends utils.Adapter {
 				return 'string';
 			default:
 				return inType;
-
 		}
 	}
 
