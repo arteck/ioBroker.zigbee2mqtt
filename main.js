@@ -165,7 +165,7 @@ class Zigbee2mqtt extends utils.Adapter {
 						type: 'state',
 						common: {
 							name: exposes.description,
-							type: this.typeMaper(exposes.type),
+							type: this.typeMapper(exposes.type),
 							role: 'indicator',
 							unit: exposes.unit,
 							read: true,
@@ -191,7 +191,7 @@ class Zigbee2mqtt extends utils.Adapter {
 		}
 	}
 
-	typeMaper(inType) {
+	typeMapper(inType) {
 		switch (inType) {
 			case 'numeric':
 				return 'number';
