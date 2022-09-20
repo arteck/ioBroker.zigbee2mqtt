@@ -11,6 +11,7 @@ const WebSocket = require('ws');
 let wsClient;
 let adapter;
 const deviceCreateCache = {};
+let devices;
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
@@ -114,7 +115,11 @@ class Zigbee2mqtt extends utils.Adapter {
 			case 'bridge/state':
 				break;
 			case 'bridge/devices':
-				this.createDevices(dataObj.payload);
+				devices = dataObj.payload;
+				// Delete endpoints, we do not need them
+				delete devices.endpoints;
+				// Create devices and states
+				this.createDevices(devices);
 				break;
 			case 'bridge/groups':
 				//await createGroup(data);
@@ -123,10 +128,8 @@ class Zigbee2mqtt extends utils.Adapter {
 				break;
 			case 'bridge/extensions':
 				break;
-
 			case 'bridge/logging':
 				break;
-
 			case 'bridge/response/networkmap':
 				break;
 			case 'bridge/response/touchlink/scan':
@@ -136,6 +139,7 @@ class Zigbee2mqtt extends utils.Adapter {
 			case 'bridge/response/touchlink/factory_reset':
 				break;
 			default:
+				// States
 				break;
 
 		}
@@ -180,9 +184,9 @@ class Zigbee2mqtt extends utils.Adapter {
 				type: 'state',
 				common: {
 					name: exposes.description,
-					type: this.typeMapper(exposes.type),
+					type: this.getType(exposes.type),
 					role: 'indicator',
-					unit: exposes.unit,
+					unit: this.getUnit(exposes.unit),
 					read: true,
 					write: exposes.access != 1
 				},
@@ -204,7 +208,7 @@ class Zigbee2mqtt extends utils.Adapter {
 		}
 	}
 
-	typeMapper(inType) {
+	getType(inType) {
 		switch (inType) {
 			case 'numeric':
 				return 'number';
@@ -214,6 +218,15 @@ class Zigbee2mqtt extends utils.Adapter {
 				return 'string';
 			default:
 				return inType;
+		}
+	}
+
+	getUnit(inUnit) {
+		switch (inUnit) {
+			case 'mired':
+				return null;
+			default:
+				return inUnit;
 		}
 	}
 
