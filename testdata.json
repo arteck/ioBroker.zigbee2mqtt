@@ -24,33 +24,51 @@
                     221,
                     221
                 ],
-                "last_seen": "disable",
+                "last_seen": "ISO_8601_local",
                 "legacy_api": true,
                 "legacy_availability_payload": true,
                 "log_directory": "/app/data/log/%TIMESTAMP%",
                 "log_file": "log.txt",
-                "log_level": "info",
+                "log_level": "debug",
                 "log_output": [
                     "console",
                     "file"
                 ],
                 "log_rotation": true,
                 "log_symlink_current": false,
-                "log_syslog": {},
+                "log_syslog": {
+                    "app_name": "Zigbee2MQTT",
+                    "eol": "/n",
+                    "host": "localhost",
+                    "localhost": "localhost",
+                    "path": "/dev/log",
+                    "pid": "process.pid",
+                    "port": 123,
+                    "protocol": "tcp4",
+                    "type": "5424"
+                },
                 "output": "json",
                 "pan_id": 6754,
                 "report": false,
                 "soft_reset_timeout": 0,
-                "timestamp_format": "YYYY-MM-DD HH:mm:ss"
+                "timestamp_format": "YYYY-MM-DD HH:mm:ss",
+                "transmit_power": 20
             },
             "blocklist": [],
             "device_options": {},
             "devices": {
                 "0x00158d00048522b4": {
-                    "friendly_name": "0x00158d00048522b4test"
+                    "friendly_name": "0x00158d00048522b41"
+                },
+                "0x588e81fffee73909": {
+                    "color_sync": true,
+                    "friendly_name": "0x588e81fffee73909"
+                },
+                "0x5c0272fffe857db1": {
+                    "friendly_name": "0x5c0272fffe857db1"
                 },
                 "0xa4c138c954baaf54": {
-                    "friendly_name": "0xa4c138c954baaf54"
+                    "friendly_name": "Test Dose mit Messung :D "
                 }
             },
             "external_converters": [],
@@ -1048,19 +1066,19 @@
             },
             "type": "zStack3x0"
         },
-        "log_level": "info",
+        "log_level": "debug",
         "network": {
             "channel": 11,
             "extended_pan_id": "0x00124b00258b7ed9",
             "pan_id": 6754
         },
-        "permit_join": false,
-        "restart_required": false,
+        "permit_join": true,
+        "restart_required": true,
         "version": "1.27.2"
     },
     "topic": "bridge/info"
 }
- {
+2022-09-20 18: 41: 29.756  - debug: zigbee2mqtt.0 (33956) {
     "payload": [
         {
             "definition": null,
@@ -1429,7 +1447,7 @@
                     "scenes": []
                 }
             },
-            "friendly_name": "0xa4c138c954baaf54",
+            "friendly_name": "Test Dose mit Messung :D ",
             "ieee_address": "0xa4c138c954baaf54",
             "interview_completed": true,
             "interviewing": false,
@@ -1521,7 +1539,7 @@
                     "scenes": []
                 }
             },
-            "friendly_name": "0x00158d00048522b4test",
+            "friendly_name": "0x00158d00048522b41",
             "ieee_address": "0x00158d00048522b4",
             "interview_completed": true,
             "interviewing": false,
@@ -1531,6 +1549,290 @@
             "power_source": "Battery",
             "supported": true,
             "type": "EndDevice"
+        },
+        {
+            "date_code": "",
+            "definition": {
+                "description": "Silvercrest smart plug (EU, CH, FR, BS, DK)",
+                "exposes": [
+                    {
+                        "features": [
+                            {
+                                "access": 7,
+                                "description": "On/off state of the switch",
+                                "name": "state",
+                                "property": "state",
+                                "type": "binary",
+                                "value_off": "OFF",
+                                "value_on": "ON",
+                                "value_toggle": "TOGGLE"
+                            }
+                        ],
+                        "type": "switch"
+                    },
+                    {
+                        "access": 1,
+                        "description": "Link quality (signal strength)",
+                        "name": "linkquality",
+                        "property": "linkquality",
+                        "type": "numeric",
+                        "unit": "lqi",
+                        "value_max": 255,
+                        "value_min": 0
+                    }
+                ],
+                "model": "HG06337",
+                "options": [],
+                "supports_ota": false,
+                "vendor": "Lidl"
+            },
+            "endpoints": {
+                "1": {
+                    "bindings": [],
+                    "clusters": {
+                        "input": [],
+                        "output": []
+                    },
+                    "configured_reportings": [],
+                    "scenes": []
+                },
+                "11": {
+                    "bindings": [
+                        {
+                            "cluster": "genOnOff",
+                            "target": {
+                                "endpoint": 1,
+                                "ieee_address": "0x00124b00258b7ed9",
+                                "type": "endpoint"
+                            }
+                        }
+                    ],
+                    "clusters": {
+                        "input": [
+                            "genBasic",
+                            "genIdentify",
+                            "genGroups",
+                            "genScenes",
+                            "genOnOff"
+                        ],
+                        "output": [
+                            "genOta",
+                            "genTime"
+                        ]
+                    },
+                    "configured_reportings": [
+                        {
+                            "attribute": "onOff",
+                            "cluster": "genOnOff",
+                            "maximum_report_interval": 3600,
+                            "minimum_report_interval": 0,
+                            "reportable_change": 0
+                        }
+                    ],
+                    "scenes": []
+                },
+                "242": {
+                    "bindings": [],
+                    "clusters": {
+                        "input": [],
+                        "output": [
+                            "greenPower"
+                        ]
+                    },
+                    "configured_reportings": [],
+                    "scenes": []
+                }
+            },
+            "friendly_name": "0x5c0272fffe857db1",
+            "ieee_address": "0x5c0272fffe857db1",
+            "interview_completed": true,
+            "interviewing": false,
+            "manufacturer": "_TZ3000_kdi2o9m6",
+            "model_id": "TS011F",
+            "network_address": 32230,
+            "power_source": "Mains (single phase)",
+            "supported": true,
+            "type": "Router"
+        },
+        {
+            "date_code": "",
+            "definition": {
+                "description": "Livarno Lux smart LED light strip 2.5m",
+                "exposes": [
+                    {
+                        "features": [
+                            {
+                                "access": 7,
+                                "description": "On/off state of this light",
+                                "name": "state",
+                                "property": "state",
+                                "type": "binary",
+                                "value_off": "OFF",
+                                "value_on": "ON",
+                                "value_toggle": "TOGGLE"
+                            },
+                            {
+                                "access": 7,
+                                "description": "Brightness of this light",
+                                "name": "brightness",
+                                "property": "brightness",
+                                "type": "numeric",
+                                "value_max": 254,
+                                "value_min": 0
+                            },
+                            {
+                                "access": 7,
+                                "description": "Color temperature of this light",
+                                "name": "color_temp",
+                                "presets": [
+                                    {
+                                        "description": "Coolest temperature supported",
+                                        "name": "coolest",
+                                        "value": 150
+                                    },
+                                    {
+                                        "description": "Cool temperature (250 mireds / 4000 Kelvin)",
+                                        "name": "cool",
+                                        "value": 250
+                                    },
+                                    {
+                                        "description": "Neutral temperature (370 mireds / 2700 Kelvin)",
+                                        "name": "neutral",
+                                        "value": 370
+                                    },
+                                    {
+                                        "description": "Warm temperature (454 mireds / 2200 Kelvin)",
+                                        "name": "warm",
+                                        "value": 454
+                                    },
+                                    {
+                                        "description": "Warmest temperature supported",
+                                        "name": "warmest",
+                                        "value": 500
+                                    }
+                                ],
+                                "property": "color_temp",
+                                "type": "numeric",
+                                "unit": "mired",
+                                "value_max": 500,
+                                "value_min": 150
+                            },
+                            {
+                                "description": "Color of this light in the CIE 1931 color space (x/y)",
+                                "features": [
+                                    {
+                                        "access": 7,
+                                        "name": "x",
+                                        "property": "x",
+                                        "type": "numeric"
+                                    },
+                                    {
+                                        "access": 7,
+                                        "name": "y",
+                                        "property": "y",
+                                        "type": "numeric"
+                                    }
+                                ],
+                                "name": "color_xy",
+                                "property": "color",
+                                "type": "composite"
+                            }
+                        ],
+                        "type": "light"
+                    },
+                    {
+                        "access": 2,
+                        "description": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+                        "name": "effect",
+                        "property": "effect",
+                        "type": "enum",
+                        "values": [
+                            "blink",
+                            "breathe",
+                            "okay",
+                            "channel_change",
+                            "finish_effect",
+                            "stop_effect"
+                        ]
+                    },
+                    {
+                        "access": 1,
+                        "description": "Link quality (signal strength)",
+                        "name": "linkquality",
+                        "property": "linkquality",
+                        "type": "numeric",
+                        "unit": "lqi",
+                        "value_max": 255,
+                        "value_min": 0
+                    }
+                ],
+                "model": "HG06104A",
+                "options": [
+                    {
+                        "access": 2,
+                        "description": "Controls the transition time (in seconds) of on/off, brightness, color temperature (if applicable) and color (if applicable) changes. Defaults to `0` (no transition).",
+                        "name": "transition",
+                        "property": "transition",
+                        "type": "numeric",
+                        "value_min": 0
+                    },
+                    {
+                        "access": 2,
+                        "description": "When enabled colors will be synced, e.g. if the light supports both color x/y and color temperature a conversion from color x/y to color temperature will be done when setting the x/y color (default true).",
+                        "name": "color_sync",
+                        "property": "color_sync",
+                        "type": "binary",
+                        "value_off": false,
+                        "value_on": true
+                    }
+                ],
+                "supports_ota": false,
+                "vendor": "Lidl"
+            },
+            "endpoints": {
+                "1": {
+                    "bindings": [],
+                    "clusters": {
+                        "input": [
+                            "genBasic",
+                            "genIdentify",
+                            "genGroups",
+                            "genScenes",
+                            "genOnOff",
+                            "genLevelCtrl",
+                            "lightingColorCtrl",
+                            "touchlink"
+                        ],
+                        "output": [
+                            "genOta",
+                            "genTime"
+                        ]
+                    },
+                    "configured_reportings": [],
+                    "scenes": []
+                },
+                "242": {
+                    "bindings": [],
+                    "clusters": {
+                        "input": [],
+                        "output": [
+                            "greenPower"
+                        ]
+                    },
+                    "configured_reportings": [],
+                    "scenes": []
+                }
+            },
+            "friendly_name": "0x588e81fffee73909",
+            "ieee_address": "0x588e81fffee73909",
+            "interview_completed": true,
+            "interviewing": false,
+            "manufacturer": "_TZ3000_riwp3k79",
+            "model_id": "TS0505A",
+            "network_address": 28241,
+            "power_source": "Mains (single phase)",
+            "supported": true,
+            "type": "Router"
         }
     ],
     "topic": "bridge/devices"

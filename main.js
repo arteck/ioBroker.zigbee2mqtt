@@ -104,7 +104,6 @@ class Zigbee2mqtt extends utils.Adapter {
 	}
 
 	async messageParse(data) {
-		adapter.log.debug(data);
 		const dataObj = JSON.parse(data);
 
 		switch (dataObj.topic) {
@@ -140,8 +139,46 @@ class Zigbee2mqtt extends utils.Adapter {
 				break;
 			default:
 				// States
+				adapter.log.debug(JSON.stringify(dataObj));
+				this.setDeviceState(dataObj, this.findDevice(dataObj.topic));
 				break;
 
+		}
+	}
+
+	setDeviceState(dataObj, device) {
+		for (const [key, value] of Object.entries(dataObj.payload)) {
+
+			const stateName = `${device.ieee_address}.${key}`;
+
+			adapter.log.debug(`stateName: ${stateName}`);
+
+			if (!device.definition || !device.definition.exposes) {
+				continue;
+			}
+
+			let valueType = device.definition.exposes.find(x => x.name == key);
+
+			// If no valueType have been found yet, check if features are available
+			if (valueType == null) {
+
+				for (const expose of device.definition.exposes) {
+					if (!expose.features) {
+						continue;
+					}
+					valueType = expose.features.find(x => x.name == key);
+					if (valueType) {
+						break;
+					}
+				}
+			}
+
+			if (!valueType || !valueType.type) {
+				continue;
+			}
+
+			const val = this.convertValue(valueType.type, value);
+			this.setState(stateName, val, true);
 		}
 	}
 
@@ -159,6 +196,7 @@ class Zigbee2mqtt extends utils.Adapter {
 				deviceCreateCache[device.ieee_address] = {};
 			}
 
+			// Exposes are available
 			if (!device.definition || !device.definition.exposes) {
 				continue;
 			}
@@ -208,6 +246,16 @@ class Zigbee2mqtt extends utils.Adapter {
 		}
 	}
 
+	convertValue(valueType, value) {
+		switch (valueType) {
+			case 'binary':
+				if (typeof value === 'boolean') { return value; }
+				return value == 'ON';
+			default:
+				return value;
+		}
+	}
+
 	getType(inType) {
 		switch (inType) {
 			case 'numeric':
@@ -228,6 +276,10 @@ class Zigbee2mqtt extends utils.Adapter {
 			default:
 				return inUnit;
 		}
+	}
+
+	findDevice(topic) {
+		return devices.find(x => x.ieee_address == topic || x.friendly_name == topic);
 	}
 
 	/**
