@@ -6,19 +6,21 @@
 
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
-const utils = require('@iobroker/adapter-core');
+const core = require('@iobroker/adapter-core');
 const WebSocket = require('ws');
+const applyExposes = require('./lib/exposes').applyExposes;
+//const colors = require('./lib/colors.js');
 let wsClient;
 let adapter;
 const deviceCreateCache = {};
-let devices;
+const deviceCache = [];
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
-class Zigbee2mqtt extends utils.Adapter {
+class Zigbee2mqtt extends core.Adapter {
 	/**
-	 * @param {Partial<utils.AdapterOptions>} [options={}]
+	 * @param {Partial<core.AdapterOptions>} [options={}]
 	 */
 	constructor(options) {
 		super({
@@ -44,52 +46,6 @@ class Zigbee2mqtt extends utils.Adapter {
 		this.log.info('config option2: ' + this.config.port);
 
 		this.createWsClient(this.config.server, this.config.port);
-
-
-		/*
-		For every state in the system there has to be also an object of type state
-		Here a simple template for a boolean variable named "testVariable"
-		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-		*/
-		// await this.setObjectNotExistsAsync('testVariable', {
-		// 	type: 'state',
-		// 	common: {
-		// 		name: 'testVariable',
-		// 		type: 'boolean',
-		// 		role: 'indicator',
-		// 		read: true,
-		// 		write: true,
-		// 	},
-		// 	native: {},
-		// });
-
-		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-		// this.subscribeStates('testVariable');
-		// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
-		// this.subscribeStates('lights.*');
-		// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-		// this.subscribeStates('*');
-
-		/*
-			setState examples
-			you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-		*/
-		// the variable testVariable is set to true as command (ack=false)
-		// await this.setStateAsync('testVariable', true);
-
-		// same thing, but the value is flagged "ack"
-		// ack should be always set to true if the value is received from or acknowledged from the target system
-		// await this.setStateAsync('testVariable', { val: true, ack: true });
-
-		// same thing, but the state is deleted after 30s (getState will return null afterwards)
-		// await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-
-		// examples for the checkPassword/checkGroup functions
-		// let result = await this.checkPasswordAsync('admin', 'iobroker');
-		// this.log.info('check user admin pw iobroker: ' + result);
-
-		// result = await this.checkGroupAsync('admin', 'admin');
-		// this.log.info('check group user admin group admin: ' + result);
 	}
 
 	async createWsClient(server, port) {
@@ -114,11 +70,7 @@ class Zigbee2mqtt extends utils.Adapter {
 			case 'bridge/state':
 				break;
 			case 'bridge/devices':
-				devices = dataObj.payload;
-				// Delete endpoints, we do not need them
-				delete devices.endpoints;
-				// Create devices and states
-				this.createDevices(devices);
+				this.createDevices(dataObj.payload);
 				break;
 			case 'bridge/groups':
 				//await createGroup(data);
@@ -140,10 +92,17 @@ class Zigbee2mqtt extends utils.Adapter {
 			default:
 				// States
 				{
+					const device = deviceCache.find(x => x.id == dataObj.topic);
 					adapter.log.debug(JSON.stringify(dataObj));
-					const device = this.findDevice(dataObj.topic);
 					if (device) {
-						this.setDeviceState(dataObj, device);
+						try {
+							this.setDeviceState(dataObj, device);
+						} catch (error) {
+							adapter.log.error(error);
+						}
+					}
+					else {
+						adapter.log.warn(`Device: ${dataObj.topic} not found`);
 					}
 				}
 				break;
@@ -151,141 +110,63 @@ class Zigbee2mqtt extends utils.Adapter {
 		}
 	}
 
-	setDeviceState(dataObj, device) {
+	async setDeviceState(dataObj, device) {
 
 		for (const [key, value] of Object.entries(dataObj.payload)) {
-
-			const stateName = `${device.ieee_address}.${key}`;
+			adapter.log.debug(`key: ${key}`);
+			adapter.log.debug(`value: ${value}`);
+			const state = device.states.find(x => (x.prop && x.prop == key) || x.id == key);
+			if (!state) {
+				continue;
+			}
+			const stateName = `${device.ieee_address}.${state.id}`;
 
 			adapter.log.debug(`stateName: ${stateName}`);
 
-			if (!device.definition || !device.definition.exposes) {
-				continue;
+			if (state.getter) {
+				adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
+				this.setState(stateName, state.getter(dataObj.payload), true);
 			}
+			else {
+				this.setState(stateName, value, true);
+			}
+		}
+	}
 
-			let valueType = device.definition.exposes.find(x => x.name == key);
+	async createDevices(exposes) {
 
-			// If no valueType have been found yet, check if features are available
-			if (valueType == null) {
+		for (const expose of exposes) {
+			//adapter.log.debug(JSON.stringify(device.definition));
 
-				for (const expose of device.definition.exposes) {
-					if (!expose.features) {
-						continue;
+			if (expose.definition != null) {
+				applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition);
+			}
+			for (const device of deviceCache) {
+				if (!deviceCreateCache[device.ieee_address]) {
+					await this.setObjectNotExistsAsync(device.ieee_address, {
+						type: 'channel',
+						common: {
+							name: device.id == device.ieee_address ? '' : device.id
+						},
+						native: {}
+					});
+					deviceCreateCache[device.ieee_address] = {};
+				}
+
+				for (const state of device.states) {
+					if (!deviceCreateCache[device.ieee_address][state.id]) {
+						await this.setObjectNotExistsAsync(`${device.ieee_address}.${state.id}`, {
+							type: 'state',
+							common: state,
+							native: {},
+						});
+						deviceCreateCache[device.ieee_address][state.id] = {};
 					}
-					valueType = expose.features.find(x => x.name == key);
-					if (valueType) {
-						break;
-					}
 				}
 			}
 
-			if (!valueType || !valueType.type) {
-				continue;
-			}
-
-			const val = this.convertValue(valueType.type, value);
-			this.setState(stateName, val, true);
+			adapter.log.debug(JSON.stringify(deviceCache));
 		}
-	}
-
-	async createDevices(devices) {
-
-		for (const device of devices) {
-			if (!deviceCreateCache[device.ieee_address]) {
-				await this.setObjectNotExistsAsync(device.ieee_address, {
-					type: 'channel',
-					common: {
-						name: device.friendly_name
-					},
-					native: {}
-				});
-				deviceCreateCache[device.ieee_address] = {};
-			}
-
-			// Exposes are available
-			if (!device.definition || !device.definition.exposes) {
-				continue;
-			}
-
-			for (const exposes of device.definition.exposes) {
-
-				if (exposes.features) {
-					for (const feature of exposes.features) {
-						await this.createDeviceState(device, feature);
-					}
-					continue;
-				}
-
-				await this.createDeviceState(device, exposes);
-			}
-		}
-	}
-
-	async createDeviceState(device, exposes) {
-
-		if (!deviceCreateCache[device.ieee_address][exposes.name]) {
-			const stateObj = {
-				type: 'state',
-				common: {
-					name: exposes.description,
-					type: this.getType(exposes.type),
-					role: 'indicator',
-					unit: this.getUnit(exposes.unit),
-					read: true,
-					write: exposes.access != 1
-				},
-				native: {},
-			};
-
-			if (exposes.type == 'enum') {
-				for (const val of exposes.values) {
-					stateObj.common.states += `${val}:${val};`;
-				}
-				if (stateObj.common.states.length > 1) {
-					stateObj.common.states = stateObj.common.states.slice(0, -1);
-				}
-			}
-
-			// @ts-ignore
-			await this.setObjectNotExistsAsync(`${device.ieee_address}.${exposes.name}`, stateObj);
-			deviceCreateCache[device.ieee_address][exposes.name] = {};
-		}
-	}
-
-	convertValue(valueType, value) {
-		switch (valueType) {
-			case 'binary':
-				if (typeof value === 'boolean') { return value; }
-				return value == 'ON';
-			default:
-				return value;
-		}
-	}
-
-	getType(inType) {
-		switch (inType) {
-			case 'numeric':
-				return 'number';
-			case 'binary':
-				return 'boolean';
-			case 'enum':
-				return 'string';
-			default:
-				return inType;
-		}
-	}
-
-	getUnit(inUnit) {
-		switch (inUnit) {
-			case 'mired':
-				return null;
-			default:
-				return inUnit;
-		}
-	}
-
-	findDevice(topic) {
-		return devices.find(x => x.ieee_address == topic || x.friendly_name == topic);
 	}
 
 	/**
@@ -362,7 +243,7 @@ class Zigbee2mqtt extends utils.Adapter {
 if (require.main !== module) {
 	// Export the constructor in compact mode
 	/**
-	 * @param {Partial<utils.AdapterOptions>} [options={}]
+	 * @param {Partial<core.AdapterOptions>} [options={}]
 	 */
 	module.exports = (options) => new Zigbee2mqtt(options);
 } else {

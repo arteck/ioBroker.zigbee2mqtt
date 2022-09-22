@@ -1,0 +1,459 @@
+[
+    {
+        "id": "Test Dose mit Messung :D ",
+        "ieee_address": "0xa4c138c954baaf54",
+        "icon": "https://www.zigbee2mqtt.io/images/devices/TS011F_plug_1.jpg",
+        "states": [
+            {
+                "id": "state",
+                "prop": "state",
+                "name": "On/off state of the switch",
+                "role": "switch",
+                "write": true,
+                "read": true,
+                "type": "boolean",
+                "setattr": "state",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "load_power",
+                "prop": "power",
+                "name": "Load power",
+                "role": "value.power",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "W",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "current",
+                "prop": "current",
+                "name": "Instantaneous measured electrical current",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "unit": "A",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "voltage",
+                "name": "Load voltage",
+                "role": "value",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "V",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "energy",
+                "prop": "energy",
+                "name": "Sum of consumed energy",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "unit": "kWh",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "power_outage_memory",
+                "prop": "power_outage_memory",
+                "name": "Recover state after power outage",
+                "role": "state",
+                "write": true,
+                "read": true,
+                "type": "string",
+                "states": {
+                    "on": "on",
+                    "off": "off",
+                    "restore": "restore"
+                },
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "indicator_mode",
+                "prop": "indicator_mode",
+                "name": "Plug LED indicator mode",
+                "role": "state",
+                "write": true,
+                "read": true,
+                "type": "string",
+                "states": {
+                    "off": "off",
+                    "off/on": "off/on",
+                    "on/off": "on/off",
+                    "on": "on"
+                },
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "child_lock",
+                "prop": "child_lock",
+                "name": "Enables/disables physical input on the device",
+                "role": "switch",
+                "write": true,
+                "read": true,
+                "type": "boolean",
+                "setattr": "state",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "link_quality",
+                "prop": "linkquality",
+                "name": "Link quality",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "max": 255,
+                "readable": true,
+                "writable": false
+            }
+        ]
+    },
+    {
+        "id": "0x00158d00048522b41",
+        "ieee_address": "0x00158d00048522b4",
+        "icon": "https://www.zigbee2mqtt.io/images/devices/MCCGQ11LM.jpg",
+        "states": [
+            {
+                "id": "battery",
+                "prop": "battery",
+                "name": "Battery percent",
+                "role": "value.battery",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "%",
+                "min": 0,
+                "max": 100,
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "opened",
+                "prop": "contact",
+                "name": "Is open",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "boolean",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "contact",
+                "name": "Contact event",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "boolean",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "device_temperature",
+                "prop": "device_temperature",
+                "name": "Temperature of the device",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "unit": "°C",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "voltage",
+                "name": "Load voltage",
+                "role": "value",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "V",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "power_outage_count",
+                "prop": "power_outage_count",
+                "name": "Number of power outages",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "link_quality",
+                "prop": "linkquality",
+                "name": "Link quality",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "max": 255,
+                "readable": true,
+                "writable": false
+            }
+        ]
+    },
+    {
+        "id": "0x5c0272fffe857db1",
+        "ieee_address": "0x5c0272fffe857db1",
+        "icon": "https://www.zigbee2mqtt.io/images/devices/HG06337.jpg",
+        "states": [
+            {
+                "id": "state",
+                "prop": "state",
+                "name": "On/off state of the switch",
+                "role": "switch",
+                "write": true,
+                "read": true,
+                "type": "boolean",
+                "setattr": "state",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "link_quality",
+                "prop": "linkquality",
+                "name": "Link quality",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "max": 255,
+                "readable": true,
+                "writable": false
+            }
+        ]
+    },
+    {
+        "id": "0x588e81fffee73909",
+        "ieee_address": "0x588e81fffee73909",
+        "icon": "https://www.zigbee2mqtt.io/images/devices/HG06104A.jpg",
+        "states": [
+            {
+                "id": "state",
+                "name": "Switch state",
+                "role": "switch",
+                "write": true,
+                "read": true,
+                "type": "boolean",
+                "setattr": "state",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "brightness",
+                "name": "Brightness",
+                "role": "level.dimmer",
+                "write": true,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "max": 100,
+                "inOptions": true,
+                "setattr": "brightness",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "brightness_move",
+                "prop": "brightness_move",
+                "name": "Dimming",
+                "role": "state",
+                "write": true,
+                "read": false,
+                "type": "number",
+                "min": -50,
+                "max": 50,
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "colortemp",
+                "prop": "color_temp",
+                "name": "Color temperature",
+                "role": "level.color.temperature",
+                "write": true,
+                "read": true,
+                "type": "number",
+                "setattr": "color_temp",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "colortemp_move",
+                "prop": "color_temp_move",
+                "name": "Colortemp change",
+                "role": "state",
+                "write": true,
+                "read": false,
+                "type": "number",
+                "min": -50,
+                "max": 50,
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "color",
+                "prop": "color",
+                "name": "Color",
+                "role": "level.color.rgb",
+                "write": true,
+                "read": true,
+                "type": "string",
+                "setattr": "color",
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "transition_time",
+                "name": "Transition time",
+                "role": "state",
+                "write": true,
+                "read": false,
+                "type": "number",
+                "unit": "sec",
+                "isOption": true,
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "effect",
+                "prop": "effect",
+                "name": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+                "role": "state",
+                "write": true,
+                "read": true,
+                "type": "string",
+                "states": {
+                    "blink": "blink",
+                    "breathe": "breathe",
+                    "okay": "okay",
+                    "channel_change": "channel_change",
+                    "finish_effect": "finish_effect",
+                    "stop_effect": "stop_effect"
+                },
+                "readable": true,
+                "writable": true
+            },
+            {
+                "id": "link_quality",
+                "prop": "linkquality",
+                "name": "Link quality",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "max": 255,
+                "readable": true,
+                "writable": false
+            }
+        ]
+    },
+    {
+        "id": "0x00158d0002389e43",
+        "ieee_address": "0x00158d0002389e43",
+        "icon": "https://www.zigbee2mqtt.io/images/devices/WSDCGQ11LM.jpg",
+        "states": [
+            {
+                "id": "battery",
+                "prop": "battery",
+                "name": "Battery percent",
+                "role": "value.battery",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "%",
+                "min": 0,
+                "max": 100,
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "temperature",
+                "name": "Temperature",
+                "role": "value.temperature",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "°C",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "humidity",
+                "name": "Humidity",
+                "role": "value.humidity",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "%",
+                "min": 0,
+                "max": 100,
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "pressure",
+                "name": "Pressure",
+                "role": "value.pressure",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "hPa",
+                "min": 0,
+                "max": 10000,
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "voltage",
+                "name": "Load voltage",
+                "role": "value",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "unit": "V",
+                "readable": true,
+                "writable": false
+            },
+            {
+                "id": "link_quality",
+                "prop": "linkquality",
+                "name": "Link quality",
+                "role": "state",
+                "write": false,
+                "read": true,
+                "type": "number",
+                "min": 0,
+                "max": 255,
+                "readable": true,
+                "writable": false
+            }
+        ]
+    }
+]

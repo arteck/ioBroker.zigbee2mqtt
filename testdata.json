@@ -1077,8 +1077,7 @@
         "version": "1.27.2"
     },
     "topic": "bridge/info"
-}
-2022-09-20 18: 41: 29.756  - debug: zigbee2mqtt.0 (33956) {
+}{
     "payload": [
         {
             "definition": null,
@@ -1836,4 +1835,13 @@
         }
     ],
     "topic": "bridge/devices"
+}
+
+{
+    "payload": {
+        "last_seen": "2022-09-20T19:03:47+02:00",
+        "linkquality": 156,
+        "state": "ON"
+    },
+    "topic": "0x5c0272fffe857db1"
 }
