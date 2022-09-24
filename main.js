@@ -7,11 +7,8 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
-const { join } = require('path');
 const WebSocket = require('ws');
 const applyExposes = require('./lib/exposes').applyExposes;
-const linkedStates = require('./lib/states').linkedStates;
-//const colors = require('./lib/colors.js');
 let wsClient;
 let adapter;
 let createDevicesReady = false;
@@ -155,14 +152,6 @@ class Zigbee2mqtt extends core.Adapter {
 					this.setState(stateName, value, true);
 				}
 			}
-
-
-			// if (linkedStates[state.id]) {
-			// 	for (const linkedStateName of linkedStates[state.id]) {
-			// 		const linkedState = device.states.find(x => (x.prop && x.prop == linkedStateName) || x.id == linkedStateName);
-			// 	}
-
-			// }
 		}
 	}
 
