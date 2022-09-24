@@ -82,7 +82,7 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				break;
 			case 'bridge/groups':
-				//await createGroup(data);
+				adapter.log.debug(JSON.stringify(dataObj));
 				break;
 			case 'bridge/event':
 				break;
@@ -101,13 +101,15 @@ class Zigbee2mqtt extends core.Adapter {
 			default:
 				// States
 				{
-					adapter.log.debug(JSON.stringify(dataObj));
-					// As long as we are busy creating the devices, the states are written to the queue.
-					if (createDevicesReady == false) {
-						incStatsQueue[incStatsQueue.length] = dataObj;
-						break;
+					if (!dataObj.topic.includes('/')) {
+						//adapter.log.debug(JSON.stringify(dataObj));
+						// As long as we are busy creating the devices, the states are written to the queue.
+						if (createDevicesReady == false) {
+							incStatsQueue[incStatsQueue.length] = dataObj;
+							break;
+						}
+						this.processDeviceMessage(dataObj);
 					}
-					this.processDeviceMessage(dataObj);
 				}
 				break;
 		}
@@ -115,7 +117,6 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async processDeviceMessage(dataObj) {
 		const device = deviceCache.find(x => x.id == dataObj.topic);
-		adapter.log.debug('States');
 		if (device) {
 			try {
 				this.setDeviceState(dataObj, device);
@@ -138,7 +139,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 			for (const state of states) {
 
-				adapter.log.debug(JSON.stringify(state));
+				//adapter.log.debug(JSON.stringify(state));
 				if (!state) {
 					continue;
 				}
