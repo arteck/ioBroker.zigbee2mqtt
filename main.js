@@ -71,6 +71,7 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/devices':
 				this.createDevices(dataObj.payload);
+				adapter.log.debug('Devices');
 				break;
 			case 'bridge/groups':
 				//await createGroup(data);
@@ -93,7 +94,7 @@ class Zigbee2mqtt extends core.Adapter {
 				// States
 				{
 					const device = deviceCache.find(x => x.id == dataObj.topic);
-					adapter.log.debug(JSON.stringify(dataObj));
+					adapter.log.debug('States');
 					if (device) {
 						try {
 							this.setDeviceState(dataObj, device);
@@ -113,18 +114,18 @@ class Zigbee2mqtt extends core.Adapter {
 	async setDeviceState(dataObj, device) {
 
 		for (const [key, value] of Object.entries(dataObj.payload)) {
-			adapter.log.debug(`key: ${key}`);
-			adapter.log.debug(`value: ${value}`);
+			// adapter.log.debug(`key: ${key}`);
+			// adapter.log.debug(`value: ${value}`);
 			const state = device.states.find(x => (x.prop && x.prop == key) || x.id == key);
 			if (!state) {
 				continue;
 			}
 			const stateName = `${device.ieee_address}.${state.id}`;
 
-			adapter.log.debug(`stateName: ${stateName}`);
+			//adapter.log.debug(`stateName: ${stateName}`);
 
 			if (state.getter) {
-				adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
+				//adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
 				this.setState(stateName, state.getter(dataObj.payload), true);
 			}
 			else {
@@ -165,7 +166,7 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 			}
 
-			adapter.log.debug(JSON.stringify(deviceCache));
+			//adapter.log.debug(JSON.stringify(deviceCache));
 		}
 	}
 
