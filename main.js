@@ -7,11 +7,15 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
+const { join } = require('path');
 const WebSocket = require('ws');
 const applyExposes = require('./lib/exposes').applyExposes;
+const linkedStates = require('./lib/states').linkedStates;
 //const colors = require('./lib/colors.js');
 let wsClient;
 let adapter;
+let createDevicesReady = false;
+const incStatsQueue = [];
 const deviceCreateCache = {};
 const deviceCache = [];
 
@@ -70,8 +74,15 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/state':
 				break;
 			case 'bridge/devices':
-				this.createDevices(dataObj.payload);
-				adapter.log.debug('Devices');
+				// As long as we are busy creating the devices, the states are written to the queue.
+				createDevicesReady = false;
+				await this.createDevices(dataObj.payload);
+				createDevicesReady = true;
+
+				// Now process all entries in the states queue
+				while (incStatsQueue.length > 0) {
+					this.processDeviceMessage(incStatsQueue.shift());
+				}
 				break;
 			case 'bridge/groups':
 				//await createGroup(data);
@@ -93,21 +104,31 @@ class Zigbee2mqtt extends core.Adapter {
 			default:
 				// States
 				{
-					const device = deviceCache.find(x => x.id == dataObj.topic);
-					adapter.log.debug('States');
-					if (device) {
-						try {
-							this.setDeviceState(dataObj, device);
-						} catch (error) {
-							adapter.log.error(error);
-						}
+					adapter.log.debug(JSON.stringify(dataObj));
+					// As long as we are busy creating the devices, the states are written to the queue.
+					if (createDevicesReady == false) {
+						incStatsQueue[incStatsQueue.length] = dataObj;
+						break;
 					}
-					else {
-						adapter.log.warn(`Device: ${dataObj.topic} not found`);
-					}
+					this.processDeviceMessage(dataObj);
 				}
 				break;
+		}
+	}
 
+	async processDeviceMessage(dataObj) {
+		const device = deviceCache.find(x => x.id == dataObj.topic);
+		adapter.log.debug('States');
+		if (device) {
+			try {
+				this.setDeviceState(dataObj, device);
+
+			} catch (error) {
+				adapter.log.error(error);
+			}
+		}
+		else {
+			adapter.log.warn(`Device: ${dataObj.topic} not found`);
 		}
 	}
 
@@ -116,21 +137,32 @@ class Zigbee2mqtt extends core.Adapter {
 		for (const [key, value] of Object.entries(dataObj.payload)) {
 			// adapter.log.debug(`key: ${key}`);
 			// adapter.log.debug(`value: ${value}`);
-			const state = device.states.find(x => (x.prop && x.prop == key) || x.id == key);
-			if (!state) {
-				continue;
-			}
-			const stateName = `${device.ieee_address}.${state.id}`;
+			const states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
 
-			//adapter.log.debug(`stateName: ${stateName}`);
+			for (const state of states) {
 
-			if (state.getter) {
-				//adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
-				this.setState(stateName, state.getter(dataObj.payload), true);
+				adapter.log.debug(JSON.stringify(state));
+				if (!state) {
+					continue;
+				}
+				const stateName = `${device.ieee_address}.${state.id}`;
+
+				if (state.getter) {
+					//adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
+					this.setState(stateName, state.getter(dataObj.payload), true);
+				}
+				else {
+					this.setState(stateName, value, true);
+				}
 			}
-			else {
-				this.setState(stateName, value, true);
-			}
+
+
+			// if (linkedStates[state.id]) {
+			// 	for (const linkedStateName of linkedStates[state.id]) {
+			// 		const linkedState = device.states.find(x => (x.prop && x.prop == linkedStateName) || x.id == linkedStateName);
+			// 	}
+
+			// }
 		}
 	}
 
