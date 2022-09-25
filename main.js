@@ -17,9 +17,6 @@ const incStatsQueue = [];
 const deviceCreateCache = {};
 const deviceCache = [];
 
-// Load your modules here, e.g.:
-// const fs = require("fs");
-
 class Zigbee2mqtt extends core.Adapter {
 	/**
 	 * @param {Partial<core.AdapterOptions>} [options={}]
@@ -31,8 +28,6 @@ class Zigbee2mqtt extends core.Adapter {
 		});
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
-		// this.on('objectChange', this.onObjectChange.bind(this));
-		// this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 	}
 
@@ -44,8 +39,8 @@ class Zigbee2mqtt extends core.Adapter {
 		adapter = this;
 		// The adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
-		this.log.info('config option1: ' + this.config.server);
-		this.log.info('config option2: ' + this.config.port);
+		this.log.info('Zigbee2MQTT Frontend Server: ' + this.config.server);
+		this.log.info('Zigbee2MQTT Frontend Port: ' + this.config.port);
 
 		this.createWsClient(this.config.server, this.config.port);
 	}
@@ -54,8 +49,8 @@ class Zigbee2mqtt extends core.Adapter {
 		try {
 			wsClient = new WebSocket(`ws://${server}:${port}/api`);
 			wsClient.on('open', () => { });
-			wsClient.on('message', (data) => { this.messageParse(data); });
-			wsClient.on('error', (data) => { adapter.log.debug(data); });
+			wsClient.on('message', (message) => { this.messageParse(message); });
+			wsClient.on('error', (err) => { adapter.log.debug(err); });
 		} catch (err) {
 			this.log.debug(err);
 		}
@@ -214,12 +209,7 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 	}
 
-	async z2m_command(ieee, pl_name, val) {
-		this.z2m_send(`{"payload":{"${pl_name}":"${val}"},"topic":"${ieee}/set"}`);
-		adapter.log.info(`{"payload":{"${pl_name}":"${val}"},"topic":"${ieee}/set"}`);
-	}
-
-	async z2m_send(id, state) {
+	async createZ2MMessage(id, state) {
 
 		const splitedID = id.split('.');
 
@@ -270,8 +260,7 @@ class Zigbee2mqtt extends core.Adapter {
 			topic: topic
 		};
 
-		adapter.log.debug(JSON.stringify(controlObj));
-		wsClient.send(JSON.stringify(controlObj));
+		return JSON.stringify(controlObj);
 	}
 
 
@@ -300,50 +289,12 @@ class Zigbee2mqtt extends core.Adapter {
 	 * @param {string} id
 	 * @param {ioBroker.State | null | undefined} state
 	 */
-	onStateChange(id, state) {
+	async onStateChange(id, state) {
 		if (state && state.ack == false) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-			this.z2m_send(id, state);
-
+			const message = await this.createZ2MMessage(id, state);
+			wsClient.send(message);
 		}
 	}
-
-
-	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
-	// /**
-	//  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-	//  * Using this method requires "common.messagebox" property to be set to true in io-package.json
-	//  * @param {ioBroker.Message} obj
-	//  */
-	// onMessage(obj) {
-	// 	if (typeof obj === 'object' && obj.message) {
-	// 		if (obj.command === 'send') {
-	// 			// e.g. send email or pushover or whatever
-	// 			this.log.info('send command');
-
-	// 			// Send response in callback if required
-	// 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-	// 		}
-	// 	}
-	// }
-
-	// If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-	// You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-	// /**
-	//  * Is called if a subscribed object changes
-	//  * @param {string} id
-	//  * @param {ioBroker.Object | null | undefined} obj
-	//  */
-	// onObjectChange(id, obj) {
-	// 	if (obj) {
-	// 		// The object was changed
-	// 		this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-	// 	} else {
-	// 		// The object was deleted
-	// 		this.log.info(`object ${id} deleted`);
-	// 	}
-	// }
 }
 
 if (require.main !== module) {
