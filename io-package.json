@@ -54,7 +54,7 @@
 		"platform": "Javascript/Node.js",
 		"main": "main.js",
 		"icon": "zigbee2mqtt.png",
-		"enabled": true,
+		"enabled": false,
 		"extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
 		"readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
 		"loglevel": "info",
