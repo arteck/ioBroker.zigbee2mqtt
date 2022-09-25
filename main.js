@@ -16,6 +16,11 @@ let createDevicesOrReady = false;
 const incStatsQueue = [];
 const deviceCreateCache = {};
 const deviceCache = [];
+let ping;
+let pingTimeout;
+let autoRestartTimeout;
+const wsHeartbeatIntervall = 5000;
+const restartTimeout = 1000;
 
 class Zigbee2mqtt extends core.Adapter {
 	/**
@@ -37,23 +42,69 @@ class Zigbee2mqtt extends core.Adapter {
 	async onReady() {
 		// Initialize your adapter here
 		adapter = this;
-		// The adapters config (in the instance object everything under the attribute "native") is accessible via
-		// this.config:
 		this.log.info('Zigbee2MQTT Frontend Server: ' + this.config.server);
 		this.log.info('Zigbee2MQTT Frontend Port: ' + this.config.port);
-
+		this.setStateAsync('info.connection', false, true);
 		this.createWsClient(this.config.server, this.config.port);
 	}
 
 	async createWsClient(server, port) {
 		try {
 			wsClient = new WebSocket(`ws://${server}:${port}/api`);
-			wsClient.on('open', () => { });
+			wsClient.on('open', () => {
+				this.log.debug('Websocket connectet');
+				// Set connection state
+				this.setState('info.connection', true, true);
+				this.log.info('Connect to server over websocket connection.');
+				// Send ping to server
+				this.sendPingToServer();
+				// Start Heartbeat
+				this.wsHeartbeat();
+			});
+			wsClient.on('pong', () => {
+				this.log.debug('Receive pong from server');
+				this.wsHeartbeat();
+			});
+			// On Close
+			wsClient.on('close', () => {
+				this.setState('info.connection', false, true);
+				this.log.warn('Websocket disconnectet');
+				clearTimeout(ping);
+				clearTimeout(pingTimeout);
+
+				if (wsClient.readyState === WebSocket.CLOSED) {
+					this.autoRestart();
+				}
+			});
+
 			wsClient.on('message', (message) => { this.messageParse(message); });
 			wsClient.on('error', (err) => { adapter.log.debug(err); });
 		} catch (err) {
 			this.log.debug(err);
 		}
+	}
+
+	async sendPingToServer() {
+		this.log.debug('Send ping to server');
+		wsClient.ping();
+		ping = setTimeout(() => {
+			this.sendPingToServer();
+		}, wsHeartbeatIntervall);
+	}
+
+	async wsHeartbeat() {
+		clearTimeout(pingTimeout);
+		pingTimeout = setTimeout(() => {
+			this.log.debug('Websocked connection timed out');
+			wsClient.terminate();
+		}, wsHeartbeatIntervall + 1000);
+	}
+
+	async autoRestart() {
+		this.log.warn(`Start try again in ${restartTimeout / 1000} seconds...`);
+		autoRestartTimeout = setTimeout(() => {
+			this.onReady();
+		}, restartTimeout);
 	}
 
 	async messageParse(message) {
@@ -270,12 +321,9 @@ class Zigbee2mqtt extends core.Adapter {
 	 */
 	onUnload(callback) {
 		try {
-			// Here you must clear all timeouts or intervals that may still be active
-			// clearTimeout(timeout1);
-			// clearTimeout(timeout2);
-			// ...
-			// clearInterval(interval1);
-
+			clearTimeout(ping);
+			clearTimeout(pingTimeout);
+			clearTimeout(autoRestartTimeout);
 			callback();
 		} catch (e) {
 			callback();
