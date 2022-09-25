@@ -9,9 +9,10 @@
 const core = require('@iobroker/adapter-core');
 const WebSocket = require('ws');
 const applyExposes = require('./lib/exposes').applyExposes;
+const createGroupDevice = require('./lib/groups').createGroupDevice;
 let wsClient;
 let adapter;
-let createDevicesReady = false;
+let createDevicesOrReady = false;
 const incStatsQueue = [];
 const deviceCreateCache = {};
 const deviceCache = [];
@@ -60,10 +61,10 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 	}
 
-	async messageParse(data) {
-		const dataObj = JSON.parse(data);
+	async messageParse(message) {
+		const messageObj = JSON.parse(message);
 
-		switch (dataObj.topic) {
+		switch (messageObj.topic) {
 			case 'bridge/config':
 				break;
 			case 'bridge/info':
@@ -72,9 +73,9 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/devices':
 				// As long as we are busy creating the devices, the states are written to the queue.
-				createDevicesReady = false;
-				await this.createDevices(dataObj.payload);
-				createDevicesReady = true;
+				createDevicesOrReady = false;
+				await this.createDevicesOrGroups(messageObj);
+				createDevicesOrReady = true;
 
 				// Now process all entries in the states queue
 				while (incStatsQueue.length > 0) {
@@ -82,7 +83,10 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				break;
 			case 'bridge/groups':
-				adapter.log.debug(JSON.stringify(dataObj));
+				adapter.log.debug(JSON.stringify(messageObj));
+				createDevicesOrReady = false;
+				await this.createDevicesOrGroups(messageObj);
+				createDevicesOrReady = true;
 				break;
 			case 'bridge/event':
 				break;
@@ -101,38 +105,38 @@ class Zigbee2mqtt extends core.Adapter {
 			default:
 				// States
 				{
-					if (!dataObj.topic.includes('/')) {
+					if (!messageObj.topic.includes('/')) {
 						//adapter.log.debug(JSON.stringify(dataObj));
 						// As long as we are busy creating the devices, the states are written to the queue.
-						if (createDevicesReady == false) {
-							incStatsQueue[incStatsQueue.length] = dataObj;
+						if (createDevicesOrReady == false) {
+							incStatsQueue[incStatsQueue.length] = messageObj;
 							break;
 						}
-						this.processDeviceMessage(dataObj);
+						this.processDeviceMessage(messageObj);
 					}
 				}
 				break;
 		}
 	}
 
-	async processDeviceMessage(dataObj) {
-		const device = deviceCache.find(x => x.id == dataObj.topic);
+	async processDeviceMessage(messageObj) {
+		const device = deviceCache.find(x => x.id == messageObj.topic);
 		if (device) {
 			try {
-				this.setDeviceState(dataObj, device);
+				this.setDeviceState(messageObj, device);
 
 			} catch (error) {
 				adapter.log.error(error);
 			}
 		}
 		else {
-			adapter.log.warn(`Device: ${dataObj.topic} not found`);
+			adapter.log.warn(`Device: ${messageObj.topic} not found`);
 		}
 	}
 
-	async setDeviceState(dataObj, device) {
+	async setDeviceState(messageObj, device) {
 
-		for (const [key, value] of Object.entries(dataObj.payload)) {
+		for (const [key, value] of Object.entries(messageObj.payload)) {
 			// adapter.log.debug(`key: ${key}`);
 			// adapter.log.debug(`value: ${value}`);
 			const states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
@@ -147,7 +151,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 				if (state.getter) {
 					//adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
-					this.setState(stateName, state.getter(dataObj.payload), true);
+					this.setState(stateName, state.getter(messageObj.payload), true);
 				}
 				else {
 					this.setState(stateName, value, true);
@@ -156,41 +160,48 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 	}
 
-	async createDevices(exposes) {
+	async createDevicesOrGroups(messageObj) {
 
-		for (const expose of exposes) {
+		for (const expose of messageObj.payload) {
 			//adapter.log.debug(JSON.stringify(device.definition));
-
-			if (expose.definition != null) {
-				applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition);
-			}
-			for (const device of deviceCache) {
-				if (!deviceCreateCache[device.ieee_address]) {
-					await this.setObjectNotExistsAsync(device.ieee_address, {
-						type: 'channel',
-						common: {
-							name: device.id == device.ieee_address ? '' : device.id
-						},
-						native: {}
-					});
-					deviceCreateCache[device.ieee_address] = {};
-				}
-
-				for (const state of device.states) {
-					if (!deviceCreateCache[device.ieee_address][state.id]) {
-						await this.setObjectNotExistsAsync(`${device.ieee_address}.${state.id}`, {
-							type: 'state',
-							common: state,
-							native: {},
-						});
-						deviceCreateCache[device.ieee_address][state.id] = {};
-					}
+			if (messageObj.topic == 'bridge/devices') {
+				if (expose.definition != null) {
+					applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition);
 				}
 			}
-
-			//adapter.log.debug(JSON.stringify(deviceCache));
+			else if (messageObj.topic == 'bridge/groups') {
+				createGroupDevice(deviceCache, expose.id, expose.friendly_name);
+			}
 		}
+
+
+		for (const device of deviceCache) {
+			if (!deviceCreateCache[device.ieee_address]) {
+				await this.setObjectNotExistsAsync(device.ieee_address, {
+					type: 'channel',
+					common: {
+						name: device.id == device.ieee_address ? '' : device.id
+					},
+					native: {}
+				});
+				deviceCreateCache[device.ieee_address] = {};
+			}
+
+			for (const state of device.states) {
+				if (!deviceCreateCache[device.ieee_address][state.id]) {
+					await this.setObjectNotExistsAsync(`${device.ieee_address}.${state.id}`, {
+						type: 'state',
+						common: state,
+						native: {},
+					});
+					deviceCreateCache[device.ieee_address][state.id] = {};
+				}
+			}
+		}
+
+		//adapter.log.debug(JSON.stringify(deviceCache));
 	}
+
 
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
