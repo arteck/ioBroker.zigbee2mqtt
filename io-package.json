@@ -66,6 +66,22 @@
 		"adminUI": {
 			"config": "json"
 		},
+		"adminTab": {
+			"name": {
+				"en": "Zigbee2MQTT",
+				"de": "Zigbee2MQTT",
+				"ru": "Zigbee2MQTT",
+				"pt": "Zigbee2MQTT",
+				"nl": "Zigbee2MQTT",
+				"fr": "Zigbee2MQTT",
+				"it": "Zigbee2MQTT",
+				"es": "Zigbee2MQTT",
+				"pl": "Zigbee2MQTT",
+				"zh-cn": "Zigbee2MQTT"
+			},
+			"link": "http://%server%:%port%",
+			"fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+		},
 		"dependencies": [
 			{
 				"js-controller": ">=3.3.22"

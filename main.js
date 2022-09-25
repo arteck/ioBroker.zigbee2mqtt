@@ -81,12 +81,11 @@ class Zigbee2mqtt extends core.Adapter {
 				while (incStatsQueue.length > 0) {
 					this.processDeviceMessage(incStatsQueue.shift());
 				}
+
+				this.subscribeWritableStates();
 				break;
 			case 'bridge/groups':
-				adapter.log.debug(JSON.stringify(messageObj));
-				createDevicesOrReady = false;
 				await this.createDevicesOrGroups(messageObj);
-				createDevicesOrReady = true;
 				break;
 			case 'bridge/event':
 				break;
@@ -105,8 +104,8 @@ class Zigbee2mqtt extends core.Adapter {
 			default:
 				// States
 				{
+					//adapter.log.debug(JSON.stringify(messageObj));
 					if (!messageObj.topic.includes('/')) {
-						//adapter.log.debug(JSON.stringify(dataObj));
 						// As long as we are busy creating the devices, the states are written to the queue.
 						if (createDevicesOrReady == false) {
 							incStatsQueue[incStatsQueue.length] = messageObj;
@@ -120,6 +119,11 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async processDeviceMessage(messageObj) {
+		// Is payload present?
+		if (messageObj.payload == '') {
+			return;
+		}
+
 		const device = deviceCache.find(x => x.id == messageObj.topic);
 		if (device) {
 			try {
@@ -170,7 +174,7 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 			}
 			else if (messageObj.topic == 'bridge/groups') {
-				createGroupDevice(deviceCache, expose.id, expose.friendly_name);
+				createGroupDevice(deviceCache, expose.friendly_name, `group_${expose.id}`);
 			}
 		}
 
@@ -198,8 +202,76 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 			}
 		}
+	}
 
-		//adapter.log.debug(JSON.stringify(deviceCache));
+	async subscribeWritableStates() {
+		for (const device of deviceCache) {
+			for (const state of device.states) {
+				if (state.write == true) {
+					this.subscribeStates(`${device.ieee_address}.${state.id}`);
+				}
+			}
+		}
+	}
+
+	async z2m_command(ieee, pl_name, val) {
+		this.z2m_send(`{"payload":{"${pl_name}":"${val}"},"topic":"${ieee}/set"}`);
+		adapter.log.info(`{"payload":{"${pl_name}":"${val}"},"topic":"${ieee}/set"}`);
+	}
+
+	async z2m_send(id, state) {
+
+		const splitedID = id.split('.');
+
+		if (splitedID.length < 4) {
+			this.log.warn(`state ${id} not valid`);
+			return;
+		}
+
+		const ieee_address = splitedID[2];
+		const stateName = splitedID[3];
+
+		const device = deviceCache.find(d => d.ieee_address == ieee_address);
+
+		if (!device) {
+			return;
+		}
+
+		const deviceState = device.states.find(s => s.id == stateName);
+
+		if (!deviceState) {
+			return;
+		}
+
+		this.log.debug(JSON.stringify(deviceState));
+
+		let stateVal = state.val;
+		if (deviceState.setter) {
+			stateVal = deviceState.setter(state.val);
+		}
+
+
+		let stateID = deviceState.id;
+		if (deviceState.prop) {
+			stateID = deviceState.prop;
+		}
+
+		let topic = `${device.ieee_address}/set`;
+		if (device.ieee_address.includes('group_')) {
+			topic = `${device.id}/set`;
+		}
+
+		this.log.debug(JSON.stringify(stateVal));
+
+		const controlObj = {
+			payload: {
+				[stateID]: stateVal
+			},
+			topic: topic
+		};
+
+		adapter.log.debug(JSON.stringify(controlObj));
+		wsClient.send(JSON.stringify(controlObj));
 	}
 
 
@@ -229,14 +301,14 @@ class Zigbee2mqtt extends core.Adapter {
 	 * @param {ioBroker.State | null | undefined} state
 	 */
 	onStateChange(id, state) {
-		if (state) {
+		if (state && state.ack == false) {
 			// The state was changed
 			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		} else {
-			// The state was deleted
-			this.log.info(`state ${id} deleted`);
+			this.z2m_send(id, state);
+
 		}
 	}
+
 
 	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
 	// /**

@@ -1,0 +1,253 @@
+[
+    {
+        "id": "state",
+        "prop": "state",
+        "name": "On/off state of the switch",
+        "role": "switch",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "setattr": "state",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "power_outage_memory",
+        "prop": "power_outage_memory",
+        "name": "Recover state after power outage",
+        "role": "state",
+        "write": true,
+        "read": true,
+        "type": "string",
+        "states": {
+            "on": "on",
+            "off": "off",
+            "restore": "restore"
+        },
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "indicator_mode",
+        "prop": "indicator_mode",
+        "name": "Plug LED indicator mode",
+        "role": "state",
+        "write": true,
+        "read": true,
+        "type": "string",
+        "states": {
+            "off": "off",
+            "off/on": "off/on",
+            "on/off": "on/off",
+            "on": "on"
+        },
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "child_lock",
+        "prop": "child_lock",
+        "name": "Enables/disables physical input on the device",
+        "role": "switch",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "setattr": "state",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "state",
+        "prop": "state",
+        "name": "On/off state of the switch",
+        "role": "switch",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "setattr": "state",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "state",
+        "name": "Switch state",
+        "role": "switch",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "setattr": "state",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "brightness",
+        "name": "Brightness",
+        "role": "level.dimmer",
+        "write": true,
+        "read": true,
+        "type": "number",
+        "min": 0,
+        "max": 100,
+        "inOptions": true,
+        "setattr": "brightness",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "brightness_move",
+        "prop": "brightness_move",
+        "name": "Dimming",
+        "role": "state",
+        "write": true,
+        "read": false,
+        "type": "number",
+        "min": -50,
+        "max": 50,
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "colortemp",
+        "prop": "color_temp",
+        "name": "Color temperature",
+        "role": "level.color.temperature",
+        "write": true,
+        "read": true,
+        "type": "number",
+        "setattr": "color_temp",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "colortemp_move",
+        "prop": "color_temp_move",
+        "name": "Colortemp change",
+        "role": "state",
+        "write": true,
+        "read": false,
+        "type": "number",
+        "min": -50,
+        "max": 50,
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "color",
+        "prop": "color",
+        "name": "Color",
+        "role": "level.color.rgb",
+        "write": true,
+        "read": true,
+        "type": "string",
+        "setattr": "color",
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "transition_time",
+        "name": "Transition time",
+        "role": "state",
+        "write": true,
+        "read": false,
+        "type": "number",
+        "unit": "sec",
+        "isOption": true,
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "effect",
+        "prop": "effect",
+        "name": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+        "role": "state",
+        "write": true,
+        "read": true,
+        "type": "string",
+        "states": {
+            "blink": "blink",
+            "breathe": "breathe",
+            "okay": "okay",
+            "channel_change": "channel_change",
+            "finish_effect": "finish_effect",
+            "stop_effect": "stop_effect"
+        },
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "state",
+        "name": "Switch state",
+        "role": "switch",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "inOptions": true
+    },
+    {
+        "id": "brightness",
+        "name": "Brightness",
+        "role": "level.dimmer",
+        "write": true,
+        "read": true,
+        "type": "number",
+        "unit": "",
+        "min": 0,
+        "max": 100
+    },
+    {
+        "id": "colortemp",
+        "prop": "color_temp",
+        "name": "Color temperature",
+        "role": "level.color.temperature",
+        "write": true,
+        "read": true,
+        "type": "number"
+    },
+    {
+        "id": "color",
+        "prop": "color",
+        "name": "Color",
+        "role": "level.color.rgb",
+        "write": true,
+        "read": true,
+        "type": "string"
+    },
+    {
+        "id": "brightness_move",
+        "prop": "brightness_move",
+        "name": "Dimming",
+        "role": "state",
+        "write": true,
+        "read": false,
+        "type": "number",
+        "min": -50,
+        "max": 50,
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "colortemp_move",
+        "prop": "color_temp_move",
+        "name": "Colortemp change",
+        "role": "state",
+        "write": true,
+        "read": false,
+        "type": "number",
+        "min": -50,
+        "max": 50,
+        "readable": true,
+        "writable": true
+    },
+    {
+        "id": "transition_time",
+        "name": "Transition time",
+        "role": "state",
+        "write": true,
+        "read": false,
+        "type": "number",
+        "unit": "sec",
+        "isOption": true,
+        "readable": true,
+        "writable": true
+    }
+]
