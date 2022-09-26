@@ -150,7 +150,6 @@ class Zigbee2mqtt extends core.Adapter {
 			default:
 				// States
 				{
-					//adapter.log.debug(JSON.stringify(messageObj));
 					if (!messageObj.topic.includes('/')) {
 						// As long as we are busy creating the devices, the states are written to the queue.
 						if (createDevicesOrReady == false) {
@@ -187,20 +186,24 @@ class Zigbee2mqtt extends core.Adapter {
 	async setDeviceState(messageObj, device) {
 
 		for (const [key, value] of Object.entries(messageObj.payload)) {
-			// adapter.log.debug(`key: ${key}`);
-			// adapter.log.debug(`value: ${value}`);
-			const states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
+			if (!value || value == '') {
+				continue;
+			}
+
+			let states;
+			if (key == 'action') {
+				states = device.states.filter(x => (x.prop && x.prop == key) && x.id == value);
+			} else {
+				states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
+			}
 
 			for (const state of states) {
-
-				//adapter.log.debug(JSON.stringify(state));
 				if (!state) {
 					continue;
 				}
 				const stateName = `${device.ieee_address}.${state.id}`;
 
 				if (state.getter) {
-					//adapter.log.debug(`state.getter(value): ${state.getter(dataObj.payload)}`);
 					this.setState(stateName, state.getter(messageObj.payload), true);
 				}
 				else {
@@ -213,7 +216,6 @@ class Zigbee2mqtt extends core.Adapter {
 	async createDevicesOrGroups(messageObj) {
 
 		for (const expose of messageObj.payload) {
-			//adapter.log.debug(JSON.stringify(device.definition));
 			if (messageObj.topic == 'bridge/devices') {
 				if (expose.definition != null) {
 					applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition);
@@ -224,22 +226,24 @@ class Zigbee2mqtt extends core.Adapter {
 			}
 		}
 
-
 		for (const device of deviceCache) {
-			if (!deviceCreateCache[device.ieee_address]) {
-				await this.setObjectNotExistsAsync(device.ieee_address, {
+			const deviceName = device.id == device.ieee_address ? '' : device.id;
+			if (!deviceCreateCache[device.ieee_address] || deviceCreateCache[device.ieee_address].common.name != deviceName) {
+				const deviceObj = {
 					type: 'channel',
 					common: {
-						name: device.id == device.ieee_address ? '' : device.id
+						name: deviceName
 					},
 					native: {}
-				});
-				deviceCreateCache[device.ieee_address] = {};
+				};
+				//@ts-ignore
+				await this.extendObjectAsync(device.ieee_address, deviceObj);
+				deviceCreateCache[device.ieee_address] = deviceObj;
 			}
 
 			for (const state of device.states) {
 				if (!deviceCreateCache[device.ieee_address][state.id]) {
-					await this.setObjectNotExistsAsync(`${device.ieee_address}.${state.id}`, {
+					await this.extendObjectAsync(`${device.ieee_address}.${state.id}`, {
 						type: 'state',
 						common: state,
 						native: {},
@@ -284,8 +288,6 @@ class Zigbee2mqtt extends core.Adapter {
 			return;
 		}
 
-		this.log.debug(JSON.stringify(deviceState));
-
 		let stateVal = state.val;
 		if (deviceState.setter) {
 			stateVal = deviceState.setter(state.val);
@@ -302,8 +304,6 @@ class Zigbee2mqtt extends core.Adapter {
 			topic = `${device.id}/set`;
 		}
 
-		this.log.debug(JSON.stringify(stateVal));
-
 		const controlObj = {
 			payload: {
 				[stateID]: stateVal
@@ -313,7 +313,6 @@ class Zigbee2mqtt extends core.Adapter {
 
 		return JSON.stringify(controlObj);
 	}
-
 
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
