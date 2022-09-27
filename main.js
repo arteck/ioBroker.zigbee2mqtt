@@ -307,7 +307,7 @@ class Zigbee2mqtt extends core.Adapter {
 			const deviceName = device.id == device.ieee_address ? '' : device.id;
 			if (!deviceCreateCache[device.ieee_address] || deviceCreateCache[device.ieee_address].common.name != deviceName) {
 				const deviceObj = {
-					type: 'channel',
+					type: 'device',
 					common: {
 						name: deviceName,
 						statusStates: {
