@@ -10,7 +10,17 @@
 		"port": {
 			"type": "number",
 			"label": "Port",
+			"newLine": false
+		},
+		"debugLogEnabled": {
+			"type": "checkbox",
+			"label": "Debug Log Enabled",
 			"newLine": true
+		},
+		"proxyZ2MLogs": {
+			"type": "checkbox",
+			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
+			"newLine": false
 		}
 	}
 }

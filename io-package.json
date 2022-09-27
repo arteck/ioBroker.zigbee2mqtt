@@ -95,7 +95,9 @@
 	},
 	"native": {
 		"server": "",
-		"port": "8080"
+		"port": "8080",
+		"debugLogEnabled": false,
+		"proxyZ2MLogs": true
 	},
 	"objects": [],
 	"instanceObjects": [
