@@ -321,16 +321,15 @@ class Zigbee2mqtt extends core.Adapter {
 				deviceCreateCache[device.ieee_address] = deviceObj;
 			}
 
+			// Special handling for groups, here it is checked whether the scenes match the current data from z2m.
+			// If necessary, scenes are automatically deleted from ioBroker.
 			if (device.ieee_address.startsWith('group_')) {
-				const test = await this.getStatesAsync(`${device.ieee_address}.scene_*`);
-				const ids = Object.keys(test);
-				for (const id of ids) {
-
-					// zigbee2mqtt.0.group_1.scene_1
-					const stateID = id.split('.')[3];
+				const sceneStates = await this.getStatesAsync(`${device.ieee_address}.scene_*`);
+				const sceneIDs = Object.keys(sceneStates);
+				for (const sceneID of sceneIDs) {
+					const stateID = sceneID.split('.')[3];
 					if (device.states.find(x => x.id == stateID) == null) {
-						this.log.warn(id);
-						this.delObject(id);
+						this.delObject(sceneID);
 					}
 				}
 			}
