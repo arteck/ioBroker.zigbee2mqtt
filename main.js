@@ -131,18 +131,16 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/devices':
 				// As long as we are busy creating the devices, the states are written to the queue.
 				createDevicesOrReady = false;
-				await this.createDevicesOrGroups(messageObj);
+				await this.createAndUpdateDevicesOrGroups(messageObj);
 				createDevicesOrReady = true;
 
 				// Now process all entries in the states queue
 				while (incStatsQueue.length > 0) {
 					this.processDeviceMessage(incStatsQueue.shift());
 				}
-				this.subscribeWritableStates();
 				break;
 			case 'bridge/groups':
-				await this.createDevicesOrGroups(messageObj);
-				this.subscribeWritableStates();
+				await this.createAndUpdateDevicesOrGroups(messageObj);
 				break;
 			case 'bridge/event':
 				break;
@@ -291,7 +289,7 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 	}
 
-	async createDevicesOrGroups(messageObj) {
+	async createAndUpdateDevicesOrGroups(messageObj) {
 		this.logDebug(`createDevicesOrGroups -> messageObj: ${JSON.stringify(messageObj)}`);
 		for (const expose of messageObj.payload) {
 			if (messageObj.topic == 'bridge/devices') {
@@ -354,6 +352,7 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 			}
 		}
+		this.subscribeWritableStates();
 	}
 
 	async copyAndCleanStateObj(state) {
