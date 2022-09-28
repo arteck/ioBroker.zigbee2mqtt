@@ -142,6 +142,7 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/groups':
 				await this.createDevicesOrGroups(messageObj);
+				this.subscribeWritableStates();
 				break;
 			case 'bridge/event':
 				break;
@@ -295,11 +296,11 @@ class Zigbee2mqtt extends core.Adapter {
 		for (const expose of messageObj.payload) {
 			if (messageObj.topic == 'bridge/devices') {
 				if (expose.definition != null) {
-					applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source);
+					await applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source);
 				}
 			}
 			else if (messageObj.topic == 'bridge/groups') {
-				createGroupDevice(deviceCache, expose.friendly_name, `group_${expose.id}`);
+				await createGroupDevice(deviceCache, expose.friendly_name, `group_${expose.id}`, expose.scenes);
 			}
 		}
 
@@ -322,18 +323,34 @@ class Zigbee2mqtt extends core.Adapter {
 				deviceCreateCache[device.ieee_address] = deviceObj;
 			}
 
+			if (device.ieee_address.startsWith('group_')) {
+				const test = await this.getStatesAsync(`${device.ieee_address}.scene_*`);
+				const ids = Object.keys(test);
+				for (const id of ids) {
+
+					// zigbee2mqtt.0.group_1.scene_1
+					const stateID = id.split('.')[3];
+					if (device.states.find(x => x.id == stateID) == null) {
+						this.log.warn(id);
+						this.delObject(id);
+					}
+				}
+			}
+
 			for (const state of device.states) {
-				if (!deviceCreateCache[device.ieee_address][state.id]) {
+				if (!deviceCreateCache[device.ieee_address][state.id] || deviceCreateCache[device.ieee_address][state.id].name != state.name) {
 					const iobState = await this.copyAndCleanStateObj(state);
 					this.logDebug(`Orig. state: ${JSON.stringify(state)}`);
 					this.logDebug(`Cleaned. state: ${JSON.stringify(iobState)}`);
+
+
 
 					await this.extendObjectAsync(`${device.ieee_address}.${state.id}`, {
 						type: 'state',
 						common: iobState,
 						native: {},
 					});
-					deviceCreateCache[device.ieee_address][state.id] = {};
+					deviceCreateCache[device.ieee_address][state.id] = state.name;
 				}
 			}
 		}
@@ -358,10 +375,11 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async subscribeWritableStates() {
+		await this.unsubscribeObjectsAsync('*');
 		for (const device of deviceCache) {
 			for (const state of device.states) {
 				if (state.write == true) {
-					this.subscribeStates(`${device.ieee_address}.${state.id}`);
+					this.subscribeStatesAsync(`${device.ieee_address}.${state.id}`);
 				}
 			}
 		}
@@ -413,6 +431,10 @@ class Zigbee2mqtt extends core.Adapter {
 			},
 			topic: topic
 		};
+		// set stats with role 'button' always immediately to ack = true, because these are not reported back by Zigbee2MQTT
+		if (deviceState.role == 'button') {
+			this.setState(id, state, true);
+		}
 
 		return JSON.stringify(controlObj);
 	}
