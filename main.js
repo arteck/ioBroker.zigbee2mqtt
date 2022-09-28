@@ -187,7 +187,8 @@ class Zigbee2mqtt extends core.Adapter {
 			this.logDebug(`processDeviceMessage -> device: ${JSON.stringify(device)}`);
 			try {
 				// The state available must not be considered for the cacheLastSeen
-				if (messageObj.payload.available == undefined) {
+				// Groups must not be considered for the cacheLastSeen
+				if (messageObj.payload.available == undefined && !device.ieee_address.startsWith('group_')) {
 					await this.cacheLastSeen(device, messageObj);
 				}
 				this.setDeviceState(messageObj, device);
