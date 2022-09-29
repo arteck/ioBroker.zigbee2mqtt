@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+    open-pull-requests-limit: 30
+    assignees:
+      - o0shojo0o
+    versioning-strategy: increase
+    allow:
+      - dependency-type: "direct"
