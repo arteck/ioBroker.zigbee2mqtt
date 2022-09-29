@@ -8,15 +8,19 @@
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
 const WebSocket = require('ws');
-const applyExposes = require('./lib/exposes').applyExposes;
-const createGroupDevice = require('./lib/groups').createGroupDevice;
+const defineDeviceFromExposes = require('./lib/exposes').defineDeviceFromExposes;
+const defineGroupDevice = require('./lib/groups').defineGroupDevice;
+const clearArray = require('./lib/utils').clearArray;
 let wsClient;
 let adapter;
 let createDevicesOrReady = false;
 const incStatsQueue = [];
-const deviceCreateCache = {};
-const deviceCache = [];
-const deviceLastSeenCache = {};
+const createCache = {};
+// eslint-disable-next-line prefer-const
+let deviceCache = [];
+// eslint-disable-next-line prefer-const
+let groupCache = [];
+const lastSeenCache = {};
 let ping;
 let pingTimeout;
 let autoRestartTimeout;
@@ -131,7 +135,8 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/devices':
 				// As long as we are busy creating the devices, the states are written to the queue.
 				createDevicesOrReady = false;
-				await this.createAndUpdateDevicesOrGroups(messageObj);
+				await this.createDeviceDefinitions(deviceCache, messageObj.payload);
+				await this.createOrUpdateDevices(deviceCache);
 				createDevicesOrReady = true;
 
 				// Now process all entries in the states queue
@@ -140,7 +145,8 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				break;
 			case 'bridge/groups':
-				await this.createAndUpdateDevicesOrGroups(messageObj);
+				await this.createGroupDefinitions(groupCache, messageObj.payload);
+				await this.createOrUpdateDevices(groupCache);
 				break;
 			case 'bridge/event':
 				break;
@@ -207,11 +213,11 @@ class Zigbee2mqtt extends core.Adapter {
 		this.logDebug(`cacheLastSeen -> device: ${JSON.stringify(device)}`);
 		this.logDebug(`cacheLastSeen -> messageObj: ${JSON.stringify(messageObj)}`);
 		if (messageObj.payload.last_seen) {
-			deviceLastSeenCache[device.ieee_address] = new Date(messageObj.payload.last_seen).getTime();
+			lastSeenCache[device.ieee_address] = new Date(messageObj.payload.last_seen).getTime();
 		} else {
-			deviceLastSeenCache[device.ieee_address] = new Date().getTime();
+			lastSeenCache[device.ieee_address] = new Date().getTime();
 		}
-		this.logDebug(`cacheLastSeen -> deviceLastSeenCache: ${JSON.stringify(deviceLastSeenCache)}`);
+		this.logDebug(`cacheLastSeen -> deviceLastSeenCache: ${JSON.stringify(lastSeenCache)}`);
 	}
 
 	async checkAvailableTimer() {
@@ -228,7 +234,7 @@ class Zigbee2mqtt extends core.Adapter {
 			checkList[ieee_address] = null;
 		}
 		else {
-			checkList = deviceLastSeenCache;
+			checkList = lastSeenCache;
 		}
 
 		for (const ieee_address in checkList) {
@@ -240,7 +246,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 			const isBatteryDevice = device.power_source == 'Battery' ? true : false;
 			const offlineTimeout = isBatteryDevice ? batteryDeviceAvailableTimeout : deviceAvailableTimeout;
-			const diffSec = Math.round((new Date().getTime() - deviceLastSeenCache[ieee_address]) / 1000);
+			const diffSec = Math.round((new Date().getTime() - lastSeenCache[ieee_address]) / 1000);
 			const available = diffSec < offlineTimeout;
 
 			this.logDebug(`checkAvailable -> device.id: ${device.id}, available: ${available}, diffSec: ${diffSec}, isBatteryDevice: ${isBatteryDevice}`);
@@ -290,22 +296,26 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 	}
 
-	async createAndUpdateDevicesOrGroups(messageObj) {
-		this.logDebug(`createDevicesOrGroups -> messageObj: ${JSON.stringify(messageObj)}`);
-		for (const expose of messageObj.payload) {
-			if (messageObj.topic == 'bridge/devices') {
-				if (expose.definition != null) {
-					await applyExposes(deviceCache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source);
-				}
-			}
-			else if (messageObj.topic == 'bridge/groups') {
-				await createGroupDevice(deviceCache, expose.friendly_name, `group_${expose.id}`, expose.scenes);
+	async createDeviceDefinitions(cache, exposes) {
+		clearArray(cache);
+		for (const expose of exposes) {
+			if (expose.definition != null) {
+				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source);
 			}
 		}
+	}
 
-		for (const device of deviceCache) {
+	async createGroupDefinitions(cache, exposes) {
+		clearArray(cache);
+		for (const expose of exposes) {
+			await defineGroupDevice(cache, expose.friendly_name, `group_${expose.id}`, expose.scenes);
+		}
+	}
+
+	async createOrUpdateDevices(cache) {
+		for (const device of cache) {
 			const deviceName = device.id == device.ieee_address ? '' : device.id;
-			if (!deviceCreateCache[device.ieee_address] || deviceCreateCache[device.ieee_address].common.name != deviceName) {
+			if (!createCache[device.ieee_address] || createCache[device.ieee_address].common.name != deviceName) {
 				const deviceObj = {
 					type: 'device',
 					common: {
@@ -319,7 +329,7 @@ class Zigbee2mqtt extends core.Adapter {
 				};
 				//@ts-ignore
 				await this.extendObjectAsync(device.ieee_address, deviceObj);
-				deviceCreateCache[device.ieee_address] = deviceObj;
+				createCache[device.ieee_address] = deviceObj;
 			}
 
 			// Special handling for groups, here it is checked whether the scenes match the current data from z2m.
@@ -336,7 +346,7 @@ class Zigbee2mqtt extends core.Adapter {
 			}
 
 			for (const state of device.states) {
-				if (!deviceCreateCache[device.ieee_address][state.id] || deviceCreateCache[device.ieee_address][state.id].name != state.name) {
+				if (!createCache[device.ieee_address][state.id] || createCache[device.ieee_address][state.id].name != state.name) {
 					const iobState = await this.copyAndCleanStateObj(state);
 					this.logDebug(`Orig. state: ${JSON.stringify(state)}`);
 					this.logDebug(`Cleaned. state: ${JSON.stringify(iobState)}`);
@@ -348,7 +358,7 @@ class Zigbee2mqtt extends core.Adapter {
 						common: iobState,
 						native: {},
 					});
-					deviceCreateCache[device.ieee_address][state.id] = state.name;
+					createCache[device.ieee_address][state.id] = state.name;
 				}
 			}
 		}
