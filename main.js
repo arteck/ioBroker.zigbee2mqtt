@@ -58,6 +58,8 @@ class Zigbee2mqtt extends core.Adapter {
 
 		debugLogEnabled = this.config.debugLogEnabled;
 		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
+
+		this.subscribeStatesAsync('*');
 	}
 
 	async createWsClient(server, port) {
@@ -137,6 +139,7 @@ class Zigbee2mqtt extends core.Adapter {
 				createDevicesOrReady = false;
 				await this.createDeviceDefinitions(deviceCache, messageObj.payload);
 				await this.createOrUpdateDevices(deviceCache);
+				this.subscribeWritableStates();
 				createDevicesOrReady = true;
 
 				// Now process all entries in the states queue
@@ -147,6 +150,7 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/groups':
 				await this.createGroupDefinitions(groupCache, messageObj.payload);
 				await this.createOrUpdateDevices(groupCache);
+				this.subscribeWritableStates();
 				break;
 			case 'bridge/event':
 				break;
@@ -188,7 +192,7 @@ class Zigbee2mqtt extends core.Adapter {
 			return;
 		}
 
-		const device = deviceCache.find(x => x.id == messageObj.topic);
+		const device = groupCache.concat(deviceCache).find(x => x.id == messageObj.topic);
 		if (device) {
 			this.logDebug(`processDeviceMessage -> device: ${JSON.stringify(device)}`);
 			try {
@@ -320,13 +324,17 @@ class Zigbee2mqtt extends core.Adapter {
 					type: 'device',
 					common: {
 						name: deviceName,
-						statusStates: {
-							onlineId: `${this.name}.${this.instance}.${device.ieee_address}.available`
-						},
 					},
 
 					native: {}
 				};
+
+				if (!device.ieee_address.includes('group_')) {
+					deviceObj.common.statusStates = {
+						onlineId: `${this.name}.${this.instance}.${device.ieee_address}.available`
+					};
+				}
+
 				//@ts-ignore
 				await this.extendObjectAsync(device.ieee_address, deviceObj);
 				createCache[device.ieee_address] = deviceObj;
@@ -362,7 +370,6 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 			}
 		}
-		this.subscribeWritableStates();
 	}
 
 	async copyAndCleanStateObj(state) {
@@ -385,9 +392,8 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async subscribeWritableStates() {
 		await this.unsubscribeObjectsAsync('*');
-		const devicesAndGoups = [];
-		devicesAndGoups.concat(deviceCache, groupCache);
-		for (const device of devicesAndGoups) {
+
+		for (const device of groupCache.concat(deviceCache)) {
 			for (const state of device.states) {
 				if (state.write == true) {
 					this.subscribeStatesAsync(`${device.ieee_address}.${state.id}`);
@@ -408,7 +414,7 @@ class Zigbee2mqtt extends core.Adapter {
 		const ieee_address = splitedID[2];
 		const stateName = splitedID[3];
 
-		const device = deviceCache.find(d => d.ieee_address == ieee_address);
+		const device = groupCache.concat(deviceCache).find(d => d.ieee_address == ieee_address);
 
 		if (!device) {
 			return;
