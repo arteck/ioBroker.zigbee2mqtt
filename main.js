@@ -385,7 +385,9 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async subscribeWritableStates() {
 		await this.unsubscribeObjectsAsync('*');
-		for (const device of deviceCache) {
+		const devicesAndGoups = [];
+		devicesAndGoups.concat(deviceCache, groupCache);
+		for (const device of devicesAndGoups) {
 			for (const state of device.states) {
 				if (state.write == true) {
 					this.subscribeStatesAsync(`${device.ieee_address}.${state.id}`);
