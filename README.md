@@ -29,6 +29,7 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) add support for scenes defined on a device
 -   (o0shojo0o) fix available state role
 -   (o0shojo0o) fix subscribeWritableStates
 

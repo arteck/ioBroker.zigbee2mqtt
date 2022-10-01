@@ -304,7 +304,15 @@ class Zigbee2mqtt extends core.Adapter {
 		clearArray(cache);
 		for (const expose of exposes) {
 			if (expose.definition != null) {
-				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source);
+				// search for scenes in the endpoints and build them into an array
+				let scenes = [];
+				for (const key in expose.endpoints) {
+					if (expose.endpoints[key].scenes) {
+						this.log.warn(JSON.stringify(expose.endpoints[key].scenes));
+						scenes = scenes.concat(expose.endpoints[key].scenes);
+					}
+				}
+				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes);
 			}
 		}
 	}
@@ -340,16 +348,14 @@ class Zigbee2mqtt extends core.Adapter {
 				createCache[device.ieee_address] = deviceObj;
 			}
 
-			// Special handling for groups, here it is checked whether the scenes match the current data from z2m.
+			// Here it is checked whether the scenes match the current data from z2m.
 			// If necessary, scenes are automatically deleted from ioBroker.
-			if (device.ieee_address.startsWith('group_')) {
-				const sceneStates = await this.getStatesAsync(`${device.ieee_address}.scene_*`);
-				const sceneIDs = Object.keys(sceneStates);
-				for (const sceneID of sceneIDs) {
-					const stateID = sceneID.split('.')[3];
-					if (device.states.find(x => x.id == stateID) == null) {
-						this.delObject(sceneID);
-					}
+			const sceneStates = await this.getStatesAsync(`${device.ieee_address}.scene_*`);
+			const sceneIDs = Object.keys(sceneStates);
+			for (const sceneID of sceneIDs) {
+				const stateID = sceneID.split('.')[3];
+				if (device.states.find(x => x.id == stateID) == null) {
+					this.delObject(sceneID);
 				}
 			}
 

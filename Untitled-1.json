@@ -1,468 +1,185 @@
-[
-    {
-        "id": "BU.Sensor.Room",
-        "ieee_address": "0x00158d0002389e43",
-        "icon": "https://www.zigbee2mqtt.io/images/devices/WSDCGQ11LM.jpg",
-        "power_source": "Battery",
-        "states": [
+{
+    "date_code": "",
+    "definition": {
+        "description": "Livarno Lux smart LED light strip 2.5m",
+        "exposes": [
             {
-                "id": "battery",
-                "prop": "battery",
-                "name": "Battery percent",
-                "role": "value.battery",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "unit": "%",
-                "min": 0,
-                "max": 100,
-                "readable": true,
-                "writable": false
+                "features": [
+                    {
+                        "access": 7,
+                        "description": "On/off state of this light",
+                        "name": "state",
+                        "property": "state",
+                        "type": "binary",
+                        "value_off": "OFF",
+                        "value_on": "ON",
+                        "value_toggle": "TOGGLE"
+                    },
+                    {
+                        "access": 7,
+                        "description": "Brightness of this light",
+                        "name": "brightness",
+                        "property": "brightness",
+                        "type": "numeric",
+                        "value_max": 254,
+                        "value_min": 0
+                    },
+                    {
+                        "access": 7,
+                        "description": "Color temperature of this light",
+                        "name": "color_temp",
+                        "presets": [
+                            {
+                                "description": "Coolest temperature supported",
+                                "name": "coolest",
+                                "value": 150
+                            },
+                            {
+                                "description": "Cool temperature (250 mireds / 4000 Kelvin)",
+                                "name": "cool",
+                                "value": 250
+                            },
+                            {
+                                "description": "Neutral temperature (370 mireds / 2700 Kelvin)",
+                                "name": "neutral",
+                                "value": 370
+                            },
+                            {
+                                "description": "Warm temperature (454 mireds / 2200 Kelvin)",
+                                "name": "warm",
+                                "value": 454
+                            },
+                            {
+                                "description": "Warmest temperature supported",
+                                "name": "warmest",
+                                "value": 500
+                            }
+                        ],
+                        "property": "color_temp",
+                        "type": "numeric",
+                        "unit": "mired",
+                        "value_max": 500,
+                        "value_min": 150
+                    },
+                    {
+                        "description": "Color of this light in the CIE 1931 color space (x/y)",
+                        "features": [
+                            {
+                                "access": 7,
+                                "name": "x",
+                                "property": "x",
+                                "type": "numeric"
+                            },
+                            {
+                                "access": 7,
+                                "name": "y",
+                                "property": "y",
+                                "type": "numeric"
+                            }
+                        ],
+                        "name": "color_xy",
+                        "property": "color",
+                        "type": "composite"
+                    }
+                ],
+                "type": "light"
             },
             {
-                "id": "temperature",
-                "name": "Temperature",
-                "role": "value.temperature",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "unit": "°C",
-                "readable": true,
-                "writable": false
+                "access": 2,
+                "description": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+                "name": "effect",
+                "property": "effect",
+                "type": "enum",
+                "values": [
+                    "blink",
+                    "breathe",
+                    "okay",
+                    "channel_change",
+                    "finish_effect",
+                    "stop_effect"
+                ]
             },
             {
-                "id": "humidity",
-                "name": "Humidity",
-                "role": "value.humidity",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "unit": "%",
-                "min": 0,
-                "max": 100,
-                "readable": true,
-                "writable": false
-            },
-            {
-                "id": "pressure",
-                "name": "Pressure",
-                "role": "value.pressure",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "unit": "hPa",
-                "min": 0,
-                "max": 10000,
-                "readable": true,
-                "writable": false
-            },
-            {
-                "id": "voltage",
-                "prop": "voltage",
-                "name": "Voltage of the battery in millivolts",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "min": 0,
-                "unit": "mV",
-                "readable": true,
-                "writable": false
-            },
-            {
-                "id": "link_quality",
-                "prop": "linkquality",
-                "name": "Link quality",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "min": 0,
-                "max": 255,
-                "readable": true,
-                "writable": false
-            },
-            {
-                "id": "available",
-                "prop": "available",
-                "name": "Available",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "boolean",
-                "readable": true,
-                "writable": false
+                "access": 1,
+                "description": "Link quality (signal strength)",
+                "name": "linkquality",
+                "property": "linkquality",
+                "type": "numeric",
+                "unit": "lqi",
+                "value_max": 255,
+                "value_min": 0
             }
         ],
-        "available": true
-    },
-    {
-        "id": "BU.Licht.Stimmung",
-        "ieee_address": "0x588e81fffee73f29",
-        "icon": "https://www.zigbee2mqtt.io/images/devices/14148906L.jpg",
-        "power_source": "Mains (single phase)",
-        "states": [
+        "model": "HG06104A",
+        "options": [
             {
-                "id": "state",
-                "name": "Switch state",
-                "role": "switch",
-                "write": true,
-                "read": true,
-                "type": "boolean",
-                "setattr": "state",
-                "readable": true,
-                "writable": true
+                "access": 2,
+                "description": "Controls the transition time (in seconds) of on/off, brightness, color temperature (if applicable) and color (if applicable) changes. Defaults to `0` (no transition).",
+                "name": "transition",
+                "property": "transition",
+                "type": "numeric",
+                "value_min": 0
             },
             {
-                "id": "brightness",
-                "name": "Brightness",
-                "role": "level.dimmer",
-                "write": true,
-                "read": true,
-                "type": "number",
-                "min": 0,
-                "max": 100,
-                "inOptions": true,
-                "setattr": "brightness",
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "brightness_move",
-                "prop": "brightness_move",
-                "name": "Dimming",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "min": -50,
-                "max": 50,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "colortemp",
-                "prop": "color_temp",
-                "name": "Color temperature",
-                "role": "level.color.temperature",
-                "write": true,
-                "read": true,
-                "type": "number",
-                "setattr": "color_temp",
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "colortemp_move",
-                "prop": "color_temp_move",
-                "name": "Colortemp change",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "min": -50,
-                "max": 50,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "color",
-                "prop": "color",
-                "name": "Color",
-                "role": "level.color.rgb",
-                "write": true,
-                "read": true,
-                "type": "string",
-                "setattr": "color",
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "transition_time",
-                "name": "Transition time",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "unit": "sec",
-                "isOption": true,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "effect",
-                "prop": "effect",
-                "name": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
-                "role": "state",
-                "write": true,
-                "read": true,
-                "type": "string",
-                "states": {
-                    "blink": "blink",
-                    "breathe": "breathe",
-                    "okay": "okay",
-                    "channel_change": "channel_change",
-                    "finish_effect": "finish_effect",
-                    "stop_effect": "stop_effect"
-                },
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "link_quality",
-                "prop": "linkquality",
-                "name": "Link quality",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "min": 0,
-                "max": 255,
-                "readable": true,
-                "writable": false
-            },
-            {
-                "id": "available",
-                "prop": "available",
-                "name": "Available",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "boolean",
-                "readable": true,
-                "writable": false
+                "access": 2,
+                "description": "When enabled colors will be synced, e.g. if the light supports both color x/y and color temperature a conversion from color x/y to color temperature will be done when setting the x/y color (default true).",
+                "name": "color_sync",
+                "property": "color_sync",
+                "type": "binary",
+                "value_off": false,
+                "value_on": true
             }
         ],
-        "available": true
+        "supports_ota": false,
+        "vendor": "Lidl"
     },
-    {
-        "id": "BU.Licht.Schreibtisch",
-        "ieee_address": "0x842e14fffe26f649",
-        "icon": "https://www.zigbee2mqtt.io/images/devices/HG06104A.jpg",
-        "power_source": "Mains (single phase)",
-        "states": [
-            {
-                "id": "state",
-                "name": "Switch state",
-                "role": "switch",
-                "write": true,
-                "read": true,
-                "type": "boolean",
-                "setattr": "state",
-                "readable": true,
-                "writable": true
+    "endpoints": {
+        "1": {
+            "bindings": [],
+            "clusters": {
+                "input": [
+                    "genBasic",
+                    "genIdentify",
+                    "genGroups",
+                    "genScenes",
+                    "genOnOff",
+                    "genLevelCtrl",
+                    "lightingColorCtrl",
+                    "touchlink"
+                ],
+                "output": [
+                    "genOta",
+                    "genTime"
+                ]
             },
-            {
-                "id": "brightness",
-                "name": "Brightness",
-                "role": "level.dimmer",
-                "write": true,
-                "read": true,
-                "type": "number",
-                "min": 0,
-                "max": 100,
-                "inOptions": true,
-                "setattr": "brightness",
-                "readable": true,
-                "writable": true
+            "configured_reportings": [],
+            "scenes": [
+                {
+                    "id": 1,
+                    "name": "Scene !!!!!!!!!!!!!!!!!!!!!!!!"
+                }
+            ]
+        },
+        "242": {
+            "bindings": [],
+            "clusters": {
+                "input": [],
+                "output": [
+                    "greenPower"
+                ]
             },
-            {
-                "id": "brightness_move",
-                "prop": "brightness_move",
-                "name": "Dimming",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "min": -50,
-                "max": 50,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "colortemp",
-                "prop": "color_temp",
-                "name": "Color temperature",
-                "role": "level.color.temperature",
-                "write": true,
-                "read": true,
-                "type": "number",
-                "setattr": "color_temp",
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "colortemp_move",
-                "prop": "color_temp_move",
-                "name": "Colortemp change",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "min": -50,
-                "max": 50,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "color",
-                "prop": "color",
-                "name": "Color",
-                "role": "level.color.rgb",
-                "write": true,
-                "read": true,
-                "type": "string",
-                "setattr": "color",
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "transition_time",
-                "name": "Transition time",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "unit": "sec",
-                "isOption": true,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "effect",
-                "prop": "effect",
-                "name": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
-                "role": "state",
-                "write": true,
-                "read": true,
-                "type": "string",
-                "states": {
-                    "blink": "blink",
-                    "breathe": "breathe",
-                    "okay": "okay",
-                    "channel_change": "channel_change",
-                    "finish_effect": "finish_effect",
-                    "stop_effect": "stop_effect"
-                },
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "link_quality",
-                "prop": "linkquality",
-                "name": "Link quality",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "number",
-                "min": 0,
-                "max": 255,
-                "readable": true,
-                "writable": false
-            },
-            {
-                "id": "available",
-                "prop": "available",
-                "name": "Available",
-                "role": "state",
-                "write": false,
-                "read": true,
-                "type": "boolean",
-                "readable": true,
-                "writable": false
-            }
-        ],
-        "available": true
+            "configured_reportings": [],
+            "scenes": []
+        }
     },
-    {
-        "id": "BU.Licht",
-        "ieee_address": "group_1",
-        "states": [
-            {
-                "id": "state",
-                "name": "Switch state",
-                "role": "switch",
-                "write": true,
-                "read": true,
-                "type": "boolean",
-                "inOptions": true
-            },
-            {
-                "id": "brightness",
-                "name": "Brightness",
-                "role": "level.dimmer",
-                "write": true,
-                "read": true,
-                "type": "number",
-                "unit": "",
-                "min": 0,
-                "max": 100
-            },
-            {
-                "id": "colortemp",
-                "prop": "color_temp",
-                "name": "Color temperature",
-                "role": "level.color.temperature",
-                "write": true,
-                "read": true,
-                "type": "number"
-            },
-            {
-                "id": "color",
-                "prop": "color",
-                "name": "Color",
-                "role": "level.color.rgb",
-                "write": true,
-                "read": true,
-                "type": "string"
-            },
-            {
-                "id": "brightness_move",
-                "prop": "brightness_move",
-                "name": "Dimming",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "min": -50,
-                "max": 50,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "colortemp_move",
-                "prop": "color_temp_move",
-                "name": "Colortemp change",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "min": -50,
-                "max": 50,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "transition_time",
-                "name": "Transition time",
-                "role": "state",
-                "write": true,
-                "read": false,
-                "type": "number",
-                "unit": "sec",
-                "isOption": true,
-                "readable": true,
-                "writable": true
-            },
-            {
-                "id": "scene_0",
-                "prop": "scene_recall",
-                "name": "Scene Orange",
-                "role": "button",
-                "write": true,
-                "read": true,
-                "type": "boolean"
-            }
-        ]
-    }
-]
+    "friendly_name": "BU.Licht.Schreibtisch",
+    "ieee_address": "0x842e14fffe26f649",
+    "interview_completed": true,
+    "interviewing": false,
+    "manufacturer": "_TZ3000_riwp3k79",
+    "model_id": "TS0505A",
+    "network_address": 57227,
+    "power_source": "Mains (single phase)",
+    "supported": true,
+    "type": "Router"
+}
