@@ -29,6 +29,7 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) fix available state role
 -   (o0shojo0o) fix subscribeWritableStates
 
 ### 0.1.0 (2022-09-29)
