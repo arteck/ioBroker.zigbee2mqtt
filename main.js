@@ -283,7 +283,11 @@ class Zigbee2mqtt extends core.Adapter {
 				states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
 			}
 			this.logDebug(`setDeviceState -> states: ${JSON.stringify(states)}`);
-
+			
+			if (this.debugDevices.includes(device.ieee_address)) {
+				this.log.warn(`--->>> StatesFromDevice -> states: ${JSON.stringify(states)}`);
+			}
+			
 			for (const state of states) {
 				if (!state) {
 					continue;
@@ -502,36 +506,37 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async onStateChange(id, state) {
-		if (this.debugDevices === undefined) this.getDebugDevices(state);
-		
 		if (state && state.ack == false) {
 			const message = await this.createZ2MMessage(id, state);
 			wsClient.send(message);
 		}
+		if (this.debugDevices === undefined) this.getDebugDevices(state);
+
 	}
-  getDebugDevices(state) {
-        this.debugDevices = [];
-        this.adapter.getState(this.adapter.namespace + '.info.debugmessages', (err, state) => {
-            if (state) {
-                if (typeof(state.val) == 'string' && state.val.length > 2) this.debugDevices = state.val.split(';');
-                this.info('debug devices set to ' + JSON.stringify(this.debugDevices));
-            } else {
-                this.adapter.setObject('info.debugmessages', {
-                    'type': 'state',
-                    'common': {
-                        'name': 'Log changes as warnings for',
-                        'role': '',
-                        'type': 'string',
-                        'read': true,
-                        'write': true,
-                    },
-                    'native': {},
-                });
-            }
-        });        
-    } 	
 	
-	
+	getDebugDevices(state) {
+		this.debugDevices = [];
+
+		this.getState(this.namespace + '.info.debugmessages', (err, state) => {
+		if (state) {
+			if (typeof(state.val) == 'string' && state.val.length > 2) {
+				this.debugDevices = state.val.split(';');
+			}
+		} else {
+			this.adapter.setObject('info.debugmessages', {
+				'type': 'state',
+				'common': {
+					'name': 'Log changes as warnings for',
+					'role': '',
+					'type': 'string',
+					'read': true,
+					'write': true,
+				},
+				'native': {},
+				});
+			}
+		});
+	}	
 }
 
 if (require.main !== module) {
