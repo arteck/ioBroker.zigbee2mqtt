@@ -292,10 +292,10 @@ class Zigbee2mqtt extends core.Adapter {
 
 				try {
 					if (state.getter) {
-						this.setState(stateName, state.getter(messageObj.payload), true);
+						await this.setStateAsync(stateName, state.getter(messageObj.payload), true);
 					}
 					else {
-						this.setState(stateName, value, true);
+						await this.setStateAsync(stateName, value, true);
 					}
 				} catch (err) {
 					this.log.warn(`Can not set ${stateName}`);
