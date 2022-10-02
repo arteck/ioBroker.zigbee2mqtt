@@ -315,6 +315,10 @@ class Zigbee2mqtt extends core.Adapter {
 						scenes = scenes.concat(expose.endpoints[key].scenes);
 					}
 				}
+				if (expose.ieee_address == '0x00158d0001922cbf') {
+					this.log.error(JSON.stringify(expose));
+				}
+
 				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes);
 			}
 		}
