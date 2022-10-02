@@ -290,11 +290,15 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				const stateName = `${device.ieee_address}.${state.id}`;
 
-				if (state.getter) {
-					this.setState(stateName, state.getter(messageObj.payload), true);
-				}
-				else {
-					this.setState(stateName, value, true);
+				try {
+					if (state.getter) {
+						this.setState(stateName, state.getter(messageObj.payload), true);
+					}
+					else {
+						this.setState(stateName, value, true);
+					}
+				} catch (err) {
+					this.log.warn(`Can not set ${stateName}`);
 				}
 			}
 		}
