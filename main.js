@@ -502,11 +502,36 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async onStateChange(id, state) {
+		if (this.debugDevices === undefined) this.getDebugDevices(state);
+		
 		if (state && state.ack == false) {
 			const message = await this.createZ2MMessage(id, state);
 			wsClient.send(message);
 		}
 	}
+  getDebugDevices(state) {
+        this.debugDevices = [];
+        this.adapter.getState(this.adapter.namespace + '.info.debugmessages', (err, state) => {
+            if (state) {
+                if (typeof(state.val) == 'string' && state.val.length > 2) this.debugDevices = state.val.split(';');
+                this.info('debug devices set to ' + JSON.stringify(this.debugDevices));
+            } else {
+                this.adapter.setObject('info.debugmessages', {
+                    'type': 'state',
+                    'common': {
+                        'name': 'Log changes as warnings for',
+                        'role': '',
+                        'type': 'string',
+                        'read': true,
+                        'write': true,
+                    },
+                    'native': {},
+                });
+            }
+        });        
+    } 	
+	
+	
 }
 
 if (require.main !== module) {
