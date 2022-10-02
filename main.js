@@ -308,7 +308,6 @@ class Zigbee2mqtt extends core.Adapter {
 				let scenes = [];
 				for (const key in expose.endpoints) {
 					if (expose.endpoints[key].scenes) {
-						this.log.warn(JSON.stringify(expose.endpoints[key].scenes));
 						scenes = scenes.concat(expose.endpoints[key].scenes);
 					}
 				}
