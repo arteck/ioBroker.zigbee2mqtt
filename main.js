@@ -32,6 +32,7 @@ const checkAvailableInterval = 30 * 1000; // 10 Seconds
 let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
+let debugDevices = [];
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -283,11 +284,11 @@ class Zigbee2mqtt extends core.Adapter {
 				states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
 			}
 			this.logDebug(`setDeviceState -> states: ${JSON.stringify(states)}`);
-			
-			if (this.debugDevices.includes(device.ieee_address)) {
-			   this.log.warn(`--->>> fromZ2M -> ${device.ieee_address} states: ${JSON.stringify(states)}`);
+
+			if (debugDevices.includes(device.ieee_address)) {
+				this.log.warn(`--->>> fromZ2M -> ${device.ieee_address} states: ${JSON.stringify(states)}`);
 			}
-			
+
 			for (const state of states) {
 				if (!state) {
 					continue;
@@ -318,9 +319,6 @@ class Zigbee2mqtt extends core.Adapter {
 					if (expose.endpoints[key].scenes) {
 						scenes = scenes.concat(expose.endpoints[key].scenes);
 					}
-				}
-				if (expose.ieee_address == '0x00158d0001922cbf') {
-					this.log.error(JSON.stringify(expose));
 				}
 
 				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes);
@@ -514,34 +512,21 @@ class Zigbee2mqtt extends core.Adapter {
 			const message = await this.createZ2MMessage(id, state);
 			wsClient.send(message);
 		}
-		if (this.debugDevices === undefined) this.getDebugDevices(state);
 
+		if (debugDevices === undefined) {
+			this.getDebugDevices();
+		}
 	}
-	
-	getDebugDevices(state) {
-		this.debugDevices = [];
 
-		this.getState(this.namespace + '.info.debugmessages', (err, state) => {
-		if (state) {
-			if (typeof(state.val) == 'string' && state.val.length > 2) {
-				this.debugDevices = state.val.split(';');
-			}
-		} else {
-			this.adapter.setObject('info.debugmessages', {
-				'type': 'state',
-				'common': {
-					'name': 'Log changes as warnings for',
-					'role': '',
-					'type': 'string',
-					'read': true,
-					'write': true,
-				},
-				'native': {},
-				});
-			}
-		});
-	}	
+	async getDebugDevices() {
+		debugDevices = [];
+		const state = await this.getStateAsync(this.namespace + '.info.debugmessages');
+		if (state && typeof (state.val) == 'string' && state.val.length > 2) {
+			debugDevices = state.val.split(';');
+		}
+	}
 }
+
 
 if (require.main !== module) {
 	// Export the constructor in compact mode
