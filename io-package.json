@@ -133,6 +133,18 @@
         "def": false
       },
       "native": {}
-    }
-  ]
+    },
+    {
+      "_id": "info.debugmessages",
+      "type": "state",
+      "common": {
+          "name": "Log changes as warnings for",
+          "type": "string",
+          "read": true,
+          "write": true,
+          "def": ""
+      },
+      "native": {}
+     }     
+	]
 }
