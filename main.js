@@ -285,7 +285,7 @@ class Zigbee2mqtt extends core.Adapter {
 			this.logDebug(`setDeviceState -> states: ${JSON.stringify(states)}`);
 			
 			if (this.debugDevices.includes(device.ieee_address)) {
-				this.log.warn(`--->>> StatesFromDevice -> states: ${JSON.stringify(states)}`);
+			   this.log.warn(`--->>> fromZ2M -> ${device.ieee_address} states: ${JSON.stringify(states)}`);
 			}
 			
 			for (const state of states) {
