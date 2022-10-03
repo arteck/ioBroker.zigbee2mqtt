@@ -20,15 +20,11 @@ const createCache = {};
 let deviceCache = [];
 // eslint-disable-next-line prefer-const
 let groupCache = [];
-const lastSeenCache = {};
 let ping;
 let pingTimeout;
 let autoRestartTimeout;
 const wsHeartbeatIntervall = 5000;
 const restartTimeout = 1000;
-const deviceAvailableTimeout = 10 * 60; // 10 Minutes
-const batteryDeviceAvailableTimeout = 24 * 60 * 60; // 24 Hours
-const checkAvailableInterval = 30 * 1000; // 10 Seconds
 let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
@@ -87,17 +83,16 @@ class Zigbee2mqtt extends core.Adapter {
 				this.sendPingToServer();
 				// Start Heartbeat
 				this.wsHeartbeat();
-				// Start CheckAvailableTimer
-				this.checkAvailableTimer();
 			});
 			wsClient.on('pong', () => {
 				//this.logDebug('Receive pong from server');
 				this.wsHeartbeat();
 			});
 			// On Close
-			wsClient.on('close', () => {
+			wsClient.on('close', async () => {
 				this.setState('info.connection', false, true);
 				this.log.warn('Websocket disconnectet');
+				await this.setAllAvailableToFalse();
 				clearTimeout(ping);
 				clearTimeout(pingTimeout);
 
@@ -152,7 +147,8 @@ class Zigbee2mqtt extends core.Adapter {
 				createDevicesOrReady = false;
 				await this.createDeviceDefinitions(deviceCache, messageObj.payload);
 				await this.createOrUpdateDevices(deviceCache);
-				this.subscribeWritableStates();
+				await this.subscribeWritableStates();
+				await this.setAllAvailableToFalse();
 				createDevicesOrReady = true;
 
 				// Now process all entries in the states queue
@@ -183,9 +179,24 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/response/touchlink/factory_reset':
 				break;
 			default:
-				// States
 				{
-					if (!messageObj.topic.includes('/')) {
+					// {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
+					if (messageObj.topic.endsWith('/availability')) {
+						const topicSplit = messageObj.topic.split('/');
+						if (topicSplit.length == 2) {
+							const newMessage = {
+								payload: { available: messageObj.payload.state == 'online' },
+								topic: topicSplit[0]
+							};
+							// As long as we are busy creating the devices, the states are written to the queue.
+							if (createDevicesOrReady == false) {
+								incStatsQueue[incStatsQueue.length] = newMessage;
+								break;
+							}
+							this.processDeviceMessage(newMessage);
+						}
+						// States
+					} else if (!messageObj.topic.includes('/')) {
 						// As long as we are busy creating the devices, the states are written to the queue.
 						if (createDevicesOrReady == false) {
 							incStatsQueue[incStatsQueue.length] = messageObj;
@@ -209,77 +220,13 @@ class Zigbee2mqtt extends core.Adapter {
 		if (device) {
 			this.logDebug(`processDeviceMessage -> device: ${JSON.stringify(device)}`);
 			try {
-				// The state available must not be considered for the cacheLastSeen
-				// Groups must not be considered for the cacheLastSeen
-				if (messageObj.payload.available == undefined && !device.ieee_address.startsWith('group_')) {
-					await this.cacheLastSeen(device, messageObj);
-				}
 				this.setDeviceState(messageObj, device);
-				this.checkAvailable(device.ieee_address);
-
 			} catch (error) {
 				adapter.log.error(error);
 			}
 		}
 		else {
 			adapter.log.warn(`Device: ${messageObj.topic} not found`);
-		}
-	}
-
-	async cacheLastSeen(device, messageObj) {
-		this.logDebug(`cacheLastSeen -> device: ${JSON.stringify(device)}`);
-		this.logDebug(`cacheLastSeen -> messageObj: ${JSON.stringify(messageObj)}`);
-		if (messageObj.payload.last_seen) {
-			lastSeenCache[device.ieee_address] = new Date(messageObj.payload.last_seen).getTime();
-		} else {
-			lastSeenCache[device.ieee_address] = new Date().getTime();
-		}
-		this.logDebug(`cacheLastSeen -> deviceLastSeenCache: ${JSON.stringify(lastSeenCache)}`);
-	}
-
-	async checkAvailableTimer() {
-		checkAvailableTimout = setTimeout(async () => {
-			await this.checkAvailable(null);
-			this.checkAvailableTimer();
-		}, checkAvailableInterval);
-	}
-
-	async checkAvailable(ieee_address) {
-		this.logDebug(`checkAvailable -> ieee_address: ${ieee_address}`);
-		let checkList = {};
-		if (ieee_address) {
-			checkList[ieee_address] = null;
-		}
-		else {
-			checkList = lastSeenCache;
-		}
-
-		for (const ieee_address in checkList) {
-			const device = deviceCache.find(x => x.ieee_address == ieee_address);
-
-			if (!device) {
-				continue;
-			}
-
-			const isBatteryDevice = device.power_source == 'Battery' ? true : false;
-			const offlineTimeout = isBatteryDevice ? batteryDeviceAvailableTimeout : deviceAvailableTimeout;
-			const diffSec = Math.round((new Date().getTime() - lastSeenCache[ieee_address]) / 1000);
-			const available = diffSec < offlineTimeout;
-
-			this.logDebug(`checkAvailable -> device.id: ${device.id}, available: ${available}, diffSec: ${diffSec}, isBatteryDevice: ${isBatteryDevice}`);
-
-			if (device.available == null || device.available != available) {
-				this.logDebug(`checkAvailable -> device.id: ${device.id}, available: ${available}, diffSec: ${diffSec}, isBatteryDevice: ${isBatteryDevice}`);
-				device.available = available;
-				const messageObj = {
-					topic: device.id,
-					payload: {
-						available: available,
-					}
-				};
-
-				this.processDeviceMessage(messageObj);
-			}
 		}
 	}
 
@@ -305,6 +252,7 @@ class Zigbee2mqtt extends core.Adapter {
 				if (!state) {
 					continue;
 				}
+
 				const stateName = `${device.ieee_address}.${state.id}`;
 
 				try {
@@ -385,8 +333,6 @@ class Zigbee2mqtt extends core.Adapter {
 					const iobState = await this.copyAndCleanStateObj(state);
 					this.logDebug(`Orig. state: ${JSON.stringify(state)}`);
 					this.logDebug(`Cleaned. state: ${JSON.stringify(iobState)}`);
-
-
 
 					await this.extendObjectAsync(`${device.ieee_address}.${state.id}`, {
 						type: 'state',
@@ -510,8 +456,19 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 	}
 
-	onUnload(callback) {
+	async setAllAvailableToFalse() {
+		for (const device of deviceCache) {
+			for (const state of device.states) {
+				if (state.id == 'available') {
+					await this.setStateAsync(`${device.ieee_address}.${state.id}`, false, true);
+				}
+			}
+		}
+	}
+
+	async onUnload(callback) {
 		try {
+			await this.setAllAvailableToFalse();
 			clearTimeout(ping);
 			clearTimeout(pingTimeout);
 			clearTimeout(autoRestartTimeout);
