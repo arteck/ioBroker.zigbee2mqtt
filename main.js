@@ -32,6 +32,7 @@ const checkAvailableInterval = 30 * 1000; // 10 Seconds
 let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
+let debugDevices = '';
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -58,6 +59,11 @@ class Zigbee2mqtt extends core.Adapter {
 
 		debugLogEnabled = this.config.debugLogEnabled;
 		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
+
+		const debugDevicesState = await this.getStateAsync(this.namespace + '.info.debugmessages');
+		if (debugDevicesState && debugDevicesState.val) {
+			debugDevices = String(debugDevicesState.val);
+		}
 
 		this.subscribeStatesAsync('*');
 	}
@@ -272,6 +278,10 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async setDeviceState(messageObj, device) {
 
+		if (debugDevices.includes(device.ieee_address)) {
+			this.log.warn(`--->>> fromZ2M -> ${device.ieee_address} states: ${JSON.stringify(messageObj)}`);
+		}
+
 		for (const [key, value] of Object.entries(messageObj.payload)) {
 			this.logDebug(`setDeviceState -> key: ${key}`);
 			this.logDebug(`setDeviceState -> value: ${JSON.stringify(value)}`);
@@ -283,11 +293,7 @@ class Zigbee2mqtt extends core.Adapter {
 				states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
 			}
 			this.logDebug(`setDeviceState -> states: ${JSON.stringify(states)}`);
-			
-			if (this.debugDevices.includes(device.ieee_address)) {
-			   this.log.warn(`--->>> fromZ2M -> ${device.ieee_address} states: ${JSON.stringify(states)}`);
-			}
-			
+
 			for (const state of states) {
 				if (!state) {
 					continue;
@@ -319,6 +325,7 @@ class Zigbee2mqtt extends core.Adapter {
 						scenes = scenes.concat(expose.endpoints[key].scenes);
 					}
 				}
+
 				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes);
 			}
 		}
@@ -509,35 +516,15 @@ class Zigbee2mqtt extends core.Adapter {
 		if (state && state.ack == false) {
 			const message = await this.createZ2MMessage(id, state);
 			wsClient.send(message);
+
+			if (id.includes('info.debugmessages')) {
+				debugDevices = state.val;
+				this.setState(id, state.val, true);
+			}
 		}
-		if (this.debugDevices === undefined) this.getDebugDevices(state);
-
 	}
-	
-	getDebugDevices(state) {
-		this.debugDevices = [];
-
-		this.getState(this.namespace + '.info.debugmessages', (err, state) => {
-		if (state) {
-			if (typeof(state.val) == 'string' && state.val.length > 2) {
-				this.debugDevices = state.val.split(';');
-			}
-		} else {
-			this.adapter.setObject('info.debugmessages', {
-				'type': 'state',
-				'common': {
-					'name': 'Log changes as warnings for',
-					'role': '',
-					'type': 'string',
-					'read': true,
-					'write': true,
-				},
-				'native': {},
-				});
-			}
-		});
-	}	
 }
+
 
 if (require.main !== module) {
 	// Export the constructor in compact mode
