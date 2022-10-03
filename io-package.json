@@ -109,7 +109,8 @@
     "server": "",
     "port": "8080",
     "debugLogEnabled": false,
-    "proxyZ2MLogs": true
+    "proxyZ2MLogs": true,
+    "useKelvin": false
   },
   "objects": [],
   "instanceObjects": [

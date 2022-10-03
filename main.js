@@ -30,6 +30,7 @@ let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
 let debugDevices = '';
 let logfilter = [];
+let useKelvin = false;
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -50,12 +51,14 @@ class Zigbee2mqtt extends core.Adapter {
 		this.log.info(`Zigbee2MQTT Frontend Port: ${this.config.port}`);
 		this.log.info(`Zigbee2MQTT Debug Log: ${this.config.debugLogEnabled ? 'activated' : 'deactivated'}`);
 		this.log.info(`Proxy Zigbee2MQTT Logs to ioBroker Logs: ${this.config.proxyZ2MLogs ? 'activated' : 'deactivated'}`);
+		this.log.info(`Use Kelvin: ${this.config.useKelvin ? 'yes' : 'no'}`);
 
 		this.setStateAsync('info.connection', false, true);
 		this.createWsClient(this.config.server, this.config.port);
 
 		debugLogEnabled = this.config.debugLogEnabled;
 		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
+		useKelvin = this.config.useKelvin;
 
 		const debugDevicesState = await this.getStateAsync('info.debugmessages');
 		if (debugDevicesState && debugDevicesState.val) {
@@ -281,7 +284,7 @@ class Zigbee2mqtt extends core.Adapter {
 					}
 				}
 
-				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes);
+				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes, useKelvin);
 			}
 		}
 	}

@@ -12,15 +12,20 @@
 			"label": "Port",
 			"newLine": false
 		},
-		"debugLogEnabled": {
+		"useKelvin": {
 			"type": "checkbox",
-			"label": "Debug Log Enabled",
+			"label": "Use Kelvin instead of mired for the color temps",
 			"newLine": true
 		},
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
-			"newLine": false
+			"newLine": true
+		},
+		"debugLogEnabled": {
+			"type": "checkbox",
+			"label": "Debug Log Enabled",
+			"newLine": true
 		}
 	}
 }
