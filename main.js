@@ -485,19 +485,24 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async proxyZ2MLogs(messageObj) {
 		this.logDebug(`proxyZ2MLogs -> messageObj: ${JSON.stringify(messageObj)}`);
+		
+		const device = groupCache.concat(deviceCache).find(x => x.id == messageObj.topic);
+		
+		if (!noLogDevices.includes(device.ieee_address)) {
 
-		const logLevel = messageObj.payload.level;
-		const logMessage = messageObj.payload.message;
+			const logLevel = messageObj.payload.level;
+			const logMessage = messageObj.payload.message;
 
-		switch (logLevel) {
-			case 'debug':
-			case 'info':
-			case 'error':
-				this.log[logLevel](logMessage);
-				break;
-			case 'warning':
-				this.log.warn(logMessage);
-				break;
+			switch (logLevel) {
+				case 'debug':
+				case 'info':
+				case 'error':
+					this.log[logLevel](logMessage);
+					break;
+				case 'warning':
+					this.log.warn(logMessage);
+					break;
+			}
 		}
 	}
 
