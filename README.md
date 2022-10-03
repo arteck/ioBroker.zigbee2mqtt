@@ -29,9 +29,10 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) rename noLogDevices to logfilter
 -   (o0shojo0o) lots of bugfixes
--   (arteck) add noLogDevices functionality 
--   (arteck) Add debugmessage for specific device functionality 
+-   (arteck) add noLogDevices functionality
+-   (arteck) Add debugmessage for specific device functionality
 -   (arteck) add some states are default false
 -   (o0shojo0o) add support for scenes defined on a device
 -   (o0shojo0o) fix available state role
