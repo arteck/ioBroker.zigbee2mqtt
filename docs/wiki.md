@@ -16,11 +16,13 @@ This is a small wiki for the ioBroker adapter Zigbee2MQTT.
  - [Installation incl. moving from ioBroker/Zigbee adapter](./EN/EN_get-started_move.md)
  - [FAQ](./EN/EN_faq.md)
  - [Test](DE/DE_faq.md)
+
+## Official Documentation
+
+[Zigbee2MQTT Documentation](https://www.zigbee2mqtt.io)
+
 ## Authors
 
 - [@nox309](https://www.github.com/nox309)
 
 
-## Official Documentation
-
-[Zigbee2MQTT Documentation](https://www.zigbee2mqtt.io)
