@@ -29,6 +29,9 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (arteck) add noLogDevices functionality 
+-   (arteck) Add debugmessage for specific device functionality 
+-   (arteck) add some states are default false
 -   (o0shojo0o) add support for scenes defined on a device
 -   (o0shojo0o) fix available state role
 -   (o0shojo0o) fix subscribeWritableStates
