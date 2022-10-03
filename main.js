@@ -183,7 +183,7 @@ class Zigbee2mqtt extends core.Adapter {
 					// {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
 					if (messageObj.topic.endsWith('/availability')) {
 						const topicSplit = messageObj.topic.split('/');
-						if (topicSplit.length == 2) {
+						if (topicSplit.length == 2 && messageObj.payload && messageObj.payload.state) {
 							const newMessage = {
 								payload: { available: messageObj.payload.state == 'online' },
 								topic: topicSplit[0]
