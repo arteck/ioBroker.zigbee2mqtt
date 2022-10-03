@@ -147,10 +147,10 @@
       "native": {}
     },
     {
-      "_id": "info.noLogDevices",
+      "_id": "info.logfilter",
       "type": "state",
       "common": {
-        "name": "Post no Messages for Devices",
+        "name": "Logs matching filters are ignored by the LogProxy",
         "type": "string",
         "read": true,
         "write": true,
