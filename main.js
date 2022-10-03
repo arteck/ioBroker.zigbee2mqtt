@@ -33,7 +33,7 @@ let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
 let debugDevices = '';
-let noLogDevices = '';
+let noLogDevices = [];
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -61,14 +61,14 @@ class Zigbee2mqtt extends core.Adapter {
 		debugLogEnabled = this.config.debugLogEnabled;
 		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
 
-		const debugDevicesState = await this.getStateAsync(this.namespace + '.info.debugmessages');
+		const debugDevicesState = await this.getStateAsync('info.debugmessages');
 		if (debugDevicesState && debugDevicesState.val) {
 			debugDevices = String(debugDevicesState.val);
 		}
-		
-		const noLogDevicesState = await this.getStateAsync(this.namespace + '.info.noLogDevices');
+
+		const noLogDevicesState = await this.getStateAsync('info.noLogDevices');
 		if (noLogDevicesState && noLogDevicesState.val) {
-			noLogDevices = String(noLogDevicesState.val);
+			noLogDevices = String(noLogDevicesState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
 
 
@@ -485,22 +485,22 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async proxyZ2MLogs(messageObj) {
 		this.logDebug(`proxyZ2MLogs -> messageObj: ${JSON.stringify(messageObj)}`);
-	
-		if (!noLogDevices.includes(messageObj.payload.message)) {
 
-			const logLevel = messageObj.payload.level;
-			const logMessage = messageObj.payload.message;
+		const logMessage = messageObj.payload.message;
+		if (noLogDevices.some(x => logMessage.includes(x))) {
+			return;
+		}
 
-			switch (logLevel) {
-				case 'debug':
-				case 'info':
-				case 'error':
-					this.log[logLevel](logMessage);
-					break;
-				case 'warning':
-					this.log.warn(logMessage);
-					break;
-			}
+		const logLevel = messageObj.payload.level;
+		switch (logLevel) {
+			case 'debug':
+			case 'info':
+			case 'error':
+				this.log[logLevel](logMessage);
+				break;
+			case 'warning':
+				this.log.warn(logMessage);
+				break;
 		}
 	}
 
@@ -532,7 +532,7 @@ class Zigbee2mqtt extends core.Adapter {
 				this.setState(id, state.val, true);
 			}
 			if (id.includes('info.noLogDevices')) {
-				noLogDevices = state.val;
+				noLogDevices = state.val.split(';').filter(x => x); // filter removes empty strings here
 				this.setState(id, state.val, true);
 			}
 		}
