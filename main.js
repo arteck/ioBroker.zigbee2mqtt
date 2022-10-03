@@ -150,7 +150,6 @@ class Zigbee2mqtt extends core.Adapter {
 				createDevicesOrReady = false;
 				await this.createDeviceDefinitions(deviceCache, messageObj.payload);
 				await this.createOrUpdateDevices(deviceCache);
-				await this.setAllAvailableToFalse();
 				this.subscribeWritableStates();
 				createDevicesOrReady = true;
 
