@@ -1,6 +1,7 @@
 # DRAFT / Still under construction - Wiki 
 
 This is a small wiki for the ioBroker adapter Zigbee2MQTT.
+zigbee2mqtt is an open-source project that allows zigbee devices to be accessed directly via MQTT without the need for a vendor bridge.
 
 
 ## Deutsche Version
