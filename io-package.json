@@ -147,7 +147,7 @@
       "native": {}
     },
     {
-      "_id": "info.noMessage",
+      "_id": "info.noLogDevices",
       "type": "state",
       "common": {
         "name": "Post no Messages for Devices",
