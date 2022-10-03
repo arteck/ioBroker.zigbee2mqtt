@@ -29,6 +29,7 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) lots of bugfixes
 -   (arteck) add noLogDevices functionality 
 -   (arteck) Add debugmessage for specific device functionality 
 -   (arteck) add some states are default false
