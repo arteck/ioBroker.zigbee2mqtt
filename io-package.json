@@ -145,6 +145,18 @@
         "def": ""
       },
       "native": {}
+    },
+    {
+      "_id": "info.noLogDevices",
+      "type": "state",
+      "common": {
+        "name": "Post no Messages for Devices",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": ""
+      },
+      "native": {}
     }
   ]
 }
