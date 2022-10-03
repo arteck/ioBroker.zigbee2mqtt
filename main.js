@@ -68,7 +68,7 @@ class Zigbee2mqtt extends core.Adapter {
 		
 		const noLogDevicesState = await this.getStateAsync(this.namespace + '.info.noLogDevices');
 		if (noLogDevicesState && noLogDevicesState.val) {
-			dnoLogDevices = String(dnoLogDevicesState.val);
+			noLogDevices = String(noLogDevicesState.val);
 		}
 
 
