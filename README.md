@@ -44,6 +44,9 @@ Zigbee2MQTT adapter for ioBroker
 
 -   (o0shojo0o) first release
 
+## Adapter Documentation
+
+[Adapter Documentation](./docs/wiki.md)
 ## License
 
 MIT License
