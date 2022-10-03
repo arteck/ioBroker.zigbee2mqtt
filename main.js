@@ -33,6 +33,7 @@ let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
 let debugDevices = '';
+let noLogDevices = '';
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -64,6 +65,12 @@ class Zigbee2mqtt extends core.Adapter {
 		if (debugDevicesState && debugDevicesState.val) {
 			debugDevices = String(debugDevicesState.val);
 		}
+		
+		const noLogDevicesState = await this.getStateAsync(this.namespace + '.info.noLogDevices');
+		if (noLogDevicesState && noLogDevicesState.val) {
+			dnoLogDevices = String(dnoLogDevicesState.val);
+		}
+
 
 		this.subscribeStatesAsync('*');
 	}
@@ -519,6 +526,10 @@ class Zigbee2mqtt extends core.Adapter {
 
 			if (id.includes('info.debugmessages')) {
 				debugDevices = state.val;
+				this.setState(id, state.val, true);
+			}
+			if (id.includes('info.noLogDevices')) {
+				noLogDevices = state.val;
 				this.setState(id, state.val, true);
 			}
 		}
