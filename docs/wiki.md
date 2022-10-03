@@ -6,7 +6,7 @@ zigbee2mqtt is an open-source project that allows zigbee devices to be accessed 
 
 ## Deutsche Version
 
- - [Installation von null an](./DE/DE_get-started.md)
+ - [Frische Installation](./DE/DE_get-started.md)
  - [Installation inkl. Umzug vom ioBroker/Zigbee Adapter](./DE/DE_get-started_move.md)
  - [FAQ](./DE/DE_faq.md)
  - [Test](DE/DE_faq.md)
