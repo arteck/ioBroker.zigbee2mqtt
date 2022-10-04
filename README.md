@@ -26,8 +26,7 @@ Zigbee2MQTT adapter for ioBroker
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.2.0 (2022-10-04)
 
 -   (o0shojo0o) group states corrected
 -   (o0shojo0o) added option 'Use Kelvin instead of mired for the color temps'
