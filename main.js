@@ -291,7 +291,7 @@ class Zigbee2mqtt extends core.Adapter {
 	async createGroupDefinitions(cache, exposes) {
 		clearArray(cache);
 		for (const expose of exposes) {
-			await defineGroupDevice(cache, expose.friendly_name, `group_${expose.id}`, expose.scenes);
+			await defineGroupDevice(cache, expose.friendly_name, `group_${expose.id}`, expose.scenes, useKelvin);
 		}
 	}
 
