@@ -146,7 +146,7 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/info':
 				this.log.info(`Zigbee2MQTT Version: ${messageObj.payload.version} `);
-				this.log.info(`Coordinator type: ${messageObj.payload.coordinator.type} Version: ${messageObj.payload.coordinator.meta.revision} `);
+				this.log.info(`Coordinator type: ${messageObj.payload.coordinator.type} Version: ${messageObj.payload.coordinator.meta.revision} Serial: ${messageObj.payload.config.serial.port}`);
 				this.log.info(`Network panid ${messageObj.payload.network.pan_id} channel: ${messageObj.payload.network.channel} ext_pan_id: ${messageObj.payload.network.extended_pan_id}`);
 				this.checkConfig(messageObj.payload.config);
 				break;
@@ -220,20 +220,10 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async checkConfig(config) {
 		const checkAPIOptions = {
-			legacy_api_enabled: false,
-			legacy_availability_payload_enabled: false,
-			device_legacy_enabled: false
+			legacy_api_enabled: config.advanced.legacy_api != false,
+			legacy_availability_payload_enabled: config.advanced.legacy_availability_payload != false,
+			device_legacy_enabled: config.device_options.legacy != false
 		};
-
-		if (!config.advanced || config.advanced.legacy_api != false) {
-			checkAPIOptions.legacy_api_enabled = true;
-		}
-		if (config.advanced.legacy_availability_payload != false) {
-			checkAPIOptions.legacy_availability_payload_enabled = true;
-		}
-		if (config.device_options.legacy != false) {
-			checkAPIOptions.device_legacy_enabled = true;
-		}
 
 		if (Object.values(checkAPIOptions).filter(x => x == true).length > 0) {
 			this.log.error('===================================================');
