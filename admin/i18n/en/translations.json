@@ -1,8 +1,8 @@
 {
 	"zigbee2mqtt adapter settings": "Adapter settings for zigbee2mqtt",
-	"server": "Server",
-	"port": "Port",
-	"useKelvin": "Use Kelvin instead of mired for the color temps",
-	"proxyZ2MLogs": "Proxy Zigbee2MQTT logs to ioBroker logs",
-	"debugLogEnabled": "Debug Log Enabled"
+	"Server": "Server",
+	"Port": "Port",
+	"Use Kelvin instead of mired for the color temps": "Use Kelvin instead of mired for the color temps",
+	"Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logs to ioBroker logs",
+	"Debug Log Enabled": "Debug Log Enabled"
 }

@@ -1,8 +1,8 @@
 {
     "zigbee2mqtt adapter settings": "Paramètres de l'adaptateur pour zigbee2mqtt",
-    "server": "Serveur",
-    "port": "Port",
-    "useKelvin": "Utilisez Kelvin au lieu de embourbé pour les températures de couleur",
-    "proxyZ2MLogs": "Proxy Zigbee2MQTT se connecte aux journaux ioBroker",
-    "debugLogEnabled": "Journal de débogage activé"
+    "Server": "Serveur",
+    "Port": "Port",
+    "Use Kelvin instead of mired for the color temps": "Utilisez Kelvin au lieu de embourbé pour les températures de couleur",
+    "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT se connecte aux journaux ioBroker",
+    "Debug Log Enabled": "Journal de débogage activé"
 }

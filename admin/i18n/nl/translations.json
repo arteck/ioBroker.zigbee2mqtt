@@ -1,8 +1,8 @@
 {
     "zigbee2mqtt adapter settings": "Adapterinstellingen voor zigbee2mqtt",
-    "server": "Server",
-    "port": "Haven",
-    "useKelvin": "Gebruik Kelvin in plaats van mired voor de kleurtemperaturen",
-    "proxyZ2MLogs": "Proxy Zigbee2MQTT logt in op ioBroker logs",
-    "debugLogEnabled": "Foutopsporingslogboek ingeschakeld"
+    "Server": "Server",
+    "Port": "Haven",
+    "Use Kelvin instead of mired for the color temps": "Gebruik Kelvin in plaats van mired voor de kleurtemperaturen",
+    "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logt in op ioBroker logs",
+    "Debug Log Enabled": "Foutopsporingslogboek ingeschakeld"
 }
