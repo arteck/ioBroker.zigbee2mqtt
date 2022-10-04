@@ -145,11 +145,7 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/config':
 				break;
 			case 'bridge/info':
-				if (messageObj.payload.config.advanced.legacy_api != false
-				||  messageObj.payload.config.advanced.legacy_availability_payload != false
-				||  messageObj.payload.config.device_options.legacy != false) {
-					this.log.error(`Legacy option is on....`);
-				}
+				this.checkConfig(messageObj.payload.config);
 				break;
 			case 'bridge/state':
 				break;
@@ -216,6 +212,49 @@ class Zigbee2mqtt extends core.Adapter {
 					}
 				}
 				break;
+		}
+	}
+
+	async checkConfig(config) {
+		const checkAPIOptions = {
+			legacy_api_enabled: false,
+			legacy_availability_payload_enabled: false,
+			device_legacy_enabled: false
+		};
+
+		if (!config.advanced || config.advanced.legacy_api != false) {
+			checkAPIOptions.legacy_api_enabled = true;
+		}
+		if (config.advanced.legacy_availability_payload != false) {
+			checkAPIOptions.legacy_availability_payload_enabled = true;
+		}
+		if (config.device_options.legacy != false) {
+			checkAPIOptions.device_legacy_enabled = true;
+		}
+
+		if (Object.values(checkAPIOptions).filter(x => x == true).length > 0) {
+			this.log.error('===================================================');
+			this.log.error('===================================================');
+			if (checkAPIOptions.legacy_api_enabled == true) {
+				this.log.error('Legacy api is activated, so the adapter can not work correctly!!!');
+				this.log.error('Please add the following lines to your Zigbee2MQTT configuration.yaml:');
+				this.log.error('legacy_api: false');
+				this.log.error('');
+			}
+			if (checkAPIOptions.legacy_availability_payload_enabled == true) {
+				this.log.error('Legacy Availability Payload is activated, thus the adapter cannot represent the availability of the devices!!!');
+				this.log.error('Please add the following lines to your Zigbee2MQTT configuration.yaml:');
+				this.log.error('legacy_availability_payload: false');
+				this.log.error('');
+			}
+			if (checkAPIOptions.device_legacy_enabled == true) {
+				this.log.error('Device Legacy Payload is activated, therefore the adapter may process the states of the devices correctly!!!');
+				this.log.error('Please add the following lines to your Zigbee2MQTT configuration.yaml:');
+				this.log.error('device_options:');
+				this.log.error(' legacy: false');
+			}
+			this.log.error('===================================================');
+			this.log.error('===================================================');
 		}
 	}
 
