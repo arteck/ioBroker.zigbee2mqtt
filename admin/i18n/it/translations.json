@@ -1,5 +1,8 @@
 {
-	"zigbee2mqtt adapter settings": "Impostazioni dell'adattatore per zigbee2mqtt",
-	"option1": "opzione 1",
-	"option2": "opzione 2"
+    "zigbee2mqtt adapter settings": "Impostazioni dell'adattatore per zigbee2mqtt",
+    "server": "server",
+    "port": "Porta",
+    "useKelvin": "Usa Kelvin invece di mired per le temperature di colore",
+    "proxyZ2MLogs": "Proxy Zigbee2MQTT registra nei registri di ioBroker",
+    "debugLogEnabled": "Registro di debug abilitato"
 }

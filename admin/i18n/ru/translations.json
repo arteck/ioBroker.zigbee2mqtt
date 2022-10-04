@@ -1,5 +1,8 @@
 {
-	"zigbee2mqtt adapter settings": "Настройки адаптера для zigbee2mqtt",
-	"option1": "Опция 1",
-	"option2": "вариант 2"
+    "zigbee2mqtt adapter settings": "Настройки адаптера для zigbee2mqtt",
+    "server": "Сервер",
+    "port": "Порт",
+    "useKelvin": "Используйте шкалу Кельвина вместо майреда для цветовой температуры.",
+    "proxyZ2MLogs": "Проксировать журналы Zigbee2MQTT в журналы ioBroker",
+    "debugLogEnabled": "Журнал отладки включен"
 }

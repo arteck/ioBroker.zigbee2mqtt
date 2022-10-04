@@ -1,165 +1,165 @@
 {
-  "common": {
-    "name": "zigbee2mqtt",
-    "version": "0.1.0",
-    "news": {
-      "0.1.0": {
-        "en": "first release",
-        "de": "erste veröffentlichung",
-        "ru": "первый релиз",
-        "pt": "primeiro lançamento",
-        "nl": "eerste vrijlating",
-        "fr": "première version",
-        "it": "primo rilascio",
-        "es": "primera liberación",
-        "pl": "pierwsze wydanie",
-        "zh-cn": "首次释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "zh-cn": "首次出版"
-      }
+    "common": {
+        "name": "zigbee2mqtt",
+        "version": "0.1.0",
+        "news": {
+            "0.1.0": {
+                "en": "first release",
+                "de": "erste veröffentlichung",
+                "ru": "первый релиз",
+                "pt": "primeiro lançamento",
+                "nl": "eerste vrijlating",
+                "fr": "première version",
+                "it": "primo rilascio",
+                "es": "primera liberación",
+                "pl": "pierwsze wydanie",
+                "zh-cn": "首次释放"
+            },
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "zigbee2mqtt",
+        "titleLang": {
+            "en": "zigbee2mqtt",
+            "de": "zigbee2mqtt",
+            "ru": "зигби2мктт",
+            "pt": "zigbee2mqtt",
+            "nl": "zigbee2mqtt",
+            "fr": "zigbee2mqtt",
+            "it": "zigbee2mqtt",
+            "es": "zigbee2mqtt",
+            "pl": "zigbee2mqtt",
+            "zh-cn": "zigbee2mqtt"
+        },
+        "desc": {
+            "en": "Zigbee2MQTT adapter for ioBroker",
+            "de": "Zigbee2MQTT-Adapter für ioBroker",
+            "ru": "Адаптер Zigbee2MQTT для ioBroker",
+            "pt": "Adaptador Zigbee2MQTT para ioBroker",
+            "nl": "Zigbee2MQTT-adapter voor ioBroker",
+            "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
+            "it": "Adattatore Zigbee2MQTT per ioBroker",
+            "es": "Adaptador Zigbee2MQTT para ioBroker",
+            "pl": "Adapter Zigbee2MQTT do ioBroker",
+            "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器"
+        },
+        "authors": [
+            "Dennis Rathjen <dennis.rathjen@outlook.de>"
+        ],
+        "keywords": [
+            "zigbee",
+            "zigbee2mqtt",
+            "hue",
+            "tradfri",
+            "aqara",
+            "tuya"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "zigbee2mqtt.png",
+        "enabled": false,
+        "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+        "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "lighting",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "json"
+        },
+        "adminTab": {
+            "name": {
+                "en": "Zigbee2MQTT",
+                "de": "Zigbee2MQTT",
+                "ru": "Zigbee2MQTT",
+                "pt": "Zigbee2MQTT",
+                "nl": "Zigbee2MQTT",
+                "fr": "Zigbee2MQTT",
+                "it": "Zigbee2MQTT",
+                "es": "Zigbee2MQTT",
+                "pl": "Zigbee2MQTT",
+                "zh-cn": "Zigbee2MQTT"
+            },
+            "link": "http://%server%:%port%",
+            "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.13"
+            }
+        ]
     },
-    "title": "zigbee2mqtt",
-    "titleLang": {
-      "en": "zigbee2mqtt",
-      "de": "zigbee2mqtt",
-      "ru": "зигби2мктт",
-      "pt": "zigbee2mqtt",
-      "nl": "zigbee2mqtt",
-      "fr": "zigbee2mqtt",
-      "it": "zigbee2mqtt",
-      "es": "zigbee2mqtt",
-      "pl": "zigbee2mqtt",
-      "zh-cn": "zigbee2mqtt"
+    "native": {
+        "server": "",
+        "port": "8080",
+        "debugLogEnabled": false,
+        "proxyZ2MLogs": true,
+        "useKelvin": false
     },
-    "desc": {
-      "en": "Zigbee2MQTT adapter for ioBroker",
-      "de": "Zigbee2MQTT-Adapter für ioBroker",
-      "ru": "Адаптер Zigbee2MQTT для ioBroker",
-      "pt": "Adaptador Zigbee2MQTT para ioBroker",
-      "nl": "Zigbee2MQTT-adapter voor ioBroker",
-      "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
-      "it": "Adattatore Zigbee2MQTT per ioBroker",
-      "es": "Adaptador Zigbee2MQTT para ioBroker",
-      "pl": "Adapter Zigbee2MQTT do ioBroker",
-      "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器"
-    },
-    "authors": [
-      "Dennis Rathjen <dennis.rathjen@outlook.de>"
-    ],
-    "keywords": [
-      "zigbee",
-      "zigbee2mqtt",
-      "hue",
-      "tradfri",
-      "aqara",
-      "tuya"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "zigbee2mqtt.png",
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "lighting",
-    "compact": true,
-    "connectionType": "local",
-    "dataSource": "push",
-    "adminUI": {
-      "config": "json"
-    },
-    "adminTab": {
-      "name": {
-        "en": "Zigbee2MQTT",
-        "de": "Zigbee2MQTT",
-        "ru": "Zigbee2MQTT",
-        "pt": "Zigbee2MQTT",
-        "nl": "Zigbee2MQTT",
-        "fr": "Zigbee2MQTT",
-        "it": "Zigbee2MQTT",
-        "es": "Zigbee2MQTT",
-        "pl": "Zigbee2MQTT",
-        "zh-cn": "Zigbee2MQTT"
-      },
-      "link": "http://%server%:%port%",
-      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.22"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=5.1.13"
-      }
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.debugmessages",
+            "type": "state",
+            "common": {
+                "name": "Log changes as warnings for",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.logfilter",
+            "type": "state",
+            "common": {
+                "name": "Logs matching filters are ignored by the LogProxy",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        }
     ]
-  },
-  "native": {
-    "server": "",
-    "port": "8080",
-    "debugLogEnabled": false,
-    "proxyZ2MLogs": true,
-    "useKelvin": false
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Device or service connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.debugmessages",
-      "type": "state",
-      "common": {
-        "name": "Log changes as warnings for",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.logfilter",
-      "type": "state",
-      "common": {
-        "name": "Logs matching filters are ignored by the LogProxy",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    }
-  ]
 }

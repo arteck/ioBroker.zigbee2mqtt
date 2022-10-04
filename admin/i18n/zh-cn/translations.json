@@ -1,5 +1,8 @@
 {
-	"zigbee2mqtt adapter settings": "zigbee2mqtt的适配器设置",
-	"option1": "选项1",
-	"option2": "选项2"
+    "zigbee2mqtt adapter settings": "zigbee2mqtt 的适配器设置",
+    "server": "服务器",
+    "port": "港口",
+    "useKelvin": "使用 Kelvin 而不是 mired 作为色温",
+    "proxyZ2MLogs": "代理 Zigbee2MQTT 日志到 ioBroker 日志",
+    "debugLogEnabled": "启用调试日志"
 }
