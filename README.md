@@ -29,14 +29,14 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
--   (o0shojo0o) add option 'Use Kelvin instead of mired for the color temps'
+-   (o0shojo0o) added option 'Use Kelvin instead of mired for the color temps'
 -   (o0shojo0o) remove available logic, now will use the information from z2m
 -   (o0shojo0o) rename noLogDevices to logfilter
 -   (o0shojo0o) lots of bugfixes
--   (arteck) add noLogDevices functionality
--   (arteck) Add debugmessage for specific device functionality
--   (arteck) add some states are default false
--   (o0shojo0o) add support for scenes defined on a device
+-   (arteck) added noLogDevices functionality
+-   (arteck) added debugmessage for specific device functionality
+-   (arteck) added some states are default false
+-   (o0shojo0o) added support for scenes defined on a device
 -   (o0shojo0o) fix available state role
 -   (o0shojo0o) fix subscribeWritableStates
 
