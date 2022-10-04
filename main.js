@@ -145,6 +145,11 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/config':
 				break;
 			case 'bridge/info':
+				if (messageObj.payload.config.advanced.legacy_api != false
+				||  messageObj.payload.config.advanced.legacy_availability_payload != false
+				||  messageObj.payload.config.device_options.legacy != false) {
+					this.log.error(`Legacy option is on....`);
+				}
 				break;
 			case 'bridge/state':
 				break;
