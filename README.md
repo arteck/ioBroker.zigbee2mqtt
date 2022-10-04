@@ -29,6 +29,7 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) group states corrected
 -   (o0shojo0o) added option 'Use Kelvin instead of mired for the color temps'
 -   (o0shojo0o) remove available logic, now will use the information from z2m
 -   (o0shojo0o) rename noLogDevices to logfilter
