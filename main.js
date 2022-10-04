@@ -14,6 +14,7 @@ const clearArray = require('./lib/utils').clearArray;
 let wsClient;
 let adapter;
 let createDevicesOrReady = false;
+let isConnected = false;
 const incStatsQueue = [];
 const createCache = {};
 // eslint-disable-next-line prefer-const
@@ -82,6 +83,7 @@ class Zigbee2mqtt extends core.Adapter {
 				// Set connection state
 				this.setState('info.connection', true, true);
 				this.log.info('Connect to server over websocket connection.');
+				isConnected = true;
 				// Send ping to server
 				this.sendPingToServer();
 				// Start Heartbeat
@@ -98,6 +100,7 @@ class Zigbee2mqtt extends core.Adapter {
 				await this.setAllAvailableToFalse();
 				clearTimeout(ping);
 				clearTimeout(pingTimeout);
+				isConnected = false;
 
 				if (wsClient.readyState === WebSocket.CLOSED) {
 					this.autoRestart();
@@ -423,8 +426,8 @@ class Zigbee2mqtt extends core.Adapter {
 			},
 			topic: topic
 		};
-		// set stats with role 'button' always immediately to ack = true, because these are not reported back by Zigbee2MQTT
-		if (deviceState.role == 'button') {
+		// set stats with the mentioned role or ids always immediately to ack = true, because these are not reported back by Zigbee2MQTT
+		if (isConnected == true && (['button'].includes(deviceState.role) || ['brightness_move', 'color_temp_move'].includes(stateID))) {
 			this.setState(id, state, true);
 		}
 
