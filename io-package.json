@@ -57,10 +57,12 @@
       "Dennis Rathjen <dennis.rathjen@outlook.de>"
     ],
     "keywords": [
-      "ioBroker",
-      "template",
-      "Smart Home",
-      "home automation"
+      "zigbee",
+      "zigbee2mqtt",
+      "hue",
+      "tradfri",
+      "aqara",
+      "tuya"
     ],
     "license": "MIT",
     "platform": "Javascript/Node.js",
