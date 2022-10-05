@@ -1,16 +1,16 @@
 # Installation inkl. Umzug vom ioBroker/Zigbee Adapter
 
-Die Installation des Adapter erfordert einige vorarbeiten. 
-Hier wird die Grundlegende Installation aller voraussetzungen, detalierte Infos, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
+Die Installation des Adapters erfordert einige Vorarbeiten. 
+Hier wird die grundlegende Installation aller Voraussetzungen, detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
 
 
 ## Installation
 
-In unserem Beispiel wird Zigbee2MQTT via Docker / Docker Compose eingerichtet. Weitere Einrichtugsmethoden findet ihr auf der offizellen Dokumenation.
-Als vorraussetzung ist hier ein eingerichter Docker Server geben!
+In unserem Beispiel wird Zigbee2MQTT via Docker / Docker Compose eingerichtet. Weitere Einrichtungsmethoden findet ihr auf der offiziellen Dokumentation.
+Als Voraussetzung ist hier ein eingereichter Docker Server geben!
 
 1. Vorhanden oder neue Docker-Compose.yml bearbeiten und um folgenden Eintrag ergänzen.
-    Wichtig ist nur das diese Einstellungen an eure Umgebung angepasst werden, z.B. der Pfad zur USB Antenne unter "devices" oder der Pfad zur Konfig Datei unter "volumes".
+   Wichtig ist nur, dass diese Einstellungen an eure Umgebung angepasst werden, z.B. der Pfad zur USB Antenne unter "devices" oder der Pfad zur Konfigurationsdatei unter "volumes".
 
     ```yml
     zigbee2mqtt:
@@ -28,10 +28,10 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
         - TZ=Europe/Berlin
     ```
 
-2. Als nächstes Sollte eine Standart Konfig gebaut werden.
-   Hier kann die Offizelle oder die für den ioBroker Optimierte genommen werden.
+2. Als Nächstes sollte eine Standard-Konfiguration gebaut werden.
+   Hier kann die Offizielle oder die für den ioBroker Optimierte genommen werden.
    Dazu eine unter ./zigbee2mqtt/data/ die Datei configuration.yaml anlegen - Werte mit "Your Data" müssen dabei an euere Umgebung angepasst werden
-
+   
    Originale Konfiguration:
 
    ```yml
@@ -51,7 +51,7 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
         network_key: GENERATE
    ```
 
-   Für den Adapter **Optimierte und empfohlene** Version - Werte mit "Your Data" müssen dabei an euere Umgebung angepasst werden
+   Für den Adapter **optimierte und empfohlene** Version - Werte mit "Your Data" müssen dabei an euere Umgebung angepasst werden.
 
    ```yml
     homeassistant: false
@@ -80,20 +80,21 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
         legacy: false
         availability: true
    ```
-3. Wie zu sehen ist wird ein MQTT Server benötigt, dieser übernimmt keine Funktion wird aber zum Starten benötigt.
-   Dazu kann ein Adpater im ioBroker Installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
-   
-4. Habt das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
-   Nach einer Kurzen zeit können wir uns dann mit http://Dockerhost-IP:8080 mit dem Webinterface von Zigbee2MQTT Verbunden werden.
+3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt keine Funktion, wird aber zum Starten benötigt.
+   Dazu kann ein Adapter im ioBroker installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
 
-5. Installation des Zigbee2MQTT Adpaters über den Adapter Tab im ioBroker
+4. Habt das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen werden und die Container gestaltet werden.
+   Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbunden werden.
 
-6. Konfiguration des Adpaters
+5. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
+
+6. Konfiguration des Adapters
    - Server = IP des Zigbee2MQTT Servers (in unserem Falle die IP des Docker Host)
-   - Port = 8080 Ist der Standart Port, Wenn dieser in der Config von Zigbee2MQTT geändert wird muss der hier auch geändert werden
+   - Port = 8080 Ist der Standard Port, wenn dieser in der Config von Zigbee2MQTT geändert wird muss der hier auch geändert werden
    - Verwende Kelvin Werte anstelle von Mired = Einstellung der Einheit für Farbtemperaturen für z.B. Lampen
    - Proxy Zigbee2MQTT Protokolle zu ioBroker Protokolle = Übernimmt die Protokolle aus Zigbee2MQTT in das ioBroker Log
-   - Debug-Protokolle Aktivieren = **Aktiviert Extreme Debug Protokolle** Sollte nur auf Anweisung oder wenn man weis was man tut aktiviert werden. 
-   
-   ![Zigbee2MQTT Konfiguration](../img/Zigbee2MQTT_Adapter.png)
-7. Nun sollte alles laufen und die Geräte können Angelernt werden. Dazu hier eine Detalierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
+   - Debug-Protokolle Aktivieren = **Aktiviert Extreme Debug Protokolle** sollte nur auf Anweisung oder wenn man weis was man tut aktiviert werden. 
+
+![Zigbee2MQTT Konfiguration](../img/Zigbee2MQTT_Adapter.png)
+
+7. Nun sollte alles laufen und die Geräte können angelernt werden. Dazu hier eine detaillierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
