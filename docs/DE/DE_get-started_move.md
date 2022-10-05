@@ -104,12 +104,16 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    ```
    Dabei ist zu bedachten das die Werte im HEX Format eingetragen werden und in der richtigen Schreibweise.
    Hex Converter Online: https://www.rapidtables.com/convert/number/hex-to-decimal.html
-3. Habt das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
+
+3. Wie zu sehen ist wird ein MQTT Server benötigt, dieser übernimmt keine Funktion wird aber zum Starten benötigt.
+   Dazu kann ein Adpater im ioBroker Installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
+   
+4. Habt das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
    Nach einer Kurzen zeit können wir uns dann mit http://Dockerhost-IP:8080 mit dem Webinterface von Zigbee2MQTT Verbunden werden.
 
-4. Installation des Zigbee2MQTT Adpaters über den Adapter Tab im ioBroker
+5. Installation des Zigbee2MQTT Adpaters über den Adapter Tab im ioBroker
 
-5. Konfiguration des Adpaters
+6. Konfiguration des Adpaters
    - Server = IP des Zigbee2MQTT Servers (in unserem Falle die IP des Docker Host)
    - Port = 8080 Ist der Standart Port, Wenn dieser in der Config von Zigbee2MQTT geändert wird muss der hier auch geändert werden
    - Verwende Kelvin Werte anstelle von Mired = Einstellung der Einheit für Farbtemperaturen für z.B. Lampen
@@ -118,7 +122,7 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    
    ![Zigbee2MQTT Konfiguration](../img/Zigbee2MQTT_Adapter.png)
 
-6. Draft - umzug der Geräte
+7. Draft - umzug der Geräte
    - Zigbee Adapater ausmachen
    - Zigbee2MQTT Container herrunter fahren
    - Datenbank kopieren von Nach
