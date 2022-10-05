@@ -61,7 +61,7 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
         host: 0.0.0.0
     mqtt:
         base_topic: zigbee2mqtt
-        server: mqtt://192.168.0.203:1885
+        server: mqtt://Your Data:1885
     serial:
         port: /dev/ttyACM0
     advanced:
@@ -80,13 +80,15 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
         legacy: false
         availability: true
    ```
+3. Wie zu sehen ist wird ein MQTT Server benötigt, dieser übernimmt keine Funktion wird aber zum Starten benötigt.
+   Dazu kann ein Adpater im ioBroker Installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
    
-3. Habt das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
+4. Habt das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
    Nach einer Kurzen zeit können wir uns dann mit http://Dockerhost-IP:8080 mit dem Webinterface von Zigbee2MQTT Verbunden werden.
 
-4. Installation des Zigbee2MQTT Adpaters über den Adapter Tab im ioBroker
+5. Installation des Zigbee2MQTT Adpaters über den Adapter Tab im ioBroker
 
-5. Konfiguration des Adpaters
+6. Konfiguration des Adpaters
    - Server = IP des Zigbee2MQTT Servers (in unserem Falle die IP des Docker Host)
    - Port = 8080 Ist der Standart Port, Wenn dieser in der Config von Zigbee2MQTT geändert wird muss der hier auch geändert werden
    - Verwende Kelvin Werte anstelle von Mired = Einstellung der Einheit für Farbtemperaturen für z.B. Lampen
@@ -94,4 +96,4 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    - Debug-Protokolle Aktivieren = **Aktiviert Extreme Debug Protokolle** Sollte nur auf Anweisung oder wenn man weis was man tut aktiviert werden. 
    
    ![Zigbee2MQTT Konfiguration](../img/Zigbee2MQTT_Adapter.png)
-6. Nun sollte alles laufen und die Geräte können Angelernt werden. Dazu hier eine Detalierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
+7. Nun sollte alles laufen und die Geräte können Angelernt werden. Dazu hier eine Detalierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
