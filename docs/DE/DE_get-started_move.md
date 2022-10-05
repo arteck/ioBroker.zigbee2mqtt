@@ -87,7 +87,7 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    ```
     Hier ein Beispiel aus der Konfiguration des Zigbee Adapters im ioBroker und wie diese Umgeändert eingetragen werden muss:
 
-   ![Zigbee Konfiguration](./docs/ing/zigbeeAdpter.png)
+   ![Zigbee Konfiguration](./docs/img/zigbeeAdpter.png)
 
    ```yml
    mqtt:
@@ -116,7 +116,7 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    - Proxy Zigbee2MQTT Protokolle zu ioBroker Protokolle = Übernimmt die Protokolle aus Zigbee2MQTT in das ioBroker Log
    - Debug-Protokolle Aktivieren = **Aktiviert Extreme Debug Protokolle** Sollte nur auf Anweisung oder wenn man weis was man tut aktiviert werden. 
    
-   ![Zigbee2MQTT Konfiguration](./docs/ing/Zigbee2MQTT_Adapter.png)
+   ![Zigbee2MQTT Konfiguration](./docs/img/Zigbee2MQTT_Adapter.png)
 
 6. Draft - umzug der Geräte
    - Zigbee Adapater ausmachen
