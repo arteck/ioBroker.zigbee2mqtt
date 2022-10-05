@@ -32,6 +32,7 @@ let checkAvailableTimout;
 let debugDevices = '';
 let logfilter = [];
 let useKelvin = false;
+let showInfo = true;
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -145,10 +146,13 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/config':
 				break;
 			case 'bridge/info':
-				this.log.info(`Zigbee2MQTT Version: ${messageObj.payload.version} `);
-				this.log.info(`Coordinator type: ${messageObj.payload.coordinator.type} Version: ${messageObj.payload.coordinator.meta.revision} Serial: ${messageObj.payload.config.serial.port}`);
-				this.log.info(`Network panid ${messageObj.payload.network.pan_id} channel: ${messageObj.payload.network.channel} ext_pan_id: ${messageObj.payload.network.extended_pan_id}`);
-				this.checkConfig(messageObj.payload.config);
+				if (showinfo) {
+					this.log.info(`Zigbee2MQTT Version: ${messageObj.payload.version} `);
+					this.log.info(`Coordinator type: ${messageObj.payload.coordinator.type} Version: ${messageObj.payload.coordinator.meta.revision} Serial: ${messageObj.payload.config.serial.port}`);
+					this.log.info(`Network panid ${messageObj.payload.network.pan_id} channel: ${messageObj.payload.network.channel} ext_pan_id: ${messageObj.payload.network.extended_pan_id}`);
+					this.checkConfig(messageObj.payload.config);
+					showInfo = false;
+				}
 				break;
 			case 'bridge/state':
 				break;
