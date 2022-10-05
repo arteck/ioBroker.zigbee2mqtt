@@ -263,7 +263,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async onStateChange(id, state) {
 		if (state && state.ack == false) {
-			const message = await createZ2MMessage(id, state, groupCache.concat(deviceCache), isConnected);
+			const message = await createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected);
 			wsClient.send(message);
 
 			if (id.includes('info.debugmessages')) {
