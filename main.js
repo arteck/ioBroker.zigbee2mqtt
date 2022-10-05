@@ -156,7 +156,7 @@ class Zigbee2mqtt extends core.Adapter {
 				// As long as we are busy creating the devices, the states are written to the queue.
 				createDevicesOrReady = false;
 				await createDeviceDefinitions(deviceCache, messageObj.payload, useKelvin);
-				await createOrUpdateDevices(this, deviceCache, createCache);
+				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
 				this.subscribeWritableStates();
 				createDevicesOrReady = true;
 
@@ -167,7 +167,7 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/groups':
 				await createGroupDefinitions(groupCache, messageObj.payload, useKelvin);
-				await createOrUpdateDevices(this, deviceCache, createCache);
+				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
 				this.subscribeWritableStates();
 				break;
 			case 'bridge/event':
