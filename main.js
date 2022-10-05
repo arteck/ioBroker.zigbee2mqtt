@@ -8,11 +8,18 @@
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
 const WebSocket = require('ws');
-const defineDeviceFromExposes = require('./lib/exposes').defineDeviceFromExposes;
-const defineGroupDevice = require('./lib/groups').defineGroupDevice;
-const clearArray = require('./lib/utils').clearArray;
+const checkConfig = require('./lib/check').checkConfig;
+const adapterInfo = require('./lib/messages').adapterInfo;
+const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
+const createDeviceDefinitions = require('./lib/deviceController').createDeviceDefinitions;
+const createGroupDefinitions = require('./lib/deviceController').createGroupDefinitions;
+const createOrUpdateDevices = require('./lib/deviceController').createOrUpdateDevices;
+const processDeviceMessage = require('./lib/stateController').processDeviceMessage;
+const createZ2MMessage = require('./lib/z2mMessages').createZ2MMessage;
+const proxyZ2MLogs = require('./lib/z2mMessages').proxyZ2MLogs;
+
+
 let wsClient;
-let adapter;
 let createDevicesOrReady = false;
 let isConnected = false;
 const incStatsQueue = [];
@@ -48,13 +55,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async onReady() {
 		// Initialize your adapter here
-		adapter = this;
-		this.log.info(`Zigbee2MQTT Frontend Server: ${this.config.server}`);
-		this.log.info(`Zigbee2MQTT Frontend Port: ${this.config.port}`);
-		this.log.info(`Zigbee2MQTT Debug Log: ${this.config.debugLogEnabled ? 'activated' : 'deactivated'}`);
-		this.log.info(`Proxy Zigbee2MQTT Logs to ioBroker Logs: ${this.config.proxyZ2MLogs ? 'activated' : 'deactivated'}`);
-		this.log.info(`Use Kelvin: ${this.config.useKelvin ? 'yes' : 'no'}`);
-
+		adapterInfo(this.config, this.log);
 		this.setStateAsync('info.connection', false, true);
 		this.createWsClient(this.config.server, this.config.port);
 
@@ -109,7 +110,7 @@ class Zigbee2mqtt extends core.Adapter {
 			});
 
 			wsClient.on('message', (message) => { this.messageParse(message); });
-			wsClient.on('error', (err) => { adapter.logDebug(err); });
+			wsClient.on('error', (err) => { this.logDebug(err); });
 		} catch (err) {
 			this.logDebug(err);
 		}
@@ -147,10 +148,8 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/info':
 				if (showInfo) {
-					this.log.info(`Zigbee2MQTT Version: ${messageObj.payload.version} `);
-					this.log.info(`Coordinator type: ${messageObj.payload.coordinator.type} Version: ${messageObj.payload.coordinator.meta.revision} Serial: ${messageObj.payload.config.serial.port}`);
-					this.log.info(`Network panid ${messageObj.payload.network.pan_id} channel: ${messageObj.payload.network.channel} ext_pan_id: ${messageObj.payload.network.extended_pan_id}`);
-					this.checkConfig(messageObj.payload.config);
+					zigbee2mqttInfo(messageObj.payload, this.log);
+					checkConfig(messageObj.payload.config, this.log);
 					showInfo = false;
 				}
 				break;
@@ -159,19 +158,19 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/devices':
 				// As long as we are busy creating the devices, the states are written to the queue.
 				createDevicesOrReady = false;
-				await this.createDeviceDefinitions(deviceCache, messageObj.payload);
-				await this.createOrUpdateDevices(deviceCache);
+				await createDeviceDefinitions(deviceCache, messageObj.payload, useKelvin);
+				await createOrUpdateDevices(this, deviceCache, createCache);
 				this.subscribeWritableStates();
 				createDevicesOrReady = true;
 
 				// Now process all entries in the states queue
 				while (incStatsQueue.length > 0) {
-					this.processDeviceMessage(incStatsQueue.shift());
+					processDeviceMessage(this, incStatsQueue.shift(), groupCache.concat(deviceCache), debugDevices);
 				}
 				break;
 			case 'bridge/groups':
-				await this.createGroupDefinitions(groupCache, messageObj.payload);
-				await this.createOrUpdateDevices(groupCache);
+				await createGroupDefinitions(groupCache, messageObj.payload, useKelvin);
+				await createOrUpdateDevices(this, deviceCache, createCache);
 				this.subscribeWritableStates();
 				break;
 			case 'bridge/event':
@@ -180,7 +179,7 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/logging':
 				if (proxyZ2MLogsEnabled == true) {
-					this.proxyZ2MLogs(messageObj);
+					proxyZ2MLogs(this, messageObj, logfilter);
 				}
 				break;
 			case 'bridge/response/networkmap':
@@ -206,7 +205,7 @@ class Zigbee2mqtt extends core.Adapter {
 								incStatsQueue[incStatsQueue.length] = newMessage;
 								break;
 							}
-							this.processDeviceMessage(newMessage);
+							processDeviceMessage(this, newMessage, groupCache.concat(deviceCache), debugDevices);
 						}
 						// States
 					} else if (!messageObj.topic.includes('/')) {
@@ -215,284 +214,21 @@ class Zigbee2mqtt extends core.Adapter {
 							incStatsQueue[incStatsQueue.length] = messageObj;
 							break;
 						}
-						this.processDeviceMessage(messageObj);
+						processDeviceMessage(this, messageObj, groupCache.concat(deviceCache), debugDevices);
 					}
 				}
 				break;
 		}
 	}
 
-	async checkConfig(config) {
-		const checkAPIOptions = {
-			legacy_api_enabled: config.advanced.legacy_api != false,
-			legacy_availability_payload_enabled: config.advanced.legacy_availability_payload != false,
-			device_legacy_enabled: config.device_options.legacy != false
-		};
-
-		if (Object.values(checkAPIOptions).filter(x => x == true).length > 0) {
-			this.log.error('===================================================');
-			this.log.error('===================================================');
-			if (checkAPIOptions.legacy_api_enabled == true) {
-				this.log.error('Legacy api is activated, so the adapter can not work correctly!!!');
-				this.log.error('Please add the following lines to your Zigbee2MQTT configuration.yaml:');
-				this.log.error('legacy_api: false');
-				this.log.error('');
-			}
-			if (checkAPIOptions.legacy_availability_payload_enabled == true) {
-				this.log.error('Legacy Availability Payload is activated, thus the adapter cannot represent the availability of the devices!!!');
-				this.log.error('Please add the following lines to your Zigbee2MQTT configuration.yaml:');
-				this.log.error('legacy_availability_payload: false');
-				this.log.error('');
-			}
-			if (checkAPIOptions.device_legacy_enabled == true) {
-				this.log.error('Device Legacy Payload is activated, therefore the adapter may process the states of the devices correctly!!!');
-				this.log.error('Please add the following lines to your Zigbee2MQTT configuration.yaml:');
-				this.log.error('device_options:');
-				this.log.error(' legacy: false');
-			}
-			this.log.error('===================================================');
-			this.log.error('===================================================');
-		}
-	}
-
-	async processDeviceMessage(messageObj) {
-		this.logDebug(`processDeviceMessage -> messageObj: ${JSON.stringify(messageObj)}`);
-		// Is payload present?
-		if (messageObj.payload == '') {
-			return;
-		}
-
-		const device = groupCache.concat(deviceCache).find(x => x.id == messageObj.topic);
-		if (device) {
-			this.logDebug(`processDeviceMessage -> device: ${JSON.stringify(device)}`);
-			try {
-				this.setDeviceState(messageObj, device);
-			} catch (error) {
-				adapter.log.error(error);
-			}
-		}
-		else {
-			adapter.log.warn(`Device: ${messageObj.topic} not found`);
-		}
-	}
-
-	async setDeviceState(messageObj, device) {
-
-		if (debugDevices.includes(device.ieee_address)) {
-			this.log.warn(`--->>> fromZ2M -> ${device.ieee_address} states: ${JSON.stringify(messageObj)}`);
-		}
-
-		for (const [key, value] of Object.entries(messageObj.payload)) {
-			this.logDebug(`setDeviceState -> key: ${key}`);
-			this.logDebug(`setDeviceState -> value: ${JSON.stringify(value)}`);
-
-			let states;
-			if (key == 'action') {
-				states = device.states.filter(x => (x.prop && x.prop == key) && x.id == value);
-			} else {
-				states = device.states.filter(x => (x.prop && x.prop == key) || x.id == key);
-			}
-			this.logDebug(`setDeviceState -> states: ${JSON.stringify(states)}`);
-
-			for (const state of states) {
-				if (!state) {
-					continue;
-				}
-
-				const stateName = `${device.ieee_address}.${state.id}`;
-
-				try {
-					if (state.getter) {
-						await this.setStateAsync(stateName, state.getter(messageObj.payload), true);
-					}
-					else {
-						await this.setStateAsync(stateName, value, true);
-					}
-				} catch (err) {
-					this.log.warn(`Can not set ${stateName}`);
-				}
-			}
-		}
-	}
-
-	async createDeviceDefinitions(cache, exposes) {
-		clearArray(cache);
-		for (const expose of exposes) {
-			if (expose.definition != null) {
-				// search for scenes in the endpoints and build them into an array
-				let scenes = [];
-				for (const key in expose.endpoints) {
-					if (expose.endpoints[key].scenes) {
-						scenes = scenes.concat(expose.endpoints[key].scenes);
-					}
-				}
-
-				await defineDeviceFromExposes(cache, expose.friendly_name, expose.ieee_address, expose.definition, expose.power_source, scenes, useKelvin);
-			}
-		}
-	}
-
-	async createGroupDefinitions(cache, exposes) {
-		clearArray(cache);
-		for (const expose of exposes) {
-			await defineGroupDevice(cache, expose.friendly_name, `group_${expose.id}`, expose.scenes, useKelvin);
-		}
-	}
-
-	async createOrUpdateDevices(cache) {
-		for (const device of cache) {
-			const deviceName = device.id == device.ieee_address ? '' : device.id;
-			if (!createCache[device.ieee_address] || createCache[device.ieee_address].common.name != deviceName) {
-				const deviceObj = {
-					type: 'device',
-					common: {
-						name: deviceName,
-					},
-
-					native: {}
-				};
-
-				if (!device.ieee_address.includes('group_')) {
-					deviceObj.common.statusStates = {
-						onlineId: `${this.name}.${this.instance}.${device.ieee_address}.available`
-					};
-				}
-
-				//@ts-ignore
-				await this.extendObjectAsync(device.ieee_address, deviceObj);
-				createCache[device.ieee_address] = deviceObj;
-			}
-
-			// Here it is checked whether the scenes match the current data from z2m.
-			// If necessary, scenes are automatically deleted from ioBroker.
-			const sceneStates = await this.getStatesAsync(`${device.ieee_address}.scene_*`);
-			const sceneIDs = Object.keys(sceneStates);
-			for (const sceneID of sceneIDs) {
-				const stateID = sceneID.split('.')[3];
-				if (device.states.find(x => x.id == stateID) == null) {
-					this.delObject(sceneID);
-				}
-			}
-
-			for (const state of device.states) {
-				if (!createCache[device.ieee_address][state.id] || createCache[device.ieee_address][state.id].name != state.name) {
-					const iobState = await this.copyAndCleanStateObj(state);
-					this.logDebug(`Orig. state: ${JSON.stringify(state)}`);
-					this.logDebug(`Cleaned. state: ${JSON.stringify(iobState)}`);
-
-					await this.extendObjectAsync(`${device.ieee_address}.${state.id}`, {
-						type: 'state',
-						common: iobState,
-						native: {},
-					});
-					createCache[device.ieee_address][state.id] = state.name;
-				}
-			}
-		}
-	}
-
-	async copyAndCleanStateObj(state) {
-		const iobState = { ...state };
-		const blacklistedKeys = [
-			'setter',
-			'setterOpt',
-			'getter',
-			'setattr',
-			'readable',
-			'writable',
-			'isOption',
-			'inOptions'
-		];
-		for (const blacklistedKey of blacklistedKeys) {
-			delete iobState[blacklistedKey];
-		}
-		return iobState;
-	}
-
 	async subscribeWritableStates() {
 		await this.unsubscribeObjectsAsync('*');
-
 		for (const device of groupCache.concat(deviceCache)) {
 			for (const state of device.states) {
 				if (state.write == true) {
 					this.subscribeStatesAsync(`${device.ieee_address}.${state.id}`);
 				}
 			}
-		}
-	}
-
-	async createZ2MMessage(id, state) {
-
-		const splitedID = id.split('.');
-
-		if (splitedID.length < 4) {
-			this.log.warn(`state ${id} not valid`);
-			return;
-		}
-
-		const ieee_address = splitedID[2];
-		const stateName = splitedID[3];
-
-		const device = groupCache.concat(deviceCache).find(d => d.ieee_address == ieee_address);
-
-		if (!device) {
-			return;
-		}
-
-		const deviceState = device.states.find(s => s.id == stateName);
-
-		if (!deviceState) {
-			return;
-		}
-
-		let stateVal = state.val;
-		if (deviceState.setter) {
-			stateVal = deviceState.setter(state.val);
-		}
-
-
-		let stateID = deviceState.id;
-		if (deviceState.prop) {
-			stateID = deviceState.prop;
-		}
-
-		let topic = `${device.ieee_address}/set`;
-		if (device.ieee_address.includes('group_')) {
-			topic = `${device.id}/set`;
-		}
-
-		const controlObj = {
-			payload: {
-				[stateID]: stateVal
-			},
-			topic: topic
-		};
-		// set stats with the mentioned role or ids always immediately to ack = true, because these are not reported back by Zigbee2MQTT
-		if (isConnected == true && (['button'].includes(deviceState.role) || ['brightness_move', 'color_temp_move'].includes(stateID))) {
-			this.setState(id, state, true);
-		}
-
-		return JSON.stringify(controlObj);
-	}
-
-	async proxyZ2MLogs(messageObj) {
-		this.logDebug(`proxyZ2MLogs -> messageObj: ${JSON.stringify(messageObj)}`);
-
-		const logMessage = messageObj.payload.message;
-		if (logfilter.some(x => logMessage.includes(x))) {
-			return;
-		}
-
-		const logLevel = messageObj.payload.level;
-		switch (logLevel) {
-			case 'debug':
-			case 'info':
-			case 'error':
-				this.log[logLevel](logMessage);
-				break;
-			case 'warning':
-				this.log.warn(logMessage);
-				break;
 		}
 	}
 
@@ -527,7 +263,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async onStateChange(id, state) {
 		if (state && state.ack == false) {
-			const message = await this.createZ2MMessage(id, state);
+			const message = await createZ2MMessage(id, state, groupCache.concat(deviceCache), isConnected);
 			wsClient.send(message);
 
 			if (id.includes('info.debugmessages')) {
