@@ -72,9 +72,6 @@ class Zigbee2mqtt extends core.Adapter {
 		if (logfilterState && logfilterState.val) {
 			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
-
-
-		this.subscribeStatesAsync('*');
 	}
 
 	async createWsClient(server, port) {
