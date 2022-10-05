@@ -146,7 +146,7 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/config':
 				break;
 			case 'bridge/info':
-				if (showinfo) {
+				if (showInfo) {
 					this.log.info(`Zigbee2MQTT Version: ${messageObj.payload.version} `);
 					this.log.info(`Coordinator type: ${messageObj.payload.coordinator.type} Version: ${messageObj.payload.coordinator.meta.revision} Serial: ${messageObj.payload.config.serial.port}`);
 					this.log.info(`Network panid ${messageObj.payload.network.pan_id} channel: ${messageObj.payload.network.channel} ext_pan_id: ${messageObj.payload.network.extended_pan_id}`);
