@@ -49,7 +49,6 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    # Enable the Zigbee2MQTT frontend
    frontend:
    port: 8080
-   # Let Zigbee2MQTT generate a new network key on first start
    advanced:
    pan_id: Your Data
    ext_pan_id: Your Data
@@ -86,33 +85,38 @@ Als vorraussetzung ist hier ein eingerichter Docker Server geben!
    legacy: false
    availability: true
    ```
-   Dabei ist zu bedachten das die Werte im HEX Format eingetragen werden und in der richtigen Schreibweise.
+    Hier ein Beispiel aus der Konfiguration des Zigbee Adapters im ioBroker und wie diese Umgeändert eingetragen werden muss:
 
-   Hier ein Beispiel aus der Konfiguration des Zigbee Adapters im ioBroker und wie diese Umgeändert eingetragen werden muss:
-
-   ![Zigbee Konfiguration](ing/zigbee.png)
+   ![Zigbee Konfiguration](ing/zigbeeAdpter.png)
 
    ```yml
    mqtt:
    base_topic: zigbee2mqtt
-   server: mqtt://Your Data:1885
+   server: mqtt://192.168.1.1:1885 # IOBrocker IP Adresse mit MQTT Adapter oder MQTT Server siehe Zigbee2MQTT Doku
    Serial:
-   port: /dev/ttyACM0
+   port: /dev/ttyACM0 #Pfad zur Zigbee Antenne
    advanced:
-   pan_id: Your Data
-   ext_pan_id: Your Data
-   channel: Your Data
-   network_key: Your Data
+   pan_id: 1A2C #PAN ID aus dem ioBroker konvertiert zu Hex
+   ext_pan_id: [0x00, 0x12, 0x4b, 0x02, 0x37, 0xb9, 0x88] #erweiterte PAN ID aus dem ioBroker und in der schreibweise [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
+
+   channel: 15 #Kannal aus dem ioBroker
+   network_key: [0x02, 0x03, 0x05, 0x08, 0x09, 0x0B, 0x0D, 0x0B, 0x00, 0x02, 0x04, 0x07, 0x08, 0x0A, 0x0C, 0x0D] # Netzwerkkey/Transportschlüssel und in der schreibweise [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
    ```
-3. Haben wir das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
+   Dabei ist zu bedachten das die Werte im HEX Format eingetragen werden und in der richtigen Schreibweise.
+   Hex Converter Online: https://www.rapidtables.com/convert/number/hex-to-decimal.html
+3. Habt das alles erledigt dann kann mit `docker-compose up -d` die Docker configuration über nommen werden und die Container gestatet werden.
    Nach einer Kurzen zeit können wir uns dann mit http://Dockerhost-IP:8080 mit dem Webinterface von Zigbee2MQTT Verbunden werden.
 
 4. Installation des Zigbee2MQTT Adpaters über den Adapter Tab im ioBroker
 
 5. Konfiguration des Adpaters
-   - IP
-   - Kelvin Werte
-   - Debug log
+   - Server = IP des Zigbee2MQTT Servers (in unserem Falle die IP des Docker Host)
+   - Port = 8080 Ist der Standart Port, Wenn dieser in der Config von Zigbee2MQTT geändert wird muss der hier auch geändert werden
+   - Verwende Kelvin Werte anstelle von Mired = Einstellung der Einheit für Farbtemperaturen für z.B. Lampen
+   - Proxy Zigbee2MQTT Protokolle zu ioBroker Protokolle = Übernimmt die Protokolle aus Zigbee2MQTT in das ioBroker Log
+   - Debug-Protokolle Aktivieren = **Aktiviert Extreme Debug Protokolle** Sollte nur auf Anweisung oder wenn man weis was man tut aktiviert werden. 
+   
+   ![Zigbee2MQTT Konfiguration](ing/Zigbee2MQTT_Adapter.png)
 
 6. Draft - umzug der Geräte
    - Zigbee Adapater ausmachen
