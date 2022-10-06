@@ -99,8 +99,10 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    channel: 15 #Kanal aus dem ioBroker
    network_key: [0x02, 0x03, 0x05, 0x08, 0x09, 0x0B, 0x0D, 0x0B, 0x00, 0x02, 0x04, 0x07, 0x08, 0x0A, 0x0C, 0x0D] # Netzwerkkey/Transportschlüssel und in der schreibweise [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
    ```
-   Dabei ist zu bedachten, dass die Werte im HEX Format eingetragen werden und in der richtigen Schreibweise.
+   Dabei ist zu bedachten, dass NUR DIE PANID ins HEX Format überführt werden muss
    Hex Konverter Online: https://www.rapidtables.com/convert/number/hex-to-decimal.html
+   Die Restlichen Werten liegen schon im richtigen Format, müssen nur in die richtigen Schreibweise überführt werden.
+   
 
 3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt keine Funktion, wird aber zum Starten benötigt.
    Dazu kann ein Adapter im ioBroker installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
