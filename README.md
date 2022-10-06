@@ -27,8 +27,14 @@ Zigbee2MQTT adapter for ioBroker
 	### **WORK IN PROGRESS**
 -->
 
+## Adapter Documentation
+
+[Adapter Documentation](./docs/wiki.md)
+
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) automatically set button actions back to false
+-   (o0shojo0o) added support for Zigbee2MQTT feature simulated_brightness
 -   (o0shojo0o) added config check
 -   (arteck) added log output about coordinator details
 
@@ -50,9 +56,6 @@ Zigbee2MQTT adapter for ioBroker
 
 -   (o0shojo0o) first release
 
-## Adapter Documentation
-
-[Adapter Documentation](./docs/wiki.md)
 ## License
 
 MIT License
