@@ -103,14 +103,15 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    behilflich ist ein Hex Konverter wie  dieser : https://www.rapidtables.com/convert/number/hex-to-decimal.html .
    Die Restlichen Werten liegen schon im richtigen Format, müssen nur in die richtige Schreibweise überführt werden.
    
-   also aus
+   also aus ext_pan_id:
    00124b0237b988
    
-   wird die 
+   wird die ext_pan_id:
    0x00, 0x12, 0x4b, 0x02, 0x37, 0xb9, 0x88
    
    genau so muss auch der network_key umgeschlüsselt werden.
    
+   Das ist wichtig da sonst bei falsch Konfiguration der Coordinator falsche Daten bekommt und ihr das Netz nicht wieder einfach "so" aufgebaut bekommt.
 
 3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt keine Funktion, wird aber zum Starten benötigt.
    Dazu kann ein Adapter im ioBroker installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
