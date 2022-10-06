@@ -20,7 +20,7 @@ const proxyZ2MLogs = require('./lib/z2mMessages').proxyZ2MLogs;
 
 
 let wsClient;
-let createDevicesOrReady = false;
+let createDevicesReady = false;
 let isConnected = false;
 const incStatsQueue = [];
 const createCache = {};
@@ -154,11 +154,11 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/devices':
 				// As long as we are busy creating the devices, the states are written to the queue.
-				createDevicesOrReady = false;
+				createDevicesReady = false;
 				await createDeviceDefinitions(deviceCache, messageObj.payload, useKelvin);
 				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
-				this.subscribeWritableStates();
-				createDevicesOrReady = true;
+				await this.subscribeWritableStates();
+				createDevicesReady = true;
 
 				// Now process all entries in the states queue
 				while (incStatsQueue.length > 0) {
@@ -192,13 +192,23 @@ class Zigbee2mqtt extends core.Adapter {
 					// {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
 					if (messageObj.topic.endsWith('/availability')) {
 						const topicSplit = messageObj.topic.split('/');
+
+						// If an availability message for an old device ID comes with a payload of NULL, this is the indicator that a device has been unnamed.
+						// If this is then still available in the cache, the messages must first be cached.
+						if (messageObj.payload == null) {
+							if (groupCache.concat(deviceCache).find(x => x.id == topicSplit[0])) {
+								createDevicesReady = false;
+								break;
+							}
+						}
+
 						if (topicSplit.length == 2 && messageObj.payload && messageObj.payload.state) {
 							const newMessage = {
 								payload: { available: messageObj.payload.state == 'online' },
 								topic: topicSplit[0]
 							};
 							// As long as we are busy creating the devices, the states are written to the queue.
-							if (createDevicesOrReady == false) {
+							if (createDevicesReady == false) {
 								incStatsQueue[incStatsQueue.length] = newMessage;
 								break;
 							}
@@ -207,7 +217,7 @@ class Zigbee2mqtt extends core.Adapter {
 						// States
 					} else if (!messageObj.topic.includes('/')) {
 						// As long as we are busy creating the devices, the states are written to the queue.
-						if (createDevicesOrReady == false) {
+						if (createDevicesReady == false) {
 							incStatsQueue[incStatsQueue.length] = messageObj;
 							break;
 						}
@@ -227,6 +237,8 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 			}
 		}
+		this.subscribeStatesAsync('info.debugmessages');
+		this.subscribeStatesAsync('info.logfilter');
 	}
 
 	async logDebug(message) {
@@ -260,17 +272,19 @@ class Zigbee2mqtt extends core.Adapter {
 
 	async onStateChange(id, state) {
 		if (state && state.ack == false) {
-			const message = await createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected);
-			wsClient.send(message);
-
 			if (id.includes('info.debugmessages')) {
 				debugDevices = state.val;
 				this.setState(id, state.val, true);
+				return;
 			}
 			if (id.includes('info.logfilter')) {
 				logfilter = state.val.split(';').filter(x => x); // filter removes empty strings here
 				this.setState(id, state.val, true);
+				return;
 			}
+
+			const message = await createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected);
+			wsClient.send(message);
 		}
 	}
 }
