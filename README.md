@@ -15,6 +15,10 @@
 
 Zigbee2MQTT adapter for ioBroker
 
+## Adapter Documentation
+
+[Adapter Documentation](./docs/wiki.md)
+
 ## Changelog
 
 <!--
@@ -26,10 +30,6 @@ Zigbee2MQTT adapter for ioBroker
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-## Adapter Documentation
-
-[Adapter Documentation](./docs/wiki.md)
 
 ### **WORK IN PROGRESS**
 
