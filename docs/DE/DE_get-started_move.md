@@ -63,7 +63,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    host: 0.0.0.0
    mqtt:
     base_topic: zigbee2mqtt
-    server: mqtt://Your Data:1885
+    server: mqtt://Your Data:Your Port (im normall Fall : 1885)
    serial:
     port: /dev/ttyACM0
    advanced:
