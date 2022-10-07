@@ -7,7 +7,10 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
-const WebSocket = require('ws');
+const NedbPersistence = require('aedes-persistence-nedb');
+const Aedes = require('aedes');
+const net = require('net');
+const mqtt = require('mqtt');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
 const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
@@ -31,8 +34,6 @@ let groupCache = [];
 let ping;
 let pingTimeout;
 let autoRestartTimeout;
-const wsHeartbeatIntervall = 5000;
-const restartTimeout = 1000;
 let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
@@ -40,6 +41,7 @@ let debugDevices = '';
 let logfilter = [];
 let useKelvin = false;
 let showInfo = true;
+
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -54,10 +56,20 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async onReady() {
+		const mqttDataDir = `${core.getAbsoluteInstanceDataDir(this)}/mqttData`;
+		const db = new NedbPersistence({
+			path: mqttDataDir,
+			prefix: ''
+		});
+		// @ts-ignore
+		const aedes = Aedes({ persistence: db });
+		const server = net.createServer(aedes.handle);
+		const port = 1883;
+
 		// Initialize your adapter here
 		adapterInfo(this.config, this.log);
 		this.setStateAsync('info.connection', false, true);
-		this.createWsClient(this.config.server, this.config.port);
+		//this.createWsClient(this.config.server, this.config.port);
 
 		debugLogEnabled = this.config.debugLogEnabled;
 		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
@@ -72,69 +84,17 @@ class Zigbee2mqtt extends core.Adapter {
 		if (logfilterState && logfilterState.val) {
 			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
-	}
 
-	async createWsClient(server, port) {
-		try {
-			wsClient = new WebSocket(`ws://${server}:${port}/api`);
-			wsClient.on('open', () => {
-				this.logDebug('Websocket connectet');
-				// Set connection state
-				this.setState('info.connection', true, true);
-				this.log.info('Connect to server over websocket connection.');
-				isConnected = true;
-				// Send ping to server
-				this.sendPingToServer();
-				// Start Heartbeat
-				this.wsHeartbeat();
-			});
-			wsClient.on('pong', () => {
-				//this.logDebug('Receive pong from server');
-				this.wsHeartbeat();
-			});
-			// On Close
-			wsClient.on('close', async () => {
-				this.setState('info.connection', false, true);
-				this.log.warn('Websocket disconnectet');
-				await this.setAllAvailableToFalse();
-				clearTimeout(ping);
-				clearTimeout(pingTimeout);
-				isConnected = false;
+		server.listen(port, function () { console.log('server listening on port', port); });
 
-				if (wsClient.readyState === WebSocket.CLOSED) {
-					this.autoRestart();
-				}
-			});
+		const client = mqtt.connect('mqtt://localhost:1883', { clientId: 'ioBroker.zigbee2mqtt', clean: true });
 
-			wsClient.on('message', (message) => { this.messageParse(message); });
-			wsClient.on('error', (err) => { this.logDebug(err); });
-		} catch (err) {
-			this.logDebug(err);
-		}
-	}
+		client.on('connect', () => { console.log('connected'); });
+		client.subscribe('#');
 
-	async sendPingToServer() {
-		//this.logDebug('Send ping to server');
-		wsClient.ping();
-		ping = setTimeout(() => {
-			this.sendPingToServer();
-		}, wsHeartbeatIntervall);
-	}
-
-	async wsHeartbeat() {
-		clearTimeout(pingTimeout);
-		pingTimeout = setTimeout(() => {
-			this.logDebug('Websocked connection timed out');
-			wsClient.terminate();
-			clearTimeout(checkAvailableTimout);
-		}, wsHeartbeatIntervall + 1000);
-	}
-
-	async autoRestart() {
-		this.log.warn(`Start try again in ${restartTimeout / 1000} seconds...`);
-		autoRestartTimeout = setTimeout(() => {
-			this.onReady();
-		}, restartTimeout);
+		client.on('message', (topic, payload) => {
+			console.log('Received Message:', topic.slice(topic.search('/') + 1), payload.toString());
+		});
 	}
 
 	async messageParse(message) {
