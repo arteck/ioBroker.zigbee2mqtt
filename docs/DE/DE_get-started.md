@@ -1,7 +1,7 @@
 # Installation inkl. Umzug vom ioBroker/Zigbee Adapter
 
 Die Installation des Adapters erfordert einige Vorarbeiten. 
-Hier wird die grundlegende Installation aller Voraussetzungen, detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
+Hier wird die grundlegende Installation aller Voraussetzungen beschrieben. Detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
 
 
 ## Installation
@@ -39,7 +39,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
     permit_join: true
     mqtt:
         base_topic: zigbee2mqtt
-        server: mqtt://Your Data
+        server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
     # Zigbee Adapter path
     serial:
         port: /dev/ttyUSB0
@@ -61,7 +61,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
         host: 0.0.0.0
     mqtt:
         base_topic: zigbee2mqtt
-        server: mqtt://Your Data:1885
+        server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
     serial:
         port: /dev/ttyACM0
     advanced:
@@ -78,10 +78,10 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
         log_level: warn
     device_options:
         legacy: false
-        availability: true
+    availability: true
    ```
-3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt keine Funktion, wird aber zum Starten benötigt.
-   Dazu kann ein Adapter im ioBroker installiert werden oder wie in der Originalen Doku ein Zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
+3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt Aktuell für diesen Adapter keine Funktion, wird aber zum Starten benötigt.
+   Dazu kann ein Adapter im ioBroker installiert/konfiguriert werden oder wie in der Originalen Doku ein zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
 
 4. Habt das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen werden und die Container gestaltet werden.
    Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbunden werden.
