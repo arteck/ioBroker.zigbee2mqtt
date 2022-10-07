@@ -13,9 +13,11 @@ Offizielle Dokumentation: https://www.zigbee2mqtt.io/guide/getting-started
 
 ## Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBrocker <a name="1"></a>
 Ausgangssituattion:
+
 Nutzt man im ioBroker Admin eine verschlüsselte Verbindung über HTTPS lädt der Browser die eingebettete Zigbee2MQTT UI nicht.
 
 Ursache:
+
 Leider kann in Zigbee2MQTT (noch) keine Verschlüsselte Verbindung konfigurirt werden. Durch die Verwendung der HTTPS Verbindung des Admin Adapter kann leider keine unverschlüsselte iFrame Verbindung genutzt werden, was hier der Fall ist.
 
 Lösung:

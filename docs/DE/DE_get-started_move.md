@@ -29,7 +29,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
 
 2. Als Nächstes sollte eine Standardkonfiguration gebaut werden.
    Hier kann die Offizielle oder die für den ioBroker Optimierte Version genommen werden.
-   Dazu eine unter ./zigbee2mqtt/data/ die Datei configuration.yaml anlegen.
+   Dazu unter ./zigbee2mqtt/data/ die Datei configuration.yaml anlegen.
    
    Originale Konfiguration:
 
@@ -112,18 +112,18 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    
    Das ist wichtig da sonst bei falsch Konfiguration der Coordinator falsche Daten bekommt und ihr das Netz nicht wieder einfach "so" aufgebaut bekommt.
 
-3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt Aktuell für diesen Adapter keine Funktion, wird aber zum Starten benötigt.
+3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt aktuell für diesen Adapter keine Funktion, wird aber zum Starten benötigt.
    Dazu kann ein Adapter im ioBroker installiert/konfiguriert werden oder wie in der Originalen Doku ein zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt)
 
-4. Jetzt müsst ihr mit dem Umzugs vorbereitungen beginnen. Dazu geht ihr bitte wie folgt vor:
-   - Löschen aller Gruppen im Aktuellen Zigbee Adpter. Diese führen leider zu div. Fehlern beim import der Datenbank. Wenn diese hier nicht raus genommen werden müssen sie aus der Datenbank Manuell gelöscht werden. Dies ist aufwendig und bei Fehlern ist die Datenbank korrupt.
+4. Jetzt müsst ihr mit dem Umzugsvorbereitungen beginnen. Dazu geht ihr bitte wie folgt vor:
+   - Löschen aller Gruppen im aktuellen Zigbee Adpter. Diese führen leider zu div. Fehlern beim import der Datenbank. Wenn diese hier nicht raus genommen werden müssen sie aus der Datenbank manuell gelöscht werden. Dies ist aufwendig und bei Fehlern ist die Datenbank korrupt. Ein löschen dieser Gruppen in Zigbee2MQTT ist leider nicht möglich.
    - ioBroker/Zigbee Adpater stoppen
-   - Die Datenbank aus dem ioBroker in den Container kopieren. 
+   - Die Datenbank aus dem ioBroker in den Container kopieren und umbennen. 
    Quelle: /opt/iobroker/iobroker-data/zigbee_/shepart.db
    Ziel: "Docker-Verzeichnis"/zigbee2mqtt/data/database.db
 
-5. Habt ihr das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen werden und die Container gestaltet werden.
-   Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbinden. Auch sollte sich nun die Konfigurtion geändert haben und die Hex Werter die wir eingetragen haben müssten umgerechnet worden sein. Sollte das Webinterface nicht hoch kommen/erreichbar sein liegt noch ein Fehler vor und wird zu 99% im Log des Containers angezeigt.
+5. Habt ihr das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen werden und den Container gestaltet werden.
+   Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbinden. Auch sollte sich nun die Konfigurtion geändert haben und die Hex Werte die wir eingetragen haben müssten umgerechnet worden sein. Sollte das Webinterface nicht hoch kommen/erreichbar sein liegt noch ein Fehler vor und wird zu 99% im Log des Containers angezeigt.
 
 6. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
 
