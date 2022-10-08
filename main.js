@@ -22,7 +22,7 @@ const createZ2MMessage = require('./lib/z2mMessages').createZ2MMessage;
 const proxyZ2MLogs = require('./lib/z2mMessages').proxyZ2MLogs;
 
 
-let wsClient;
+let mqttClient;
 let createDevicesReady = false;
 let isConnected = false;
 const incStatsQueue = [];
@@ -63,7 +63,7 @@ class Zigbee2mqtt extends core.Adapter {
 		});
 		// @ts-ignore
 		const aedes = Aedes({ persistence: db });
-		const server = net.createServer(aedes.handle);
+		const mqttServer = net.createServer(aedes.handle);
 		const port = 1883;
 
 		// Initialize your adapter here
@@ -85,17 +85,18 @@ class Zigbee2mqtt extends core.Adapter {
 			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
 
-		server.listen(port, function () { console.log('server listening on port', port); });
+		mqttServer.listen(port, () => { });
 
-		const client = mqtt.connect('mqtt://localhost:1883', { clientId: 'ioBroker.zigbee2mqtt', clean: true });
-
-		client.on('connect', () => { console.log('connected'); });
-		client.subscribe('#');
-
-		client.on('message', (topic, payload) => {
-			console.log('Received Message:', topic.slice(topic.search('/') + 1), payload.toString());
+		mqttClient = mqtt.connect('mqtt://localhost:1883', { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
+		mqttClient.on('connect', () => { isConnected = true; });
+		mqttClient.subscribe('#');
+		mqttClient.on('message', (topic, payload) => {
+			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
+			//console.log(newMessage);
+			this.messageParse(newMessage);
 		});
 	}
+
 
 	async messageParse(message) {
 		const messageObj = JSON.parse(message);
@@ -130,6 +131,7 @@ class Zigbee2mqtt extends core.Adapter {
 				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
 				this.subscribeWritableStates();
 				break;
+
 			case 'bridge/event':
 				break;
 			case 'bridge/extensions':
@@ -138,6 +140,15 @@ class Zigbee2mqtt extends core.Adapter {
 				if (proxyZ2MLogsEnabled == true) {
 					proxyZ2MLogs(this, messageObj, logfilter);
 				}
+				break;
+			//{"payload":{"data":{"from":"dev_Device","homeassistant_rename":false,"to":"dev_Deviceiop"},"status":"ok","transaction":"x3y3u-1"},"topic":"bridge/response/device/rename"}
+			case 'bridge/response/device/rename':
+				createDevicesReady = false;
+				// Rename device id
+				groupCache.concat(deviceCache).find(x => x.id == messageObj.payload.data.from).id = messageObj.payload.data.to;
+				// Update Devices in iob
+				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
+				createDevicesReady = true;
 				break;
 			case 'bridge/response/networkmap':
 				break;
@@ -243,8 +254,8 @@ class Zigbee2mqtt extends core.Adapter {
 				return;
 			}
 
-			const message = await createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected);
-			wsClient.send(message);
+			const message = await createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected) || { topic: '', payload: '' };
+			mqttClient.publish('zigbee2mqtt/' + message.topic, JSON.stringify(message.payload));
 		}
 	}
 }
