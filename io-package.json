@@ -108,6 +108,11 @@
       "link": "http://%server%:%port%",
       "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
     },
+    "localLinks": {
+      "_default": {
+        "link": "http://%server%:%port%"
+      }
+    },
     "dependencies": [
       {
         "js-controller": ">=3.3.22"
