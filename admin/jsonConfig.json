@@ -2,7 +2,7 @@
 	"i18n": true,
 	"type": "panel",
 	"items": {
-		"": {
+		"mqttServerIPBind": {
 			"type": "ip",
 			"label": "MQTT Server IP-Adress bind",
 			"listenOnAllPorts": true,
