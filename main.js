@@ -85,7 +85,7 @@ class Zigbee2mqtt extends core.Adapter {
 		mqttClient.subscribe('#');
 		mqttClient.on('message', (topic, payload) => {
 			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
-			console.log(newMessage);
+			//console.log(newMessage);
 			this.messageParse(newMessage);
 		});
 	}
@@ -110,15 +110,16 @@ class Zigbee2mqtt extends core.Adapter {
 				await deviceController.createDeviceDefinitions(messageObj.payload);
 				await deviceController.createOrUpdateDevices();
 				await statesController.subscribeWritableStates();
-				statesController.progressQueue();
+				statesController.processQueue();
 				break;
 			case 'bridge/groups':
 				await deviceController.createGroupDefinitions(messageObj.payload);
 				await deviceController.createOrUpdateDevices();
 				await statesController.subscribeWritableStates();
-				statesController.progressQueue();
+				statesController.processQueue();
 				break;
 			case 'bridge/event':
+				deviceController.processRemoveEvent(messageObj);
 				break;
 			case 'bridge/extensions':
 				break;
@@ -130,7 +131,7 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/response/device/rename':
 				await deviceController.renameDeviceInCache(messageObj);
 				await deviceController.createOrUpdateDevices();
-				statesController.progressQueue();
+				statesController.processQueue();
 				break;
 			case 'bridge/response/networkmap':
 				break;
