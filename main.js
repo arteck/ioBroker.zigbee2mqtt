@@ -14,10 +14,9 @@ const mqtt = require('mqtt');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
 const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
+const Z2mController = require('./lib/z2mController').Z2mController;
 const DeviceController = require('./lib/deviceController').DeviceController;
-const StatesController = require('./lib/StatesController').StatesController;
-const createZ2MMessage = require('./lib/z2mMessages').createZ2MMessage;
-const proxyZ2MLogs = require('./lib/z2mMessages').proxyZ2MLogs;
+const StatesController = require('./lib/statesController').StatesController;
 
 
 let mqttClient;
@@ -38,6 +37,7 @@ let useKelvin = false;
 let showInfo = true;
 let statesController;
 let deviceController;
+let z2mController;
 
 
 class Zigbee2mqtt extends core.Adapter {
@@ -61,6 +61,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
 		deviceController = new DeviceController(this, deviceCache, groupCache, useKelvin);
+		z2mController = new Z2mController(this, deviceCache, groupCache, isConnected);
 		// @ts-ignore
 		const aedes = Aedes({ persistence: db });
 		const mqttServer = net.createServer(aedes.handle);
@@ -131,7 +132,7 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/logging':
 				if (proxyZ2MLogsEnabled == true) {
-					proxyZ2MLogs(this, messageObj, logfilter);
+					z2mController.proxyZ2MLogs(this, messageObj, logfilter);
 				}
 				break;
 			case 'bridge/response/device/rename':
@@ -201,7 +202,7 @@ class Zigbee2mqtt extends core.Adapter {
 				return;
 			}
 
-			const message = await createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected) || { topic: '', payload: '' };
+			const message = await z2mController.createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected) || { topic: '', payload: '' };
 			mqttClient.publish('zigbee2mqtt/' + message.topic, JSON.stringify(message.payload));
 		}
 	}
