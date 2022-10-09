@@ -2,14 +2,39 @@
 	"i18n": true,
 	"type": "panel",
 	"items": {
-		"server": {
-			"type": "text",
-			"label": "Server",
+		"": {
+			"type": "ip",
+			"label": "MQTT Server IP-Adress bind",
+			"listenOnAllPorts": true,
 			"newLine": true
 		},
-		"port": {
+		"mqttServerPort": {
 			"type": "number",
-			"label": "Port",
+			"label": "MQTT Server Port",
+			"newLine": false
+		},
+		"webUIScheme": {
+			"type": "select",
+			"options": [
+				{
+					"label": "HTTP",
+					"value": "http"
+				},
+				{
+					"label": "HTTPS",
+					"value": "https"
+				}
+			],
+			"newLine": true
+		},
+		"webUIServer": {
+			"type": "text",
+			"label": "WebUi Address",
+			"newLine": false
+		},
+		"webUIPort": {
+			"type": "number",
+			"label": "WebUi Port",
 			"newLine": false
 		},
 		"useKelvin": {
@@ -20,11 +45,6 @@
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
-			"newLine": true
-		},
-		"debugLogEnabled": {
-			"type": "checkbox",
-			"label": "Debug Log Enabled",
 			"newLine": true
 		}
 	}

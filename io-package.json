@@ -105,12 +105,12 @@
         "pl": "Zigbee2MQTT",
         "zh-cn": "Zigbee2MQTT"
       },
-      "link": "http://%server%:%port%",
+      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
       "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
     },
     "localLinks": {
       "_default": {
-        "link": "http://%server%:%port%"
+        "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
       }
     },
     "dependencies": [
@@ -125,8 +125,11 @@
     ]
   },
   "native": {
-    "server": "",
-    "port": "8080",
+    "mqttServerIPBind": "0.0.0.0",
+    "mqttServerPort": 1885,
+    "webUIScheme": "http",
+    "webUIServer": "",
+    "webUIPort": 8080,
     "debugLogEnabled": false,
     "proxyZ2MLogs": true,
     "useKelvin": false

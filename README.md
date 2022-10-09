@@ -33,6 +33,10 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+**!!!BREAKING CHANGE!!!**
+
+-   (o0shojo0o) connection to zigbe2mqtt completely reworked and changed to MQTT **!!!breaking change!!!**
+-   (o0shojo0o) lots of bugfixes
 -   (o0shojo0o) automatically set button actions back to false
 -   (o0shojo0o) added support for Zigbee2MQTT feature simulated_brightness
 -   (o0shojo0o) added config check
