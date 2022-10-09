@@ -68,7 +68,7 @@ class Zigbee2mqtt extends core.Adapter {
 		}
 
 		if (this.config.useExternalMqtt == true) {
-			mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
+			mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
 		} else {
 			const Aedes = require('aedes');
 			const net = require('net');
