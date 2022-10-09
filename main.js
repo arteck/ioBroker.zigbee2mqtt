@@ -29,16 +29,13 @@ let groupCache = [];
 let ping;
 let pingTimeout;
 let autoRestartTimeout;
-let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
 let debugDevices = '';
 let logfilter = [];
-let useKelvin = false;
 let showInfo = true;
 let statesController;
 let deviceController;
 let z2mController;
-
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -60,20 +57,16 @@ class Zigbee2mqtt extends core.Adapter {
 		});
 
 		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
-		deviceController = new DeviceController(this, deviceCache, groupCache, useKelvin);
-		z2mController = new Z2mController(this, deviceCache, groupCache, isConnected);
+		deviceController = new DeviceController(this, deviceCache, groupCache, this.config.useKelvin);
+		z2mController = new Z2mController(this, deviceCache, groupCache, isConnected, logfilter);
 		// @ts-ignore
 		const aedes = Aedes({ persistence: db });
 		const mqttServer = net.createServer(aedes.handle);
-		const port = 1883;
 
 		// Initialize your adapter here
 		adapterInfo(this.config, this.log);
-		this.setStateAsync('info.connection', false, true);
-		//this.createWsClient(this.config.server, this.config.port);
 
-		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
-		useKelvin = this.config.useKelvin;
+		this.setStateAsync('info.connection', false, true);
 
 		const debugDevicesState = await this.getStateAsync('info.debugmessages');
 		if (debugDevicesState && debugDevicesState.val) {
@@ -85,14 +78,14 @@ class Zigbee2mqtt extends core.Adapter {
 			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
 
-		mqttServer.listen(port, () => { });
+		mqttServer.listen(this.config.mqttServerPort, this.config.mqttServerIPBind, () => { });
 
-		mqttClient = mqtt.connect('mqtt://localhost:1883', { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
+		mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
 		mqttClient.on('connect', () => { isConnected = true; });
 		mqttClient.subscribe('#');
 		mqttClient.on('message', (topic, payload) => {
 			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
-			//console.log(newMessage);
+			console.log(newMessage);
 			this.messageParse(newMessage);
 		});
 	}
@@ -113,12 +106,11 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/state':
 				break;
-			case 'bridge/devices': {
+			case 'bridge/devices':
 				await deviceController.createDeviceDefinitions(messageObj.payload);
 				await deviceController.createOrUpdateDevices();
 				await statesController.subscribeWritableStates();
 				statesController.progressQueue();
-			}
 				break;
 			case 'bridge/groups':
 				await deviceController.createGroupDefinitions(messageObj.payload);
@@ -131,8 +123,8 @@ class Zigbee2mqtt extends core.Adapter {
 			case 'bridge/extensions':
 				break;
 			case 'bridge/logging':
-				if (proxyZ2MLogsEnabled == true) {
-					z2mController.proxyZ2MLogs(this, messageObj, logfilter);
+				if (this.config.proxyZ2MLogs == true) {
+					z2mController.proxyZ2MLogs(messageObj);
 				}
 				break;
 			case 'bridge/response/device/rename':
@@ -202,7 +194,7 @@ class Zigbee2mqtt extends core.Adapter {
 				return;
 			}
 
-			const message = await z2mController.createZ2MMessage(this, id, state, groupCache.concat(deviceCache), isConnected) || { topic: '', payload: '' };
+			const message = await z2mController.createZ2MMessage(id, state) || { topic: '', payload: '' };
 			mqttClient.publish('zigbee2mqtt/' + message.topic, JSON.stringify(message.payload));
 		}
 	}
