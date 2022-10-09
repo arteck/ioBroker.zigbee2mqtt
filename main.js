@@ -8,8 +8,6 @@
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
 const NedbPersistence = require('aedes-persistence-nedb');
-const Aedes = require('aedes');
-const net = require('net');
 const mqtt = require('mqtt');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
@@ -48,18 +46,11 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async onReady() {
-		const mqttDataDir = `${core.getAbsoluteInstanceDataDir(this)}/mqttData`;
-		const db = new NedbPersistence({
-			path: mqttDataDir,
-			prefix: ''
-		});
+
 
 		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
 		deviceController = new DeviceController(this, deviceCache, groupCache, this.config.useKelvin);
 		z2mController = new Z2mController(this, deviceCache, groupCache, logfilter);
-		// @ts-ignore
-		const aedes = Aedes({ persistence: db });
-		const mqttServer = net.createServer(aedes.handle);
 
 		// Initialize your adapter here
 		adapterInfo(this.config, this.log);
@@ -76,14 +67,27 @@ class Zigbee2mqtt extends core.Adapter {
 			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
 
-		mqttServer.listen(this.config.mqttServerPort, this.config.mqttServerIPBind, () => { });
+		if (this.config.useExternalMqtt == true) {
+			mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
+		} else {
+			const Aedes = require('aedes');
+			const net = require('net');
+			const db = new NedbPersistence({
+				path: `${core.getAbsoluteInstanceDataDir(this)}/mqttData`,
+				prefix: ''
+			});
+			// @ts-ignore
+			const aedes = Aedes({ persistence: db });
+			const mqttServer = net.createServer(aedes.handle);
+			mqttServer.listen(this.config.mqttServerPort, this.config.mqttServerIPBind, () => { });
+			mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
+		}
 
-		mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
 		mqttClient.on('connect', () => { this.setStateAsync('info.connection', true, true); });
 		mqttClient.subscribe('#');
 		mqttClient.on('message', (topic, payload) => {
 			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
-			//console.log(newMessage);
+			console.log(newMessage);
 			this.messageParse(newMessage);
 		});
 	}

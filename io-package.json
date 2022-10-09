@@ -125,6 +125,9 @@
     ]
   },
   "native": {
+    "useExternalMqtt": false,
+    "externalMqttServerIP": "",
+    "externalMqttServerPort": 1883,
     "mqttServerIPBind": "0.0.0.0",
     "mqttServerPort": 1885,
     "webUIScheme": "http",
