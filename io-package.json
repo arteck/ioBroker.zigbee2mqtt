@@ -164,7 +164,7 @@
       "type": "state",
       "common": {
         "role": "indicator.connected",
-        "name": "Device or service connected",
+        "name": "Zigbee2MQTT connected",
         "type": "boolean",
         "read": true,
         "write": false,

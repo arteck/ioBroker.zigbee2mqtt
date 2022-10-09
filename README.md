@@ -30,6 +30,11 @@ Zigbee2MQTT adapter for ioBroker
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o)fixed the correct set of the connection status
+
 ### 1.0.0 (2022-10-09)
 
 **!!!BREAKING CHANGE!!!**

@@ -46,8 +46,6 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async onReady() {
-
-
 		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
 		deviceController = new DeviceController(this, deviceCache, groupCache, this.config.useKelvin);
 		z2mController = new Z2mController(this, deviceCache, groupCache, logfilter);
@@ -83,7 +81,7 @@ class Zigbee2mqtt extends core.Adapter {
 			mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
 		}
 
-		mqttClient.on('connect', () => { this.setStateAsync('info.connection', true, true); });
+		mqttClient.on('connect', () => { });
 		mqttClient.subscribe('#');
 		mqttClient.on('message', (topic, payload) => {
 			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
@@ -107,6 +105,7 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				break;
 			case 'bridge/state':
+				this.setStateAsync('info.connection', messageObj.payload.state == 'online', true);
 				break;
 			case 'bridge/devices':
 				await deviceController.createDeviceDefinitions(messageObj.payload);
