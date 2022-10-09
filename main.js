@@ -20,8 +20,6 @@ const StatesController = require('./lib/statesController').StatesController;
 
 
 let mqttClient;
-//let createDevicesReady = false;
-let isConnected = false;
 // eslint-disable-next-line prefer-const
 let deviceCache = [];
 // eslint-disable-next-line prefer-const
@@ -58,7 +56,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
 		deviceController = new DeviceController(this, deviceCache, groupCache, this.config.useKelvin);
-		z2mController = new Z2mController(this, deviceCache, groupCache, isConnected, logfilter);
+		z2mController = new Z2mController(this, deviceCache, groupCache, logfilter);
 		// @ts-ignore
 		const aedes = Aedes({ persistence: db });
 		const mqttServer = net.createServer(aedes.handle);
@@ -81,7 +79,7 @@ class Zigbee2mqtt extends core.Adapter {
 		mqttServer.listen(this.config.mqttServerPort, this.config.mqttServerIPBind, () => { });
 
 		mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
-		mqttClient.on('connect', () => { isConnected = true; });
+		mqttClient.on('connect', () => { this.setStateAsync('info.connection', true, true); });
 		mqttClient.subscribe('#');
 		mqttClient.on('message', (topic, payload) => {
 			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
