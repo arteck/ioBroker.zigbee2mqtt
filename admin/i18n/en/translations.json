@@ -1,8 +1,12 @@
 {
 	"zigbee2mqtt adapter settings": "Adapter settings for zigbee2mqtt",
-	"Server": "Server",
-	"Port": "Port",
+	"External MQTT-Server IP-Adress": "External MQTT-Server IP-Adress",
+	"External MQTT-Server Port": "External MQTT-Server Port",
+	"Use external MQTT-Server": "Use external MQTT-Server",
+	"MQTT-Server IP-Adress bind": "MQTT-Server IP-Adress bind",
+	"MQTT-Server Port": "MQTT-Server Port",
+	"WebUi Address": "WebUi Address",
+	"WebUi Port": "WebUi Port",
 	"Use Kelvin instead of mired for the color temps": "Use Kelvin instead of mired for the color temps",
-	"Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logs to ioBroker logs",
-	"Debug Log Enabled": "Debug Log Enabled"
+	"Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logs to ioBroker logs"
 }

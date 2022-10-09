@@ -1,188 +1,188 @@
 {
-  "common": {
-    "name": "zigbee2mqtt",
-    "version": "0.2.0",
-    "news": {
-      "0.2.0": {
-        "en": "group states corrected\nadded option 'Use Kelvin instead of mired for the color temps'\nremove available logic, now will use the information from z2m\nrename noLogDevices to logfilter\nlots of bugfixes\nadded noLogDevices functionality\nadded debugmessage for specific device functionality\nadded some states are default false\nadded support for scenes defined on a device\nfix available state role\nfix subscribeWritableStates",
-        "de": "gruppenzustände korrigiert\nzusatzoption 'Use Kelvin anstelle von mired für die Farbe Tempos '\ndie verfügbare logik entfernen, jetzt die informationen von z2m verwenden\numbenennen noLogDevices zum Logfilter\nviele bugfixes\nnoLogDevices Funktionalität hinzugefügt\ndebugmessage für spezifische gerätefunktionalität\neinige zustände standardmäßig falsch hinzugefügt\nunterstützung für szenen, die auf einem gerät definiert sind\nfix verfügbare zustandsrolle\nabonnierenWritableState",
-        "ru": "исправлены состояния группы\nдобавлена опция 'Используйте Kelvin вместо mired для цветовых темп « »\nудалить доступную логику, теперь будет использовать информацию из z2m\nпереименовать noLogDevices для logfilter\nмного багфиксов\nдобавлена функция noLogDevices\nдобавлено debugmessage для конкретной функциональности устройства\nдобавлены некоторые государства по умолчанию false\nдобавлена поддержка сцен, определенных на устройстве\nисправить доступную государственную роль\nисправить подпискуWritableStates",
-        "pt": "estados do grupo corrigidos\nopção adicionada 'Use Kelvin em vez de mired para os temps de cor '\nremover a lógica disponível, agora usará as informações do z2m\nrenomear noLogDevices para logfilter\nlotes de correções de bugs\nadicionado noLogDevices funcionalidade\nadicionado debugmessage para funcionalidade específica do dispositivo\nadicionado alguns estados são padrão falso\nsuporte adicionado para cenas definidas em um dispositivo\ncorrigir a função estadual disponível\ncorrigir assinantesEstados disponíveis",
-        "nl": "de groep zegt:\nvoegde optie 'Use Kelvin' in plaats van de kleuren tempen '\nverwijder de logica, nu zal de informatie van z2m gebruiken\nnoLog Devices\nveel insectenfixen\nnoLog Devices functionaliteit\nvoegde debugmesage toe voor specifieke apparaat functionaliteit\nsommige staten zijn vals\nsteun voor scènes gedefinieerd op een apparaat\nbeschikbare staatsrol\nvertaling:",
-        "fr": "états de groupe corrigés\noption ajoutée 'Utiliser Kelvin au lieu de mired pour le temps de couleur '\nsupprimer la logique disponible, maintenant utilisera les informations de z2m\nrenommer noLogDevices to logfilter\nbeaucoup de bugfixes\najout de fonctionnalité noLogDevices\najout debugmessage pour la fonctionnalité de périphérique spécifique\ncertains états ajoutés sont par défaut faux\nsupport ajouté pour les scènes définies sur un appareil\nle rôle de l ' état\nfixer souscrire",
-        "it": "gruppo stati corretti\nopzione aggiunta 'Usa Kelvin invece di mired per le tentazioni di colore '\nrimuovere la logica disponibile, ora userà le informazioni da z2m\nrinominare noLogDevices per logfilter\nmolti bugfix\naggiunto noLogDevices funzionalità\ndebugmessage aggiunto per funzionalità specifiche del dispositivo\naggiunto alcuni stati sono falsi di default\nsupporto aggiunto per scene definite su un dispositivo\ncorrezione del ruolo di stato disponibile\nfissare abbonamentiWritableStates",
-        "es": "estados del grupo corregidos\nopción agregada 'Use Kelvin en lugar de mired para el color temps '\neliminar la lógica disponible, ahora utilizará la información de z2m\nnoLogDevices to logfilter\nmuchos bugfixes\nnoLogDevices funcionalidad\ndebugmesage añadido para la funcionalidad específica del dispositivo\nañadido algunos estados son falsos\nsoporte añadido para escenas definidas en un dispositivo\nfijar la función estatal disponible\nfijar suscriptosEstados disponibles",
-        "pl": "państwa grupowe poprawiły\ndodał opcję 'Use Kelvin' zamiast śmiać kolorowe tempo. '\nzdejmowanie dostępnej logiki wykorzystuje obecnie informacje z 2 m\nnazwa NoLogDevices (ang.)\nwiele błędów\ndodano obsługę NoLogDevices\ndodanie debugmessage dla konkretnej funkcjonalności\ndodanie niektórych stanów jest fałszywe\ndodano wsparcie dla scen zdefiniowanych na urządzenie\nfunkcja stanowa\nrecovery",
-        "zh-cn": "更正\n加上“Use Kelvin”的备选办法,而不是对色彩的诱惑。 评 注\n删除现有逻辑,现在将使用兹2m的信息。\n目 录\n批发\n增加无车辆功能\n增加特定装置功能的碎片\n另有一些国家的违约情况\n对一个装置所界定的场地的更多支持\nf 现有国家作用\nfix 有线性的国家"
-      },
-      "0.1.0": {
-        "en": "first release",
-        "de": "erste veröffentlichung",
-        "ru": "первый релиз",
-        "pt": "primeiro lançamento",
-        "nl": "eerste vrijlating",
-        "fr": "première version",
-        "it": "primo rilascio",
-        "es": "primera liberación",
-        "pl": "pierwsze wydanie",
-        "zh-cn": "首次释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "zh-cn": "首次出版"
-      }
+    "common": {
+        "name": "zigbee2mqtt",
+        "version": "0.2.0",
+        "news": {
+            "0.2.0": {
+                "en": "group states corrected\nadded option 'Use Kelvin instead of mired for the color temps'\nremove available logic, now will use the information from z2m\nrename noLogDevices to logfilter\nlots of bugfixes\nadded noLogDevices functionality\nadded debugmessage for specific device functionality\nadded some states are default false\nadded support for scenes defined on a device\nfix available state role\nfix subscribeWritableStates",
+                "de": "gruppenzustände korrigiert\nzusatzoption 'Use Kelvin anstelle von mired für die Farbe Tempos '\ndie verfügbare logik entfernen, jetzt die informationen von z2m verwenden\numbenennen noLogDevices zum Logfilter\nviele bugfixes\nnoLogDevices Funktionalität hinzugefügt\ndebugmessage für spezifische gerätefunktionalität\neinige zustände standardmäßig falsch hinzugefügt\nunterstützung für szenen, die auf einem gerät definiert sind\nfix verfügbare zustandsrolle\nabonnierenWritableState",
+                "ru": "исправлены состояния группы\nдобавлена опция 'Используйте Kelvin вместо mired для цветовых темп « »\nудалить доступную логику, теперь будет использовать информацию из z2m\nпереименовать noLogDevices для logfilter\nмного багфиксов\nдобавлена функция noLogDevices\nдобавлено debugmessage для конкретной функциональности устройства\nдобавлены некоторые государства по умолчанию false\nдобавлена поддержка сцен, определенных на устройстве\nисправить доступную государственную роль\nисправить подпискуWritableStates",
+                "pt": "estados do grupo corrigidos\nopção adicionada 'Use Kelvin em vez de mired para os temps de cor '\nremover a lógica disponível, agora usará as informações do z2m\nrenomear noLogDevices para logfilter\nlotes de correções de bugs\nadicionado noLogDevices funcionalidade\nadicionado debugmessage para funcionalidade específica do dispositivo\nadicionado alguns estados são padrão falso\nsuporte adicionado para cenas definidas em um dispositivo\ncorrigir a função estadual disponível\ncorrigir assinantesEstados disponíveis",
+                "nl": "de groep zegt:\nvoegde optie 'Use Kelvin' in plaats van de kleuren tempen '\nverwijder de logica, nu zal de informatie van z2m gebruiken\nnoLog Devices\nveel insectenfixen\nnoLog Devices functionaliteit\nvoegde debugmesage toe voor specifieke apparaat functionaliteit\nsommige staten zijn vals\nsteun voor scènes gedefinieerd op een apparaat\nbeschikbare staatsrol\nvertaling:",
+                "fr": "états de groupe corrigés\noption ajoutée 'Utiliser Kelvin au lieu de mired pour le temps de couleur '\nsupprimer la logique disponible, maintenant utilisera les informations de z2m\nrenommer noLogDevices to logfilter\nbeaucoup de bugfixes\najout de fonctionnalité noLogDevices\najout debugmessage pour la fonctionnalité de périphérique spécifique\ncertains états ajoutés sont par défaut faux\nsupport ajouté pour les scènes définies sur un appareil\nle rôle de l ' état\nfixer souscrire",
+                "it": "gruppo stati corretti\nopzione aggiunta 'Usa Kelvin invece di mired per le tentazioni di colore '\nrimuovere la logica disponibile, ora userà le informazioni da z2m\nrinominare noLogDevices per logfilter\nmolti bugfix\naggiunto noLogDevices funzionalità\ndebugmessage aggiunto per funzionalità specifiche del dispositivo\naggiunto alcuni stati sono falsi di default\nsupporto aggiunto per scene definite su un dispositivo\ncorrezione del ruolo di stato disponibile\nfissare abbonamentiWritableStates",
+                "es": "estados del grupo corregidos\nopción agregada 'Use Kelvin en lugar de mired para el color temps '\neliminar la lógica disponible, ahora utilizará la información de z2m\nnoLogDevices to logfilter\nmuchos bugfixes\nnoLogDevices funcionalidad\ndebugmesage añadido para la funcionalidad específica del dispositivo\nañadido algunos estados son falsos\nsoporte añadido para escenas definidas en un dispositivo\nfijar la función estatal disponible\nfijar suscriptosEstados disponibles",
+                "pl": "państwa grupowe poprawiły\ndodał opcję 'Use Kelvin' zamiast śmiać kolorowe tempo. '\nzdejmowanie dostępnej logiki wykorzystuje obecnie informacje z 2 m\nnazwa NoLogDevices (ang.)\nwiele błędów\ndodano obsługę NoLogDevices\ndodanie debugmessage dla konkretnej funkcjonalności\ndodanie niektórych stanów jest fałszywe\ndodano wsparcie dla scen zdefiniowanych na urządzenie\nfunkcja stanowa\nrecovery",
+                "zh-cn": "更正\n加上“Use Kelvin”的备选办法,而不是对色彩的诱惑。 评 注\n删除现有逻辑,现在将使用兹2m的信息。\n目 录\n批发\n增加无车辆功能\n增加特定装置功能的碎片\n另有一些国家的违约情况\n对一个装置所界定的场地的更多支持\nf 现有国家作用\nfix 有线性的国家"
+            },
+            "0.1.0": {
+                "en": "first release",
+                "de": "erste veröffentlichung",
+                "ru": "первый релиз",
+                "pt": "primeiro lançamento",
+                "nl": "eerste vrijlating",
+                "fr": "première version",
+                "it": "primo rilascio",
+                "es": "primera liberación",
+                "pl": "pierwsze wydanie",
+                "zh-cn": "首次释放"
+            },
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "zigbee2mqtt",
+        "titleLang": {
+            "en": "zigbee2mqtt",
+            "de": "zigbee2mqtt",
+            "ru": "зигби2мктт",
+            "pt": "zigbee2mqtt",
+            "nl": "zigbee2mqtt",
+            "fr": "zigbee2mqtt",
+            "it": "zigbee2mqtt",
+            "es": "zigbee2mqtt",
+            "pl": "zigbee2mqtt",
+            "zh-cn": "zigbee2mqtt"
+        },
+        "desc": {
+            "en": "Zigbee2MQTT adapter for ioBroker",
+            "de": "Zigbee2MQTT-Adapter für ioBroker",
+            "ru": "Адаптер Zigbee2MQTT для ioBroker",
+            "pt": "Adaptador Zigbee2MQTT para ioBroker",
+            "nl": "Zigbee2MQTT-adapter voor ioBroker",
+            "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
+            "it": "Adattatore Zigbee2MQTT per ioBroker",
+            "es": "Adaptador Zigbee2MQTT para ioBroker",
+            "pl": "Adapter Zigbee2MQTT do ioBroker",
+            "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器"
+        },
+        "authors": [
+            "Dennis Rathjen <dennis.rathjen@outlook.de>"
+        ],
+        "keywords": [
+            "zigbee",
+            "zigbee2mqtt",
+            "hue",
+            "tradfri",
+            "aqara",
+            "tuya"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "zigbee2mqtt.png",
+        "enabled": false,
+        "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+        "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "lighting",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "json"
+        },
+        "adminTab": {
+            "name": {
+                "en": "Zigbee2MQTT",
+                "de": "Zigbee2MQTT",
+                "ru": "Zigbee2MQTT",
+                "pt": "Zigbee2MQTT",
+                "nl": "Zigbee2MQTT",
+                "fr": "Zigbee2MQTT",
+                "it": "Zigbee2MQTT",
+                "es": "Zigbee2MQTT",
+                "pl": "Zigbee2MQTT",
+                "zh-cn": "Zigbee2MQTT"
+            },
+            "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
+            "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+        },
+        "localLinks": {
+            "_default": {
+                "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
+            }
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.13"
+            }
+        ]
     },
-    "title": "zigbee2mqtt",
-    "titleLang": {
-      "en": "zigbee2mqtt",
-      "de": "zigbee2mqtt",
-      "ru": "зигби2мктт",
-      "pt": "zigbee2mqtt",
-      "nl": "zigbee2mqtt",
-      "fr": "zigbee2mqtt",
-      "it": "zigbee2mqtt",
-      "es": "zigbee2mqtt",
-      "pl": "zigbee2mqtt",
-      "zh-cn": "zigbee2mqtt"
+    "native": {
+        "useExternalMqtt": false,
+        "externalMqttServerIP": "",
+        "externalMqttServerPort": 1883,
+        "mqttServerIPBind": "0.0.0.0",
+        "mqttServerPort": 1885,
+        "webUIScheme": "http",
+        "webUIServer": "",
+        "webUIPort": 8080,
+        "debugLogEnabled": false,
+        "proxyZ2MLogs": true,
+        "useKelvin": false
     },
-    "desc": {
-      "en": "Zigbee2MQTT adapter for ioBroker",
-      "de": "Zigbee2MQTT-Adapter für ioBroker",
-      "ru": "Адаптер Zigbee2MQTT для ioBroker",
-      "pt": "Adaptador Zigbee2MQTT para ioBroker",
-      "nl": "Zigbee2MQTT-adapter voor ioBroker",
-      "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
-      "it": "Adattatore Zigbee2MQTT per ioBroker",
-      "es": "Adaptador Zigbee2MQTT para ioBroker",
-      "pl": "Adapter Zigbee2MQTT do ioBroker",
-      "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器"
-    },
-    "authors": [
-      "Dennis Rathjen <dennis.rathjen@outlook.de>"
-    ],
-    "keywords": [
-      "zigbee",
-      "zigbee2mqtt",
-      "hue",
-      "tradfri",
-      "aqara",
-      "tuya"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "zigbee2mqtt.png",
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "lighting",
-    "compact": true,
-    "connectionType": "local",
-    "dataSource": "push",
-    "adminUI": {
-      "config": "json"
-    },
-    "adminTab": {
-      "name": {
-        "en": "Zigbee2MQTT",
-        "de": "Zigbee2MQTT",
-        "ru": "Zigbee2MQTT",
-        "pt": "Zigbee2MQTT",
-        "nl": "Zigbee2MQTT",
-        "fr": "Zigbee2MQTT",
-        "it": "Zigbee2MQTT",
-        "es": "Zigbee2MQTT",
-        "pl": "Zigbee2MQTT",
-        "zh-cn": "Zigbee2MQTT"
-      },
-      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
-      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
-    },
-    "localLinks": {
-      "_default": {
-        "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
-      }
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.22"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=5.1.13"
-      }
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.debugmessages",
+            "type": "state",
+            "common": {
+                "name": "Log changes as warnings for",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.logfilter",
+            "type": "state",
+            "common": {
+                "name": "Logs matching filters are ignored by the LogProxy",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        }
     ]
-  },
-  "native": {
-    "useExternalMqtt": false,
-    "externalMqttServerIP": "",
-    "externalMqttServerPort": 1883,
-    "mqttServerIPBind": "0.0.0.0",
-    "mqttServerPort": 1885,
-    "webUIScheme": "http",
-    "webUIServer": "",
-    "webUIPort": 8080,
-    "debugLogEnabled": false,
-    "proxyZ2MLogs": true,
-    "useKelvin": false
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Device or service connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.debugmessages",
-      "type": "state",
-      "common": {
-        "name": "Log changes as warnings for",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.logfilter",
-      "type": "state",
-      "common": {
-        "name": "Logs matching filters are ignored by the LogProxy",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    }
-  ]
 }

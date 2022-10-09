@@ -1,8 +1,12 @@
 {
     "zigbee2mqtt adapter settings": "zigbee2mqtt 的适配器设置",
-    "Server": "服务器",
-    "Port": "港口",
+    "External MQTT-Server IP-Adress": "外部 MQTT-服务器 IP 地址",
+    "External MQTT-Server Port": "外部 MQTT 服务器端口",
+    "Use external MQTT-Server": "使用外部 MQTT-Server",
+    "MQTT-Server IP-Adress bind": "MQTT-服务器 IP 地址绑定",
+    "MQTT-Server Port": "MQTT-服务器端口",
+    "WebUi Address": "网页界面地址",
+    "WebUi Port": "WebUI 端口",
     "Use Kelvin instead of mired for the color temps": "使用 Kelvin 而不是 mired 作为色温",
-    "Proxy Zigbee2MQTT logs to ioBroker logs": "代理 Zigbee2MQTT 日志到 ioBroker 日志",
-    "Debug Log Enabled": "启用调试日志"
+    "Proxy Zigbee2MQTT logs to ioBroker logs": "代理 Zigbee2MQTT 日志到 ioBroker 日志"
 }
