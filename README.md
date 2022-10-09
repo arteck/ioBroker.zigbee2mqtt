@@ -33,6 +33,7 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) optimized state writing performance in ioBroker
 -   (o0shojo0o) fixed the correct set of the connection status
 
 ### 1.0.0 (2022-10-09)
