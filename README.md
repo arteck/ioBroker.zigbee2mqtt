@@ -35,7 +35,7 @@ Zigbee2MQTT adapter for ioBroker
 **!!!BREAKING CHANGE!!!**
 
 -   (o0shojo0o) added options for external MQTT-Server
--   (o0shojo0o) connection to zigbe2mqtt completely reworked and changed to MQTT
+-   (o0shojo0o) connection to zigbee2mqtt completely reworked and changed to MQTT
 -   (o0shojo0o) lots of bugfixes
 -   (o0shojo0o) automatically set button actions back to false
 -   (o0shojo0o) added support for Zigbee2MQTT feature simulated_brightness
