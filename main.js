@@ -14,19 +14,15 @@ const mqtt = require('mqtt');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
 const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
-const createDeviceDefinitions = require('./lib/deviceController').createDeviceDefinitions;
-const createGroupDefinitions = require('./lib/deviceController').createGroupDefinitions;
-const createOrUpdateDevices = require('./lib/deviceController').createOrUpdateDevices;
-const processDeviceMessage = require('./lib/stateController').processDeviceMessage;
+const DeviceController = require('./lib/deviceController').DeviceController;
+const StatesController = require('./lib/StatesController').StatesController;
 const createZ2MMessage = require('./lib/z2mMessages').createZ2MMessage;
 const proxyZ2MLogs = require('./lib/z2mMessages').proxyZ2MLogs;
 
 
 let mqttClient;
-let createDevicesReady = false;
+//let createDevicesReady = false;
 let isConnected = false;
-const incStatsQueue = [];
-const createCache = {};
 // eslint-disable-next-line prefer-const
 let deviceCache = [];
 // eslint-disable-next-line prefer-const
@@ -34,13 +30,14 @@ let groupCache = [];
 let ping;
 let pingTimeout;
 let autoRestartTimeout;
-let debugLogEnabled;
 let proxyZ2MLogsEnabled;
 let checkAvailableTimout;
 let debugDevices = '';
 let logfilter = [];
 let useKelvin = false;
 let showInfo = true;
+let statesController;
+let deviceController;
 
 
 class Zigbee2mqtt extends core.Adapter {
@@ -61,6 +58,9 @@ class Zigbee2mqtt extends core.Adapter {
 			path: mqttDataDir,
 			prefix: ''
 		});
+
+		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
+		deviceController = new DeviceController(this, deviceCache, groupCache, useKelvin);
 		// @ts-ignore
 		const aedes = Aedes({ persistence: db });
 		const mqttServer = net.createServer(aedes.handle);
@@ -71,7 +71,6 @@ class Zigbee2mqtt extends core.Adapter {
 		this.setStateAsync('info.connection', false, true);
 		//this.createWsClient(this.config.server, this.config.port);
 
-		debugLogEnabled = this.config.debugLogEnabled;
 		proxyZ2MLogsEnabled = this.config.proxyZ2MLogs;
 		useKelvin = this.config.useKelvin;
 
@@ -113,25 +112,19 @@ class Zigbee2mqtt extends core.Adapter {
 				break;
 			case 'bridge/state':
 				break;
-			case 'bridge/devices':
-				// As long as we are busy creating the devices, the states are written to the queue.
-				createDevicesReady = false;
-				await createDeviceDefinitions(deviceCache, messageObj.payload, useKelvin);
-				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
-				await this.subscribeWritableStates();
-				createDevicesReady = true;
-
-				// Now process all entries in the states queue
-				while (incStatsQueue.length > 0) {
-					processDeviceMessage(this, incStatsQueue.shift(), groupCache.concat(deviceCache), debugDevices);
-				}
+			case 'bridge/devices': {
+				await deviceController.createDeviceDefinitions(messageObj.payload);
+				await deviceController.createOrUpdateDevices();
+				await statesController.subscribeWritableStates();
+				statesController.progressQueue();
+			}
 				break;
 			case 'bridge/groups':
-				await createGroupDefinitions(groupCache, messageObj.payload, useKelvin);
-				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
-				this.subscribeWritableStates();
+				await deviceController.createGroupDefinitions(messageObj.payload);
+				await deviceController.createOrUpdateDevices();
+				await statesController.subscribeWritableStates();
+				statesController.progressQueue();
 				break;
-
 			case 'bridge/event':
 				break;
 			case 'bridge/extensions':
@@ -141,14 +134,10 @@ class Zigbee2mqtt extends core.Adapter {
 					proxyZ2MLogs(this, messageObj, logfilter);
 				}
 				break;
-			//{"payload":{"data":{"from":"dev_Device","homeassistant_rename":false,"to":"dev_Deviceiop"},"status":"ok","transaction":"x3y3u-1"},"topic":"bridge/response/device/rename"}
 			case 'bridge/response/device/rename':
-				createDevicesReady = false;
-				// Rename device id
-				groupCache.concat(deviceCache).find(x => x.id == messageObj.payload.data.from).id = messageObj.payload.data.to;
-				// Update Devices in iob
-				await createOrUpdateDevices(this, groupCache.concat(deviceCache), createCache);
-				createDevicesReady = true;
+				await deviceController.renameDeviceInCache(messageObj);
+				await deviceController.createOrUpdateDevices();
+				statesController.progressQueue();
 				break;
 			case 'bridge/response/networkmap':
 				break;
@@ -166,11 +155,8 @@ class Zigbee2mqtt extends core.Adapter {
 
 						// If an availability message for an old device ID comes with a payload of NULL, this is the indicator that a device has been unnamed.
 						// If this is then still available in the cache, the messages must first be cached.
-						if (messageObj.payload == null) {
-							if (groupCache.concat(deviceCache).find(x => x.id == topicSplit[0])) {
-								createDevicesReady = false;
-								break;
-							}
+						if (messageObj.payload == 'null') {
+							break;
 						}
 
 						if (topicSplit.length == 2 && messageObj.payload && messageObj.payload.state) {
@@ -178,59 +164,20 @@ class Zigbee2mqtt extends core.Adapter {
 								payload: { available: messageObj.payload.state == 'online' },
 								topic: topicSplit[0]
 							};
-							// As long as we are busy creating the devices, the states are written to the queue.
-							if (createDevicesReady == false) {
-								incStatsQueue[incStatsQueue.length] = newMessage;
-								break;
-							}
-							processDeviceMessage(this, newMessage, groupCache.concat(deviceCache), debugDevices);
+							statesController.processDeviceMessage(newMessage);
 						}
 						// States
 					} else if (!messageObj.topic.includes('/')) {
-						// As long as we are busy creating the devices, the states are written to the queue.
-						if (createDevicesReady == false) {
-							incStatsQueue[incStatsQueue.length] = messageObj;
-							break;
-						}
-						processDeviceMessage(this, messageObj, groupCache.concat(deviceCache), debugDevices);
+						statesController.processDeviceMessage(messageObj);
 					}
 				}
 				break;
 		}
 	}
 
-	async subscribeWritableStates() {
-		await this.unsubscribeObjectsAsync('*');
-		for (const device of groupCache.concat(deviceCache)) {
-			for (const state of device.states) {
-				if (state.write == true) {
-					this.subscribeStatesAsync(`${device.ieee_address}.${state.id}`);
-				}
-			}
-		}
-		this.subscribeStatesAsync('info.debugmessages');
-		this.subscribeStatesAsync('info.logfilter');
-	}
-
-	async logDebug(message) {
-		if (debugLogEnabled == true) {
-			this.log.debug(message);
-		}
-	}
-
-	async setAllAvailableToFalse() {
-		for (const device of deviceCache) {
-			for (const state of device.states) {
-				if (state.id == 'available') {
-					await this.setStateAsync(`${device.ieee_address}.${state.id}`, false, true);
-				}
-			}
-		}
-	}
-
 	async onUnload(callback) {
 		try {
-			await this.setAllAvailableToFalse();
+			await statesController.setAllAvailableToFalse();
 			clearTimeout(ping);
 			clearTimeout(pingTimeout);
 			clearTimeout(autoRestartTimeout);
