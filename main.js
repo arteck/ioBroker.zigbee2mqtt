@@ -85,7 +85,7 @@ class Zigbee2mqtt extends core.Adapter {
 		mqttClient.subscribe('#');
 		mqttClient.on('message', (topic, payload) => {
 			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
-			console.log(newMessage);
+			//console.log(newMessage);
 			this.messageParse(newMessage);
 		});
 	}
