@@ -189,7 +189,7 @@ class Zigbee2mqtt extends core.Adapter {
 			}
 
 			const message = await z2mController.createZ2MMessage(id, state) || { topic: '', payload: '' };
-			mqttClient.publish('zigbee2mqtt/' + message.topic, JSON.stringify(message.payload));
+			mqttClient.publish(`zigbee2mqtt/${message.topic}`, JSON.stringify(message.payload));
 		}
 	}
 }
