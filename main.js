@@ -7,7 +7,6 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
-const NedbPersistence = require('aedes-persistence-nedb');
 const mqtt = require('mqtt');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
@@ -70,6 +69,7 @@ class Zigbee2mqtt extends core.Adapter {
 		} else {
 			const Aedes = require('aedes');
 			const net = require('net');
+			const NedbPersistence = require('aedes-persistence-nedb');
 			const db = new NedbPersistence({
 				path: `${core.getAbsoluteInstanceDataDir(this)}/mqttData`,
 				prefix: ''
