@@ -78,7 +78,7 @@ class Zigbee2mqtt extends core.Adapter {
 			const aedes = Aedes({ persistence: db });
 			const mqttServer = net.createServer(aedes.handle);
 			mqttServer.listen(this.config.mqttServerPort, this.config.mqttServerIPBind, () => { });
-			mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: 'ioBroker.zigbee2mqtt', clean: true, reconnectPeriod: 500 });
+			mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
 		}
 
 		mqttClient.on('connect', () => { });
