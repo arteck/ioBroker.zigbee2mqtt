@@ -21,10 +21,6 @@ let mqttClient;
 let deviceCache = [];
 // eslint-disable-next-line prefer-const
 let groupCache = [];
-let ping;
-let pingTimeout;
-let autoRestartTimeout;
-let checkAvailableTimout;
 let debugDevices = '';
 let logfilter = [];
 let showInfo = true;
@@ -173,10 +169,6 @@ class Zigbee2mqtt extends core.Adapter {
 	async onUnload(callback) {
 		try {
 			await statesController.setAllAvailableToFalse();
-			clearTimeout(ping);
-			clearTimeout(pingTimeout);
-			clearTimeout(autoRestartTimeout);
-			clearTimeout(checkAvailableTimout);
 			callback();
 		} catch (e) {
 			callback();
