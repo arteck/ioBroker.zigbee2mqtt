@@ -101,9 +101,7 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				break;
 			case 'bridge/state':
-				if (messageObj.payload.state == 'online') {
-					this.setStateAsync('info.connection', true, true);
-				}
+				this.setStateAsync('info.connection', messageObj.payload.state == 'online', true);
 				break;
 			case 'bridge/devices':
 				await deviceController.createDeviceDefinitions(messageObj.payload);
