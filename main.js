@@ -69,6 +69,7 @@ class Zigbee2mqtt extends core.Adapter {
 			if (this.config.connectionType == 'exmqtt') {
 				if (this.config.externalMqttServerIP == '') {
 					this.log.warn('Please configure the External MQTT-Server connection!');
+					return;
 				}
 				mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
 
@@ -97,6 +98,7 @@ class Zigbee2mqtt extends core.Adapter {
 		else if (this.config.connectionType == 'ws') {
 			if (this.config.wsServerIP == '') {
 				this.log.warn('Please configure the Websoket connection!');
+				return;
 			}
 
 			// Dummy MQTT-Server
