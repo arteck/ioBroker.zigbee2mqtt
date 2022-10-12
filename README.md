@@ -30,9 +30,14 @@ Zigbee2MQTT adapter for ioBroker
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### 2.0.0 (2022-10-12)
 
-### **WORK IN PROGRESS**
+**!!!BREAKING CHANGE!!!**
 
+-   (o0shojo0o) added configurable connection to Zigbee2MQTT (Settings must be renewed)
+    -   Websocket
+    -   External MQTT-Server
+    -   Internal MQTT-Server
 -   (o0shojo0o) optimized state writing performance in ioBroker
 -   (o0shojo0o) fixed the correct set of the connection status
 

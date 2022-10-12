@@ -1,6 +1,6 @@
 {
   "name": "iobroker.zigbee2mqtt",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Zigbee2MQTT adapter for ioBroker",
   "author": {
     "name": "Dennis Rathjen",
@@ -19,8 +19,6 @@
     "url": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt.git"
   },
   "dependencies": {
-    "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
-    "@alcalzone/release-script-plugin-license": "^3.5.9",
     "@iobroker/adapter-core": "^2.6.7",
     "aedes": "^0.48.0",
     "aedes-persistence-nedb": "^2.0.3",
@@ -29,6 +27,8 @@
     "ws": "^8.9.0"
   },
   "devDependencies": {
+    "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
+    "@alcalzone/release-script-plugin-license": "^3.5.9",
     "@alcalzone/release-script": "^3.5.9",
     "@iobroker/adapter-dev": "^1.1.0",
     "@iobroker/testing": "^4.1.0",

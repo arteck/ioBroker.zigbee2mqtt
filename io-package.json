@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "news": {
+      "2.0.0": {
+        "en": "*!!!BREAKING CHANGE!!!**\n\nadded configurable connection to Zigbee2MQTT (Settings must be renewed)\nWebsocket\nExternal MQTT-Server\nInternal MQTT-Server\noptimized state writing performance in ioBroker\nfixed the correct set of the connection status",
+        "de": "*! BREAKING CHANGE*\n\nzusätzliche konfigurierbare Verbindung zu Zigbee2MQTT (Einstellungen müssen erneuert werden)\nWebsocket\nExterner MQTT-Server\nInterner MQTT-Server\noptimierte Zustandsschreibleistung in ioBroker\nden korrekten satz des verbindungsstatus festlegt",
+        "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлена настраиваемая связь с Zigbee2MQTT (Настройки должны быть обновлены)\nWebsocket\nВнешний MQTT-Server\nВнутренний MQTT-Server\nоптимизированное представление государственной записи в ioBroker\nисправил правильный набор состояния соединения",
+        "pt": "*! QUE GRANDE MUDANÇA\n\nconexão configurável adicionada ao Zigbee2MQTT (As inscrições devem ser renovadas)\nWebsocket\nMQTT externo-Server\nMQTT interno-Server\ndesempenho de escrita de estado otimizado no ioBroker\nfixou o conjunto correto do status da conexão",
+        "nl": "♪ \n\nvoegde connectie toe aan Zigbee2MQT (Settings moet vernieuwd)\nWebsocket\nExterne MQTT-Server\nInterne MQTT-Server\noptimaal staatsschrijving in ioBroker\nde correcte set van de connectie status",
+        "fr": "*! CHANGE DE BREAKING*\n\nconnexion configurable ajoutée à Zigbee2MQTT (Les paramètres doivent être renouvelés)\nWebsocket\nMQTT-Serveur externe\nInterne MQTT-Serveur\nperformance d'écriture d'état optimisée en ioBroker\nfixe l'ensemble correct du statut de connexion",
+        "it": "# CAMBIAMENTO\n\naggiunta di connessione configurabile a Zigbee2MQTT (I posti devono essere rinnovati)\nWebsocket\nMQTT-Server esterno\nInterno MQTT-Server\nprestazioni di scrittura dello stato ottimizzate in ioBroker\nfisso l'insieme corretto dello stato di connessione",
+        "es": "*! ¡CAMBIANDO\n\nconexión configurable agregada a Zigbee2MQTT (Se debe renovar la configuración)\nWebsocket\nMQTT externo-Server\nInterno MQTT-Server\nrendimiento de escritura de estado optimizado en ioBroker\nfija el conjunto correcto del estado de conexión",
+        "pl": "! BREAKING CHANGE! (ANG.)\n\nzigbee2MQTT dodano połączenie konfigurowalne. (Odrodzenie się)\nStrona internetowa\nOficjalna strona MQTT-Server\nOficjalna strona MQTT\nzoptymalizowany stan pisania w ioBrokerze\nustalono poprawny zbiór statusu związku",
+        "uk": "* БРЕАКІНГ ЧАНГ*\n\nдодано налаштування підключення до Zigbee2MQTT (Налаштування повинні бути відновлені)\nВеб-сайт\nЗовнішній MQTT-Server\nВнутрішній MQTT-Server\nоптимізоване державне письмо продуктивність в ioBroker\nвиправлено правильний набір статусу підключення",
+        "zh-cn": "页:1 BREAKREANGE*\n\n兹格贝雷2 MQTT的可图联系 (必须重启)\n网站\n外贸总协定\n内贸总协定\n最佳国家书面表现\na. 固定的联络点地位"
+      },
       "1.0.0": {
         "en": "*!!!BREAKING CHANGE!!!**\n\nadded options for external MQTT-Server\nconnection to zigbe2mqtt completely reworked and changed to MQTT\nlots of bugfixes\nautomatically set button actions back to false\nadded support for Zigbee2MQTT feature simulated_brightness\nadded config check\nadded log output about coordinator details",
         "de": "*! BREAKING CHANGE*\n\nweitere Optionen für externen MQTT-Server\nanschluss an Zickbe2mqt komplett überarbeitet und in MQTT geändert\nviele bugfixes\nautomatisch schaltfläche aktionen wieder auf false setzen\nunterstützung für Zigbee2MQTT Funktion simuliert_brightness\nzusatzprüfung\nlog ausgabe von koordinatordaten hinzugefügt",
@@ -136,7 +149,10 @@
     ]
   },
   "native": {
-    "useExternalMqtt": false,
+    "connectionType": "ws",
+    "wsServerIP": "",
+    "wsServerPort": 8080,
+    "dummyMqtt": false,
     "externalMqttServerIP": "",
     "externalMqttServerPort": 1883,
     "mqttServerIPBind": "0.0.0.0",

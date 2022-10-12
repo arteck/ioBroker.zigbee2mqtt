@@ -14,6 +14,8 @@ const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
 const Z2mController = require('./lib/z2mController').Z2mController;
 const DeviceController = require('./lib/deviceController').DeviceController;
 const StatesController = require('./lib/statesController').StatesController;
+const WebsocketController = require('./lib/websocketController').WebsocketController;
+const MqttServerController = require('./lib/mqttServerController').MqttServerController;
 
 
 let mqttClient;
@@ -27,6 +29,8 @@ let showInfo = true;
 let statesController;
 let deviceController;
 let z2mController;
+let websocketController;
+let mqttServerController;
 
 class Zigbee2mqtt extends core.Adapter {
 
@@ -59,33 +63,60 @@ class Zigbee2mqtt extends core.Adapter {
 		if (logfilterState && logfilterState.val) {
 			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
+		// MQTT
+		if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
+			// External MQTT-Server
+			if (this.config.connectionType == 'exmqtt') {
+				mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
 
-		if (this.config.useExternalMqtt == true) {
-			mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
-		} else {
-			const Aedes = require('aedes');
-			const net = require('net');
-			const NedbPersistence = require('aedes-persistence-nedb');
-			const db = new NedbPersistence({
-				path: `${core.getAbsoluteInstanceDataDir(this)}/mqttData`,
-				prefix: ''
+			}
+			// Internal MQTT-Server
+			else {
+				mqttServerController = new MqttServerController(this);
+				await mqttServerController.createMQTTServer();
+				await this.delay(1500);
+				mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
+			}
+
+			// MQTT Client
+			mqttClient.on('connect', () => {
+				this.log.info(`Connect to Zigbee2MQTT over ${this.config.connectionType == 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`);
 			});
-			// @ts-ignore
-			const aedes = Aedes({ persistence: db });
-			const mqttServer = net.createServer(aedes.handle);
-			mqttServer.listen(this.config.mqttServerPort, this.config.mqttServerIPBind, () => { });
-			mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
+
+			mqttClient.subscribe('zigbee2mqtt/#');
+
+			mqttClient.on('message', (topic, payload) => {
+				const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
+				this.messageParse(newMessage);
+			});
 		}
+		// Websocket
+		else if (this.config.connectionType == 'ws') {
+			// Dummy MQTT-Server
+			if (this.config.dummyMqtt == true) {
+				mqttServerController = new MqttServerController(this);
+				await mqttServerController.createDummyMQTTServer();
+				await this.delay(1500);
+			}
 
-		mqttClient.on('connect', () => { });
-		mqttClient.subscribe('#');
-		mqttClient.on('message', (topic, payload) => {
-			const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
-			//console.log(newMessage);
-			this.messageParse(newMessage);
-		});
+			websocketController = new WebsocketController(this);
+			const wsClient = await websocketController.initWsClient(this.config.wsServerIP, this.config.wsServerPort);
+
+			wsClient.on('open', () => {
+				this.log.info('Connect to Zigbee2MQTT over websocket connection.');
+			});
+
+			wsClient.on('message', (message) => {
+				this.messageParse(message);
+			});
+
+			wsClient.on('close', async () => {
+				this.setStateChangedAsync('info.connection', false, true);
+				await statesController.setAllAvailableToFalse();
+				this.log.warn('Websocket disconnectet');
+			});
+		}
 	}
-
 
 	async messageParse(message) {
 		const messageObj = JSON.parse(message);
@@ -101,7 +132,10 @@ class Zigbee2mqtt extends core.Adapter {
 				}
 				break;
 			case 'bridge/state':
-				this.setStateAsync('info.connection', messageObj.payload.state == 'online', true);
+				if (messageObj.payload.state != 'online') {
+					statesController.setAllAvailableToFalse();
+				}
+				this.setStateChangedAsync('info.connection', messageObj.payload.state == 'online', true);
 				break;
 			case 'bridge/devices':
 				await deviceController.createDeviceDefinitions(messageObj.payload);
@@ -169,6 +203,8 @@ class Zigbee2mqtt extends core.Adapter {
 	async onUnload(callback) {
 		try {
 			await statesController.setAllAvailableToFalse();
+			await websocketController.allTimerClear();
+			await statesController.allTimerClear();
 			callback();
 		} catch (e) {
 			callback();
@@ -189,7 +225,13 @@ class Zigbee2mqtt extends core.Adapter {
 			}
 
 			const message = await z2mController.createZ2MMessage(id, state) || { topic: '', payload: '' };
-			mqttClient.publish(`zigbee2mqtt/${message.topic}`, JSON.stringify(message.payload));
+
+			if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
+				mqttClient.publish(`zigbee2mqtt/${message.topic}`, JSON.stringify(message.payload));
+			}
+			else if (this.config.connectionType == 'ws') {
+				websocketController.send(JSON.stringify(message));
+			}
 		}
 	}
 }
