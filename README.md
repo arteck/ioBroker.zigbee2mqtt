@@ -33,6 +33,7 @@ Zigbee2MQTT adapter for ioBroker
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) now set the correct min/max at color temp
 -   (o0shojo0o) better error handling for the connections
 
 ### 2.0.0 (2022-10-12)
