@@ -119,7 +119,7 @@ class Zigbee2mqtt extends core.Adapter {
 				this.messageParse(message);
 			});
 
-			wsClient.on('close', async () => {
+			wsClient.on('clo', async () => {
 				this.setStateChangedAsync('info.connection', false, true);
 				await statesController.setAllAvailableToFalse();
 				this.log.warn('Websocket disconnectet');
@@ -237,8 +237,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 			if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
 				mqttClient.publish(`zigbee2mqtt/${message.topic}`, JSON.stringify(message.payload));
-			}
-			else if (this.config.connectionType == 'ws') {
+			} else if (this.config.connectionType == 'ws') {
 				websocketController.send(JSON.stringify(message));
 			}
 		}
