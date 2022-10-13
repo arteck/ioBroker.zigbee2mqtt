@@ -47,7 +47,8 @@
 		"wsServerPort": {
 			"type": "number",
 			"label": "Websocket Port",
-			"newLine": false
+			"newLine": false,
+			"hidden": "data.connectionType != 'ws'"
 		},
 		"dummyMqtt": {
 			"type": "checkbox",
