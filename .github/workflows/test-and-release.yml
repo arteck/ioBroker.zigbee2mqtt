@@ -110,17 +110,17 @@ jobs:
           npm whoami
           npm publish
       # b) For monorepos managed with lerna (requires lerna to be installed globally)
-      - name: Publish packages to npm
-        run: |
-          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-          npm whoami
-          lerna publish from-package --yes
+      #- name: Publish packages to npm
+      #  run: |
+      #    npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+      #    npm whoami
+      #    lerna publish from-package --yes
       # c) For monorepos managed with yarn v3.1+ (no lerna)
-      - name: Publish packages to npm
-        run: |
-          yarn config set npmAuthToken "${{ secrets.NPM_TOKEN }}"
-          yarn npm whoami
-          yarn workspaces foreach -vti --no-private npm publish --tolerate-republish
+      #- name: Publish packages to npm
+      #  run: |
+      #    yarn config set npmAuthToken "${{ secrets.NPM_TOKEN }}"
+      #    yarn npm whoami
+      #    yarn workspaces foreach -vti --no-private npm publish --tolerate-republish
 
       - name: Create Github Release
         uses: actions/create-release@v1
