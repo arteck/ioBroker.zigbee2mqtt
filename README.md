@@ -30,8 +30,7 @@ Zigbee2MQTT adapter for ioBroker
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 2.1.0 (2022-10-14)
 
 -   (o0shojo0o) added option for color temperature sync with color
 -   (o0shojo0o) fix logfilter and debugDevices
