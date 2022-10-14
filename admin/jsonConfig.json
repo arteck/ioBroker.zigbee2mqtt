@@ -122,15 +122,26 @@
 			"text": "",
 			"newLine": true
 		},
-		"otherHeader": {
+		"colorHeader": {
 			"type": "header",
-			"text": "Other configurations",
+			"text": "Color configurations",
 			"size": 2,
+			"newLine": true
+		},
+		"colorTempSyncColor": {
+			"type": "checkbox",
+			"label": "Color temperature sync with color",
 			"newLine": true
 		},
 		"useKelvin": {
 			"type": "checkbox",
 			"label": "Use Kelvin instead of mired for the color temps",
+			"newLine": true
+		},
+		"otherHeader": {
+			"type": "header",
+			"text": "Other configurations",
+			"size": 2,
 			"newLine": true
 		},
 		"proxyZ2MLogs": {
