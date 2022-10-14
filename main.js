@@ -23,8 +23,7 @@ let mqttClient;
 let deviceCache = [];
 // eslint-disable-next-line prefer-const
 let groupCache = [];
-let debugDevices = '';
-let logfilter = [];
+const logCustomizations = { debugDevices: '', logfilter: [] };
 let showInfo = true;
 let statesController;
 let deviceController;
@@ -45,9 +44,9 @@ class Zigbee2mqtt extends core.Adapter {
 	}
 
 	async onReady() {
-		statesController = new StatesController(this, deviceCache, groupCache, debugDevices);
+		statesController = new StatesController(this, deviceCache, groupCache, logCustomizations);
 		deviceController = new DeviceController(this, deviceCache, groupCache, this.config.useKelvin);
-		z2mController = new Z2mController(this, deviceCache, groupCache, logfilter);
+		z2mController = new Z2mController(this, deviceCache, groupCache, logCustomizations);
 
 		// Initialize your adapter here
 		adapterInfo(this.config, this.log);
@@ -56,12 +55,13 @@ class Zigbee2mqtt extends core.Adapter {
 
 		const debugDevicesState = await this.getStateAsync('info.debugmessages');
 		if (debugDevicesState && debugDevicesState.val) {
-			debugDevices = String(debugDevicesState.val);
+			logCustomizations.debugDevices = String(debugDevicesState.val);
 		}
 
 		const logfilterState = await this.getStateAsync('info.logfilter');
 		if (logfilterState && logfilterState.val) {
-			logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
+			// @ts-ignore
+			logCustomizations.logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
 		}
 		// MQTT
 		if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
@@ -223,12 +223,12 @@ class Zigbee2mqtt extends core.Adapter {
 	async onStateChange(id, state) {
 		if (state && state.ack == false) {
 			if (id.includes('info.debugmessages')) {
-				debugDevices = state.val;
+				logCustomizations.debugDevices = state.val;
 				this.setState(id, state.val, true);
 				return;
 			}
 			if (id.includes('info.logfilter')) {
-				logfilter = state.val.split(';').filter(x => x); // filter removes empty strings here
+				logCustomizations.logfilter = state.val.split(';').filter(x => x); // filter removes empty strings here
 				this.setState(id, state.val, true);
 				return;
 			}
