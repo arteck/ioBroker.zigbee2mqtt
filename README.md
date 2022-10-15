@@ -32,6 +32,7 @@ Zigbee2MQTT adapter for ioBroker
 -->
 ### 2.1.0 (2022-10-14)
 
+-   (o0shojo0o) fixes the design error in the websocket connection 
 -   (o0shojo0o) added option for color temperature sync with color
 -   (o0shojo0o) fix logfilter and debugDevices
 -   (o0shojo0o) lots of bugfixes
