@@ -108,23 +108,27 @@ class Zigbee2mqtt extends core.Adapter {
 				await this.delay(1500);
 			}
 
-			websocketController = new WebsocketController(this);
-			const wsClient = await websocketController.initWsClient(this.config.wsServerIP, this.config.wsServerPort);
-
-			wsClient.on('open', () => {
-				this.log.info('Connect to Zigbee2MQTT over websocket connection.');
-			});
-
-			wsClient.on('message', (message) => {
-				this.messageParse(message);
-			});
-
-			wsClient.on('clo', async () => {
-				this.setStateChangedAsync('info.connection', false, true);
-				await statesController.setAllAvailableToFalse();
-				this.log.warn('Websocket disconnectet');
-			});
+			this.startWebsocket();
 		}
+	}
+
+	startWebsocket() {
+		websocketController = new WebsocketController(this);
+		const wsClient = websocketController.initWsClient();
+
+		wsClient.on('open', () => {
+			this.log.info('Connect to Zigbee2MQTT over websocket connection.');
+		});
+
+		wsClient.on('message', (message) => {
+			this.messageParse(message);
+		});
+
+		wsClient.on('close', async () => {
+			this.setStateChangedAsync('info.connection', false, true);
+			await statesController.setAllAvailableToFalse();
+			this.log.warn('Websocket disconnectet');
+		});
 	}
 
 	async messageParse(message) {
