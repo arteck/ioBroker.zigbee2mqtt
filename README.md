@@ -32,6 +32,7 @@ Zigbee2MQTT adapter for ioBroker
 -->
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) advanced detection if a device has been removed
 -   (o0shojo0o) fixes the design error in the websocket connection 
   
 ### 2.1.0 (2022-10-14)
