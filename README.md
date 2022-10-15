@@ -13,7 +13,7 @@
 
 ## zigbee2mqtt adapter for ioBroker
 
-Zigbee2MQTT adapter for ioBroker
+This adapter allows to control the data points of the devices of a Zigbee2MQTT instance in ioBroker.  
 
 ## Adapter Documentation
 
