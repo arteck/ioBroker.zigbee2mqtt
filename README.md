@@ -30,11 +30,11 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.1.1 (2022-10-16)
 
 -   (o0shojo0o) advanced detection if a device has been removed
--   (o0shojo0o) fixes the design error in the websocket connection 
-  
+-   (o0shojo0o) fixes the design error in the websocket connection
+
 ### 2.1.0 (2022-10-14)
 
 -   (o0shojo0o) added option for color temperature sync with color

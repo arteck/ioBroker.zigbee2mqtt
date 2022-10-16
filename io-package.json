@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "news": {
+      "2.1.1": {
+        "en": "advanced detection if a device has been removed\nfixes the design error in the websocket connection",
+        "de": "fortgeschrittene erkennung, wenn ein gerät entfernt wurde\nkorrigiert den designfehler in der websocket-verbindung",
+        "ru": "предварительное обнаружение, если устройство было удалено\nисправляет ошибку дизайна в подключении к сети",
+        "pt": "detecção avançada se um dispositivo foi removido\ncorrige o erro de projeto na conexão websocket",
+        "nl": "als er een apparaat verwijderd is\nde ontwerpfout in de websocket verbinding",
+        "fr": "détection avancée si un dispositif a été enlevé\ncorrige l'erreur de conception dans la connexion websocket",
+        "it": "rilevamento avanzato se un dispositivo è stato rimosso\ncorregge l'errore di progettazione nella connessione websocket",
+        "es": "detección avanzada si se ha eliminado un dispositivo\nfija el error de diseño en la conexión websocket",
+        "pl": "wykrywanie zaawansowane, jeśli urządzenie zostało usunięte\numożliwia to błędy projektowe w łączu internetowym",
+        "uk": "розширене виявлення, якщо пристрій було видалено\nвиправлено помилку дизайну в підключенні websocket",
+        "zh-cn": "如果一个装置被拆除,则预先发现\nf 确定网站的设计错误"
+      },
       "2.1.0": {
         "en": "added option for color temperature sync with color\nfix logfilter and debugDevices\nlots of bugfixes\nnow set the correct min/max at color temp\nbetter error handling for the connections",
         "de": "zusatzoption für farbtemperatur-sync mit farbe\nlogfilter und DebugDevices fixieren\nviele bugfixes\njetzt die richtige min/max in der farbe tempo einstellen\nbessere fehlerbehandlung für die verbindungen",
