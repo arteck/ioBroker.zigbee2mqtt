@@ -30,6 +30,10 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) simulated_brightness data point is added only for supported devices
+
 ### 2.1.1 (2022-10-16)
 
 -   (o0shojo0o) advanced detection if a device has been removed
