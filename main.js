@@ -151,7 +151,6 @@ class Zigbee2mqtt extends core.Adapter {
 				this.setStateChangedAsync('info.connection', messageObj.payload.state == 'online', true);
 				break;
 			case 'bridge/devices':
-				console.log(JSON.stringify(messageObj));
 				await deviceController.createDeviceDefinitions(messageObj.payload);
 				await deviceController.createOrUpdateDevices();
 				await statesController.subscribeWritableStates();
@@ -164,7 +163,6 @@ class Zigbee2mqtt extends core.Adapter {
 				statesController.processQueue();
 				break;
 			case 'bridge/event':
-				console.log(JSON.stringify(messageObj));
 				deviceController.processRemoveEvent(messageObj);
 				break;
 			case 'bridge/response/device/remove':
