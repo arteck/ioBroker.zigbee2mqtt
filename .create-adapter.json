@@ -5,7 +5,9 @@
 	"title": "zigbee2mqtt",
 	"description": "Zigbee2MQTT adapter for ioBroker",
 	"expert": "no",
-	"features": ["adapter"],
+	"features": [
+		"adapter"
+	],
 	"adminFeatures": [],
 	"type": "lighting",
 	"startMode": "daemon",
@@ -15,7 +17,12 @@
 	"language": "JavaScript",
 	"nodeVersion": "14",
 	"adminUi": "json",
-	"tools": ["ESLint", "type checking", "Prettier", "devcontainer"],
+	"tools": [
+		"ESLint",
+		"type checking",
+		"Prettier",
+		"devcontainer"
+	],
 	"releaseScript": "yes",
 	"devServer": "yes",
 	"devServerPort": 8081,
