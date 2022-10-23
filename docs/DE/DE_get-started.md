@@ -89,7 +89,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
 5. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
 
 6. Konfiguration des Adapters
-   - Zigbee2MQTT Verbindung auswählen = Empfohlene Einstellung "Websocket"
+   - Zigbee2MQTT Verbindung auswählen = Empfohlene Einstellung "Websocket", mit der Auswahl einer der beiden experimentellen Funktionen via MQTT tauchen noch weitere Einstellungen auf, um die Verbindung via MQTT aufzubauen
    - Websocket IP-Adresse = IP oder DNS Name des Zigbee2MQTT Servers (in unserem Falle die IP des Docker Host)
    - Websocket Port = 8080 Ist der Standard Port, wenn dieser in der Config von Zigbee2MQTT geändert, wird muss der hier auch geändert werden
    - Dummy MQTT-Server für Zigbee2MQTT erstellen = Da wir ja für Zigbee2MQTT einen MQTT Server brauchen können wir diesen Harken setzten dann haben wir die Möglichkeit einen solchen hier im Adapter zu erstellen
@@ -103,4 +103,4 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
 
 ![Zigbee2MQTT Konfiguration](../img/Zigbee2MQTT_Adapter.png)
 
-1. Nun sollte alles laufen und die Geräte können angelernt werden. Dazu hier eine detaillierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
+7. Nun sollte alles laufen und die Geräte können angelernt werden. Dazu hier eine detaillierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
