@@ -13,7 +13,7 @@
     "External MQTT-Server Port": "Externer MQTT-Server Port",
     "MQTT-Server IP-Address bind": "MQTT-Server IP-Adresse binden",
     "MQTT-Server Port": "MQTT-Server-Port",
-    "Configure your Zigbee2MQTT WebUi connection": "Zigbee2MQTT WebUi Verbindung Konfiguration",
+    "Configure your Zigbee2MQTT WebUi connection": "Konfiguration der Zigbee2MQTT WebUi Verbindung",
     "WebUi Address": "WebUi Adresse",
     "WebUi Port": "WebUi Port",
     "Color configurations": "Farbkonfigurationen",
