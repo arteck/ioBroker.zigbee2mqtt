@@ -23,6 +23,7 @@ let mqttClient;
 let deviceCache = [];
 // eslint-disable-next-line prefer-const
 let groupCache = [];
+const createCache = {};
 const logCustomizations = { debugDevices: '', logfilter: [] };
 let showInfo = true;
 let statesController;
@@ -44,8 +45,8 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async onReady() {
-        statesController = new StatesController(this, deviceCache, groupCache, logCustomizations);
-        deviceController = new DeviceController(this, deviceCache, groupCache, this.config);
+        statesController = new StatesController(this, deviceCache, groupCache, logCustomizations, createCache);
+        deviceController = new DeviceController(this, deviceCache, groupCache, this.config, createCache);
         z2mController = new Z2mController(this, deviceCache, groupCache, logCustomizations);
 
         // Initialize your adapter here
