@@ -32,6 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 -->
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) fix state roles and access
 -   (o0shojo0o) fix state handling
 -   (o0shojo0o) fix createZ2MMessage
 
