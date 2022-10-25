@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "news": {
+      "2.2.1": {
+        "en": "fix state roles and access\nfix state handling\nfix createZ2MMessage",
+        "de": "zustandsrollen und zugriff beheben\nmanuelle zustandsbearbeitung\nfix erstellenZ2MMessage",
+        "ru": "исправить государственные роли и доступ\nисправить государственную обработку\nисправить CreateZ2MMessage",
+        "pt": "corrigir funções estaduais e acesso\ncorrigir o manuseio do estado\ncorrigir createZ2MMessage",
+        "nl": "vertaling:\nvertaling:\nvertaling:",
+        "fr": "fixer les rôles de l'état et l'accès\nmaniement de l ' état\nfix createZ2MMessage",
+        "it": "fissare i ruoli dello stato e l'accesso\ncorretta gestione dello stato\nfix createZ2MMessage",
+        "es": "fijar funciones estatales y acceso\ncorrección del estado\nfix createZ2MMessage",
+        "pl": "uchwała rola państwowa i dostęp\nnaprawa\ntworzenie Z2MM",
+        "uk": "фіксувати державні ролі і доступ\nфіксувати стан обробки\nфіксатор творуZ2MMessage",
+        "zh-cn": "fix 国家作用和准入\nfix 国家处理\nfix 建立Z2MMessage"
+      },
       "2.2.0": {
         "en": "added support for [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nadded support for hs color\nsimulated_brightness data point is added only for supported devices",
         "de": "unterstützung für [Lidl HG06467-Effekte](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-Effekte)\nunterstützung für hs farbe\nsimuld_brightness-datenpunkt wird nur für unterstützte geräte hinzugefügt",
@@ -78,18 +91,6 @@
         "es": "estados del grupo corregidos\nopción agregada 'Use Kelvin en lugar de mired para el color temps '\neliminar la lógica disponible, ahora utilizará la información de z2m\nnoLogDevices to logfilter\nmuchos bugfixes\nnoLogDevices funcionalidad\ndebugmesage añadido para la funcionalidad específica del dispositivo\nañadido algunos estados son falsos\nsoporte añadido para escenas definidas en un dispositivo\nfijar la función estatal disponible\nfijar suscriptosEstados disponibles",
         "pl": "państwa grupowe poprawiły\ndodał opcję 'Use Kelvin' zamiast śmiać kolorowe tempo. '\nzdejmowanie dostępnej logiki wykorzystuje obecnie informacje z 2 m\nnazwa NoLogDevices (ang.)\nwiele błędów\ndodano obsługę NoLogDevices\ndodanie debugmessage dla konkretnej funkcjonalności\ndodanie niektórych stanów jest fałszywe\ndodano wsparcie dla scen zdefiniowanych na urządzenie\nfunkcja stanowa\nrecovery",
         "zh-cn": "更正\n加上“Use Kelvin”的备选办法,而不是对色彩的诱惑。 评 注\n删除现有逻辑,现在将使用兹2m的信息。\n目 录\n批发\n增加无车辆功能\n增加特定装置功能的碎片\n另有一些国家的违约情况\n对一个装置所界定的场地的更多支持\nf 现有国家作用\nfix 有线性的国家"
-      },
-      "0.1.0": {
-        "en": "first release",
-        "de": "erste veröffentlichung",
-        "ru": "первый релиз",
-        "pt": "primeiro lançamento",
-        "nl": "eerste vrijlating",
-        "fr": "première version",
-        "it": "primo rilascio",
-        "es": "primera liberación",
-        "pl": "pierwsze wydanie",
-        "zh-cn": "首次释放"
       }
     },
     "titleLang": {

@@ -30,7 +30,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.2.1 (2022-10-25)
 
 -   (o0shojo0o) fix state roles and access
 -   (o0shojo0o) fix state handling
