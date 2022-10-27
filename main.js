@@ -46,7 +46,7 @@ class Zigbee2mqtt extends core.Adapter {
 
     async onReady() {
         statesController = new StatesController(this, deviceCache, groupCache, logCustomizations, createCache);
-        deviceController = new DeviceController(this, deviceCache, groupCache, this.config, createCache);
+        deviceController = new DeviceController(this, deviceCache, groupCache, this.config, logCustomizations, createCache);
         z2mController = new Z2mController(this, deviceCache, groupCache, logCustomizations);
 
         // Initialize your adapter here
