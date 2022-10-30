@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.2.1",
+    "version": "2.3.0",
     "news": {
+      "2.3.0": {
+        "en": "added support for the `toggle` of states that support this.\nadded correct handling of `color_move` and `color_temperature_move`",
+        "de": "zusätzliche unterstützung für den kippen von staaten, die dies unterstützen.\nkorrekte handhabung von color_move und color_temperature_move",
+        "ru": "добавлена поддержка в отношении государств, которые поддерживают это.\nдобавлена правильная обработка color_move и color_temperature_move",
+        "pt": "acrescentou apoio para o conjunto de estados que apoiam isso.\nadicionado manuseio correto de color_move e color_temperature_move",
+        "nl": "steun toegevoegd voor de toggle van staten die dit ondersteunen.\nvoegde de juiste kleding en kleurtemperatuur toe",
+        "fr": "a ajouté un soutien pour la lutte des etats qui appuient cela.\nla manipulation correcte de color_move et color_temperature_move",
+        "it": "ha aggiunto il sostegno per la lotta di stati che sostengono questo.\naggiunto corretto trattamento di colore_move e colore_temperature_move",
+        "es": "agregó apoyo para la lucha de estados que apoyan esto.\nañadido correcto manejo de color_move y color_temperature_move",
+        "pl": "dodał wsparcie dla porozumień stanów, które to wspierają.\ndodano poprawne zachowanie koloru i kolor_temperature_move",
+        "uk": "додана підтримка для тягових станів, які підтримують це.\nдодано правильну обробку кольором_move та color_ infrastructure_move",
+        "zh-cn": "此外,还支持支持这一国家。.\n· 删除白色、流血和色色色色色彩。"
+      },
       "2.2.1": {
         "en": "fix state roles and access\nfix state handling\nfix createZ2MMessage",
         "de": "zustandsrollen und zugriff beheben\nmanuelle zustandsbearbeitung\nfix erstellenZ2MMessage",
@@ -79,18 +92,6 @@
         "es": "*! ¡CAMBIANDO\n\nopciones adicionales para MQTT-Server externo\nconexión a zigbe2mqtt completamente rediseñado y cambiado a MQTT\nmuchos bugfixes\nautomáticamente poner las acciones del botón de nuevo a falso\nsoporte añadido para función Zigbee2MQTT simulado_brightness\ncontrol de configuración añadido\nproducción de registro agregada sobre detalles de coordinadores",
         "pl": "! BREAKING CHANGE! (ANG.)\n\nobsługa MQTT-Server\nzigbe2mqtt całkowicie przerobił i zmienił MQTT\nwiele błędów\nautomatycznie ustawione akcje przycisku\ndodano obsługę Zigbee2MQTT\nsprawdzać\ndokładna produkcja logów na temat szczegółów koordynacji",
         "zh-cn": "页:1 BREAKREANGE*\n\n外贸总协定\n与zigbe2mqt完全重新工作,并改装到外贸总协定\n批发\n自动建立但顿行动回到虚假的行动\n对Zigbee2MQTT特征的增援\n增幅检查\n协调员的产出"
-      },
-      "0.2.0": {
-        "en": "group states corrected\nadded option 'Use Kelvin instead of mired for the color temps'\nremove available logic, now will use the information from z2m\nrename noLogDevices to logfilter\nlots of bugfixes\nadded noLogDevices functionality\nadded debugmessage for specific device functionality\nadded some states are default false\nadded support for scenes defined on a device\nfix available state role\nfix subscribeWritableStates",
-        "de": "gruppenzustände korrigiert\nzusatzoption 'Use Kelvin anstelle von mired für die Farbe Tempos '\ndie verfügbare logik entfernen, jetzt die informationen von z2m verwenden\numbenennen noLogDevices zum Logfilter\nviele bugfixes\nnoLogDevices Funktionalität hinzugefügt\ndebugmessage für spezifische gerätefunktionalität\neinige zustände standardmäßig falsch hinzugefügt\nunterstützung für szenen, die auf einem gerät definiert sind\nfix verfügbare zustandsrolle\nabonnierenWritableState",
-        "ru": "исправлены состояния группы\nдобавлена опция 'Используйте Kelvin вместо mired для цветовых темп « »\nудалить доступную логику, теперь будет использовать информацию из z2m\nпереименовать noLogDevices для logfilter\nмного багфиксов\nдобавлена функция noLogDevices\nдобавлено debugmessage для конкретной функциональности устройства\nдобавлены некоторые государства по умолчанию false\nдобавлена поддержка сцен, определенных на устройстве\nисправить доступную государственную роль\nисправить подпискуWritableStates",
-        "pt": "estados do grupo corrigidos\nopção adicionada 'Use Kelvin em vez de mired para os temps de cor '\nremover a lógica disponível, agora usará as informações do z2m\nrenomear noLogDevices para logfilter\nlotes de correções de bugs\nadicionado noLogDevices funcionalidade\nadicionado debugmessage para funcionalidade específica do dispositivo\nadicionado alguns estados são padrão falso\nsuporte adicionado para cenas definidas em um dispositivo\ncorrigir a função estadual disponível\ncorrigir assinantesEstados disponíveis",
-        "nl": "de groep zegt:\nvoegde optie 'Use Kelvin' in plaats van de kleuren tempen '\nverwijder de logica, nu zal de informatie van z2m gebruiken\nnoLog Devices\nveel insectenfixen\nnoLog Devices functionaliteit\nvoegde debugmesage toe voor specifieke apparaat functionaliteit\nsommige staten zijn vals\nsteun voor scènes gedefinieerd op een apparaat\nbeschikbare staatsrol\nvertaling:",
-        "fr": "états de groupe corrigés\noption ajoutée 'Utiliser Kelvin au lieu de mired pour le temps de couleur '\nsupprimer la logique disponible, maintenant utilisera les informations de z2m\nrenommer noLogDevices to logfilter\nbeaucoup de bugfixes\najout de fonctionnalité noLogDevices\najout debugmessage pour la fonctionnalité de périphérique spécifique\ncertains états ajoutés sont par défaut faux\nsupport ajouté pour les scènes définies sur un appareil\nle rôle de l ' état\nfixer souscrire",
-        "it": "gruppo stati corretti\nopzione aggiunta 'Usa Kelvin invece di mired per le tentazioni di colore '\nrimuovere la logica disponibile, ora userà le informazioni da z2m\nrinominare noLogDevices per logfilter\nmolti bugfix\naggiunto noLogDevices funzionalità\ndebugmessage aggiunto per funzionalità specifiche del dispositivo\naggiunto alcuni stati sono falsi di default\nsupporto aggiunto per scene definite su un dispositivo\ncorrezione del ruolo di stato disponibile\nfissare abbonamentiWritableStates",
-        "es": "estados del grupo corregidos\nopción agregada 'Use Kelvin en lugar de mired para el color temps '\neliminar la lógica disponible, ahora utilizará la información de z2m\nnoLogDevices to logfilter\nmuchos bugfixes\nnoLogDevices funcionalidad\ndebugmesage añadido para la funcionalidad específica del dispositivo\nañadido algunos estados son falsos\nsoporte añadido para escenas definidas en un dispositivo\nfijar la función estatal disponible\nfijar suscriptosEstados disponibles",
-        "pl": "państwa grupowe poprawiły\ndodał opcję 'Use Kelvin' zamiast śmiać kolorowe tempo. '\nzdejmowanie dostępnej logiki wykorzystuje obecnie informacje z 2 m\nnazwa NoLogDevices (ang.)\nwiele błędów\ndodano obsługę NoLogDevices\ndodanie debugmessage dla konkretnej funkcjonalności\ndodanie niektórych stanów jest fałszywe\ndodano wsparcie dla scen zdefiniowanych na urządzenie\nfunkcja stanowa\nrecovery",
-        "zh-cn": "更正\n加上“Use Kelvin”的备选办法,而不是对色彩的诱惑。 评 注\n删除现有逻辑,现在将使用兹2m的信息。\n目 录\n批发\n增加无车辆功能\n增加特定装置功能的碎片\n另有一些国家的违约情况\n对一个装置所界定的场地的更多支持\nf 现有国家作用\nfix 有线性的国家"
       }
     },
     "titleLang": {
