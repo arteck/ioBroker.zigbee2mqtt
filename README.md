@@ -33,7 +33,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ### **WORK IN PROGRESS**
 
--   (o0shojo0o) added support for the toggle of states that support this.
+-   (o0shojo0o) added support for the `toggle` of states that support this.
 -   (o0shojo0o) added correct handling of `color_move` and `color_temperature_move`
 
 ### 2.2.1 (2022-10-25)
