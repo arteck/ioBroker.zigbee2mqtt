@@ -46,7 +46,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 -   (o0shojo0o) added support for [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)
 -   (o0shojo0o) added support for hs color
--   (o0shojo0o) simulated_brightness data point is added only for supported devices
+-   (o0shojo0o) `simulated_brightness` data point is added only for supported devices
 
 ### 2.1.1 (2022-10-16)
 
