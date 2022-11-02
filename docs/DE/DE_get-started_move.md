@@ -59,8 +59,8 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    homeassistant: false
    permit_join: true
    frontend:
-   port: 8080
-   host: 0.0.0.0
+      port: 8080
+      host: 0.0.0.0
    mqtt:
       base_topic: zigbee2mqtt
       server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
@@ -93,7 +93,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    Serial:
       port: /dev/ttyACM0 #Pfad zur Zigbee Antenne
    advanced:
-      pan_id: 1A2C #PAN ID aus dem ioBroker konvertiert zu Hex
+      pan_id: 0x1A2C #PAN ID aus dem ioBroker konvertiert zu Hex
       ext_pan_id: [0x00, 0x12, 0x4b, 0x02, 0x37, 0xb9, 0x88] #erweiterte PAN ID aus dem ioBroker und in der Schreibweise [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
       channel: 15 #Kanal aus dem ioBroker
       network_key: [0x02, 0x03, 0x05, 0x08, 0x09, 0x0B, 0x0D, 0x0B, 0x00, 0x02, 0x04, 0x07, 0x08, 0x0A, 0x0C, 0x0D] # Netzwerkkey/Transportschlüssel und in der schreibweise [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
