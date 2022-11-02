@@ -3,7 +3,7 @@ description: Data points or functionalities are missing
 title: "[Device bug]: "
 labels: [device problem]
 body:
-  - type: textarea
+  - type: input
     id: version
     attributes:
       label: Adapter version*
