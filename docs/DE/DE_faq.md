@@ -6,10 +6,7 @@ Dieses WIKI klärt primär Fragen zum Umgang mit dem Adapter und nicht mit dem Z
 Offizielle Dokumentation: https://www.zigbee2mqtt.io/guide/getting-started
 
 # Inhaltsübersicht
-1. [Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker](#1)
-2. [Frage2](#2)
-3. [Frage3](#3)
-4. [Frage4](#3)
+- [Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker](#1)
 
 ## Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker <a name="1"></a>
 Ausgangssituattion:
@@ -21,13 +18,5 @@ Ursache:
 Leider kann in Zigbee2MQTT (noch) keine Verschlüsselte Verbindung konfigurirt werden. Durch die Verwendung der HTTPS Verbindung des Admin Adapter kann leider keine unverschlüsselte iFrame Verbindung genutzt werden, was hier der Fall ist.
 
 Lösung:
-1. Deaktivieren der HTTPS verbindung im Admin Adapter
-2. Proxy Verbindung für die Konfigurationsseite von Zigbee2MQTT, noch ist aber nicht klar ob die Websocket Verbindung die dieser Adpter nutzt dann noch funktioniert.
-
-## Frage2 <a name="2"></a>
-Antwort2
-
-## Frage3 <a name="3"></a>
-Antwort3
-## Frage4 <a name="4"></a>
-Antwort4
+- Deaktivieren der HTTPS verbindung im Admin Adapter
+- Proxy Verbindung für die Konfigurationsseite von Zigbee2MQTT, noch ist aber nicht klar ob die Websocket Verbindung die dieser Adpter nutzt dann noch funktioniert.
