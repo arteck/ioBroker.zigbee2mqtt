@@ -1,6 +1,6 @@
-name: Device bug report
+name: Device problem report
 description: Data points or functionalities are missing
-title: "[Device bug]: "
+title: "[Device problem]: "
 labels: [device problem]
 body:
   - type: input
