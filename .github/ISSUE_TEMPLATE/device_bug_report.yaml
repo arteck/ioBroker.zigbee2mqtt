@@ -4,10 +4,10 @@ title: "[Device bug]: "
 labels: [device problem]
 body:
   - type: textarea
-    id: notes
+    id: version
     attributes:
-      label: What is missing or not working*
-      placeholder: I would have expected the or the data point has no function ...
+      label: Adapter version*
+      placeholder: 0.0.0
     validations:
       required: true
   - type: textarea
@@ -19,7 +19,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Device exposes
+      label: Device exposes*
       description: You can get this information via the adapter, [How to do this](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md#how-do-i-get-the-exposes-from-a-device-).
       placeholder: '{"date_code":"","definition":{"description":"Tint remote control","exposes":[{"access":1,"description":"Triggered action (e.g. a button click)","name":"action","property":"action","type":"enum","values":["on","off","toggle","brightness_down_click","brightness_up_click","color_temp","color_wheel","brightness_0_release","brightness_1_release","brightness_0_hold","brightness_1_hold"]},{"access":1,"description":"Link quality (signal strength)","name":"linkquality","property":"linkquality","type":"numeric","unit":"lqi","value_max":255,"value_min":0}],"model":"MLI-404011/MLI-404049","options":[{"access":2,"description":"Set to false to disable the legacy integration (highly recommended), will change structure of the published payload (default true).","name":"legacy","property":"legacy","type":"binary","value_off":false,"value_on":true}],"supports_ota":false,"vendor":"Müller Licht"},"endpoints":{"1":{"bindings":[],"clusters":{"input":["genBasic","genPowerCfg","genIdentify","genGroups","touchlink","manuSpecificTuya","genBasic"],"output":["genOta","genTime","genBasic","genIdentify","genGroups","genScenes","genOnOff","genLevelCtrl","touchlink","57347"]},"configured_reportings":[],"scenes":[]}},"friendly_name":"FernbedienungHobbyraum","ieee_address":"0x2c1165fffe2cae93","interview_completed":true,"interviewing":false,"manufacturer":"_TZ3000_bdbb0fon","model_id":"TS1001","network_address":5985,"power_source":"Battery","supported":true,"type":"EndDevice"}'
       render: JSON
