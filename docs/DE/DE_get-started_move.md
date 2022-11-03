@@ -106,7 +106,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    `00124b0237b988`
    
    wird die ext_pan_id: 
-   `0x00, 0x12, 0x4b, 0x02, 0x37, 0xb9, 0x88`
+   `0x00`, `0x12`, `0x4b`, `0x02`, `0x37`, `0xb9`, `0x88`
    
    genau so muss auch der network_key umgeschlüsselt werden.
    
