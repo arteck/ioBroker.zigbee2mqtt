@@ -102,11 +102,11 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    behilflich ist ein Hex Konverter wie  dieser : https://www.rapidtables.com/convert/number/hex-to-decimal.html .
    Die Restlichen Werten liegen schon im richtigen Format, müssen nur in die richtige Schreibweise überführt werden.
    
-   also aus ext_pan_id:
-   00124b0237b988
+   also aus ext_pan_id: 
+   `00124b0237b988`
    
-   wird die ext_pan_id:
-   0x00, 0x12, 0x4b, 0x02, 0x37, 0xb9, 0x88
+   wird die ext_pan_id: 
+   `0x00, 0x12, 0x4b, 0x02, 0x37, 0xb9, 0x88`
    
    genau so muss auch der network_key umgeschlüsselt werden.
    
