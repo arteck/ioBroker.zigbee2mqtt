@@ -20,5 +20,6 @@
     "Color temperature sync with color": "Synchronizacja temperatury barwowej z kolorem",
     "Use Kelvin instead of mired for the color temps": "Użyj Kelvina zamiast mired dla temperatury kolorów",
     "Other configurations": "Inne konfiguracje",
-    "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT loguje do logów ioBroker"
+    "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT loguje do logów ioBroker",
+    "Brightness move should also turn the light on or off": "Ruch jasności powinien również włączać lub wyłączać światło"
 }
