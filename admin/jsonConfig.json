@@ -144,6 +144,11 @@
 			"size": 2,
 			"newLine": true
 		},
+		"brightnessMoveOnOff": {
+			"type": "checkbox",
+			"label": "Brightness move should also turn the light on or off",
+			"newLine": true
+		},
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",

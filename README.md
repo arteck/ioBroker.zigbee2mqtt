@@ -32,6 +32,8 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 -->
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) added option `Brightness move should also turn the light on or off`
+-   (o0shojo0o) added state toggle for groups 
 -   (o0shojo0o) more dynamic during data point creation ([#48](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/48)).
 
 ### 2.3.0 (2022-10-30)

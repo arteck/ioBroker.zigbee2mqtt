@@ -1,245 +1,249 @@
 {
-  "common": {
-    "name": "zigbee2mqtt",
-    "version": "2.3.0",
-    "news": {
-      "2.3.0": {
-        "en": "added support for the `toggle` of states that support this.\nadded correct handling of `color_move` and `color_temperature_move`",
-        "de": "zusätzliche unterstützung für den kippen von staaten, die dies unterstützen.\nkorrekte handhabung von color_move und color_temperature_move",
-        "ru": "добавлена поддержка в отношении государств, которые поддерживают это.\nдобавлена правильная обработка color_move и color_temperature_move",
-        "pt": "acrescentou apoio para o conjunto de estados que apoiam isso.\nadicionado manuseio correto de color_move e color_temperature_move",
-        "nl": "steun toegevoegd voor de toggle van staten die dit ondersteunen.\nvoegde de juiste kleding en kleurtemperatuur toe",
-        "fr": "a ajouté un soutien pour la lutte des etats qui appuient cela.\nla manipulation correcte de color_move et color_temperature_move",
-        "it": "ha aggiunto il sostegno per la lotta di stati che sostengono questo.\naggiunto corretto trattamento di colore_move e colore_temperature_move",
-        "es": "agregó apoyo para la lucha de estados que apoyan esto.\nañadido correcto manejo de color_move y color_temperature_move",
-        "pl": "dodał wsparcie dla porozumień stanów, które to wspierają.\ndodano poprawne zachowanie koloru i kolor_temperature_move",
-        "uk": "додана підтримка для тягових станів, які підтримують це.\nдодано правильну обробку кольором_move та color_ infrastructure_move",
-        "zh-cn": "此外,还支持支持这一国家。.\n· 删除白色、流血和色色色色色彩。"
-      },
-      "2.2.1": {
-        "en": "fix state roles and access\nfix state handling\nfix createZ2MMessage",
-        "de": "zustandsrollen und zugriff beheben\nmanuelle zustandsbearbeitung\nfix erstellenZ2MMessage",
-        "ru": "исправить государственные роли и доступ\nисправить государственную обработку\nисправить CreateZ2MMessage",
-        "pt": "corrigir funções estaduais e acesso\ncorrigir o manuseio do estado\ncorrigir createZ2MMessage",
-        "nl": "vertaling:\nvertaling:\nvertaling:",
-        "fr": "fixer les rôles de l'état et l'accès\nmaniement de l ' état\nfix createZ2MMessage",
-        "it": "fissare i ruoli dello stato e l'accesso\ncorretta gestione dello stato\nfix createZ2MMessage",
-        "es": "fijar funciones estatales y acceso\ncorrección del estado\nfix createZ2MMessage",
-        "pl": "uchwała rola państwowa i dostęp\nnaprawa\ntworzenie Z2MM",
-        "uk": "фіксувати державні ролі і доступ\nфіксувати стан обробки\nфіксатор творуZ2MMessage",
-        "zh-cn": "fix 国家作用和准入\nfix 国家处理\nfix 建立Z2MMessage"
-      },
-      "2.2.0": {
-        "en": "added support for [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nadded support for hs color\nsimulated_brightness data point is added only for supported devices",
-        "de": "unterstützung für [Lidl HG06467-Effekte](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-Effekte)\nunterstützung für hs farbe\nsimuld_brightness-datenpunkt wird nur für unterstützte geräte hinzugefügt",
-        "ru": "добавлена поддержка [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдобавлена поддержка цвета hs\nsimulated_brightness дата точка добавлена только для поддерживаемых устройств",
-        "pt": "apoio adicional para efeitos [Lidl HG06467](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nsuporte adicionado para cor hs\nsimulated_brightness data point é adicionado apenas para dispositivos suportados",
-        "nl": "quality over Quantity (QoQ) Releases Vertaling:\nvertaling:\nvertaling:",
-        "fr": "ajouté support for [Lidl HG06467 effects](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-effects)\nsupport ajouté pour la couleur hs\nsimuld_brightness data point est ajouté seulement pour les appareils pris en charge",
-        "it": "[Lidl HG06467 Effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effetti)\nsupporto aggiunto per il colore hs\nil punto di dati simulated_brightness viene aggiunto solo per i dispositivi supportati",
-        "es": "[Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nsoporte añadido para el color hs\nsimulated_brightness punto de datos se añade sólo para dispositivos compatibles",
-        "pl": "dodano wsparcie dla Lidla HG06467 efektów (https:/wwww.zigbee2mqtt.io/devices/HG06467.html#trigger)\ndodano obsługę koloru hs\nsymulacja danych _brighta jest dodana tylko dla obsługi urządzeń",
-        "uk": "додано підтримку [Lidl HG06467 ефектів](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдодана підтримка кольору hs\nсимулятор_brightness дата додано тільки для підтримуваних пристроїв",
-        "zh-cn": "进一步支持[Lidl HG06467效应](http://www.zigbee2mqt.io/devices/HG06467.html#er-effects)\nb. 对地壳的增援\n仅为支助装置增添了简历数据点。"
-      },
-      "2.1.1": {
-        "en": "advanced detection if a device has been removed\nfixes the design error in the websocket connection",
-        "de": "fortgeschrittene erkennung, wenn ein gerät entfernt wurde\nkorrigiert den designfehler in der websocket-verbindung",
-        "ru": "предварительное обнаружение, если устройство было удалено\nисправляет ошибку дизайна в подключении к сети",
-        "pt": "detecção avançada se um dispositivo foi removido\ncorrige o erro de projeto na conexão websocket",
-        "nl": "als er een apparaat verwijderd is\nde ontwerpfout in de websocket verbinding",
-        "fr": "détection avancée si un dispositif a été enlevé\ncorrige l'erreur de conception dans la connexion websocket",
-        "it": "rilevamento avanzato se un dispositivo è stato rimosso\ncorregge l'errore di progettazione nella connessione websocket",
-        "es": "detección avanzada si se ha eliminado un dispositivo\nfija el error de diseño en la conexión websocket",
-        "pl": "wykrywanie zaawansowane, jeśli urządzenie zostało usunięte\numożliwia to błędy projektowe w łączu internetowym",
-        "uk": "розширене виявлення, якщо пристрій було видалено\nвиправлено помилку дизайну в підключенні websocket",
-        "zh-cn": "如果一个装置被拆除,则预先发现\nf 确定网站的设计错误"
-      },
-      "2.1.0": {
-        "en": "added option for color temperature sync with color\nfix logfilter and debugDevices\nlots of bugfixes\nnow set the correct min/max at color temp\nbetter error handling for the connections",
-        "de": "zusatzoption für farbtemperatur-sync mit farbe\nlogfilter und DebugDevices fixieren\nviele bugfixes\njetzt die richtige min/max in der farbe tempo einstellen\nbessere fehlerbehandlung für die verbindungen",
-        "ru": "добавлена опция для синхронизации цветовой температуры с цветом\nисправить logfilter и debugDevices\nмного багфиксов\nтеперь установите правильный мин/макс на цветной темп\nлучшая обработка ошибок для подключений",
-        "pt": "opção adicionada para sincronização de temperatura de cor com cor\ncorrigir logfilter e debugDevices\nlotes de correções de bugs\nagora definir o min/max correto na temperatura de cor\nmelhor manipulação de erros para as conexões",
-        "nl": "vertaling:\nvertaling:\nveel insectenfixen\nzet nu de juiste min/max op kleurtemperatuur\nbeter fout gaan voor de connecties",
-        "fr": "option ajoutée pour synchronisation de température couleur avec couleur\nfixer logfilter et debugDevices\nbeaucoup de bugfixes\nmaintenant définir le min/max correct à la température de couleur\nmeilleure manipulation des erreurs pour les connexions",
-        "it": "opzione aggiunta per la sincronizzazione della temperatura del colore con il colore\ncorreggere logfilter e debugDevices\nmolti bugfix\nora impostare il min/max corretto a temperatura di colore\nmigliore gestione degli errori per le connessioni",
-        "es": "opción agregada para sincronización de temperatura de color con color\nfijación de logfilter y debugDispositivos\nmuchos bugfixes\nahora establece el min/max correcto a color temp\nmejor manejo de errores para las conexiones",
-        "pl": "dodano możliwość synchronizacji kolorowej synchronizacji z kolorami\nnaprawić filtry i debugDevices\nwiele błędów\nteraz ustalono odpowiednie min/max w kolorowym tempie\nlepsza obsługa błędów dla połączeń powiązań",
-        "uk": "додано варіант синхронізації кольору з кольором\nвиправити logfilter і debugDevices\nбагато помилок\nтепер встановлюємо правильний хв/макс за кольором\nкраща обробка помилок для підключення",
-        "zh-cn": "添加了用颜色的气温合办法\nfix 木图和溶剂\n批发\n现将正确的分钟/升值确定为色色彩。\na. 处理联系的错误"
-      },
-      "2.0.0": {
-        "en": "*!!!BREAKING CHANGE!!!**\n\nadded configurable connection to Zigbee2MQTT (Settings must be renewed)\nWebsocket\nExternal MQTT-Server\nInternal MQTT-Server\noptimized state writing performance in ioBroker\nfixed the correct set of the connection status",
-        "de": "*! BREAKING CHANGE*\n\nzusätzliche konfigurierbare Verbindung zu Zigbee2MQTT (Einstellungen müssen erneuert werden)\nWebsocket\nExterner MQTT-Server\nInterner MQTT-Server\noptimierte Zustandsschreibleistung in ioBroker\nden korrekten satz des verbindungsstatus festlegt",
-        "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлена настраиваемая связь с Zigbee2MQTT (Настройки должны быть обновлены)\nWebsocket\nВнешний MQTT-Server\nВнутренний MQTT-Server\nоптимизированное представление государственной записи в ioBroker\nисправил правильный набор состояния соединения",
-        "pt": "*! QUE GRANDE MUDANÇA\n\nconexão configurável adicionada ao Zigbee2MQTT (As inscrições devem ser renovadas)\nWebsocket\nMQTT externo-Server\nMQTT interno-Server\ndesempenho de escrita de estado otimizado no ioBroker\nfixou o conjunto correto do status da conexão",
-        "nl": "♪ \n\nvoegde connectie toe aan Zigbee2MQT (Settings moet vernieuwd)\nWebsocket\nExterne MQTT-Server\nInterne MQTT-Server\noptimaal staatsschrijving in ioBroker\nde correcte set van de connectie status",
-        "fr": "*! CHANGE DE BREAKING*\n\nconnexion configurable ajoutée à Zigbee2MQTT (Les paramètres doivent être renouvelés)\nWebsocket\nMQTT-Serveur externe\nInterne MQTT-Serveur\nperformance d'écriture d'état optimisée en ioBroker\nfixe l'ensemble correct du statut de connexion",
-        "it": "# CAMBIAMENTO\n\naggiunta di connessione configurabile a Zigbee2MQTT (I posti devono essere rinnovati)\nWebsocket\nMQTT-Server esterno\nInterno MQTT-Server\nprestazioni di scrittura dello stato ottimizzate in ioBroker\nfisso l'insieme corretto dello stato di connessione",
-        "es": "*! ¡CAMBIANDO\n\nconexión configurable agregada a Zigbee2MQTT (Se debe renovar la configuración)\nWebsocket\nMQTT externo-Server\nInterno MQTT-Server\nrendimiento de escritura de estado optimizado en ioBroker\nfija el conjunto correcto del estado de conexión",
-        "pl": "! BREAKING CHANGE! (ANG.)\n\nzigbee2MQTT dodano połączenie konfigurowalne. (Odrodzenie się)\nStrona internetowa\nOficjalna strona MQTT-Server\nOficjalna strona MQTT\nzoptymalizowany stan pisania w ioBrokerze\nustalono poprawny zbiór statusu związku",
-        "uk": "* БРЕАКІНГ ЧАНГ*\n\nдодано налаштування підключення до Zigbee2MQTT (Налаштування повинні бути відновлені)\nВеб-сайт\nЗовнішній MQTT-Server\nВнутрішній MQTT-Server\nоптимізоване державне письмо продуктивність в ioBroker\nвиправлено правильний набір статусу підключення",
-        "zh-cn": "页:1 BREAKREANGE*\n\n兹格贝雷2 MQTT的可图联系 (必须重启)\n网站\n外贸总协定\n内贸总协定\n最佳国家书面表现\na. 固定的联络点地位"
-      },
-      "1.0.0": {
-        "en": "*!!!BREAKING CHANGE!!!**\n\nadded options for external MQTT-Server\nconnection to zigbe2mqtt completely reworked and changed to MQTT\nlots of bugfixes\nautomatically set button actions back to false\nadded support for Zigbee2MQTT feature simulated_brightness\nadded config check\nadded log output about coordinator details",
-        "de": "*! BREAKING CHANGE*\n\nweitere Optionen für externen MQTT-Server\nanschluss an Zickbe2mqt komplett überarbeitet und in MQTT geändert\nviele bugfixes\nautomatisch schaltfläche aktionen wieder auf false setzen\nunterstützung für Zigbee2MQTT Funktion simuliert_brightness\nzusatzprüfung\nlog ausgabe von koordinatordaten hinzugefügt",
-        "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлены опции для внешнего MQTT-Server\nподключение к zigbe2mqtt полностью переработано и изменено в MQTT\nмного багфиксов\nавтоматически установите кнопки действия назад к ложному\nдобавлена поддержка функции Zigbee2MQTT simulated_brightness\nдобавлено config check\nдобавил выход журнала о деталях координатора",
-        "pt": "*! QUE GRANDE MUDANÇA\n\nopções adicionadas para MQTT-Server externo\nconexão com zigbe2mqtt completamente retrabalhado e alterado para MQTT\nlotes de correções de bugs\nautomaticamente definir as ações do botão de volta ao falso\nsuporte adicionado para recurso Zigbee2MQTT simulado_brightness\nverificação de configuração adicionada\nadicionado saída de log sobre detalhes do coordenador",
-        "nl": "♪ \n\nvoegde opties toe voor externe MQT-Server\nverbinding met Zigbe2mqt volledig herwerkt en veranderd in MQT\nveel insectenfixen\nautomatisch de knoppen opzetten naar valse\nsteun toegevoegd voor Zigbee2MQT\nvoegde config check toe\nvertaling:",
-        "fr": "*! CHANGE DE BREAKING*\n\noptions supplémentaires pour MQTT-Server externe\nconnexion à zigbe2mqtt complètement retravaillé et changé à MQTT\nbeaucoup de bugfixes\ndéfinir automatiquement les actions de bouton retour à false\nsupport ajouté pour la fonction Zigbee2MQTT simulée_brightness\nconfig check ajouté\nproduit log ajouté sur les coordonnées des coordonnateurs",
-        "it": "# CAMBIAMENTO\n\nopzioni aggiuntive per MQTT-Server esterno\nconnessione a zigbe2mqt completamente rielaborato e cambiato in MQTT\nmolti bugfix\nautomaticamente impostare le azioni del pulsante indietro a false\nsupporto aggiunto per Zigbee2MQTT funzione simulated_brightness\ncontrollo configurazione aggiunto\nuscita di log aggiunto sui dettagli del coordinatore",
-        "es": "*! ¡CAMBIANDO\n\nopciones adicionales para MQTT-Server externo\nconexión a zigbe2mqtt completamente rediseñado y cambiado a MQTT\nmuchos bugfixes\nautomáticamente poner las acciones del botón de nuevo a falso\nsoporte añadido para función Zigbee2MQTT simulado_brightness\ncontrol de configuración añadido\nproducción de registro agregada sobre detalles de coordinadores",
-        "pl": "! BREAKING CHANGE! (ANG.)\n\nobsługa MQTT-Server\nzigbe2mqtt całkowicie przerobił i zmienił MQTT\nwiele błędów\nautomatycznie ustawione akcje przycisku\ndodano obsługę Zigbee2MQTT\nsprawdzać\ndokładna produkcja logów na temat szczegółów koordynacji",
-        "zh-cn": "页:1 BREAKREANGE*\n\n外贸总协定\n与zigbe2mqt完全重新工作,并改装到外贸总协定\n批发\n自动建立但顿行动回到虚假的行动\n对Zigbee2MQTT特征的增援\n增幅检查\n协调员的产出"
-      }
+    "common": {
+        "name": "zigbee2mqtt",
+        "version": "2.3.0",
+        "news": {
+            "2.3.0": {
+                "en": "added support for the `toggle` of states that support this.\nadded correct handling of `color_move` and `color_temperature_move`",
+                "de": "zusätzliche unterstützung für den kippen von staaten, die dies unterstützen.\nkorrekte handhabung von color_move und color_temperature_move",
+                "ru": "добавлена поддержка в отношении государств, которые поддерживают это.\nдобавлена правильная обработка color_move и color_temperature_move",
+                "pt": "acrescentou apoio para o conjunto de estados que apoiam isso.\nadicionado manuseio correto de color_move e color_temperature_move",
+                "nl": "steun toegevoegd voor de toggle van staten die dit ondersteunen.\nvoegde de juiste kleding en kleurtemperatuur toe",
+                "fr": "a ajouté un soutien pour la lutte des etats qui appuient cela.\nla manipulation correcte de color_move et color_temperature_move",
+                "it": "ha aggiunto il sostegno per la lotta di stati che sostengono questo.\naggiunto corretto trattamento di colore_move e colore_temperature_move",
+                "es": "agregó apoyo para la lucha de estados que apoyan esto.\nañadido correcto manejo de color_move y color_temperature_move",
+                "pl": "dodał wsparcie dla porozumień stanów, które to wspierają.\ndodano poprawne zachowanie koloru i kolor_temperature_move",
+                "uk": "додана підтримка для тягових станів, які підтримують це.\nдодано правильну обробку кольором_move та color_ infrastructure_move",
+                "zh-cn": "此外,还支持支持这一国家。.\n· 删除白色、流血和色色色色色彩。"
+            },
+            "2.2.1": {
+                "en": "fix state roles and access\nfix state handling\nfix createZ2MMessage",
+                "de": "zustandsrollen und zugriff beheben\nmanuelle zustandsbearbeitung\nfix erstellenZ2MMessage",
+                "ru": "исправить государственные роли и доступ\nисправить государственную обработку\nисправить CreateZ2MMessage",
+                "pt": "corrigir funções estaduais e acesso\ncorrigir o manuseio do estado\ncorrigir createZ2MMessage",
+                "nl": "vertaling:\nvertaling:\nvertaling:",
+                "fr": "fixer les rôles de l'état et l'accès\nmaniement de l ' état\nfix createZ2MMessage",
+                "it": "fissare i ruoli dello stato e l'accesso\ncorretta gestione dello stato\nfix createZ2MMessage",
+                "es": "fijar funciones estatales y acceso\ncorrección del estado\nfix createZ2MMessage",
+                "pl": "uchwała rola państwowa i dostęp\nnaprawa\ntworzenie Z2MM",
+                "uk": "фіксувати державні ролі і доступ\nфіксувати стан обробки\nфіксатор творуZ2MMessage",
+                "zh-cn": "fix 国家作用和准入\nfix 国家处理\nfix 建立Z2MMessage"
+            },
+            "2.2.0": {
+                "en": "added support for [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nadded support for hs color\nsimulated_brightness data point is added only for supported devices",
+                "de": "unterstützung für [Lidl HG06467-Effekte](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-Effekte)\nunterstützung für hs farbe\nsimuld_brightness-datenpunkt wird nur für unterstützte geräte hinzugefügt",
+                "ru": "добавлена поддержка [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдобавлена поддержка цвета hs\nsimulated_brightness дата точка добавлена только для поддерживаемых устройств",
+                "pt": "apoio adicional para efeitos [Lidl HG06467](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nsuporte adicionado para cor hs\nsimulated_brightness data point é adicionado apenas para dispositivos suportados",
+                "nl": "quality over Quantity (QoQ) Releases Vertaling:\nvertaling:\nvertaling:",
+                "fr": "ajouté support for [Lidl HG06467 effects](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-effects)\nsupport ajouté pour la couleur hs\nsimuld_brightness data point est ajouté seulement pour les appareils pris en charge",
+                "it": "[Lidl HG06467 Effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effetti)\nsupporto aggiunto per il colore hs\nil punto di dati simulated_brightness viene aggiunto solo per i dispositivi supportati",
+                "es": "[Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nsoporte añadido para el color hs\nsimulated_brightness punto de datos se añade sólo para dispositivos compatibles",
+                "pl": "dodano wsparcie dla Lidla HG06467 efektów (https:/wwww.zigbee2mqtt.io/devices/HG06467.html#trigger)\ndodano obsługę koloru hs\nsymulacja danych _brighta jest dodana tylko dla obsługi urządzeń",
+                "uk": "додано підтримку [Lidl HG06467 ефектів](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдодана підтримка кольору hs\nсимулятор_brightness дата додано тільки для підтримуваних пристроїв",
+                "zh-cn": "进一步支持[Lidl HG06467效应](http://www.zigbee2mqt.io/devices/HG06467.html#er-effects)\nb. 对地壳的增援\n仅为支助装置增添了简历数据点。"
+            },
+            "2.1.1": {
+                "en": "advanced detection if a device has been removed\nfixes the design error in the websocket connection",
+                "de": "fortgeschrittene erkennung, wenn ein gerät entfernt wurde\nkorrigiert den designfehler in der websocket-verbindung",
+                "ru": "предварительное обнаружение, если устройство было удалено\nисправляет ошибку дизайна в подключении к сети",
+                "pt": "detecção avançada se um dispositivo foi removido\ncorrige o erro de projeto na conexão websocket",
+                "nl": "als er een apparaat verwijderd is\nde ontwerpfout in de websocket verbinding",
+                "fr": "détection avancée si un dispositif a été enlevé\ncorrige l'erreur de conception dans la connexion websocket",
+                "it": "rilevamento avanzato se un dispositivo è stato rimosso\ncorregge l'errore di progettazione nella connessione websocket",
+                "es": "detección avanzada si se ha eliminado un dispositivo\nfija el error de diseño en la conexión websocket",
+                "pl": "wykrywanie zaawansowane, jeśli urządzenie zostało usunięte\numożliwia to błędy projektowe w łączu internetowym",
+                "uk": "розширене виявлення, якщо пристрій було видалено\nвиправлено помилку дизайну в підключенні websocket",
+                "zh-cn": "如果一个装置被拆除,则预先发现\nf 确定网站的设计错误"
+            },
+            "2.1.0": {
+                "en": "added option for color temperature sync with color\nfix logfilter and debugDevices\nlots of bugfixes\nnow set the correct min/max at color temp\nbetter error handling for the connections",
+                "de": "zusatzoption für farbtemperatur-sync mit farbe\nlogfilter und DebugDevices fixieren\nviele bugfixes\njetzt die richtige min/max in der farbe tempo einstellen\nbessere fehlerbehandlung für die verbindungen",
+                "ru": "добавлена опция для синхронизации цветовой температуры с цветом\nисправить logfilter и debugDevices\nмного багфиксов\nтеперь установите правильный мин/макс на цветной темп\nлучшая обработка ошибок для подключений",
+                "pt": "opção adicionada para sincronização de temperatura de cor com cor\ncorrigir logfilter e debugDevices\nlotes de correções de bugs\nagora definir o min/max correto na temperatura de cor\nmelhor manipulação de erros para as conexões",
+                "nl": "vertaling:\nvertaling:\nveel insectenfixen\nzet nu de juiste min/max op kleurtemperatuur\nbeter fout gaan voor de connecties",
+                "fr": "option ajoutée pour synchronisation de température couleur avec couleur\nfixer logfilter et debugDevices\nbeaucoup de bugfixes\nmaintenant définir le min/max correct à la température de couleur\nmeilleure manipulation des erreurs pour les connexions",
+                "it": "opzione aggiunta per la sincronizzazione della temperatura del colore con il colore\ncorreggere logfilter e debugDevices\nmolti bugfix\nora impostare il min/max corretto a temperatura di colore\nmigliore gestione degli errori per le connessioni",
+                "es": "opción agregada para sincronización de temperatura de color con color\nfijación de logfilter y debugDispositivos\nmuchos bugfixes\nahora establece el min/max correcto a color temp\nmejor manejo de errores para las conexiones",
+                "pl": "dodano możliwość synchronizacji kolorowej synchronizacji z kolorami\nnaprawić filtry i debugDevices\nwiele błędów\nteraz ustalono odpowiednie min/max w kolorowym tempie\nlepsza obsługa błędów dla połączeń powiązań",
+                "uk": "додано варіант синхронізації кольору з кольором\nвиправити logfilter і debugDevices\nбагато помилок\nтепер встановлюємо правильний хв/макс за кольором\nкраща обробка помилок для підключення",
+                "zh-cn": "添加了用颜色的气温合办法\nfix 木图和溶剂\n批发\n现将正确的分钟/升值确定为色色彩。\na. 处理联系的错误"
+            },
+            "2.0.0": {
+                "en": "*!!!BREAKING CHANGE!!!**\n\nadded configurable connection to Zigbee2MQTT (Settings must be renewed)\nWebsocket\nExternal MQTT-Server\nInternal MQTT-Server\noptimized state writing performance in ioBroker\nfixed the correct set of the connection status",
+                "de": "*! BREAKING CHANGE*\n\nzusätzliche konfigurierbare Verbindung zu Zigbee2MQTT (Einstellungen müssen erneuert werden)\nWebsocket\nExterner MQTT-Server\nInterner MQTT-Server\noptimierte Zustandsschreibleistung in ioBroker\nden korrekten satz des verbindungsstatus festlegt",
+                "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлена настраиваемая связь с Zigbee2MQTT (Настройки должны быть обновлены)\nWebsocket\nВнешний MQTT-Server\nВнутренний MQTT-Server\nоптимизированное представление государственной записи в ioBroker\nисправил правильный набор состояния соединения",
+                "pt": "*! QUE GRANDE MUDANÇA\n\nconexão configurável adicionada ao Zigbee2MQTT (As inscrições devem ser renovadas)\nWebsocket\nMQTT externo-Server\nMQTT interno-Server\ndesempenho de escrita de estado otimizado no ioBroker\nfixou o conjunto correto do status da conexão",
+                "nl": "♪ \n\nvoegde connectie toe aan Zigbee2MQT (Settings moet vernieuwd)\nWebsocket\nExterne MQTT-Server\nInterne MQTT-Server\noptimaal staatsschrijving in ioBroker\nde correcte set van de connectie status",
+                "fr": "*! CHANGE DE BREAKING*\n\nconnexion configurable ajoutée à Zigbee2MQTT (Les paramètres doivent être renouvelés)\nWebsocket\nMQTT-Serveur externe\nInterne MQTT-Serveur\nperformance d'écriture d'état optimisée en ioBroker\nfixe l'ensemble correct du statut de connexion",
+                "it": "# CAMBIAMENTO\n\naggiunta di connessione configurabile a Zigbee2MQTT (I posti devono essere rinnovati)\nWebsocket\nMQTT-Server esterno\nInterno MQTT-Server\nprestazioni di scrittura dello stato ottimizzate in ioBroker\nfisso l'insieme corretto dello stato di connessione",
+                "es": "*! ¡CAMBIANDO\n\nconexión configurable agregada a Zigbee2MQTT (Se debe renovar la configuración)\nWebsocket\nMQTT externo-Server\nInterno MQTT-Server\nrendimiento de escritura de estado optimizado en ioBroker\nfija el conjunto correcto del estado de conexión",
+                "pl": "! BREAKING CHANGE! (ANG.)\n\nzigbee2MQTT dodano połączenie konfigurowalne. (Odrodzenie się)\nStrona internetowa\nOficjalna strona MQTT-Server\nOficjalna strona MQTT\nzoptymalizowany stan pisania w ioBrokerze\nustalono poprawny zbiór statusu związku",
+                "uk": "* БРЕАКІНГ ЧАНГ*\n\nдодано налаштування підключення до Zigbee2MQTT (Налаштування повинні бути відновлені)\nВеб-сайт\nЗовнішній MQTT-Server\nВнутрішній MQTT-Server\nоптимізоване державне письмо продуктивність в ioBroker\nвиправлено правильний набір статусу підключення",
+                "zh-cn": "页:1 BREAKREANGE*\n\n兹格贝雷2 MQTT的可图联系 (必须重启)\n网站\n外贸总协定\n内贸总协定\n最佳国家书面表现\na. 固定的联络点地位"
+            },
+            "1.0.0": {
+                "en": "*!!!BREAKING CHANGE!!!**\n\nadded options for external MQTT-Server\nconnection to zigbe2mqtt completely reworked and changed to MQTT\nlots of bugfixes\nautomatically set button actions back to false\nadded support for Zigbee2MQTT feature simulated_brightness\nadded config check\nadded log output about coordinator details",
+                "de": "*! BREAKING CHANGE*\n\nweitere Optionen für externen MQTT-Server\nanschluss an Zickbe2mqt komplett überarbeitet und in MQTT geändert\nviele bugfixes\nautomatisch schaltfläche aktionen wieder auf false setzen\nunterstützung für Zigbee2MQTT Funktion simuliert_brightness\nzusatzprüfung\nlog ausgabe von koordinatordaten hinzugefügt",
+                "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлены опции для внешнего MQTT-Server\nподключение к zigbe2mqtt полностью переработано и изменено в MQTT\nмного багфиксов\nавтоматически установите кнопки действия назад к ложному\nдобавлена поддержка функции Zigbee2MQTT simulated_brightness\nдобавлено config check\nдобавил выход журнала о деталях координатора",
+                "pt": "*! QUE GRANDE MUDANÇA\n\nopções adicionadas para MQTT-Server externo\nconexão com zigbe2mqtt completamente retrabalhado e alterado para MQTT\nlotes de correções de bugs\nautomaticamente definir as ações do botão de volta ao falso\nsuporte adicionado para recurso Zigbee2MQTT simulado_brightness\nverificação de configuração adicionada\nadicionado saída de log sobre detalhes do coordenador",
+                "nl": "♪ \n\nvoegde opties toe voor externe MQT-Server\nverbinding met Zigbe2mqt volledig herwerkt en veranderd in MQT\nveel insectenfixen\nautomatisch de knoppen opzetten naar valse\nsteun toegevoegd voor Zigbee2MQT\nvoegde config check toe\nvertaling:",
+                "fr": "*! CHANGE DE BREAKING*\n\noptions supplémentaires pour MQTT-Server externe\nconnexion à zigbe2mqtt complètement retravaillé et changé à MQTT\nbeaucoup de bugfixes\ndéfinir automatiquement les actions de bouton retour à false\nsupport ajouté pour la fonction Zigbee2MQTT simulée_brightness\nconfig check ajouté\nproduit log ajouté sur les coordonnées des coordonnateurs",
+                "it": "# CAMBIAMENTO\n\nopzioni aggiuntive per MQTT-Server esterno\nconnessione a zigbe2mqt completamente rielaborato e cambiato in MQTT\nmolti bugfix\nautomaticamente impostare le azioni del pulsante indietro a false\nsupporto aggiunto per Zigbee2MQTT funzione simulated_brightness\ncontrollo configurazione aggiunto\nuscita di log aggiunto sui dettagli del coordinatore",
+                "es": "*! ¡CAMBIANDO\n\nopciones adicionales para MQTT-Server externo\nconexión a zigbe2mqtt completamente rediseñado y cambiado a MQTT\nmuchos bugfixes\nautomáticamente poner las acciones del botón de nuevo a falso\nsoporte añadido para función Zigbee2MQTT simulado_brightness\ncontrol de configuración añadido\nproducción de registro agregada sobre detalles de coordinadores",
+                "pl": "! BREAKING CHANGE! (ANG.)\n\nobsługa MQTT-Server\nzigbe2mqtt całkowicie przerobił i zmienił MQTT\nwiele błędów\nautomatycznie ustawione akcje przycisku\ndodano obsługę Zigbee2MQTT\nsprawdzać\ndokładna produkcja logów na temat szczegółów koordynacji",
+                "zh-cn": "页:1 BREAKREANGE*\n\n外贸总协定\n与zigbe2mqt完全重新工作,并改装到外贸总协定\n批发\n自动建立但顿行动回到虚假的行动\n对Zigbee2MQTT特征的增援\n增幅检查\n协调员的产出",
+                "uk": "*!!!ГРУЗОВА ЗМІНА!!!**\n\nдодані опції для зовнішнього MQTT-сервера\nпідключення до zigbe2mqtt повністю перероблено та змінено на MQTT\nбагато виправлень помилок\nавтоматично повертає дії кнопок на false\nдодано підтримку функції simulated_brightness Zigbee2MQTT\nдодана перевірка конфігурації\nдодано виведення журналу про деталі координатора"
+            }
+        },
+        "titleLang": {
+            "en": "zigbee2mqtt",
+            "de": "zigbee2mqtt",
+            "ru": "зигби2мктт",
+            "pt": "zigbee2mqtt",
+            "nl": "zigbee2mqtt",
+            "fr": "zigbee2mqtt",
+            "it": "zigbee2mqtt",
+            "es": "zigbee2mqtt",
+            "pl": "zigbee2mqtt",
+            "zh-cn": "zigbee2mqtt",
+            "uk": "zigbee2mqtt"
+        },
+        "desc": {
+            "en": "Zigbee2MQTT adapter for ioBroker",
+            "de": "Zigbee2MQTT-Adapter für ioBroker",
+            "ru": "Адаптер Zigbee2MQTT для ioBroker",
+            "pt": "Adaptador Zigbee2MQTT para ioBroker",
+            "nl": "Zigbee2MQTT-adapter voor ioBroker",
+            "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
+            "it": "Adattatore Zigbee2MQTT per ioBroker",
+            "es": "Adaptador Zigbee2MQTT para ioBroker",
+            "pl": "Adapter Zigbee2MQTT do ioBroker",
+            "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
+            "uk": "Адаптер Zigbee2MQTT для ioBroker"
+        },
+        "authors": [
+            "Dennis Rathjen <dennis.rathjen@outlook.de>"
+        ],
+        "keywords": [
+            "zigbee",
+            "zigbee2mqtt",
+            "hue",
+            "tradfri",
+            "aqara",
+            "tuya"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "zigbee2mqtt.png",
+        "enabled": false,
+        "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+        "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "lighting",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "json"
+        },
+        "adminTab": {
+            "name": {
+                "en": "Zigbee2MQTT",
+                "de": "Zigbee2MQTT",
+                "ru": "Zigbee2MQTT",
+                "pt": "Zigbee2MQTT",
+                "nl": "Zigbee2MQTT",
+                "fr": "Zigbee2MQTT",
+                "it": "Zigbee2MQTT",
+                "es": "Zigbee2MQTT",
+                "pl": "Zigbee2MQTT",
+                "zh-cn": "Zigbee2MQTT"
+            },
+            "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
+            "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+        },
+        "localLinks": {
+            "_default": {
+                "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
+            }
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.13"
+            }
+        ]
     },
-    "titleLang": {
-      "en": "zigbee2mqtt",
-      "de": "zigbee2mqtt",
-      "ru": "зигби2мктт",
-      "pt": "zigbee2mqtt",
-      "nl": "zigbee2mqtt",
-      "fr": "zigbee2mqtt",
-      "it": "zigbee2mqtt",
-      "es": "zigbee2mqtt",
-      "pl": "zigbee2mqtt",
-      "zh-cn": "zigbee2mqtt"
+    "native": {
+        "connectionType": "ws",
+        "wsServerIP": "",
+        "wsServerPort": 8080,
+        "dummyMqtt": false,
+        "externalMqttServerIP": "",
+        "externalMqttServerPort": 1883,
+        "mqttServerIPBind": "0.0.0.0",
+        "mqttServerPort": 1885,
+        "webUIScheme": "http",
+        "webUIServer": "",
+        "webUIPort": 8080,
+        "debugLogEnabled": false,
+        "proxyZ2MLogs": true,
+        "useKelvin": false,
+        "colorTempSyncColor": false,
+        "brightnessMoveOnOff": false
     },
-    "desc": {
-      "en": "Zigbee2MQTT adapter for ioBroker",
-      "de": "Zigbee2MQTT-Adapter für ioBroker",
-      "ru": "Адаптер Zigbee2MQTT для ioBroker",
-      "pt": "Adaptador Zigbee2MQTT para ioBroker",
-      "nl": "Zigbee2MQTT-adapter voor ioBroker",
-      "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
-      "it": "Adattatore Zigbee2MQTT per ioBroker",
-      "es": "Adaptador Zigbee2MQTT para ioBroker",
-      "pl": "Adapter Zigbee2MQTT do ioBroker",
-      "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器"
-    },
-    "authors": [
-      "Dennis Rathjen <dennis.rathjen@outlook.de>"
-    ],
-    "keywords": [
-      "zigbee",
-      "zigbee2mqtt",
-      "hue",
-      "tradfri",
-      "aqara",
-      "tuya"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "zigbee2mqtt.png",
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "lighting",
-    "compact": true,
-    "connectionType": "local",
-    "dataSource": "push",
-    "adminUI": {
-      "config": "json"
-    },
-    "adminTab": {
-      "name": {
-        "en": "Zigbee2MQTT",
-        "de": "Zigbee2MQTT",
-        "ru": "Zigbee2MQTT",
-        "pt": "Zigbee2MQTT",
-        "nl": "Zigbee2MQTT",
-        "fr": "Zigbee2MQTT",
-        "it": "Zigbee2MQTT",
-        "es": "Zigbee2MQTT",
-        "pl": "Zigbee2MQTT",
-        "zh-cn": "Zigbee2MQTT"
-      },
-      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
-      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
-    },
-    "localLinks": {
-      "_default": {
-        "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
-      }
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.22"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=5.1.13"
-      }
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Zigbee2MQTT connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.debugmessages",
+            "type": "state",
+            "common": {
+                "name": "Log changes as warnings for",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.logfilter",
+            "type": "state",
+            "common": {
+                "name": "Logs matching filters are ignored by the LogProxy",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        }
     ]
-  },
-  "native": {
-    "connectionType": "ws",
-    "wsServerIP": "",
-    "wsServerPort": 8080,
-    "dummyMqtt": false,
-    "externalMqttServerIP": "",
-    "externalMqttServerPort": 1883,
-    "mqttServerIPBind": "0.0.0.0",
-    "mqttServerPort": 1885,
-    "webUIScheme": "http",
-    "webUIServer": "",
-    "webUIPort": 8080,
-    "debugLogEnabled": false,
-    "proxyZ2MLogs": true,
-    "useKelvin": false,
-    "colorTempSyncColor": false
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Zigbee2MQTT connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.debugmessages",
-      "type": "state",
-      "common": {
-        "name": "Log changes as warnings for",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.logfilter",
-      "type": "state",
-      "common": {
-        "name": "Logs matching filters are ignored by the LogProxy",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    }
-  ]
 }
