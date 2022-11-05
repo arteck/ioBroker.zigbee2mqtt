@@ -2,7 +2,12 @@ name: Device problem report
 description: Data points or functionalities are missing
 title: "[Device problem]: "
 labels: [device problem]
-body:
+body: 
+  - type: markdown
+    attributes:
+      value: |
+        **IMPORTANT:** Before submitting:
+        - You read the [FAQ](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md)        
   - type: input
     id: link
     attributes:
