@@ -45,9 +45,9 @@ Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet
 - Anschliesed den Adapter neustarten
 - Nun tauchen im Log Warnmeldungen auf die ungefähr folgendes Aussehen haben: `-->> fromZ2M -> 0x...... exposes:`
 
-## Welche Zigbee2Mqtt-Konfigurationsparameter werden benötigt?? <a name="5"></a>
+## Welche Zigbee2MQTT Konfigurationsparameter werden benötigt?? <a name="5"></a>
 
-Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2Mqtt, daher wird der Legacy Modus nicht unterstützt.  
+Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2MQTT, daher wird der Legacy Modus nicht unterstützt.  
 Das bedeutet, dass die folgenden Konfigurationsparameter ** zwingend notwendig** sind, damit der Adapter richtig funktioniert!
 
 ```yaml
