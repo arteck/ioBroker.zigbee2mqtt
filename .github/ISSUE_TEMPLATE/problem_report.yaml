@@ -2,6 +2,11 @@ name: Problem report
 description: Create a report to help us improve
 labels: [problem]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        **IMPORTANT:** Before submitting:
+        - You read the [FAQ](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md)  
   - type: textarea
     id: what_happend
     attributes:
