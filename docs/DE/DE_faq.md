@@ -12,6 +12,7 @@ Offizielle Dokumentation: https://www.zigbee2mqtt.io/guide/getting-started
   - [Was ist der Unterschied zwischen diesem Adapter und dem ioBroker/Zigbee Adapter? <a name="2"></a>](#was-ist-der-unterschied-zwischen-diesem-adapter-und-dem-iobrokerzigbee-adapter-)
   - [Was genau ist Zigbee2MQTT/Z2M? <a name="3"></a>](#was-genau-ist-zigbee2mqttz2m-)
   - [Wie erhalte ich die Expositionsdaten eines Geräts? <a name="4"></a>](#wie-erhalte-ich-die-expositionsdaten-eines-geräts-)
+  - [Welche Zigbee2Mqtt-Konfigurationsparameter werden benötigt?](#5)
 
 
 ## Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker <a name="1"></a>
@@ -43,3 +44,19 @@ Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet
 - Sie müssen die IEEE-Adresse (`0x......`) des betroffenen Geräts in den Datenpunkt `zigbee2mqtt.[X].info.debugmessages` schreiben
 - Anschliesed den Adapter neustarten
 - Nun tauchen im Log Warnmeldungen auf die ungefähr folgendes Aussehen haben: `-->> fromZ2M -> 0x...... exposes:`
+
+## Welche Zigbee2Mqtt-Konfigurationsparameter werden benötigt?? <a name="5"></a>
+
+Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2Mqtt, daher wird der Legacy Modus nicht unterstützt.  
+Das bedeutet, dass die folgenden Konfigurationsparameter ** zwingend notwendig** sind, damit der Adapter richtig funktioniert!
+
+```JSON
+advanced:
+    <deine anderen Parameter>
+    legacy_api: false
+    legacy_availability_payload: false
+    output: json
+device_options:
+    legacy: false
+availability: true
+```
