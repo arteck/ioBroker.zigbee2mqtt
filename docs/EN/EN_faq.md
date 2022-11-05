@@ -30,9 +30,9 @@ Solution:
 - Then restart the adapter
 - And now look for the warning message in the log, which starts like this: `-->> fromZ2M -> 0x...... exposes:`
 
-## Which Zigbee2Mqtt configuration parameters are needed? <a name="5"></a>
+## Which Zigbee2MQTT configuration parameters are needed? <a name="5"></a>
 
-This adapter is based on the current JSON payload of Zigbee2Mqtt, so the legacy mode is not supported.  
+This adapter is based on the current JSON payload of Zigbee2MQTT, so the legacy mode is not supported.  
 This means that the following config parameters are **mandatory** for the adapter to work properly!
 
 ```yaml
