@@ -50,7 +50,7 @@ Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet
 Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2Mqtt, daher wird der Legacy Modus nicht unterstützt.  
 Das bedeutet, dass die folgenden Konfigurationsparameter ** zwingend notwendig** sind, damit der Adapter richtig funktioniert!
 
-```JSON
+```yaml
 advanced:
     <deine anderen Parameter>
     legacy_api: false
