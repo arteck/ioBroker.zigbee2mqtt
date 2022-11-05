@@ -48,7 +48,7 @@ Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet
 ## Welche Zigbee2MQTT Konfigurationsparameter werden benötigt?? <a name="5"></a>
 
 Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2MQTT, daher wird der Legacy Modus nicht unterstützt.  
-Das bedeutet, dass die folgenden Konfigurationsparameter ** zwingend notwendig** sind, damit der Adapter richtig funktioniert!
+Das bedeutet, dass die folgenden Konfigurationsparameter **zwingend notwendig** sind, damit der Adapter richtig funktioniert!
 
 ```yaml
 advanced:
