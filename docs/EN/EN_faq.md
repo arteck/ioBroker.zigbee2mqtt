@@ -35,7 +35,7 @@ Solution:
 This adapter is based on the current JSON payload of Zigbee2Mqtt, so the legacy mode is not supported.  
 This means that the following config parameters are **mandatory** for the adapter to work properly!
 
-```JSON
+```yaml
 advanced:
     <Your other parameters>
     legacy_api: false
