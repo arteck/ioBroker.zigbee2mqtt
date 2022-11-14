@@ -1,15 +1,15 @@
 # Installation inkl. Umzug vom ioBroker/Zigbee Adapter
 
 Die Installation des Adapters sowie den Umzug des ioBrocker/Zigbee Adapters erfordert einige Vorarbeiten. 
-Hier wird die grundlegende Installation aller Voraussetzungen beschrieben. Detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
+Hier wird die grundlegende Installation und deren Voraussetzungen beschrieben. Detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/getting-started/).
 
 ## Installation
 
 In unserem Beispiel wird Zigbee2MQTT via Docker / Docker Compose eingerichtet. Weitere Einrichtungsmethoden findet ihr auf der offiziellen Dokumentation.
-Als Voraussetzung ist hier ein eingereichter Docker Server geben!
+Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung!
 
-1. Vorhanden oder neue Docker-Compose.yml bearbeiten und um folgenden Eintrag ergänzen.
-   Wichtig ist nur, dass diese Einstellungen an eure Umgebung angepasst werden, z.B. der Pfad zur USB Antenne unter "devices" oder der Pfad zur Konfigurationsdatei unter "volumes".
+1. Die vorhandene oder neue Docker-Compose.yml bearbeiten und um folgenden Eintrag ergänzen.
+   Wichtig ist , dass diese Einstellungen an eure Umgebung angepasst werden, z.B. der Pfad zur USB Antenne unter "devices" oder der Pfad zur Konfigurationsdatei unter "volumes".
 
     ```yml
     zigbee2mqtt:
@@ -99,13 +99,12 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
       network_key: [0x02, 0x03, 0x05, 0x08, 0x09, 0x0B, 0x0D, 0x0B, 0x00, 0x02, 0x04, 0x07, 0x08, 0x0A, 0x0C, 0x0D] # Netzwerkkey/Transportschlüssel und in der schreibweise [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
    ```
    Dabei ist zu bedachten, dass NUR DIE PAN_ID ins HEX Format überführt werden muss
-   behilflich ist ein Hex Konverter wie  dieser : https://www.rapidtables.com/convert/number/hex-to-decimal.html .
-   Die Restlichen Werten liegen schon im richtigen Format, müssen nur in die richtige Schreibweise überführt werden.
+   behilflich ist ein Hex Konverter wie  dieser : https://www.rapidtables.com/convert/number/hex-to-decimal.html.
    
-   also aus ext_pan_id: 
-   `00124b0237b988`
-   
-   wird die ext_pan_id: 
+   Die Restlichen Werten liegen schon im richtigen Format, müssen nur in die richtige Schreibweise überführt werden.     
+   - also aus ext_pan_id: 
+   `00124b0237b988`     
+   - wird die ext_pan_id: 
    `0x00`, `0x12`, `0x4b`, `0x02`, `0x37`, `0xb9`, `0x88`
    
    genau so muss auch der network_key umgeschlüsselt werden.
@@ -122,8 +121,8 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
    Quelle: /opt/iobroker/iobroker-data/zigbee_/shepart.db
    Ziel: "Docker-Verzeichnis"/zigbee2mqtt/data/database.db
 
-5. Habt ihr das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen werden und den Container gestaltet werden.
-   Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbinden. Auch sollte sich nun die Konfigurtion geändert haben und die Hex Werte die wir eingetragen haben müssten umgerechnet worden sein. Sollte das Webinterface nicht hoch kommen/erreichbar sein liegt noch ein Fehler vor und wird zu 99% im Log des Containers angezeigt.
+5. Habt ihr das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen und der Container gestaltet werden.
+   Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbinden. Auch sollte sich nun die Konfiguration geändert haben und die Hex Werte die wir eingetragen haben müssten umgerechnet worden sein. Sollte das Webinterface nicht hoch kommen/erreichbar sein liegt noch ein Fehler vor und wird zu 99% im Log des Containers angezeigt.
 
 6. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
 
