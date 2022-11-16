@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.4.0",
+    "version": "2.4.1",
     "news": {
+      "2.4.1": {
+        "en": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "de": "(https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "ru": "исправить на [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "pt": "correção com base em [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#comment-1316656378)",
+        "nl": "quality over Quantity Releases Vertaling:",
+        "fr": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "it": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "es": "fijado basado en [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "pl": "recenzent oparty na przeglądzie (https:/github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656363636378)",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8",
+        "zh-cn": "fix 基于[审查](http://github.com/ioBroker/ioBroker.reories/pull/1976#issuement-1316656378)"
+      },
       "2.4.0": {
         "en": "fix for devices with multiple endpoints ([#57](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/57)).\nadded option `Brightness move should also turn the light on or off`\nadded state toggle for groups \nmore dynamic during data point creation ([#48](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/48)).",
         "de": "fix für Geräte mit mehreren Endpunkten [#57](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/57).\nzusätzliche Option `Brightness move sollte auch das Licht ein- oder ausschalten `\nzusatzzustandswinkel für gruppen\nmehr Dynamik bei der Erstellung von Datenpunkten [#48](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/48).",
@@ -80,19 +93,6 @@
         "pl": "dodano możliwość synchronizacji kolorowej synchronizacji z kolorami\nnaprawić filtry i debugDevices\nwiele błędów\nteraz ustalono odpowiednie min/max w kolorowym tempie\nlepsza obsługa błędów dla połączeń powiązań",
         "uk": "додано варіант синхронізації кольору з кольором\nвиправити logfilter і debugDevices\nбагато помилок\nтепер встановлюємо правильний хв/макс за кольором\nкраща обробка помилок для підключення",
         "zh-cn": "添加了用颜色的气温合办法\nfix 木图和溶剂\n批发\n现将正确的分钟/升值确定为色色彩。\na. 处理联系的错误"
-      },
-      "2.0.0": {
-        "en": "*!!!BREAKING CHANGE!!!**\n\nadded configurable connection to Zigbee2MQTT (Settings must be renewed)\nWebsocket\nExternal MQTT-Server\nInternal MQTT-Server\noptimized state writing performance in ioBroker\nfixed the correct set of the connection status",
-        "de": "*! BREAKING CHANGE*\n\nzusätzliche konfigurierbare Verbindung zu Zigbee2MQTT (Einstellungen müssen erneuert werden)\nWebsocket\nExterner MQTT-Server\nInterner MQTT-Server\noptimierte Zustandsschreibleistung in ioBroker\nden korrekten satz des verbindungsstatus festlegt",
-        "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлена настраиваемая связь с Zigbee2MQTT (Настройки должны быть обновлены)\nWebsocket\nВнешний MQTT-Server\nВнутренний MQTT-Server\nоптимизированное представление государственной записи в ioBroker\nисправил правильный набор состояния соединения",
-        "pt": "*! QUE GRANDE MUDANÇA\n\nconexão configurável adicionada ao Zigbee2MQTT (As inscrições devem ser renovadas)\nWebsocket\nMQTT externo-Server\nMQTT interno-Server\ndesempenho de escrita de estado otimizado no ioBroker\nfixou o conjunto correto do status da conexão",
-        "nl": "♪ \n\nvoegde connectie toe aan Zigbee2MQT (Settings moet vernieuwd)\nWebsocket\nExterne MQTT-Server\nInterne MQTT-Server\noptimaal staatsschrijving in ioBroker\nde correcte set van de connectie status",
-        "fr": "*! CHANGE DE BREAKING*\n\nconnexion configurable ajoutée à Zigbee2MQTT (Les paramètres doivent être renouvelés)\nWebsocket\nMQTT-Serveur externe\nInterne MQTT-Serveur\nperformance d'écriture d'état optimisée en ioBroker\nfixe l'ensemble correct du statut de connexion",
-        "it": "# CAMBIAMENTO\n\naggiunta di connessione configurabile a Zigbee2MQTT (I posti devono essere rinnovati)\nWebsocket\nMQTT-Server esterno\nInterno MQTT-Server\nprestazioni di scrittura dello stato ottimizzate in ioBroker\nfisso l'insieme corretto dello stato di connessione",
-        "es": "*! ¡CAMBIANDO\n\nconexión configurable agregada a Zigbee2MQTT (Se debe renovar la configuración)\nWebsocket\nMQTT externo-Server\nInterno MQTT-Server\nrendimiento de escritura de estado optimizado en ioBroker\nfija el conjunto correcto del estado de conexión",
-        "pl": "! BREAKING CHANGE! (ANG.)\n\nzigbee2MQTT dodano połączenie konfigurowalne. (Odrodzenie się)\nStrona internetowa\nOficjalna strona MQTT-Server\nOficjalna strona MQTT\nzoptymalizowany stan pisania w ioBrokerze\nustalono poprawny zbiór statusu związku",
-        "uk": "* БРЕАКІНГ ЧАНГ*\n\nдодано налаштування підключення до Zigbee2MQTT (Налаштування повинні бути відновлені)\nВеб-сайт\nЗовнішній MQTT-Server\nВнутрішній MQTT-Server\nоптимізоване державне письмо продуктивність в ioBroker\nвиправлено правильний набір статусу підключення",
-        "zh-cn": "页:1 BREAKREANGE*\n\n兹格贝雷2 MQTT的可图联系 (必须重启)\n网站\n外贸总协定\n内贸总协定\n最佳国家书面表现\na. 固定的联络点地位"
       }
     },
     "titleLang": {
