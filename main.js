@@ -209,9 +209,9 @@ class Zigbee2mqtt extends core.Adapter {
                             statesController.processDeviceMessage(newMessage);
                         }
                         // States
-                    } else if (!messageObj.topic.includes('/')) {
-                        statesController.processDeviceMessage(messageObj);
+                    } else {
                         //console.log(JSON.stringify(messageObj));
+                        statesController.processDeviceMessage(messageObj);
                     }
                 }
                 break;
