@@ -30,6 +30,10 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) fix when `friendly_name` `/` contains
+
 ### 2.4.1 (2022-11-16)
 
 -   (o0shojo0o) fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)
