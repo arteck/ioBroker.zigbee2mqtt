@@ -9,7 +9,9 @@
 
 [![NPM](https://nodei.co/npm/iobroker.zigbee2mqtt.png?downloads=true)](https://nodei.co/npm/iobroker.zigbee2mqtt/)
 
-**Tests:** ![Test and Release](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/workflows/Test%20and%20Release/badge.svg)
+**Tests:**  
+![Test and Release](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/workflows/Test%20and%20Release/badge.svg)
+![CodeQL](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/actions/workflows/codeql.yml/badge.svg?branch=main)
 
 ## zigbee2mqtt adapter for ioBroker
 
