@@ -3,6 +3,8 @@
 Die Installation des Adapters erfordert einige Vorarbeiten. 
 Hier wird die grundlegende Installation inkl. aller Voraussetzungen beschrieben. Detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
 
+`ACHTUNG: Sollte der Koordinator vorher schon einmal woanders im Einsatz gewesen sein muss dieser zurückgesetzt werden, ansonsten kommet es hier zu Fehlern.` 
+
 
 ## Installation
 
@@ -63,7 +65,7 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
         base_topic: zigbee2mqtt
         server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
     serial:
-        port: /dev/ttyACM0
+        port: /dev/ttyUSB0
     advanced:
         pan_id: GENERATE
         ext_pan_id: [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
