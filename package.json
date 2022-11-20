@@ -1,6 +1,6 @@
 {
   "name": "iobroker.zigbee2mqtt",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Zigbee2MQTT adapter for ioBroker",
   "author": {
     "name": "Dennis Rathjen",

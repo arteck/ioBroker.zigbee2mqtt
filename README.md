@@ -32,7 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.4.2 (2022-11-20)
 
 -   (o0shojo0o) added correct handling of `move_to_saturation`, `hue_move` and `brightness_move_to_level` ([#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68))
 -   (o0shojo0o) fix when `friendly_name` `/` contains
