@@ -1,8 +1,34 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.4.0",
+    "version": "2.4.2",
     "news": {
+      "2.4.2": {
+        "en": "added correct handling of `move_to_saturation`, `hue_move` and `brightness_move_to_level` ([#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68))\nfix when `friendly_name` `/` contains",
+        "de": "die korrekte Handhabung von move_to_saturation, hue_move und bright_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nbei freundlich_name `/` enthält",
+        "ru": "добавлена правильная обработка move_to_saturation, hue_move и brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nисправить, когда friendly_name `/` содержит",
+        "pt": "adicionado manuseio correto de move_to_saturation, hue_move e brilho_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\ncorrigir quando friendly_name `/` contém",
+        "nl": "voegde de juiste behandeling van verplaatsing, huemove and brightnessmovetolevel 68) (httub /0shojoo-0-Bio-Broctrotqusts)\nvertaling: _",
+        "fr": "ajouté correct handling of move_to_saturation, hue_move and brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfixer lorsque friendly_name `/` contient",
+        "it": "aggiunto corretta gestione di move_to_saturation, hue_move e luminosità_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfissare quando amichevole_name `/` contiene",
+        "es": "añadido correcto manejo de move_to_saturation, hue_move and brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\narreglar cuando friendly_name `/ contiene",
+        "pl": "(Prawdziwa obsługa ruchu_to_saturation, hue_move and brightness_move_to_level #68(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nustanowić się, gdy przyjaźnić nazwisko/'. zawierać",
+        "uk": "додано правильну обробку рухом_to_saturation, hue_move_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nфіксація при дружній_ім`я `/` в наявності",
+        "zh-cn": "进一步正确地处理搬迁问题:流向、障碍和光明_move_to_级[#68](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfix 友好时的名称:“/” 内载"
+      },
+      "2.4.1": {
+        "en": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "de": "(https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "ru": "исправить на [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "pt": "correção com base em [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#comment-1316656378)",
+        "nl": "quality over Quantity Releases Vertaling:",
+        "fr": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "it": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "es": "fijado basado en [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
+        "pl": "recenzent oparty na przeglądzie (https:/github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656363636378)",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8",
+        "zh-cn": "fix 基于[审查](http://github.com/ioBroker/ioBroker.reories/pull/1976#issuement-1316656378)"
+      },
       "2.4.0": {
         "en": "fix for devices with multiple endpoints ([#57](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/57)).\nadded option `Brightness move should also turn the light on or off`\nadded state toggle for groups \nmore dynamic during data point creation ([#48](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/48)).",
         "de": "fix für Geräte mit mehreren Endpunkten [#57](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/57).\nzusätzliche Option `Brightness move sollte auch das Licht ein- oder ausschalten `\nzusatzzustandswinkel für gruppen\nmehr Dynamik bei der Erstellung von Datenpunkten [#48](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/48).",
@@ -67,32 +93,6 @@
         "pl": "wykrywanie zaawansowane, jeśli urządzenie zostało usunięte\numożliwia to błędy projektowe w łączu internetowym",
         "uk": "розширене виявлення, якщо пристрій було видалено\nвиправлено помилку дизайну в підключенні websocket",
         "zh-cn": "如果一个装置被拆除,则预先发现\nf 确定网站的设计错误"
-      },
-      "2.1.0": {
-        "en": "added option for color temperature sync with color\nfix logfilter and debugDevices\nlots of bugfixes\nnow set the correct min/max at color temp\nbetter error handling for the connections",
-        "de": "zusatzoption für farbtemperatur-sync mit farbe\nlogfilter und DebugDevices fixieren\nviele bugfixes\njetzt die richtige min/max in der farbe tempo einstellen\nbessere fehlerbehandlung für die verbindungen",
-        "ru": "добавлена опция для синхронизации цветовой температуры с цветом\nисправить logfilter и debugDevices\nмного багфиксов\nтеперь установите правильный мин/макс на цветной темп\nлучшая обработка ошибок для подключений",
-        "pt": "opção adicionada para sincronização de temperatura de cor com cor\ncorrigir logfilter e debugDevices\nlotes de correções de bugs\nagora definir o min/max correto na temperatura de cor\nmelhor manipulação de erros para as conexões",
-        "nl": "vertaling:\nvertaling:\nveel insectenfixen\nzet nu de juiste min/max op kleurtemperatuur\nbeter fout gaan voor de connecties",
-        "fr": "option ajoutée pour synchronisation de température couleur avec couleur\nfixer logfilter et debugDevices\nbeaucoup de bugfixes\nmaintenant définir le min/max correct à la température de couleur\nmeilleure manipulation des erreurs pour les connexions",
-        "it": "opzione aggiunta per la sincronizzazione della temperatura del colore con il colore\ncorreggere logfilter e debugDevices\nmolti bugfix\nora impostare il min/max corretto a temperatura di colore\nmigliore gestione degli errori per le connessioni",
-        "es": "opción agregada para sincronización de temperatura de color con color\nfijación de logfilter y debugDispositivos\nmuchos bugfixes\nahora establece el min/max correcto a color temp\nmejor manejo de errores para las conexiones",
-        "pl": "dodano możliwość synchronizacji kolorowej synchronizacji z kolorami\nnaprawić filtry i debugDevices\nwiele błędów\nteraz ustalono odpowiednie min/max w kolorowym tempie\nlepsza obsługa błędów dla połączeń powiązań",
-        "uk": "додано варіант синхронізації кольору з кольором\nвиправити logfilter і debugDevices\nбагато помилок\nтепер встановлюємо правильний хв/макс за кольором\nкраща обробка помилок для підключення",
-        "zh-cn": "添加了用颜色的气温合办法\nfix 木图和溶剂\n批发\n现将正确的分钟/升值确定为色色彩。\na. 处理联系的错误"
-      },
-      "2.0.0": {
-        "en": "*!!!BREAKING CHANGE!!!**\n\nadded configurable connection to Zigbee2MQTT (Settings must be renewed)\nWebsocket\nExternal MQTT-Server\nInternal MQTT-Server\noptimized state writing performance in ioBroker\nfixed the correct set of the connection status",
-        "de": "*! BREAKING CHANGE*\n\nzusätzliche konfigurierbare Verbindung zu Zigbee2MQTT (Einstellungen müssen erneuert werden)\nWebsocket\nExterner MQTT-Server\nInterner MQTT-Server\noptimierte Zustandsschreibleistung in ioBroker\nden korrekten satz des verbindungsstatus festlegt",
-        "ru": "*! ИЗМЕНЕНИЕ ЗАВТРА*\n\nдобавлена настраиваемая связь с Zigbee2MQTT (Настройки должны быть обновлены)\nWebsocket\nВнешний MQTT-Server\nВнутренний MQTT-Server\nоптимизированное представление государственной записи в ioBroker\nисправил правильный набор состояния соединения",
-        "pt": "*! QUE GRANDE MUDANÇA\n\nconexão configurável adicionada ao Zigbee2MQTT (As inscrições devem ser renovadas)\nWebsocket\nMQTT externo-Server\nMQTT interno-Server\ndesempenho de escrita de estado otimizado no ioBroker\nfixou o conjunto correto do status da conexão",
-        "nl": "♪ \n\nvoegde connectie toe aan Zigbee2MQT (Settings moet vernieuwd)\nWebsocket\nExterne MQTT-Server\nInterne MQTT-Server\noptimaal staatsschrijving in ioBroker\nde correcte set van de connectie status",
-        "fr": "*! CHANGE DE BREAKING*\n\nconnexion configurable ajoutée à Zigbee2MQTT (Les paramètres doivent être renouvelés)\nWebsocket\nMQTT-Serveur externe\nInterne MQTT-Serveur\nperformance d'écriture d'état optimisée en ioBroker\nfixe l'ensemble correct du statut de connexion",
-        "it": "# CAMBIAMENTO\n\naggiunta di connessione configurabile a Zigbee2MQTT (I posti devono essere rinnovati)\nWebsocket\nMQTT-Server esterno\nInterno MQTT-Server\nprestazioni di scrittura dello stato ottimizzate in ioBroker\nfisso l'insieme corretto dello stato di connessione",
-        "es": "*! ¡CAMBIANDO\n\nconexión configurable agregada a Zigbee2MQTT (Se debe renovar la configuración)\nWebsocket\nMQTT externo-Server\nInterno MQTT-Server\nrendimiento de escritura de estado optimizado en ioBroker\nfija el conjunto correcto del estado de conexión",
-        "pl": "! BREAKING CHANGE! (ANG.)\n\nzigbee2MQTT dodano połączenie konfigurowalne. (Odrodzenie się)\nStrona internetowa\nOficjalna strona MQTT-Server\nOficjalna strona MQTT\nzoptymalizowany stan pisania w ioBrokerze\nustalono poprawny zbiór statusu związku",
-        "uk": "* БРЕАКІНГ ЧАНГ*\n\nдодано налаштування підключення до Zigbee2MQTT (Налаштування повинні бути відновлені)\nВеб-сайт\nЗовнішній MQTT-Server\nВнутрішній MQTT-Server\nоптимізоване державне письмо продуктивність в ioBroker\nвиправлено правильний набір статусу підключення",
-        "zh-cn": "页:1 BREAKREANGE*\n\n兹格贝雷2 MQTT的可图联系 (必须重启)\n网站\n外贸总协定\n内贸总协定\n最佳国家书面表现\na. 固定的联络点地位"
       }
     },
     "titleLang": {

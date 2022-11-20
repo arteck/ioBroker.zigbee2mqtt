@@ -9,7 +9,9 @@
 
 [![NPM](https://nodei.co/npm/iobroker.zigbee2mqtt.png?downloads=true)](https://nodei.co/npm/iobroker.zigbee2mqtt/)
 
-**Tests:** ![Test and Release](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/workflows/Test%20and%20Release/badge.svg)
+**Tests:**  
+![Test and Release](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/workflows/Test%20and%20Release/badge.svg)
+![CodeQL](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/actions/workflows/codeql.yml/badge.svg?branch=main)
 
 ## zigbee2mqtt adapter for ioBroker
 
@@ -30,6 +32,15 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### 2.4.2 (2022-11-20)
+
+-   (o0shojo0o) added correct handling of `move_to_saturation`, `hue_move` and `brightness_move_to_level` ([#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68))
+-   (o0shojo0o) fix when `friendly_name` `/` contains
+
+### 2.4.1 (2022-11-16)
+
+-   (o0shojo0o) fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)
+
 ### 2.4.0 (2022-11-08)
 
 -   (o0shojo0o) fix for devices with multiple endpoints ([#57](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/57)).

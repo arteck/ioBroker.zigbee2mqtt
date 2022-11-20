@@ -52,7 +52,7 @@ class Zigbee2mqtt extends core.Adapter {
         // Initialize your adapter here
         adapterInfo(this.config, this.log);
 
-        this.setStateAsync('info.connection', false, true);
+        this.setState('info.connection', false, true);
 
         const debugDevicesState = await this.getStateAsync('info.debugmessages');
         if (debugDevicesState && debugDevicesState.val) {
@@ -126,7 +126,7 @@ class Zigbee2mqtt extends core.Adapter {
         });
 
         wsClient.on('close', async () => {
-            this.setStateChangedAsync('info.connection', false, true);
+            this.setStateChanged('info.connection', false, true);
             await statesController.setAllAvailableToFalse();
             this.log.warn('Websocket disconnected');
         });
@@ -149,7 +149,7 @@ class Zigbee2mqtt extends core.Adapter {
                 if (messageObj.payload.state != 'online') {
                     statesController.setAllAvailableToFalse();
                 }
-                this.setStateChangedAsync('info.connection', messageObj.payload.state == 'online', true);
+                this.setStateChanged('info.connection', messageObj.payload.state == 'online', true);
                 break;
             case 'bridge/devices':
                 await deviceController.createDeviceDefinitions(messageObj.payload);
@@ -209,9 +209,9 @@ class Zigbee2mqtt extends core.Adapter {
                             statesController.processDeviceMessage(newMessage);
                         }
                         // States
-                    } else if (!messageObj.topic.includes('/')) {
-                        statesController.processDeviceMessage(messageObj);
+                    } else {
                         //console.log(JSON.stringify(messageObj));
+                        statesController.processDeviceMessage(messageObj);
                     }
                 }
                 break;
@@ -220,6 +220,11 @@ class Zigbee2mqtt extends core.Adapter {
 
     async onUnload(callback) {
         try {
+            if (mqttClient && !mqttClient.closed) {
+                mqttClient.close();
+            }
+            mqttServerController.closeServer();
+            websocketController.closeConnection();
             await statesController.setAllAvailableToFalse();
             await websocketController.allTimerClear();
             await statesController.allTimerClear();

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.zigbee2mqtt",
-  "version": "2.4.0",
+  "version": "2.4.2",
   "description": "Zigbee2MQTT adapter for ioBroker",
   "author": {
     "name": "Dennis Rathjen",
@@ -42,7 +42,7 @@
     "@types/sinon-chai": "^3.2.9",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "mocha": "^10.1.0",
@@ -50,7 +50,7 @@
     "proxyquire": "^2.1.3",
     "sinon": "^14.0.2",
     "sinon-chai": "^3.7.0",
-    "typescript": "~4.8.4"
+    "typescript": "~4.9.3"
   },
   "main": "main.js",
   "files": [
