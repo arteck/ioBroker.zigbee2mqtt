@@ -193,7 +193,6 @@ class Zigbee2mqtt extends core.Adapter {
                 {
                     // {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
                     if (messageObj.topic.endsWith('/availability')) {
-                        //const topicSplit = messageObj.topic.split('/');
 
                         // If an availability message for an old device ID comes with a payload of NULL, this is the indicator that a device has been unnamed.
                         // If this is then still available in the cache, the messages must first be cached.
