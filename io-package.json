@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.4.2",
+    "version": "2.4.3",
     "news": {
+      "2.4.3": {
+        "en": "fix availability when `friendly_name` `/` contains",
+        "de": "verfügbarkeit korrigieren bei friendly_name `/` enthält",
+        "ru": "исправить доступность когда friendly_name `/` содержит",
+        "pt": "corrigir disponibilidade quando friendly_name `/` contém",
+        "nl": "_ _",
+        "fr": "fixer la disponibilité lorsque friendly_name `/` contient",
+        "it": "fissare la disponibilità quando amichevole_name `/` contiene",
+        "es": "fijar disponibilidad cuando friendly_name `/` contiene",
+        "pl": "ustanowić dostęp do przyjaznej nazwy. zawierać",
+        "uk": "застосувати доступність при дружній_ім`я `/` в наявності",
+        "zh-cn": "f 在友好的情况下,可提供“/”一词 内载"
+      },
       "2.4.2": {
         "en": "added correct handling of `move_to_saturation`, `hue_move` and `brightness_move_to_level` ([#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68))\nfix when `friendly_name` `/` contains",
         "de": "die korrekte Handhabung von move_to_saturation, hue_move und bright_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nbei freundlich_name `/` enthält",
@@ -80,19 +93,6 @@
         "pl": "dodano wsparcie dla Lidla HG06467 efektów (https:/wwww.zigbee2mqtt.io/devices/HG06467.html#trigger)\ndodano obsługę koloru hs\nsymulacja danych _brighta jest dodana tylko dla obsługi urządzeń",
         "uk": "додано підтримку [Lidl HG06467 ефектів](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдодана підтримка кольору hs\nсимулятор_brightness дата додано тільки для підтримуваних пристроїв",
         "zh-cn": "进一步支持[Lidl HG06467效应](http://www.zigbee2mqt.io/devices/HG06467.html#er-effects)\nb. 对地壳的增援\n仅为支助装置增添了简历数据点。"
-      },
-      "2.1.1": {
-        "en": "advanced detection if a device has been removed\nfixes the design error in the websocket connection",
-        "de": "fortgeschrittene erkennung, wenn ein gerät entfernt wurde\nkorrigiert den designfehler in der websocket-verbindung",
-        "ru": "предварительное обнаружение, если устройство было удалено\nисправляет ошибку дизайна в подключении к сети",
-        "pt": "detecção avançada se um dispositivo foi removido\ncorrige o erro de projeto na conexão websocket",
-        "nl": "als er een apparaat verwijderd is\nde ontwerpfout in de websocket verbinding",
-        "fr": "détection avancée si un dispositif a été enlevé\ncorrige l'erreur de conception dans la connexion websocket",
-        "it": "rilevamento avanzato se un dispositivo è stato rimosso\ncorregge l'errore di progettazione nella connessione websocket",
-        "es": "detección avanzada si se ha eliminado un dispositivo\nfija el error de diseño en la conexión websocket",
-        "pl": "wykrywanie zaawansowane, jeśli urządzenie zostało usunięte\numożliwia to błędy projektowe w łączu internetowym",
-        "uk": "розширене виявлення, якщо пристрій було видалено\nвиправлено помилку дизайну в підключенні websocket",
-        "zh-cn": "如果一个装置被拆除,则预先发现\nf 确定网站的设计错误"
       }
     },
     "titleLang": {
