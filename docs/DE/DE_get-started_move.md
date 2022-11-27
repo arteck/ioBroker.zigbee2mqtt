@@ -75,6 +75,7 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung!
       homeassistant_legacy_entity_attributes: false
       legacy_api: false
       legacy_availability_payload: false
+      cache_state: true
       output: json
       transmit_power: 20
       log_level: warn
