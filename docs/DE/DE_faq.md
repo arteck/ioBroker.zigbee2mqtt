@@ -53,7 +53,7 @@ advanced:
     <deine anderen Parameter>
     legacy_api: false
     legacy_availability_payload: false
-    cache_state: true
+    cache_state: false
     output: json
 device_options:
     legacy: false
