@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.4.3",
+    "version": "2.4.4",
     "news": {
+      "2.4.4": {
+        "en": "better state identification ([#79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79))",
+        "de": "bessere Zustandserkennung #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
+        "ru": "лучшая государственная идентификация #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "pt": "melhor identificação do estado #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "nl": "identificatie van de staat is beter",
+        "fr": "meilleure identification de l ' État #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
+        "it": "migliore identificazione dello stato #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
+        "es": "mejor identificación estatal #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "pl": "zobacz też: #79 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "uk": "[79] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "zh-cn": "更好的国家辨认(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/79)"
+      },
       "2.4.3": {
         "en": "fix availability when `friendly_name` `/` contains",
         "de": "verfügbarkeit korrigieren bei friendly_name `/` enthält",
@@ -80,19 +93,6 @@
         "pl": "uchwała rola państwowa i dostęp\nnaprawa\ntworzenie Z2MM",
         "uk": "фіксувати державні ролі і доступ\nфіксувати стан обробки\nфіксатор творуZ2MMessage",
         "zh-cn": "fix 国家作用和准入\nfix 国家处理\nfix 建立Z2MMessage"
-      },
-      "2.2.0": {
-        "en": "added support for [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nadded support for hs color\nsimulated_brightness data point is added only for supported devices",
-        "de": "unterstützung für [Lidl HG06467-Effekte](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-Effekte)\nunterstützung für hs farbe\nsimuld_brightness-datenpunkt wird nur für unterstützte geräte hinzugefügt",
-        "ru": "добавлена поддержка [Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдобавлена поддержка цвета hs\nsimulated_brightness дата точка добавлена только для поддерживаемых устройств",
-        "pt": "apoio adicional para efeitos [Lidl HG06467](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nsuporte adicionado para cor hs\nsimulated_brightness data point é adicionado apenas para dispositivos suportados",
-        "nl": "quality over Quantity (QoQ) Releases Vertaling:\nvertaling:\nvertaling:",
-        "fr": "ajouté support for [Lidl HG06467 effects](https://www.zigbee2mqt.io/devices/HG06467.html#trigger-effects)\nsupport ajouté pour la couleur hs\nsimuld_brightness data point est ajouté seulement pour les appareils pris en charge",
-        "it": "[Lidl HG06467 Effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effetti)\nsupporto aggiunto per il colore hs\nil punto di dati simulated_brightness viene aggiunto solo per i dispositivi supportati",
-        "es": "[Lidl HG06467 effects](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nsoporte añadido para el color hs\nsimulated_brightness punto de datos se añade sólo para dispositivos compatibles",
-        "pl": "dodano wsparcie dla Lidla HG06467 efektów (https:/wwww.zigbee2mqtt.io/devices/HG06467.html#trigger)\ndodano obsługę koloru hs\nsymulacja danych _brighta jest dodana tylko dla obsługi urządzeń",
-        "uk": "додано підтримку [Lidl HG06467 ефектів](https://www.zigbee2mqtt.io/devices/HG06467.html#trigger-effects)\nдодана підтримка кольору hs\nсимулятор_brightness дата додано тільки для підтримуваних пристроїв",
-        "zh-cn": "进一步支持[Lidl HG06467效应](http://www.zigbee2mqt.io/devices/HG06467.html#er-effects)\nb. 对地壳的增援\n仅为支助装置增添了简历数据点。"
       }
     },
     "titleLang": {
