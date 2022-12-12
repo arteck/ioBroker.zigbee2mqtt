@@ -35,7 +35,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ### **WORK IN PROGRESS**
 
--   (o0shojo0o) extend 'text' for 'action' ([[#84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)])
+-   (o0shojo0o) extend 'text' for 'action' ([#84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84))
 
 ### 2.4.4 (2022-12-06)
 
