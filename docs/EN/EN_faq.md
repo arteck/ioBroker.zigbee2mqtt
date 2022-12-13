@@ -6,11 +6,14 @@ This WIKI primarily clarifies questions about the handling of the adapter and no
 Official Documentation: https://www.zigbee2mqtt.io/guide/getting-started
 
 # Table of contents
-  - [Connection/configuration page to Zigbee2MQTT is not displayed in ioBroker <a name="1"></a>](#1)
-  - [What is the difference between this adapter and the ioBroker/Zigbee adapter? <a name="2"></a>](#2)
-  - [What exactly is Zigbee2MQTT/Z2M? <a name="3"></a>](#3)
-  - [How do I get the exposes from a device? <a name="4"></a>](#4)
-  - [Which Zigbee2MQTT configuration parameters are needed?](#5)
+- [FAQ](#faq)
+- [Table of contents](#table-of-contents)
+  - [Connection/configuration page to Zigbee2MQTT is not displayed in ioBroker ](#connectionconfiguration-page-to-zigbee2mqtt-is-not-displayed-in-iobroker-)
+  - [What is the difference between this adapter and the ioBroker/Zigbee adapter? ](#what-is-the-difference-between-this-adapter-and-the-iobrokerzigbee-adapter-)
+  - [What exactly is Zigbee2MQTT/Z2M? ](#what-exactly-is-zigbee2mqttz2m-)
+  - [How do I get the exposes from a device? ](#how-do-i-get-the-exposes-from-a-device-)
+  - [Which Zigbee2MQTT configuration parameters are needed? ](#which-zigbee2mqtt-configuration-parameters-are-needed-)
+  - [Why are devices in ioBroker not also deleted after being deleted from z2m? ](#why-are-devices-in-iobroker-not-also-deleted-after-being-deleted-from-z2m-)
 
 
 ## Connection/configuration page to Zigbee2MQTT is not displayed in ioBroker <a name="1"></a>
@@ -62,3 +65,7 @@ device_options:
     legacy: false
 availability: true
 ```
+
+## Why are devices in ioBroker not also deleted after being deleted from z2m? <a name="6"></a>
+Since the data points are created very dynamically and to prevent possible errors, the devices are not deleted. Otherwise the user defined settings (if available) of the datapoint would be lost.
+Normally the name should be replaced by "Device removed!" and available should be set to "false", so you can delete the datapoints afterwards if you want to.

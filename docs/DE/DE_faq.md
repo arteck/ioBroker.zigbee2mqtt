@@ -6,11 +6,14 @@ Dieses WIKI klärt primär Fragen zum Umgang mit dem Adapter und nicht mit dem Z
 Offizielle Dokumentation: https://www.zigbee2mqtt.io/guide/getting-started
 
 # Inhaltsübersicht
-  - [Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker <a name="1"></a>](#1)
-  - [Was ist der Unterschied zwischen diesem Adapter und dem ioBroker/Zigbee Adapter? <a name="2"></a>](#2)
-  - [Was genau ist Zigbee2MQTT/Z2M? <a name="3"></a>](#3)
-  - [Wie erhalte ich die Expositionsdaten eines Geräts? <a name="4"></a>](#4)
-  - [Welche Zigbee2Mqtt-Konfigurationsparameter werden benötigt?](#5)
+- [FAQ](#faq)
+- [Inhaltsübersicht](#inhaltsübersicht)
+  - [Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker ](#verbidungkonfigurationsseite-zu-zigbee2mqtt-wird-nicht-angezeigt-im-iobroker-)
+  - [Was ist der Unterschied zwischen diesem Adapter und dem ioBroker/Zigbee Adapter? ](#was-ist-der-unterschied-zwischen-diesem-adapter-und-dem-iobrokerzigbee-adapter-)
+  - [Was genau ist Zigbee2MQTT/Z2M? ](#was-genau-ist-zigbee2mqttz2m-)
+  - [Wie erhalte ich die Expositionsdaten eines Geräts? ](#wie-erhalte-ich-die-expositionsdaten-eines-geräts-)
+  - [Welche Zigbee2MQTT Konfigurationsparameter werden benötigt?? ](#welche-zigbee2mqtt-konfigurationsparameter-werden-benötigt-)
+  - [Warum werden Geräte in ioBroker nach dem löschen aus z2m nicht auch gelöscht? ](#warum-werden-geräte-in-iobroker-nach-dem-löschen-aus-z2m-nicht-auch-gelöscht-)
 
 
 ## Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker <a name="1"></a>
@@ -59,3 +62,8 @@ device_options:
     legacy: false
 availability: true
 ```
+
+
+## Warum werden Geräte in ioBroker nach dem löschen aus z2m nicht auch gelöscht? <a name="5"></a>
+Da die Datenpunkte sehr dynamisch erstellt werden und um eventuellen Fehler vorzubeugen, werden die Geräte nicht gelöscht. Den sonst würden die benutzerdefinierten Einstellungen (falls vorhanden) des Datenpunktes verloren gehen.
+Normalerweise sollte der Name durch "Device removed!" ersetzt werden und available sollte auf "false" gesetzt werden, somit kann man dann die Datenpunkte nachträglich löschen wenn es gewünscht ist.
