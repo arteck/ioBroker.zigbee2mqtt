@@ -21,5 +21,6 @@
     "Use Kelvin instead of mired for the color temps": "Użyj Kelvina zamiast mired dla temperatury kolorów",
     "Other configurations": "Inne konfiguracje",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT loguje do logów ioBroker",
-    "Brightness move should also turn the light on or off": "Ruch jasności powinien również włączać lub wyłączać światło"
+    "Brightness move should also turn the light on or off": "Ruch jasności powinien również włączać lub wyłączać światło",
+    "Brightness step should also turn the light on or off": "Krok jasności powinien również włączać lub wyłączać światło"
 }
