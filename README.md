@@ -32,8 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 2.5.0 (2023-01-02)
 
 -   (o0shojo0o) added option `Brightness step should also turn the light on or off`
 -   (o0shojo0o) added handling of `brightness_step` ([#96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96))
@@ -142,7 +141,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 MIT License
 
-Copyright (c) 2022 Dennis Rathjen <dennis.rathjen@outlook.de>
+Copyright (c) 2023 Dennis Rathjen <dennis.rathjen@outlook.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
