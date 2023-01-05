@@ -32,6 +32,11 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) fix state contact
+-   (o0shojo0o) added handling for disabled devices
+
 ### 2.5.0 (2023-01-02)
 
 -   (o0shojo0o) added option `Brightness step should also turn the light on or off`
