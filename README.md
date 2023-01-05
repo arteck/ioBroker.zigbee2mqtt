@@ -34,6 +34,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 -->
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) fix state contact
 -   (o0shojo0o) added handling for disabled devices
 
 ### 2.5.0 (2023-01-02)
