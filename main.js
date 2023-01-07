@@ -169,6 +169,8 @@ class Zigbee2mqtt extends core.Adapter {
             case 'bridge/response/device/remove':
                 deviceController.processRemoveEvent(messageObj);
                 break;
+            case 'bridge/response/device/options':
+                break;
             case 'bridge/extensions':
                 break;
             case 'bridge/logging':

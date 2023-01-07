@@ -34,6 +34,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 -->
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) consideration of the description when creating the friendly name ([#105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105))
 -   (o0shojo0o) added state `effect` for groups ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))
 -   (o0shojo0o) fix state contact
 -   (o0shojo0o) added handling for disabled devices
