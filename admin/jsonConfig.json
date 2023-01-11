@@ -50,6 +50,18 @@
 			"newLine": false,
 			"hidden": "data.connectionType != 'ws'"
 		},
+		"wsTokenEnabled": {
+			"type": "checkbox",
+			"label": "Use Auth-Token",
+			"newLine": true,
+			"hidden": "data.connectionType != 'ws'"
+		},
+		"wsToken": {
+			"type": "password",
+			"label": "Auth-Token",
+			"newLine": true,
+			"hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
+		},
 		"dummyMqtt": {
 			"type": "checkbox",
 			"label": "Create a dummy MQTT-Server for Zigbee2MQTT",

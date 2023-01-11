@@ -32,6 +32,10 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) added option `auth_token` for websocket connection ([#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112))
+
 ### 2.6.0 (2023-01-10)
 
 -   (o0shojo0o) added state `transition` for transition overwrite (-1 disabled overwrite) ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))

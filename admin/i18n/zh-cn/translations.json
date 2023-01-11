@@ -22,5 +22,7 @@
     "Other configurations": "其他配置",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "代理 Zigbee2MQTT 日志到 ioBroker 日志",
     "Brightness move should also turn the light on or off": "亮度移动也应该打开或关闭灯",
-    "Brightness step should also turn the light on or off": "亮度步骤也应该打开或关闭灯"
+    "Brightness step should also turn the light on or off": "亮度步骤也应该打开或关闭灯",
+    "Use Auth-Token": "使用授权令牌",
+    "Auth-Token": "授权令牌"
 }

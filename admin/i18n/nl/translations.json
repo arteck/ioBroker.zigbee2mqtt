@@ -22,5 +22,7 @@
     "Other configurations": "Andere configuraties",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logt in op ioBroker logs",
     "Brightness move should also turn the light on or off": "Helderheidsbeweging moet ook het licht aan- of uitzetten",
-    "Brightness step should also turn the light on or off": "De helderheidsstap moet het licht ook in- of uitschakelen"
+    "Brightness step should also turn the light on or off": "De helderheidsstap moet het licht ook in- of uitschakelen",
+    "Use Auth-Token": "Gebruik Auth-Token",
+    "Auth-Token": "Auth-Token"
 }
