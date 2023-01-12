@@ -9,8 +9,8 @@
 |Configuration of Zigbee2MQTT Web UI Connection Configuration|Here we can configure how the Zigbee2MQTT Web UI should be connected to the ioBroker. It is important to note: If the ioBroker is called via HTTPS, a connection via HTTPS must also be established here. Otherwise the following error will occur: (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/12)
 |Synchronize color temperature with color | This setting ensures that e.g. in a VIS like Lovelace the color of the lamp changes to the set color.
 |Use Kelvin values instead of Mired | Set the unit for color temperatures for e.g. lamps.
-|Brightness move should also turn the light on or off| When activated, when the brightness via Brightness move has reached 0, the lamp will be turned off.
-|Brightness step should also switch the light on or off| When activated, when the brightness via Brightness step has reached 0, the lamp is switched off.
+|Brightness move should also turn the light on or off| When activated, when the brightness via Brightness move has reached 0, the lamp will be turned off. And when the lamp is off, it is also switched on again.
+|Brightness step should also switch the light on or off| When activated, when the brightness via Brightness step has reached 0, the lamp will be turned off. And when the lamp is off, it is also switched on again.
 |Proxy Zigbee2MQTT logs to ioBroker logs |Takes the logs from Zigbee2MQTT to the ioBroker log
   
 
