@@ -90,18 +90,6 @@ As a prerequisite here is a submitted Docker server give!
 
 5. Installation of the Zigbee2MQTT adapter via the Adapter Tab in ioBroker
 
-6. Configuration of the adapter
-   - Select Zigbee2MQTT connection = Recommended setting "Websocket", with the selection of one of the two experimental functions via MQTT even more settings appear to establish the connection via MQTT
-   - Websocket IP address = IP or DNS name of the Zigbee2MQTT server (in our case the IP of the Docker host)
-   - Websocket port = 8080 This is the default port, if it is changed in the config of Zigbee2MQTT, it must be changed here too.
-   - Create dummy MQTT server for Zigbee2MQTT = Because we need a MQTT server for Zigbee2MQTT we can set this checkmark then we have the possibility to create one here in the adapter.
-   - Bind MQTT server IP address/MQTT server port = these settings only appear if we have set the check mark for the dummy MQTT server. If there is no other MQTT server on the ioBroker, we can leave the default settings as they are, otherwise we need to change at least the port.  These settings should then also be stored in the config of Zigbee2MQTT.
-   - Configuration of the Zigbee2MQTT Web UI connection Configuration = Here we can configure how the Zigbee2MQTT Web UI should be integrated into the ioBroker. Important If the ioBroker is called via HTTPS, a connection via HTTPS must also be established here. Otherwise the following error will occur: (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/12)
-   - Synchronize color temperature with color = This setting ensures that e.g. in a VIS like Lovelace the color of the lamp changes to the set color.
-   - Use Kelvin values instead of Mired = Setting the unit for color temperatures for e.g. lamps.
-   - Proxy Zigbee2MQTT logs to ioBroker logs = takes the logs from Zigbee2MQTT to the ioBroker log
-
-
-![Zigbee2MQTT Konfiguration](../img/Zigbee2MQTT_Adapter.png)
+6. Configuration of the adapter See [Adapter configuration](./EN/EN_AdapterConfig.md)
 
 7. Now everything should run and the devices can be tuned in. Here is a detailed instruction: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html

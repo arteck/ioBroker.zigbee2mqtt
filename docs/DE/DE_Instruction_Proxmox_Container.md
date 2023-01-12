@@ -34,3 +34,9 @@ Meine Vorgehensweise für Proxmox-Container in etwa:
 -   **Wichtig, falls ConBee II Stick**: `configuration.yaml` nochmal anpassen:
     1.  Unter `serial` eintragen: `adapter: deconz`
     2.  Unter `advanced` die Zeile `transmit_power: 20` löschen, das scheint der ConBee II nicht zu können und es kommen Fehler beim Start von Zigbee2MQTT
+
+### Screenshots
+
+Proxmox (letzter Neustart war erst vor 50 Minuten). Schön geringer Ressourcenbedarf.
+
+![Proxmox Container Perfomence](../img/ProxmoxContainerPerfomence.png)
