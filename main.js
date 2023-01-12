@@ -128,7 +128,6 @@ class Zigbee2mqtt extends core.Adapter {
         wsClient.on('close', async () => {
             this.setStateChanged('info.connection', false, true);
             await statesController.setAllAvailableToFalse();
-            this.log.warn('Websocket disconnected');
         });
     }
 
