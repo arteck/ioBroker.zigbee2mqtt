@@ -1,4 +1,4 @@
-Ein Anleitung/Erfahrungsbericht vom User [Acgua](https://github.com/Acgua):
+Eine Anleitung/ein Erfahrungsbericht vom User [Acgua](https://github.com/Acgua):
 
 Ich bin umgestiegen vom Zigbee-Adapter, mit 30+ Geräten, ConBee II Stick.
 Meine Vorgehensweise für Proxmox-Container in etwa:
