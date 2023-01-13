@@ -223,15 +223,36 @@ class Zigbee2mqtt extends core.Adapter {
             if (mqttClient && !mqttClient.closed) {
                 mqttClient.close();
             }
-            mqttServerController.closeServer();
             websocketController.closeConnection();
-            await statesController.setAllAvailableToFalse();
-            await websocketController.allTimerClear();
-            await statesController.allTimerClear();
-            callback();
         } catch (e) {
-            callback();
+            this.log.error(e);
         }
+
+        try {
+            mqttServerController.closeServer();
+        } catch (e) {
+            this.log.error(e);
+        }
+
+        try {
+            await statesController.setAllAvailableToFalse();
+        } catch (e) {
+            this.log.error(e);
+        }
+
+        try {
+            await websocketController.allTimerClear();
+        } catch (e) {
+            this.log.error(e);
+        }
+
+        try {
+            await statesController.allTimerClear();
+        } catch (e) {
+            this.log.error(e);
+        }
+
+        callback();
     }
 
     async onStateChange(id, state) {

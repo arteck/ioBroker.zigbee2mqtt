@@ -141,7 +141,7 @@
         "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
-        "type": "lighting",
+        "type": "hardware",
         "compact": true,
         "connectionType": "local",
         "dataSource": "push",
