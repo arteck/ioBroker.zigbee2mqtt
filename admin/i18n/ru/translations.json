@@ -8,6 +8,8 @@
     "Configure your Zigbee2MQTT connection": "Настройте соединение Zigbee2MQTT",
     "Websocket IP-Address": "IP-адрес веб-сокета",
     "Websocket Port": "Порт веб-сокета",
+    "Use Auth-Token": "Использовать авторизационный токен",
+    "Auth-Token (special characters are not supported)": "Auth-Token (специальные символы не поддерживаются)",
     "Create a dummy MQTT-Server for Zigbee2MQTT": "Создайте фиктивный MQTT-сервер для Zigbee2MQTT",
     "External MQTT-Server IP-Address": "IP-адрес внешнего MQTT-сервера",
     "External MQTT-Server Port": "Порт внешнего MQTT-сервера",
