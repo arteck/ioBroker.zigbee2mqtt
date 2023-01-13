@@ -8,6 +8,8 @@
     "Configure your Zigbee2MQTT connection": "Настройте соединение Zigbee2MQTT",
     "Websocket IP-Address": "IP-адрес веб-сокета",
     "Websocket Port": "Порт веб-сокета",
+    "Use Auth-Token": "Использовать авторизационный токен",
+    "Auth-Token (special characters are not supported)": "Auth-Token (специальные символы не поддерживаются)",
     "Create a dummy MQTT-Server for Zigbee2MQTT": "Создайте фиктивный MQTT-сервер для Zigbee2MQTT",
     "External MQTT-Server IP-Address": "IP-адрес внешнего MQTT-сервера",
     "External MQTT-Server Port": "Порт внешнего MQTT-сервера",
@@ -22,7 +24,5 @@
     "Other configurations": "Другие конфигурации",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Проксировать журналы Zigbee2MQTT в журналы ioBroker",
     "Brightness move should also turn the light on or off": "Изменение яркости также должно включать или выключать свет.",
-    "Brightness step should also turn the light on or off": "Шаг яркости также должен включать или выключать свет.",
-    "Use Auth-Token": "Использовать авторизационный токен",
-    "Auth-Token": "Токен авторизации"
+    "Brightness step should also turn the light on or off": "Шаг яркости также должен включать или выключать свет."
 }

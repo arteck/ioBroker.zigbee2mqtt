@@ -9,7 +9,7 @@
 	"Websocket IP-Address": "Websocket IP-Address",
 	"Websocket Port": "Websocket Port",
 	"Use Auth-Token": "Use Auth-Token",
-	"Auth-Token": "Auth-Token",
+	"Auth-Token (special characters are not supported)": "Auth-Token (special characters are not supported)",
 	"Create a dummy MQTT-Server for Zigbee2MQTT": "Create a dummy MQTT-Server for Zigbee2MQTT",
 	"External MQTT-Server IP-Address": "External MQTT-Server IP-Address",
 	"External MQTT-Server Port": "External MQTT-Server Port",

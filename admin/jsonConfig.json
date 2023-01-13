@@ -58,7 +58,7 @@
 		},
 		"wsToken": {
 			"type": "password",
-			"label": "Auth-Token",
+			"label": "Auth-Token (special characters are not supported)",
 			"newLine": true,
 			"hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
 		},

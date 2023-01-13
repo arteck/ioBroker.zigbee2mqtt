@@ -8,6 +8,8 @@
     "Configure your Zigbee2MQTT connection": "Configura tu conexión Zigbee2MQTT",
     "Websocket IP-Address": "Dirección IP de Websocket",
     "Websocket Port": "puerto websocket",
+    "Use Auth-Token": "Usar token de autenticación",
+    "Auth-Token (special characters are not supported)": "Auth-Token (los caracteres especiales no son compatibles)",
     "Create a dummy MQTT-Server for Zigbee2MQTT": "Cree un servidor MQTT ficticio para Zigbee2MQTT",
     "External MQTT-Server IP-Address": "Dirección IP del servidor MQTT externo",
     "External MQTT-Server Port": "Puerto de servidor MQTT externo",
@@ -22,7 +24,5 @@
     "Other configurations": "Otras configuraciones",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy de registros Zigbee2MQTT a registros de ioBroker",
     "Brightness move should also turn the light on or off": "El movimiento de brillo también debe encender o apagar la luz",
-    "Brightness step should also turn the light on or off": "El paso de brillo también debe encender o apagar la luz",
-    "Use Auth-Token": "Usar token de autenticación",
-    "Auth-Token": "Token de autenticación"
+    "Brightness step should also turn the light on or off": "El paso de brillo también debe encender o apagar la luz"
 }
