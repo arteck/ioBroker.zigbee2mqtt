@@ -1,252 +1,252 @@
 {
-    "common": {
-        "name": "zigbee2mqtt",
-        "version": "2.6.0",
-        "news": {
-            "2.6.0": {
-                "en": "added state `transition` for transition overwrite (-1 disabled overwrite) ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))\nconsideration of the description when creating the friendly name ([#105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105))\nadded state `effect` for groups ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))\nfix state contact\nadded handling for disabled devices",
-                "de": "hinzugefügter Zustandsübergang für Übergangsüberschreiben -(1 behinderte Überschreiben) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nberücksichtigung der Beschreibung bei der Erstellung des freundlichen Namens #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\nzusätzliche staatliche Wirkung für Gruppen #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nkontakt mit dem status\nzusätzliches handling für behinderte",
-                "ru": "добавлен государственный переход для перехода переписать -(1 отключен перезапись) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрассмотрение описания при создании дружественного имени #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\nдобавлен государственный эффект для групп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nисправить государственный контакт\nдобавлена обработка для инвалидов",
-                "pt": "adicionado transição de estado para a transição sobreescrita -(1 sobreescrita desativada) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nconsideração da descrição ao criar o nome amigável #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\nadicionado efeito estatal para grupos #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\ncorrigir contato estado\nmanuseio adicionado para dispositivos com deficiência",
-                "nl": "voegde staatsoverschrijving toe voor overschrijving overschrijving - (1 gehandicapte overschrijving) (1) (1 gehandicapte overschrijving)\noverweeg de beschrijving als het creëren van de vriendelijke naam £10:\nvoegde toegevoegd staats effect voor groepen £101, httub.com/oshojoo/ioBroker\nvertaling:\nvoegde toegevoegd voor gehandicapte apparaten",
-                "fr": "transition de l ' État pour la surécriture de transition -(1 surécriture désactivée) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nexamen de la description lors de la création du nom amical #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\neffet d ' État ajouté pour les groupes #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\ncontact étatique\nmanipulation supplémentaire pour les dispositifs handicapés",
-                "it": "aggiunto passaggio di stato per overwrite di transizione -(1 overwrite disabilitato) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nconsiderazione della descrizione quando si crea il nome amichevole #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\neffetto stato aggiunto per gruppi #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nfix contatto stato\nmanipolazione aggiuntiva per dispositivi disabili",
-                "es": "añadida transición estatal para la sobreescritura de transición -(1 invalidez sobreescritura) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nexamen de la descripción al crear el nombre amistoso #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\nañadido efecto estatal para los grupos #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\narreglar contacto estado\nmanejo añadido para dispositivos discapacitados",
-                "pl": "dodano przejście stanowe na przepisanie -(1 disabled overwrite) #101(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nrezultatem tego opisu było stworzenie przyjaznej nazwy #105 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\ndodano efekt stanowy dla grup #101 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nkontakt państwowy\nobsługa urządzeń dla osób niepełnosprawnych",
-                "uk": "додано державний перехід для переходу перезапису -(1 вимкнено перезапис) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрозгляд опису при створенні дружньої назви #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/105)\nдодано державний ефект для груп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nфіксувати державний контакт\nдодана обробка для пристроїв відключення",
-                "zh-cn": "此外,国家向过渡过渡的过渡——《残疾》第[101]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\n在建立友好名称编号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)时,审议说明\n第[101]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/101)\nfix 国家联络点\nd. 增加处理残疾装置"
-            },
-            "2.5.0": {
-                "en": "added option `Brightness step should also turn the light on or off`\nadded handling of `brightness_step` ([#96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96))\nstates processing more flexible designed ([#94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94))",
-                "de": "zusätzliche Option `Brightness Schritt sollte auch das Licht ein- oder ausschalten `\nzusätzliches Handling der Helligkeit_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\nzustände, die flexibler gestaltet sind #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
-                "ru": "добавленная опция `Яркость шаг должен также повернуть свет на или вне`\nдобавлена обработка brightness_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nсостояния обработки более гибкий дизайн #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-                "pt": "opção adicionada `A etapa de justiça também deve ligar ou desligar a luz`\nmanuseio adicionado de gloss_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nestados processando mais flexível projetado #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-                "nl": "voegde optie 'Brightness step' ook het licht aan of uit'\nvoegde toegevoegd om te gaan met helderheid stegen cijfer 96\nhet verwerkt meer flexibele ontworpen 94: github.com/oshojoo/ioBroker",
-                "fr": "option ajoutée `Brightness step should also turn the light on or off`\ngestion de la luminosité_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\ndéclare que le traitement est plus souple, conçu #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
-                "it": "opzione aggiunta `Brightness passo dovrebbe anche accendere o spegnere la luce `\n[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n(https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
-                "es": "opción agregada `El paso de la rectitud también debe encender o apagar la luz &apos\nadicional handling of brightness_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nestados procesan más flexiblemente diseñados #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-                "pl": "dodał również krok opcji 'Brightness'\ndodano obsługę jasności (stop #96) (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nprzetwarzają bardziej elastyczne przetwory #94 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-                "uk": "доданий варіант `Бритальність кроку також повинен перетворювати світло або вимкнути`\nдодано обробка яскравості_кроку #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\n[94] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-                "zh-cn": "增加“权利步骤”的选择,也应该改变“或”的提法。\n增加光明处理:第[96]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n国家处理较为灵活的第[94]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/94)"
-            },
-            "2.4.5": {
-                "en": "extend 'text' for 'action' ([#84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84))",
-                "de": "text für die Aktion #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
-                "ru": "расширить текст для действия #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-                "pt": "extensão do texto para a ação #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-                "nl": "quality over Quantity (QoQ) Releases Vertaling:",
-                "fr": "extension text for action #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
-                "it": "estendere il testo all'azione #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
-                "es": "extensión text for action #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-                "pl": "tekst do akcji #84 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-                "uk": "javaScript licenses API Веб-сайт Go1.13.8",
-                "zh-cn": "行动案文[84](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/84)"
-            },
-            "2.4.4": {
-                "en": "better state identification ([#79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79))",
-                "de": "bessere Zustandserkennung #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
-                "ru": "лучшая государственная идентификация #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-                "pt": "melhor identificação do estado #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-                "nl": "identificatie van de staat is beter",
-                "fr": "meilleure identification de l ' État #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
-                "it": "migliore identificazione dello stato #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
-                "es": "mejor identificación estatal #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-                "pl": "zobacz też: #79 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-                "uk": "[79] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-                "zh-cn": "更好的国家辨认(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/79)"
-            },
-            "2.4.3": {
-                "en": "fix availability when `friendly_name` `/` contains",
-                "de": "verfügbarkeit korrigieren bei friendly_name `/` enthält",
-                "ru": "исправить доступность когда friendly_name `/` содержит",
-                "pt": "corrigir disponibilidade quando friendly_name `/` contém",
-                "nl": "_ _",
-                "fr": "fixer la disponibilité lorsque friendly_name `/` contient",
-                "it": "fissare la disponibilità quando amichevole_name `/` contiene",
-                "es": "fijar disponibilidad cuando friendly_name `/` contiene",
-                "pl": "ustanowić dostęp do przyjaznej nazwy. zawierać",
-                "uk": "застосувати доступність при дружній_ім`я `/` в наявності",
-                "zh-cn": "f 在友好的情况下,可提供“/”一词 内载"
-            },
-            "2.4.2": {
-                "en": "added correct handling of `move_to_saturation`, `hue_move` and `brightness_move_to_level` ([#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68))\nfix when `friendly_name` `/` contains",
-                "de": "die korrekte Handhabung von move_to_saturation, hue_move und bright_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nbei freundlich_name `/` enthält",
-                "ru": "добавлена правильная обработка move_to_saturation, hue_move и brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nисправить, когда friendly_name `/` содержит",
-                "pt": "adicionado manuseio correto de move_to_saturation, hue_move e brilho_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\ncorrigir quando friendly_name `/` contém",
-                "nl": "voegde de juiste behandeling van verplaatsing, huemove and brightnessmovetolevel 68) (httub /0shojoo-0-Bio-Broctrotqusts)\nvertaling: _",
-                "fr": "ajouté correct handling of move_to_saturation, hue_move and brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfixer lorsque friendly_name `/` contient",
-                "it": "aggiunto corretta gestione di move_to_saturation, hue_move e luminosità_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfissare quando amichevole_name `/` contiene",
-                "es": "añadido correcto manejo de move_to_saturation, hue_move and brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\narreglar cuando friendly_name `/ contiene",
-                "pl": "(Prawdziwa obsługa ruchu_to_saturation, hue_move and brightness_move_to_level #68(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nustanowić się, gdy przyjaźnić nazwisko/'. zawierać",
-                "uk": "додано правильну обробку рухом_to_saturation, hue_move_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nфіксація при дружній_ім`я `/` в наявності",
-                "zh-cn": "进一步正确地处理搬迁问题:流向、障碍和光明_move_to_级[#68](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfix 友好时的名称:“/” 内载"
-            },
-            "2.4.1": {
-                "en": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
-                "de": "(https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
-                "ru": "исправить на [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
-                "pt": "correção com base em [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#comment-1316656378)",
-                "nl": "quality over Quantity Releases Vertaling:",
-                "fr": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
-                "it": "fix based on [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
-                "es": "fijado basado en [review](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656378)",
-                "pl": "recenzent oparty na przeglądzie (https:/github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1316656363636378)",
-                "uk": "javaScript licenses API Веб-сайт Go1.13.8",
-                "zh-cn": "fix 基于[审查](http://github.com/ioBroker/ioBroker.reories/pull/1976#issuement-1316656378)"
-            }
-        },
-        "titleLang": {
-            "en": "zigbee2mqtt",
-            "de": "zigbee2mqtt",
-            "ru": "зигби2мктт",
-            "pt": "zigbee2mqtt",
-            "nl": "zigbee2mqtt",
-            "fr": "zigbee2mqtt",
-            "it": "zigbee2mqtt",
-            "es": "zigbee2mqtt",
-            "pl": "zigbee2mqtt",
-            "zh-cn": "zigbee2mqtt",
-            "uk": "zigbee2mqtt"
-        },
-        "desc": {
-            "en": "Zigbee2MQTT adapter for ioBroker",
-            "de": "Zigbee2MQTT-Adapter für ioBroker",
-            "ru": "Адаптер Zigbee2MQTT для ioBroker",
-            "pt": "Adaptador Zigbee2MQTT para ioBroker",
-            "nl": "Zigbee2MQTT-adapter voor ioBroker",
-            "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
-            "it": "Adattatore Zigbee2MQTT per ioBroker",
-            "es": "Adaptador Zigbee2MQTT para ioBroker",
-            "pl": "Adapter Zigbee2MQTT do ioBroker",
-            "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
-            "uk": "Адаптер Zigbee2MQTT для ioBroker"
-        },
-        "authors": [
-            "Dennis Rathjen <dennis.rathjen@outlook.de>"
-        ],
-        "keywords": [
-            "zigbee",
-            "zigbee2mqtt",
-            "hue",
-            "tradfri",
-            "aqara",
-            "tuya"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "zigbee2mqtt.png",
-        "enabled": false,
-        "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-        "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "hardware",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "adminUI": {
-            "config": "json"
-        },
-        "adminTab": {
-            "name": {
-                "en": "Zigbee2MQTT",
-                "de": "Zigbee2MQTT",
-                "ru": "Zigbee2MQTT",
-                "pt": "Zigbee2MQTT",
-                "nl": "Zigbee2MQTT",
-                "fr": "Zigbee2MQTT",
-                "it": "Zigbee2MQTT",
-                "es": "Zigbee2MQTT",
-                "pl": "Zigbee2MQTT",
-                "zh-cn": "Zigbee2MQTT"
-            },
-            "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
-            "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
-        },
-        "localLinks": {
-            "_default": {
-                "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
-            }
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.13"
-            }
-        ]
+  "common": {
+    "name": "zigbee2mqtt",
+    "version": "2.7.0",
+    "news": {
+      "2.7.0": {
+        "en": "added support for  wildcard actions (eg. *_single) ([#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116))\nadded error handling optimizations ([more](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679))\nadded option `auth_token` for websocket connection ([#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112))\nwebsocket timeout increased",
+        "de": "unterstützung für Wildcard-Aktionen (z.B. *_single) [#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/116)\nfehlerbehandlungsoptimierungen [mehr](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\nzusatzoption auth_token für Websocket-Verbindung [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/112)\nwebsocket timeout erhöht",
+        "ru": "добавлена поддержка действий дикой карты (например *_один) [#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116)\nдобавлены оптимизации обработки ошибок [more](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\nдобавлена опция auth_token для подключения к сети [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112)\ntimeout websocket увеличился",
+        "pt": "apoio adicional para ações curingas (por exemplo: *_single) [#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116)\notimizações adicionais de manuseio de erros [mais](https://github.com/ioBroker/ioBroker.repositories/pull/1976#comment-1382038679)\nadicionado opção auth_token para conexão websocket [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112)\ntimeout do websocket aumentou",
+        "nl": "voegde ondersteuning toe voor wilde kaarten\nerror toegevoegd aan het omgaan met optimisaties / 1976 #isscombentub.comioBroker /ioBroker / iProker / 1976 3896 389\nvoegde optie toegevoegd voor websocket connectie [Ghtub.com/oshoo/ioBroker\nwebsocket time-out verhoogd",
+        "fr": "ajout d ' un appui aux actions de wildcard (par exemple *_single) [#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/116)\noptimisation de la gestion des erreurs [plus](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\noption ajoutée auth_token for websocket connection [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/112)\nwebsocket timeout augmenté",
+        "it": "[#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/116)\n[continua](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\nopzione aggiunta auth_token per collegamento websocket [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/112)\nwebsocket timeout aumentato",
+        "es": "[#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/116)\n[más](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\nañadida la opción auth_token para la conexión websocket [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/112)\ntiempo de websocket aumentó",
+        "pl": "dodano wsparcie dla działań na rzecz dzikich kart (eg. *_single) #116(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116)\ndodano optymalizację błędów (https:/github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\nauth_token for websocket connection #112(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112)\nczas dostępu do stron internetowych wzrastał",
+        "uk": "додана підтримка дій дикої картки (наприклад, *_single) [#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116)\nдодано оптимізацію обробки помилок [більше](https://github.com/ioBroker/ioBroker.repositories/pull/1976#productcomment-1382038679)\nдодано опцію auth_token для підключення websocket [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112)\nwebsocket час",
+        "zh-cn": "对野生卡行动(第 *_single)[第116](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/116))的支持\n新增的错误处理优化[(http://github.com/ioBroker/ioBroker.reories/pull/1976#issuement-1382038679)\n添加以下选择:网站联系(第112号)(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/112)\n网页"
+      },
+      "2.6.0": {
+        "en": "added state `transition` for transition overwrite (-1 disabled overwrite) ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))\nconsideration of the description when creating the friendly name ([#105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105))\nadded state `effect` for groups ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))\nfix state contact\nadded handling for disabled devices",
+        "de": "hinzugefügter Zustandsübergang für Übergangsüberschreiben -(1 behinderte Überschreiben) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nberücksichtigung der Beschreibung bei der Erstellung des freundlichen Namens #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\nzusätzliche staatliche Wirkung für Gruppen #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nkontakt mit dem status\nzusätzliches handling für behinderte",
+        "ru": "добавлен государственный переход для перехода переписать -(1 отключен перезапись) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрассмотрение описания при создании дружественного имени #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\nдобавлен государственный эффект для групп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nисправить государственный контакт\nдобавлена обработка для инвалидов",
+        "pt": "adicionado transição de estado para a transição sobreescrita -(1 sobreescrita desativada) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nconsideração da descrição ao criar o nome amigável #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\nadicionado efeito estatal para grupos #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\ncorrigir contato estado\nmanuseio adicionado para dispositivos com deficiência",
+        "nl": "voegde staatsoverschrijving toe voor overschrijving overschrijving - (1 gehandicapte overschrijving) (1) (1 gehandicapte overschrijving)\noverweeg de beschrijving als het creëren van de vriendelijke naam £10:\nvoegde toegevoegd staats effect voor groepen £101, httub.com/oshojoo/ioBroker\nvertaling:\nvoegde toegevoegd voor gehandicapte apparaten",
+        "fr": "transition de l ' État pour la surécriture de transition -(1 surécriture désactivée) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nexamen de la description lors de la création du nom amical #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\neffet d ' État ajouté pour les groupes #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\ncontact étatique\nmanipulation supplémentaire pour les dispositifs handicapés",
+        "it": "aggiunto passaggio di stato per overwrite di transizione -(1 overwrite disabilitato) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nconsiderazione della descrizione quando si crea il nome amichevole #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\neffetto stato aggiunto per gruppi #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nfix contatto stato\nmanipolazione aggiuntiva per dispositivi disabili",
+        "es": "añadida transición estatal para la sobreescritura de transición -(1 invalidez sobreescritura) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nexamen de la descripción al crear el nombre amistoso #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\nañadido efecto estatal para los grupos #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\narreglar contacto estado\nmanejo añadido para dispositivos discapacitados",
+        "pl": "dodano przejście stanowe na przepisanie -(1 disabled overwrite) #101(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nrezultatem tego opisu było stworzenie przyjaznej nazwy #105 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\ndodano efekt stanowy dla grup #101 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nkontakt państwowy\nobsługa urządzeń dla osób niepełnosprawnych",
+        "uk": "додано державний перехід для переходу перезапису -(1 вимкнено перезапис) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрозгляд опису при створенні дружньої назви #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/105)\nдодано державний ефект для груп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nфіксувати державний контакт\nдодана обробка для пристроїв відключення",
+        "zh-cn": "此外,国家向过渡过渡的过渡——《残疾》第[101]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\n在建立友好名称编号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)时,审议说明\n第[101]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/101)\nfix 国家联络点\nd. 增加处理残疾装置"
+      },
+      "2.5.0": {
+        "en": "added option `Brightness step should also turn the light on or off`\nadded handling of `brightness_step` ([#96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96))\nstates processing more flexible designed ([#94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94))",
+        "de": "zusätzliche Option `Brightness Schritt sollte auch das Licht ein- oder ausschalten `\nzusätzliches Handling der Helligkeit_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\nzustände, die flexibler gestaltet sind #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
+        "ru": "добавленная опция `Яркость шаг должен также повернуть свет на или вне`\nдобавлена обработка brightness_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nсостояния обработки более гибкий дизайн #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
+        "pt": "opção adicionada `A etapa de justiça também deve ligar ou desligar a luz`\nmanuseio adicionado de gloss_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nestados processando mais flexível projetado #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
+        "nl": "voegde optie 'Brightness step' ook het licht aan of uit'\nvoegde toegevoegd om te gaan met helderheid stegen cijfer 96\nhet verwerkt meer flexibele ontworpen 94: github.com/oshojoo/ioBroker",
+        "fr": "option ajoutée `Brightness step should also turn the light on or off`\ngestion de la luminosité_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\ndéclare que le traitement est plus souple, conçu #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
+        "it": "opzione aggiunta `Brightness passo dovrebbe anche accendere o spegnere la luce `\n[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n(https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
+        "es": "opción agregada `El paso de la rectitud también debe encender o apagar la luz &apos\nadicional handling of brightness_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nestados procesan más flexiblemente diseñados #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
+        "pl": "dodał również krok opcji 'Brightness'\ndodano obsługę jasności (stop #96) (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nprzetwarzają bardziej elastyczne przetwory #94 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
+        "uk": "доданий варіант `Бритальність кроку також повинен перетворювати світло або вимкнути`\nдодано обробка яскравості_кроку #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\n[94] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
+        "zh-cn": "增加“权利步骤”的选择,也应该改变“或”的提法。\n增加光明处理:第[96]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n国家处理较为灵活的第[94]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/94)"
+      },
+      "2.4.5": {
+        "en": "extend 'text' for 'action' ([#84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84))",
+        "de": "text für die Aktion #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
+        "ru": "расширить текст для действия #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
+        "pt": "extensão do texto para a ação #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
+        "nl": "quality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "extension text for action #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
+        "it": "estendere il testo all'azione #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
+        "es": "extensión text for action #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
+        "pl": "tekst do akcji #84 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8",
+        "zh-cn": "行动案文[84](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/84)"
+      },
+      "2.4.4": {
+        "en": "better state identification ([#79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79))",
+        "de": "bessere Zustandserkennung #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
+        "ru": "лучшая государственная идентификация #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "pt": "melhor identificação do estado #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "nl": "identificatie van de staat is beter",
+        "fr": "meilleure identification de l ' État #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
+        "it": "migliore identificazione dello stato #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
+        "es": "mejor identificación estatal #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "pl": "zobacz też: #79 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "uk": "[79] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
+        "zh-cn": "更好的国家辨认(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/79)"
+      },
+      "2.4.3": {
+        "en": "fix availability when `friendly_name` `/` contains",
+        "de": "verfügbarkeit korrigieren bei friendly_name `/` enthält",
+        "ru": "исправить доступность когда friendly_name `/` содержит",
+        "pt": "corrigir disponibilidade quando friendly_name `/` contém",
+        "nl": "_ _",
+        "fr": "fixer la disponibilité lorsque friendly_name `/` contient",
+        "it": "fissare la disponibilità quando amichevole_name `/` contiene",
+        "es": "fijar disponibilidad cuando friendly_name `/` contiene",
+        "pl": "ustanowić dostęp do przyjaznej nazwy. zawierać",
+        "uk": "застосувати доступність при дружній_ім`я `/` в наявності",
+        "zh-cn": "f 在友好的情况下,可提供“/”一词 内载"
+      },
+      "2.4.2": {
+        "en": "added correct handling of `move_to_saturation`, `hue_move` and `brightness_move_to_level` ([#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68))\nfix when `friendly_name` `/` contains",
+        "de": "die korrekte Handhabung von move_to_saturation, hue_move und bright_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nbei freundlich_name `/` enthält",
+        "ru": "добавлена правильная обработка move_to_saturation, hue_move и brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nисправить, когда friendly_name `/` содержит",
+        "pt": "adicionado manuseio correto de move_to_saturation, hue_move e brilho_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\ncorrigir quando friendly_name `/` contém",
+        "nl": "voegde de juiste behandeling van verplaatsing, huemove and brightnessmovetolevel 68) (httub /0shojoo-0-Bio-Broctrotqusts)\nvertaling: _",
+        "fr": "ajouté correct handling of move_to_saturation, hue_move and brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfixer lorsque friendly_name `/` contient",
+        "it": "aggiunto corretta gestione di move_to_saturation, hue_move e luminosità_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfissare quando amichevole_name `/` contiene",
+        "es": "añadido correcto manejo de move_to_saturation, hue_move and brightness_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\narreglar cuando friendly_name `/ contiene",
+        "pl": "(Prawdziwa obsługa ruchu_to_saturation, hue_move and brightness_move_to_level #68(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nustanowić się, gdy przyjaźnić nazwisko/'. zawierać",
+        "uk": "додано правильну обробку рухом_to_saturation, hue_move_move_to_level [#68](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/68)\nфіксація при дружній_ім`я `/` в наявності",
+        "zh-cn": "进一步正确地处理搬迁问题:流向、障碍和光明_move_to_级[#68](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/68)\nfix 友好时的名称:“/” 内载"
+      }
     },
-    "native": {
-        "connectionType": "ws",
-        "wsServerIP": "",
-        "wsServerPort": 8080,
-        "wsTokenEnabled": false,
-        "wsToken": "",
-        "dummyMqtt": false,
-        "externalMqttServerIP": "",
-        "externalMqttServerPort": 1883,
-        "mqttServerIPBind": "0.0.0.0",
-        "mqttServerPort": 1885,
-        "webUIScheme": "http",
-        "webUIServer": "",
-        "webUIPort": 8080,
-        "debugLogEnabled": false,
-        "proxyZ2MLogs": true,
-        "useKelvin": false,
-        "colorTempSyncColor": false,
-        "brightnessMoveOnOff": false,
-        "brightnessStepOnOff": false
+    "titleLang": {
+      "en": "zigbee2mqtt",
+      "de": "zigbee2mqtt",
+      "ru": "зигби2мктт",
+      "pt": "zigbee2mqtt",
+      "nl": "zigbee2mqtt",
+      "fr": "zigbee2mqtt",
+      "it": "zigbee2mqtt",
+      "es": "zigbee2mqtt",
+      "pl": "zigbee2mqtt",
+      "zh-cn": "zigbee2mqtt",
+      "uk": "zigbee2mqtt"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Zigbee2MQTT connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.debugmessages",
-            "type": "state",
-            "common": {
-                "name": "Log changes as warnings for",
-                "type": "string",
-                "read": true,
-                "write": true,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.logfilter",
-            "type": "state",
-            "common": {
-                "name": "Logs matching filters are ignored by the LogProxy",
-                "type": "string",
-                "read": true,
-                "write": true,
-                "def": ""
-            },
-            "native": {}
-        }
+    "desc": {
+      "en": "Zigbee2MQTT adapter for ioBroker",
+      "de": "Zigbee2MQTT-Adapter für ioBroker",
+      "ru": "Адаптер Zigbee2MQTT для ioBroker",
+      "pt": "Adaptador Zigbee2MQTT para ioBroker",
+      "nl": "Zigbee2MQTT-adapter voor ioBroker",
+      "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
+      "it": "Adattatore Zigbee2MQTT per ioBroker",
+      "es": "Adaptador Zigbee2MQTT para ioBroker",
+      "pl": "Adapter Zigbee2MQTT do ioBroker",
+      "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
+      "uk": "Адаптер Zigbee2MQTT для ioBroker"
+    },
+    "authors": [
+      "Dennis Rathjen <dennis.rathjen@outlook.de>"
+    ],
+    "keywords": [
+      "zigbee",
+      "zigbee2mqtt",
+      "hue",
+      "tradfri",
+      "aqara",
+      "tuya"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "zigbee2mqtt.png",
+    "enabled": false,
+    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "hardware",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "adminTab": {
+      "name": {
+        "en": "Zigbee2MQTT",
+        "de": "Zigbee2MQTT",
+        "ru": "Zigbee2MQTT",
+        "pt": "Zigbee2MQTT",
+        "nl": "Zigbee2MQTT",
+        "fr": "Zigbee2MQTT",
+        "it": "Zigbee2MQTT",
+        "es": "Zigbee2MQTT",
+        "pl": "Zigbee2MQTT",
+        "zh-cn": "Zigbee2MQTT"
+      },
+      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
+      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+    },
+    "localLinks": {
+      "_default": {
+        "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
+      }
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.22"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.13"
+      }
     ]
+  },
+  "native": {
+    "connectionType": "ws",
+    "wsServerIP": "",
+    "wsServerPort": 8080,
+    "wsTokenEnabled": false,
+    "wsToken": "",
+    "dummyMqtt": false,
+    "externalMqttServerIP": "",
+    "externalMqttServerPort": 1883,
+    "mqttServerIPBind": "0.0.0.0",
+    "mqttServerPort": 1885,
+    "webUIScheme": "http",
+    "webUIServer": "",
+    "webUIPort": 8080,
+    "debugLogEnabled": false,
+    "proxyZ2MLogs": true,
+    "useKelvin": false,
+    "colorTempSyncColor": false,
+    "brightnessMoveOnOff": false,
+    "brightnessStepOnOff": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Zigbee2MQTT connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.debugmessages",
+      "type": "state",
+      "common": {
+        "name": "Log changes as warnings for",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.logfilter",
+      "type": "state",
+      "common": {
+        "name": "Logs matching filters are ignored by the LogProxy",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": ""
+      },
+      "native": {}
+    }
+  ]
 }
