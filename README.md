@@ -35,6 +35,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ### **WORK IN PROGRESS**
 
+-   (o0shojo0o) added support for  wildcard actions (eg. *_single) ([#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116))
 -   (o0shojo0o) added error handling optimizations ([more](https://github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679))
 -   (o0shojo0o) added option `auth_token` for websocket connection ([#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112))
 -   (o0shojo0o) websocket timeout increased
