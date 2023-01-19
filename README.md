@@ -32,6 +32,11 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) use the iobroker device folder description
+
 ### 2.7.0 (2023-01-18)
 
 -   (o0shojo0o) added support for  wildcard actions (eg. *_single) ([#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116))
