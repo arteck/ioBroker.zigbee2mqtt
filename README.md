@@ -35,7 +35,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ### **WORK IN PROGRESS**
 
--   (o0shojo0o) use the iobroker device folder description
+-   (o0shojo0o) use the iobroker device folder description for device description or events
 
 ### 2.7.0 (2023-01-18)
 
