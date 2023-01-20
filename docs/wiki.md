@@ -1,4 +1,4 @@
-# DRAFT / Still under construction - Wiki 
+# Wiki 
 
 This is a small wiki for the ioBroker adapter Zigbee2MQTT.
 

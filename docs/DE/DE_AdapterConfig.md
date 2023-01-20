@@ -1,5 +1,5 @@
 ### Konfiguration des Adapters
-| Option | Wert |
+| Option | Wert/Beschreibung |
 |--|--|
 |Zigbee2MQTT Verbindung auswählen |Empfohlene Einstellung "Websocket" |
 |Websocket IP-Adresse |IP oder DNS Name des Zigbee2MQTT Servers (in unserem Falle die IP des Docker Host)|
