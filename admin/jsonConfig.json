@@ -60,7 +60,7 @@
 			"type": "password",
 			"label": "Auth-Token (special characters are not supported)",
 			"newLine": true,
-			"lg": 2,
+			"lg": 3,
 			"hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
 		},
 		"dummyMqtt": {
