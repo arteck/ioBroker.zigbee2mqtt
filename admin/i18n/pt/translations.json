@@ -24,5 +24,6 @@
     "Other configurations": "Outras configurações",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Logs proxy Zigbee2MQTT para logs ioBroker",
     "Brightness move should also turn the light on or off": "O movimento de brilho também deve ligar ou desligar a luz",
-    "Brightness step should also turn the light on or off": "A etapa de brilho também deve ligar ou desligar a luz"
+    "Brightness step should also turn the light on or off": "A etapa de brilho também deve ligar ou desligar a luz",
+    "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "Os eventos como 'Dispositivo removido' ou 'Desativado' são exibidos na descrição em vez de no nome."
 }
