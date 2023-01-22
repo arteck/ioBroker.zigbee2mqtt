@@ -24,5 +24,6 @@
     "Other configurations": "Інші конфігурації",
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Журнали проксі Zigbee2MQTT до журналів ioBroker",
     "Brightness move should also turn the light on or off": "Переміщення яскравості також повинно вмикати або вимикати світло",
-    "Brightness step should also turn the light on or off": "Крок яскравості також повинен вмикати або вимикати світло"
+    "Brightness step should also turn the light on or off": "Крок яскравості також повинен вмикати або вимикати світло",
+    "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "Такі події, як «Пристрій видалено» або «Вимкнено», відображаються в описі, а не в назві."
 }

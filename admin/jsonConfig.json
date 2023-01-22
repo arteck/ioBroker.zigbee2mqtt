@@ -10,7 +10,7 @@
 		},
 		"connectionType": {
 			"label": "Select connection to Zigbee2MQTT",
-			"sm": 4,
+			"sm": 5,
 			"type": "select",
 			"options": [
 				{
@@ -60,7 +60,7 @@
 			"type": "password",
 			"label": "Auth-Token (special characters are not supported)",
 			"newLine": true,
-			"lg": 3,
+			"lg": 5,
 			"hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
 		},
 		"dummyMqtt": {
@@ -170,6 +170,11 @@
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
+			"newLine": true
+		},
+		"useEventInDesc": {
+			"type": "checkbox",
+			"label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
 			"newLine": true
 		}
 	}
