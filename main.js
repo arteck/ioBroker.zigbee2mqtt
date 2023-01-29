@@ -153,6 +153,7 @@ class Zigbee2mqtt extends core.Adapter {
             case 'bridge/devices':
                 await deviceController.createDeviceDefinitions(messageObj.payload);
                 await deviceController.createOrUpdateDevices();
+                await deviceController.checkAndProgressDeviceRemove();
                 await statesController.subscribeWritableStates();
                 statesController.processQueue();
                 break;
@@ -163,12 +164,12 @@ class Zigbee2mqtt extends core.Adapter {
                 statesController.processQueue();
                 break;
             case 'bridge/event':
-                deviceController.processRemoveEvent(messageObj);
                 break;
             case 'bridge/response/device/remove':
-                deviceController.processRemoveEvent(messageObj);
                 break;
             case 'bridge/response/device/options':
+                break;
+            case 'bridge/response/permit_join':
                 break;
             case 'bridge/extensions':
                 break;
@@ -176,6 +177,8 @@ class Zigbee2mqtt extends core.Adapter {
                 if (this.config.proxyZ2MLogs == true) {
                     z2mController.proxyZ2MLogs(messageObj);
                 }
+                break;
+            case 'bridge/response/device/configure':
                 break;
             case 'bridge/response/device/rename':
                 await deviceController.renameDeviceInCache(messageObj);
