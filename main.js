@@ -213,7 +213,6 @@ class Zigbee2mqtt extends core.Adapter {
                         }
                         // States
                     } else {
-                        //console.log(JSON.stringify(messageObj));
                         statesController.processDeviceMessage(messageObj);
                     }
                 }
@@ -222,33 +221,45 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async onUnload(callback) {
-        try {
+        // Close MQTT connections
+        if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
             if (mqttClient && !mqttClient.closed) {
-                mqttClient.close();
+                try {
+                    mqttClient.close();
+                } catch (e) {
+                    this.log.error(e);
+                }
             }
-            websocketController.closeConnection();
-        } catch (e) {
-            this.log.error(e);
+            // Internal MQTT-Server
+            if (this.config.connectionType == 'exmqtt') {
+                try {
+                    mqttServerController.closeServer();
+                } catch (e) {
+                    this.log.error(e);
+                }
+            }
         }
-
-        try {
-            mqttServerController.closeServer();
-        } catch (e) {
-            this.log.error(e);
+        // Websocket
+        else if (this.config.connectionType == 'ws') {
+            try {
+                websocketController.closeConnection();
+            } catch (e) {
+                this.log.error(e);
+            }
         }
-
+        // Set all device available states of false
         try {
             await statesController.setAllAvailableToFalse();
         } catch (e) {
             this.log.error(e);
         }
-
+        // Clear all websocket timers
         try {
             await websocketController.allTimerClear();
         } catch (e) {
             this.log.error(e);
         }
-
+        // Clear all state timers
         try {
             await statesController.allTimerClear();
         } catch (e) {
