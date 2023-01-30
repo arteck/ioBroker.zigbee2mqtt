@@ -143,6 +143,7 @@
     "mode": "daemon",
     "type": "hardware",
     "compact": true,
+    "stopTimeout": 2000,
     "connectionType": "local",
     "dataSource": "push",
     "adminUI": {
