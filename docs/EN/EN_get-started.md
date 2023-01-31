@@ -1,7 +1,7 @@
 # Installation
 
 The installation of the adapter requires some preparatory work. 
-Here the basic installation including all requirements is described. Detailed information, instructions and settings can be found on the Zigbee2MQTT page.
+Here the basic installation including all requirements is described. Detailed information, instructions and settings can be found on the page of [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/getting-started/).
 
 `ATTENTION: If the coordinator has been used somewhere else before, it must be reset, otherwise errors will happen.`
 
