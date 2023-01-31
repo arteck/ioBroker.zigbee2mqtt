@@ -19,7 +19,7 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung gegeben!
         ports:
         - 8080:8080
         devices:
-        - /dev/ttyUSB0:/dev//dev/ttyUSB0
+        - /dev/ttyUSB0:/dev/dev/ttyUSB0
         volumes:
         - /etc/localtime:/etc/localtime:ro
         - ./zigbee2mqtt/data:/app/data

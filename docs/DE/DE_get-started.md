@@ -1,7 +1,7 @@
 # Installation
 
 Die Installation des Adapters erfordert einige Vorarbeiten. 
-Hier wird die grundlegende Installation inkl. aller Voraussetzungen beschrieben. Detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von Zigbee2MQTT.
+Hier wird die grundlegende Installation inkl. aller Voraussetzungen beschrieben. Detaillierte Informationen, Anleitungen und Einstellungen findet ihr auf der Seite von [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/getting-started/).
 
 `ACHTUNG: Sollte der Koordinator vorher schon einmal woanders im Einsatz gewesen sein muss dieser zurückgesetzt werden, ansonsten kommet es hier zu Fehlern.` 
 
