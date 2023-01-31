@@ -230,13 +230,13 @@ class Zigbee2mqtt extends core.Adapter {
                     this.log.error(e);
                 }
             }
-            // Internal MQTT-Server
-            if (this.config.connectionType == 'exmqtt') {
-                try {
-                    mqttServerController.closeServer();
-                } catch (e) {
-                    this.log.error(e);
-                }
+        }
+        // Internal or Dummy MQTT-Server
+        if (this.config.connectionType == 'intmqtt' || this.config.dummyMqtt == true) {
+            try {
+                mqttServerController.closeServer();
+            } catch (e) {
+                this.log.error(e);
             }
         }
         // Websocket
