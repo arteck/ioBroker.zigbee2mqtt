@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.7.1",
+    "version": "2.7.2",
     "news": {
+      "2.7.2": {
+        "en": "rework of the detection of removed devices",
+        "de": "nacharbeiten der erkennung von entfernten geräten",
+        "ru": "переработка обнаружения удаленных устройств",
+        "pt": "retrabalho da detecção de dispositivos removidos",
+        "nl": "_",
+        "fr": "retravail de la détection des dispositifs enlevés",
+        "it": "rielaborazione del rilevamento dei dispositivi rimossi",
+        "es": "rework of the detection of removed devices",
+        "pl": "przepraszanie detekcji usuniętych urządzeń",
+        "uk": "реконструкція виявлення видалених пристроїв",
+        "zh-cn": "清除装置的探查工作"
+      },
       "2.7.1": {
         "en": "added option for use folder description\nuse the iobroker device folder description for device description or events",
         "de": "zusatzoption für die ordnerbeschreibung\ndie beschreibung des iobroker geräteordners für gerätebeschreibung oder ereignisse",
@@ -80,19 +93,6 @@
         "pl": "zobacz też: #79 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
         "uk": "[79] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
         "zh-cn": "更好的国家辨认(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/79)"
-      },
-      "2.4.3": {
-        "en": "fix availability when `friendly_name` `/` contains",
-        "de": "verfügbarkeit korrigieren bei friendly_name `/` enthält",
-        "ru": "исправить доступность когда friendly_name `/` содержит",
-        "pt": "corrigir disponibilidade quando friendly_name `/` contém",
-        "nl": "_ _",
-        "fr": "fixer la disponibilité lorsque friendly_name `/` contient",
-        "it": "fissare la disponibilità quando amichevole_name `/` contiene",
-        "es": "fijar disponibilidad cuando friendly_name `/` contiene",
-        "pl": "ustanowić dostęp do przyjaznej nazwy. zawierać",
-        "uk": "застосувати доступність при дружній_ім`я `/` в наявності",
-        "zh-cn": "f 在友好的情况下,可提供“/”一词 内载"
       }
     },
     "titleLang": {
