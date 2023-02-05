@@ -108,6 +108,7 @@
 		},
 		"webUIScheme": {
 			"type": "select",
+			"label": "Scheme",
 			"options": [
 				{
 					"label": "HTTP",
