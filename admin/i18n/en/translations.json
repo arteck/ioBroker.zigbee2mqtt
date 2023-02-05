@@ -25,5 +25,6 @@
 	"Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logs to ioBroker logs",
 	"Brightness move should also turn the light on or off": "Brightness move should also turn the light on or off",
 	"Brightness step should also turn the light on or off": "Brightness step should also turn the light on or off",
-	"The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name."
+	"The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
+	"Scheme": "Scheme"
 }
