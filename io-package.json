@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.7.2",
+    "version": "2.7.3",
     "news": {
+      "2.7.3": {
+        "en": "hotfix for Aqara presence detector FP1",
+        "de": "hotfix für Aqara Präsenzmelder FP1",
+        "ru": "hotfix для детектора присутствия Aqara FP1",
+        "pt": "hotfix para detector de presença Aqara FP1",
+        "nl": "quality over Quanteur FP1",
+        "fr": "hotfix pour détecteur de présence Aqara FP1",
+        "it": "hotfix per rilevatore di presenza Aqara FP1",
+        "es": "hotfix para detector de presencia Aqara FP1",
+        "pl": "hotfix",
+        "uk": "hotfix для датчика присутності Aqara FP1",
+        "zh-cn": "aqara存在侦查员FP1"
+      },
       "2.7.2": {
         "en": "rework of the detection of removed devices",
         "de": "nacharbeiten der erkennung von entfernten geräten",
@@ -80,19 +93,6 @@
         "pl": "tekst do akcji #84 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
         "uk": "javaScript licenses API Веб-сайт Go1.13.8",
         "zh-cn": "行动案文[84](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/84)"
-      },
-      "2.4.4": {
-        "en": "better state identification ([#79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79))",
-        "de": "bessere Zustandserkennung #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
-        "ru": "лучшая государственная идентификация #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-        "pt": "melhor identificação do estado #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-        "nl": "identificatie van de staat is beter",
-        "fr": "meilleure identification de l ' État #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
-        "it": "migliore identificazione dello stato #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/79)",
-        "es": "mejor identificación estatal #[79](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-        "pl": "zobacz też: #79 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-        "uk": "[79] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/79)",
-        "zh-cn": "更好的国家辨认(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/79)"
       }
     },
     "titleLang": {
