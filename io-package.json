@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.7.3",
+    "version": "2.7.4",
     "news": {
+      "2.7.4": {
+        "en": "fix for Aqara presence detector FP1 `reset_nopresence_status`",
+        "de": "fix für Aqara Präsenzmelder FP1 reset_nopresence_status",
+        "ru": "фикс для Aqara детектор присутствия FP1 reset_nopresence_status",
+        "pt": "correção para o detector de presença de Aqara FP1 reset_nopresence_status",
+        "nl": "vertaling:",
+        "fr": "fix pour détecteur de présence Aqara FP1 reset_nopresence_status",
+        "it": "correzione per rilevatore di presenza Aqara FP1 reset_nopresence_status",
+        "es": "fijado para el detector de presencia Aqara FP1 reset_nopresence_status",
+        "pl": "reset_nopresence_status (ang.)",
+        "uk": "фіксація для датчика присутності Aqara FP1 скидання_nopresence_status",
+        "zh-cn": "fix Aqara存在探测器FP1 重新定位_nopreence_status"
+      },
       "2.7.3": {
         "en": "hotfix for Aqara presence detector FP1",
         "de": "hotfix für Aqara Präsenzmelder FP1",
@@ -80,19 +93,6 @@
         "pl": "dodał również krok opcji 'Brightness'\ndodano obsługę jasności (stop #96) (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nprzetwarzają bardziej elastyczne przetwory #94 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
         "uk": "доданий варіант `Бритальність кроку також повинен перетворювати світло або вимкнути`\nдодано обробка яскравості_кроку #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\n[94] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
         "zh-cn": "增加“权利步骤”的选择,也应该改变“或”的提法。\n增加光明处理:第[96]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n国家处理较为灵活的第[94]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/94)"
-      },
-      "2.4.5": {
-        "en": "extend 'text' for 'action' ([#84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84))",
-        "de": "text für die Aktion #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
-        "ru": "расширить текст для действия #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-        "pt": "extensão do texto para a ação #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-        "nl": "quality over Quantity (QoQ) Releases Vertaling:",
-        "fr": "extension text for action #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
-        "it": "estendere il testo all'azione #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/84)",
-        "es": "extensión text for action #[84](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-        "pl": "tekst do akcji #84 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/84)",
-        "uk": "javaScript licenses API Веб-сайт Go1.13.8",
-        "zh-cn": "行动案文[84](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/84)"
       }
     },
     "titleLang": {

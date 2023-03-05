@@ -32,7 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.7.4 (2023-03-05)
 
 -   (o0shojo0o) fix for Aqara presence detector FP1 `reset_nopresence_status`
 
