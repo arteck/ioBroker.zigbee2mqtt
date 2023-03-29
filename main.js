@@ -133,7 +133,7 @@ class Zigbee2mqtt extends core.Adapter {
 
     async messageParse(message) {
         const messageObj = JSON.parse(message);
-        this.log.debug(JSON.stringify(messageObj));
+        //this.log.debug(JSON.stringify(messageObj));
 
         switch (messageObj.topic) {
             case 'bridge/config':
