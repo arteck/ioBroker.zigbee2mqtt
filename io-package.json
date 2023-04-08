@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.7.4",
+    "version": "2.7.5",
     "news": {
+      "2.7.5": {
+        "en": "added state `last_seen` contains date/time of last Zigbee message ([#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131))",
+        "de": "add state last_seen enthält Datum/Zeit der letzten Zigbee-Nachricht [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+        "ru": "добавленное состояние last_seen содержит дату/время последнего сообщения Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+        "pt": "adicionado estado last_seen contém data/hora da última mensagem Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+        "nl": "vertaling:",
+        "fr": "add state last_seen contains date/time of last Zigbee message [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+        "it": "aggiunto state last_seen contiene data/ora dell'ultimo messaggio Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+        "es": "añadido state last_seen contiene fecha/hora del último mensaje de Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+        "pl": "dodano stan ostatni_seen:/time of last Zigbee message #131(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+        "uk": "додано стан last_seen містить дату/час останнього повідомлення Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+        "zh-cn": "添加国家:见最后Zigbee信息的日期/时间[第131号](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)"
+      },
       "2.7.4": {
         "en": "fix for Aqara presence detector FP1 `reset_nopresence_status`",
         "de": "fix für Aqara Präsenzmelder FP1 reset_nopresence_status",
@@ -80,19 +93,6 @@
         "pl": "dodano przejście stanowe na przepisanie -(1 disabled overwrite) #101(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nrezultatem tego opisu było stworzenie przyjaznej nazwy #105 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\ndodano efekt stanowy dla grup #101 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nkontakt państwowy\nobsługa urządzeń dla osób niepełnosprawnych",
         "uk": "додано державний перехід для переходу перезапису -(1 вимкнено перезапис) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрозгляд опису при створенні дружньої назви #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/105)\nдодано державний ефект для груп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nфіксувати державний контакт\nдодана обробка для пристроїв відключення",
         "zh-cn": "此外,国家向过渡过渡的过渡——《残疾》第[101]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\n在建立友好名称编号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)时,审议说明\n第[101]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/101)\nfix 国家联络点\nd. 增加处理残疾装置"
-      },
-      "2.5.0": {
-        "en": "added option `Brightness step should also turn the light on or off`\nadded handling of `brightness_step` ([#96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96))\nstates processing more flexible designed ([#94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94))",
-        "de": "zusätzliche Option `Brightness Schritt sollte auch das Licht ein- oder ausschalten `\nzusätzliches Handling der Helligkeit_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\nzustände, die flexibler gestaltet sind #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
-        "ru": "добавленная опция `Яркость шаг должен также повернуть свет на или вне`\nдобавлена обработка brightness_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nсостояния обработки более гибкий дизайн #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-        "pt": "opção adicionada `A etapa de justiça também deve ligar ou desligar a luz`\nmanuseio adicionado de gloss_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nestados processando mais flexível projetado #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-        "nl": "voegde optie 'Brightness step' ook het licht aan of uit'\nvoegde toegevoegd om te gaan met helderheid stegen cijfer 96\nhet verwerkt meer flexibele ontworpen 94: github.com/oshojoo/ioBroker",
-        "fr": "option ajoutée `Brightness step should also turn the light on or off`\ngestion de la luminosité_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\ndéclare que le traitement est plus souple, conçu #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
-        "it": "opzione aggiunta `Brightness passo dovrebbe anche accendere o spegnere la luce `\n[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n(https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/94)",
-        "es": "opción agregada `El paso de la rectitud también debe encender o apagar la luz &apos\nadicional handling of brightness_step #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nestados procesan más flexiblemente diseñados #[94](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-        "pl": "dodał również krok opcji 'Brightness'\ndodano obsługę jasności (stop #96) (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\nprzetwarzają bardziej elastyczne przetwory #94 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-        "uk": "доданий варіант `Бритальність кроку також повинен перетворювати світло або вимкнути`\nдодано обробка яскравості_кроку #[96](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/96)\n[94] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/94)",
-        "zh-cn": "增加“权利步骤”的选择,也应该改变“或”的提法。\n增加光明处理:第[96]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/96)\n国家处理较为灵活的第[94]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/94)"
       }
     },
     "titleLang": {
