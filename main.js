@@ -226,7 +226,9 @@ class Zigbee2mqtt extends core.Adapter {
         if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
             if (mqttClient && !mqttClient.closed) {
                 try {
-                    mqttClient.close();
+                    if (mqttClient) {
+                        mqttClient.close();
+                    }
                 } catch (e) {
                     this.log.error(e);
                 }
@@ -235,7 +237,9 @@ class Zigbee2mqtt extends core.Adapter {
         // Internal or Dummy MQTT-Server
         if (this.config.connectionType == 'intmqtt' || this.config.dummyMqtt == true) {
             try {
-                mqttServerController.closeServer();
+                if (mqttServerController) {
+                    mqttServerController.closeServer();
+                }
             } catch (e) {
                 this.log.error(e);
             }
@@ -243,26 +247,34 @@ class Zigbee2mqtt extends core.Adapter {
         // Websocket
         else if (this.config.connectionType == 'ws') {
             try {
-                websocketController.closeConnection();
+                if (websocketController) {
+                    websocketController.closeConnection();
+                }
             } catch (e) {
                 this.log.error(e);
             }
         }
         // Set all device available states of false
         try {
-            await statesController.setAllAvailableToFalse();
+            if (statesController) {
+                await statesController.setAllAvailableToFalse();
+            }
         } catch (e) {
             this.log.error(e);
         }
         // Clear all websocket timers
         try {
-            await websocketController.allTimerClear();
+            if (websocketController) {
+                await websocketController.allTimerClear();
+            }
         } catch (e) {
             this.log.error(e);
         }
         // Clear all state timers
         try {
-            await statesController.allTimerClear();
+            if (statesController) {
+                await statesController.allTimerClear();
+            }
         } catch (e) {
             this.log.error(e);
         }
