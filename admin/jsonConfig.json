@@ -38,10 +38,26 @@
 			"text": "Configure your Zigbee2MQTT connection",
 			"newLine": true
 		},
+		"wsScheme": {
+			"type": "select",
+			"label": "Scheme",
+			"options": [
+				{
+					"label": "WS",
+					"value": "ws"
+				},
+				{
+					"label": "WSS (SSL)",
+					"value": "wss"
+				}
+			],
+			"newLine": true,
+			"hidden": "data.connectionType != 'ws'"
+		},
 		"wsServerIP": {
 			"type": "text",
 			"label": "Websocket IP-Address",
-			"newLine": true,
+			"newLine": false,
 			"hidden": "data.connectionType != 'ws'"
 		},
 		"wsServerPort": {

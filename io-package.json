@@ -183,6 +183,7 @@
   },
   "native": {
     "connectionType": "ws",
+    "wsScheme": "ws",
     "wsServerIP": "",
     "wsServerPort": 8080,
     "wsTokenEnabled": false,
