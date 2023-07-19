@@ -32,7 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.8.0 (2023-07-19)
 
 -   (o0shojo0o) added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))
 -   (o0shojo0o) small fixes

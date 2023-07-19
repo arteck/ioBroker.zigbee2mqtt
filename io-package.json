@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.7.5",
+    "version": "2.8.0",
     "news": {
+      "2.8.0": {
+        "en": "added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))\nsmall fixes",
+        "de": "wSS-Unterstützung für Websoket-Verbindung([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\nkleine fixierungen",
+        "ru": "добавлена поддержка WSS для подключения к websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\nнебольшие исправления",
+        "pt": "adicionado suporte WSS para conexão websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequenas correções",
+        "nl": "voegde WSS steun toe voor websoket connectie\nkleine fixes",
+        "fr": "a ajouté le support WSS pour la connexion websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npetites corrections",
+        "it": "supporto WSS aggiunto per il collegamento websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npiccole correzioni",
+        "es": "añadido WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequeños accesorios",
+        "pl": "dodano obsługę stron internetowych (#191(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\ndrobne rozwiązanie",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nмаленькі кріплення",
+        "zh-cn": "增加了WSS支助网络联系([第191](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\n小型配件"
+      },
       "2.7.5": {
         "en": "added state `last_seen` contains date/time of last Zigbee message ([#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131))",
         "de": "add state last_seen enthält Datum/Zeit der letzten Zigbee-Nachricht [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
@@ -80,19 +93,6 @@
         "pl": "dodano wsparcie dla działań na rzecz dzikich kart (eg. *_single) #116(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116)\ndodano optymalizację błędów (https:/github.com/ioBroker/ioBroker.repositories/pull/1976#issuecomment-1382038679)\nauth_token for websocket connection #112(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112)\nczas dostępu do stron internetowych wzrastał",
         "uk": "додана підтримка дій дикої картки (наприклад, *_single) [#116](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/116)\nдодано оптимізацію обробки помилок [більше](https://github.com/ioBroker/ioBroker.repositories/pull/1976#productcomment-1382038679)\nдодано опцію auth_token для підключення websocket [#112](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/112)\nwebsocket час",
         "zh-cn": "对野生卡行动(第 *_single)[第116](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/116))的支持\n新增的错误处理优化[(http://github.com/ioBroker/ioBroker.reories/pull/1976#issuement-1382038679)\n添加以下选择:网站联系(第112号)(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/112)\n网页"
-      },
-      "2.6.0": {
-        "en": "added state `transition` for transition overwrite (-1 disabled overwrite) ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))\nconsideration of the description when creating the friendly name ([#105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105))\nadded state `effect` for groups ([#101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101))\nfix state contact\nadded handling for disabled devices",
-        "de": "hinzugefügter Zustandsübergang für Übergangsüberschreiben -(1 behinderte Überschreiben) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nberücksichtigung der Beschreibung bei der Erstellung des freundlichen Namens #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\nzusätzliche staatliche Wirkung für Gruppen #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nkontakt mit dem status\nzusätzliches handling für behinderte",
-        "ru": "добавлен государственный переход для перехода переписать -(1 отключен перезапись) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрассмотрение описания при создании дружественного имени #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\nдобавлен государственный эффект для групп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nисправить государственный контакт\nдобавлена обработка для инвалидов",
-        "pt": "adicionado transição de estado para a transição sobreescrita -(1 sobreescrita desativada) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nconsideração da descrição ao criar o nome amigável #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\nadicionado efeito estatal para grupos #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\ncorrigir contato estado\nmanuseio adicionado para dispositivos com deficiência",
-        "nl": "voegde staatsoverschrijving toe voor overschrijving overschrijving - (1 gehandicapte overschrijving) (1) (1 gehandicapte overschrijving)\noverweeg de beschrijving als het creëren van de vriendelijke naam £10:\nvoegde toegevoegd staats effect voor groepen £101, httub.com/oshojoo/ioBroker\nvertaling:\nvoegde toegevoegd voor gehandicapte apparaten",
-        "fr": "transition de l ' État pour la surécriture de transition -(1 surécriture désactivée) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nexamen de la description lors de la création du nom amical #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\neffet d ' État ajouté pour les groupes #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\ncontact étatique\nmanipulation supplémentaire pour les dispositifs handicapés",
-        "it": "aggiunto passaggio di stato per overwrite di transizione -(1 overwrite disabilitato) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nconsiderazione della descrizione quando si crea il nome amichevole #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\neffetto stato aggiunto per gruppi #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\nfix contatto stato\nmanipolazione aggiuntiva per dispositivi disabili",
-        "es": "añadida transición estatal para la sobreescritura de transición -(1 invalidez sobreescritura) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nexamen de la descripción al crear el nombre amistoso #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)\nañadido efecto estatal para los grupos #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\narreglar contacto estado\nmanejo añadido para dispositivos discapacitados",
-        "pl": "dodano przejście stanowe na przepisanie -(1 disabled overwrite) #101(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nrezultatem tego opisu było stworzenie przyjaznej nazwy #105 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/105)\ndodano efekt stanowy dla grup #101 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nkontakt państwowy\nobsługa urządzeń dla osób niepełnosprawnych",
-        "uk": "додано державний перехід для переходу перезапису -(1 вимкнено перезапис) #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nрозгляд опису при створенні дружньої назви #[105](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/105)\nдодано державний ефект для груп #[101](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/101)\nфіксувати державний контакт\nдодана обробка для пристроїв відключення",
-        "zh-cn": "此外,国家向过渡过渡的过渡——《残疾》第[101]号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/101)\n在建立友好名称编号(http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/105)时,审议说明\n第[101]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/101)\nfix 国家联络点\nd. 增加处理残疾装置"
       }
     },
     "titleLang": {
