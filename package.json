@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.8",
-    "aedes": "^0.49.0",
+    "aedes": "^0.50.0",
     "aedes-persistence-nedb": "^2.0.3",
     "mqtt": "^4.3.7",
     "net": "^1.0.2",
