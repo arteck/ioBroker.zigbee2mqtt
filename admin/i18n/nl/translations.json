@@ -25,5 +25,9 @@
     "Proxy Zigbee2MQTT logs to ioBroker logs": "Proxy Zigbee2MQTT logt naar ioBroker-logboeken",
     "Brightness move should also turn the light on or off": "Helderheidsbeweging zou ook het licht aan of uit moeten zetten",
     "Brightness step should also turn the light on or off": "De helderheidsstap moet het licht ook in- of uitschakelen",
-    "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "De gebeurtenissen zoals 'Apparaat verwijderd' of 'Uitgeschakeld' worden weergegeven in de beschrijving in plaats van in de naam."
+    "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "De gebeurtenissen zoals 'Apparaat verwijderd' of 'Uitgeschakeld' worden weergegeven in de beschrijving in plaats van in de naam.",
+    "Scheme": "Schema",
+    "Use MQTT Credentials": "Gebruik MQTT-referenties",
+    "MQTT Username": "MQTT-gebruikersnaam",
+    "MQTT Password": "MQTT-wachtwoord"
 }

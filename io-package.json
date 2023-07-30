@@ -1,255 +1,308 @@
 {
-  "common": {
-    "name": "zigbee2mqtt",
-    "version": "2.9.0",
-    "news": {
-      "2.9.0": {
-        "en": "added state `send_payload` to send a raw json payload",
-        "de": "add state send_payload to send a roh json payload",
-        "ru": "добавленное государство send_payload для отправки сырья json payload",
-        "pt": "adicionado estado send_payload para enviar uma carga de json cru",
-        "nl": "vertaling:",
-        "fr": "add state send_payload pour envoyer une charge utile json brute",
-        "it": "aggiunto stato send_payload per inviare un grezzo json payload",
-        "es": "añadir estado send_payload para enviar una carga de pago json cruda",
-        "pl": "wtedy dodane państwo przesyłają ładunek surowy json",
-        "uk": "додано державне відправлення_payload для відправки сировини json",
-        "zh-cn": "增派国家派遣国:缴交会费"
-      },
-      "2.8.0": {
-        "en": "added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))\nsmall fixes",
-        "de": "wSS-Unterstützung für Websoket-Verbindung([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\nkleine fixierungen",
-        "ru": "добавлена поддержка WSS для подключения к websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\nнебольшие исправления",
-        "pt": "adicionado suporte WSS para conexão websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequenas correções",
-        "nl": "voegde WSS steun toe voor websoket connectie\nkleine fixes",
-        "fr": "a ajouté le support WSS pour la connexion websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npetites corrections",
-        "it": "supporto WSS aggiunto per il collegamento websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npiccole correzioni",
-        "es": "añadido WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequeños accesorios",
-        "pl": "dodano obsługę stron internetowych (#191(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\ndrobne rozwiązanie",
-        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nмаленькі кріплення",
-        "zh-cn": "增加了WSS支助网络联系([第191](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\n小型配件"
-      },
-      "2.7.5": {
-        "en": "added state `last_seen` contains date/time of last Zigbee message ([#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131))",
-        "de": "add state last_seen enthält Datum/Zeit der letzten Zigbee-Nachricht [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-        "ru": "добавленное состояние last_seen содержит дату/время последнего сообщения Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-        "pt": "adicionado estado last_seen contém data/hora da última mensagem Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-        "nl": "vertaling:",
-        "fr": "add state last_seen contains date/time of last Zigbee message [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-        "it": "aggiunto state last_seen contiene data/ora dell'ultimo messaggio Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-        "es": "añadido state last_seen contiene fecha/hora del último mensaje de Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-        "pl": "dodano stan ostatni_seen:/time of last Zigbee message #131(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-        "uk": "додано стан last_seen містить дату/час останнього повідомлення Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-        "zh-cn": "添加国家:见最后Zigbee信息的日期/时间[第131号](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)"
-      },
-      "2.7.4": {
-        "en": "fix for Aqara presence detector FP1 `reset_nopresence_status`",
-        "de": "fix für Aqara Präsenzmelder FP1 reset_nopresence_status",
-        "ru": "фикс для Aqara детектор присутствия FP1 reset_nopresence_status",
-        "pt": "correção para o detector de presença de Aqara FP1 reset_nopresence_status",
-        "nl": "vertaling:",
-        "fr": "fix pour détecteur de présence Aqara FP1 reset_nopresence_status",
-        "it": "correzione per rilevatore di presenza Aqara FP1 reset_nopresence_status",
-        "es": "fijado para el detector de presencia Aqara FP1 reset_nopresence_status",
-        "pl": "reset_nopresence_status (ang.)",
-        "uk": "фіксація для датчика присутності Aqara FP1 скидання_nopresence_status",
-        "zh-cn": "fix Aqara存在探测器FP1 重新定位_nopreence_status"
-      },
-      "2.7.3": {
-        "en": "hotfix for Aqara presence detector FP1",
-        "de": "hotfix für Aqara Präsenzmelder FP1",
-        "ru": "hotfix для детектора присутствия Aqara FP1",
-        "pt": "hotfix para detector de presença Aqara FP1",
-        "nl": "quality over Quanteur FP1",
-        "fr": "hotfix pour détecteur de présence Aqara FP1",
-        "it": "hotfix per rilevatore di presenza Aqara FP1",
-        "es": "hotfix para detector de presencia Aqara FP1",
-        "pl": "hotfix",
-        "uk": "hotfix для датчика присутності Aqara FP1",
-        "zh-cn": "aqara存在侦查员FP1"
-      },
-      "2.7.2": {
-        "en": "rework of the detection of removed devices",
-        "de": "nacharbeiten der erkennung von entfernten geräten",
-        "ru": "переработка обнаружения удаленных устройств",
-        "pt": "retrabalho da detecção de dispositivos removidos",
-        "nl": "_",
-        "fr": "retravail de la détection des dispositifs enlevés",
-        "it": "rielaborazione del rilevamento dei dispositivi rimossi",
-        "es": "rework of the detection of removed devices",
-        "pl": "przepraszanie detekcji usuniętych urządzeń",
-        "uk": "реконструкція виявлення видалених пристроїв",
-        "zh-cn": "清除装置的探查工作"
-      },
-      "2.7.1": {
-        "en": "added option for use folder description\nuse the iobroker device folder description for device description or events",
-        "de": "zusatzoption für die ordnerbeschreibung\ndie beschreibung des iobroker geräteordners für gerätebeschreibung oder ereignisse",
-        "ru": "добавлена опция для использования описания папки\nиспользуйте описание папки iobroker для описания устройства или событий",
-        "pt": "opção adicionada para a descrição da pasta de uso\nuse a descrição da pasta do dispositivo iobroker para descrição do dispositivo ou eventos",
-        "nl": "voegde de optie toe voor gebruik van de beschrijving\ngebruik de beschrijving van het iobroker apparaat voor beschrijving of gebeurtenissen",
-        "fr": "option ajoutée pour la description du dossier d'utilisation\nutiliser la description du dossier de périphérique iobroker pour la description de périphérique ou les événements",
-        "it": "opzione aggiunta per l'uso descrizione della cartella\nutilizzare la descrizione della cartella del dispositivo iobroker per la descrizione o gli eventi del dispositivo",
-        "es": "opción adicional para la descripción de la carpeta de uso\nutilizar la descripción de la carpeta del dispositivo iobroker para la descripción del dispositivo o eventos",
-        "pl": "dodać opcję do opisu folder\nużywanie iobrokerowego opisu danych dla opisu urządzenia lub zdarzeń",
-        "uk": "доданий варіант для опису папок\nвикористовувати опис папки іоброкера для опису пристрою або подій",
-        "zh-cn": "增加使用时说明的选择\n对装置说明或事件使用零散器装置的描述"
-      }
+    "common": {
+        "name": "zigbee2mqtt",
+        "version": "2.9.0",
+        "news": {
+            "2.9.0": {
+                "en": "added state `send_payload` to send a raw json payload",
+                "de": "add state send_payload to send a roh json payload",
+                "ru": "добавленное государство send_payload для отправки сырья json payload",
+                "pt": "adicionado estado send_payload para enviar uma carga de json cru",
+                "nl": "vertaling:",
+                "fr": "add state send_payload pour envoyer une charge utile json brute",
+                "it": "aggiunto stato send_payload per inviare un grezzo json payload",
+                "es": "añadir estado send_payload para enviar una carga de pago json cruda",
+                "pl": "wtedy dodane państwo przesyłają ładunek surowy json",
+                "uk": "додано державне відправлення_payload для відправки сировини json",
+                "zh-cn": "增派国家派遣国:缴交会费"
+            },
+            "2.8.0": {
+                "en": "added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))\nsmall fixes",
+                "de": "wSS-Unterstützung für Websoket-Verbindung([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\nkleine fixierungen",
+                "ru": "добавлена поддержка WSS для подключения к websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\nнебольшие исправления",
+                "pt": "adicionado suporte WSS para conexão websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequenas correções",
+                "nl": "voegde WSS steun toe voor websoket connectie\nkleine fixes",
+                "fr": "a ajouté le support WSS pour la connexion websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npetites corrections",
+                "it": "supporto WSS aggiunto per il collegamento websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npiccole correzioni",
+                "es": "añadido WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequeños accesorios",
+                "pl": "dodano obsługę stron internetowych (#191(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\ndrobne rozwiązanie",
+                "uk": "javaScript licenses API Веб-сайт Go1.13.8\nмаленькі кріплення",
+                "zh-cn": "增加了WSS支助网络联系([第191](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\n小型配件"
+            },
+            "2.7.5": {
+                "en": "added state `last_seen` contains date/time of last Zigbee message ([#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131))",
+                "de": "add state last_seen enthält Datum/Zeit der letzten Zigbee-Nachricht [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+                "ru": "добавленное состояние last_seen содержит дату/время последнего сообщения Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+                "pt": "adicionado estado last_seen contém data/hora da última mensagem Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+                "nl": "vertaling:",
+                "fr": "add state last_seen contains date/time of last Zigbee message [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+                "it": "aggiunto state last_seen contiene data/ora dell'ultimo messaggio Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+                "es": "añadido state last_seen contiene fecha/hora del último mensaje de Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
+                "pl": "dodano stan ostatni_seen:/time of last Zigbee message #131(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+                "uk": "додано стан last_seen містить дату/час останнього повідомлення Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
+                "zh-cn": "添加国家:见最后Zigbee信息的日期/时间[第131号](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)"
+            },
+            "2.7.4": {
+                "en": "fix for Aqara presence detector FP1 `reset_nopresence_status`",
+                "de": "fix für Aqara Präsenzmelder FP1 reset_nopresence_status",
+                "ru": "фикс для Aqara детектор присутствия FP1 reset_nopresence_status",
+                "pt": "correção para o detector de presença de Aqara FP1 reset_nopresence_status",
+                "nl": "vertaling:",
+                "fr": "fix pour détecteur de présence Aqara FP1 reset_nopresence_status",
+                "it": "correzione per rilevatore di presenza Aqara FP1 reset_nopresence_status",
+                "es": "fijado para el detector de presencia Aqara FP1 reset_nopresence_status",
+                "pl": "reset_nopresence_status (ang.)",
+                "uk": "фіксація для датчика присутності Aqara FP1 скидання_nopresence_status",
+                "zh-cn": "fix Aqara存在探测器FP1 重新定位_nopreence_status"
+            },
+            "2.7.3": {
+                "en": "hotfix for Aqara presence detector FP1",
+                "de": "hotfix für Aqara Präsenzmelder FP1",
+                "ru": "hotfix для детектора присутствия Aqara FP1",
+                "pt": "hotfix para detector de presença Aqara FP1",
+                "nl": "quality over Quanteur FP1",
+                "fr": "hotfix pour détecteur de présence Aqara FP1",
+                "it": "hotfix per rilevatore di presenza Aqara FP1",
+                "es": "hotfix para detector de presencia Aqara FP1",
+                "pl": "hotfix",
+                "uk": "hotfix для датчика присутності Aqara FP1",
+                "zh-cn": "aqara存在侦查员FP1"
+            },
+            "2.7.2": {
+                "en": "rework of the detection of removed devices",
+                "de": "nacharbeiten der erkennung von entfernten geräten",
+                "ru": "переработка обнаружения удаленных устройств",
+                "pt": "retrabalho da detecção de dispositivos removidos",
+                "nl": "_",
+                "fr": "retravail de la détection des dispositifs enlevés",
+                "it": "rielaborazione del rilevamento dei dispositivi rimossi",
+                "es": "rework of the detection of removed devices",
+                "pl": "przepraszanie detekcji usuniętych urządzeń",
+                "uk": "реконструкція виявлення видалених пристроїв",
+                "zh-cn": "清除装置的探查工作"
+            },
+            "2.7.1": {
+                "en": "added option for use folder description\nuse the iobroker device folder description for device description or events",
+                "de": "zusatzoption für die ordnerbeschreibung\ndie beschreibung des iobroker geräteordners für gerätebeschreibung oder ereignisse",
+                "ru": "добавлена опция для использования описания папки\nиспользуйте описание папки iobroker для описания устройства или событий",
+                "pt": "opção adicionada para a descrição da pasta de uso\nuse a descrição da pasta do dispositivo iobroker para descrição do dispositivo ou eventos",
+                "nl": "voegde de optie toe voor gebruik van de beschrijving\ngebruik de beschrijving van het iobroker apparaat voor beschrijving of gebeurtenissen",
+                "fr": "option ajoutée pour la description du dossier d'utilisation\nutiliser la description du dossier de périphérique iobroker pour la description de périphérique ou les événements",
+                "it": "opzione aggiunta per l'uso descrizione della cartella\nutilizzare la descrizione della cartella del dispositivo iobroker per la descrizione o gli eventi del dispositivo",
+                "es": "opción adicional para la descripción de la carpeta de uso\nutilizar la descripción de la carpeta del dispositivo iobroker para la descripción del dispositivo o eventos",
+                "pl": "dodać opcję do opisu folder\nużywanie iobrokerowego opisu danych dla opisu urządzenia lub zdarzeń",
+                "uk": "доданий варіант для опису папок\nвикористовувати опис папки іоброкера для опису пристрою або подій",
+                "zh-cn": "增加使用时说明的选择\n对装置说明或事件使用零散器装置的描述"
+            }
+        },
+        "messages": [
+            {
+                "condition": {
+                    "operand": "and",
+                    "rules": [
+                        "oldVersion<2.10.0",
+                        "newVersion>=2.10.0"
+                    ]
+                },
+                "title": {
+                    "en": "Important notice!",
+                    "de": "Wichtiger Hinweis!",
+                    "ru": "Важное замечание!",
+                    "pt": "Notícia importante!",
+                    "nl": "Belangrijke mededeling!",
+                    "fr": "Avis important!",
+                    "it": "Avviso IMPORTANTE!",
+                    "es": "¡Noticia importante!",
+                    "pl": "Ważna uwaga!",
+                    "uk": "Важливе повідомлення!",
+                    "zh-cn": "重要的提醒！"
+                },
+                "text": {
+                    "en": "After the update, the Websocket Auth-Token must be set again, if used.",
+                    "de": "Nach dem Update muss der Websocket Auth-Token, falls verwendet, erneut gesetzt werden.",
+                    "ru": "После обновления необходимо снова установить Auth-Token Websocket, если он используется.",
+                    "pt": "Após a atualização, o Websocket Auth-Token deve ser configurado novamente, caso seja utilizado.",
+                    "nl": "Na de update moet het Websocket Auth-Token, indien gebruikt, opnieuw worden ingesteld.",
+                    "fr": "Après la mise à jour, le jeton d'authentification Websocket doit être à nouveau défini, s'il est utilisé.",
+                    "it": "Dopo l'aggiornamento, il Websocket Auth-Token deve essere reimpostato, se utilizzato.",
+                    "es": "Después de la actualización, el token de autenticación de Websocket debe configurarse nuevamente, si se usa.",
+                    "pl": "Po aktualizacji należy ponownie ustawić Websocket Auth-Token, jeśli jest używany.",
+                    "uk": "Після оновлення Websocket Auth-Token має бути встановлено знову, якщо він використовується.",
+                    "zh-cn": "更新后，如果使用 Websocket Auth-Token，则必须重新设置。"
+                },
+                "level": "warn",
+                "buttons": [
+                    "agree",
+                    "cancel"
+                ]
+            }
+        ],
+        "titleLang": {
+            "en": "zigbee2mqtt",
+            "de": "zigbee2mqtt",
+            "ru": "зигби2мктт",
+            "pt": "zigbee2mqtt",
+            "nl": "zigbee2mqtt",
+            "fr": "zigbee2mqtt",
+            "it": "zigbee2mqtt",
+            "es": "zigbee2mqtt",
+            "pl": "zigbee2mqtt",
+            "zh-cn": "zigbee2mqtt",
+            "uk": "zigbee2mqtt"
+        },
+        "desc": {
+            "en": "Zigbee2MQTT adapter for ioBroker",
+            "de": "Zigbee2MQTT-Adapter für ioBroker",
+            "ru": "Адаптер Zigbee2MQTT для ioBroker",
+            "pt": "Adaptador Zigbee2MQTT para ioBroker",
+            "nl": "Zigbee2MQTT-adapter voor ioBroker",
+            "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
+            "it": "Adattatore Zigbee2MQTT per ioBroker",
+            "es": "Adaptador Zigbee2MQTT para ioBroker",
+            "pl": "Adapter Zigbee2MQTT do ioBroker",
+            "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
+            "uk": "Адаптер Zigbee2MQTT для ioBroker"
+        },
+        "authors": [
+            "Dennis Rathjen <dennis.rathjen@outlook.de>"
+        ],
+        "keywords": [
+            "zigbee",
+            "zigbee2mqtt",
+            "hue",
+            "tradfri",
+            "aqara",
+            "tuya"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "zigbee2mqtt.png",
+        "enabled": false,
+        "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+        "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "hardware",
+        "compact": true,
+        "stopTimeout": 2000,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "json"
+        },
+        "adminTab": {
+            "name": {
+                "en": "Zigbee2MQTT",
+                "de": "Zigbee2MQTT",
+                "ru": "Zigbee2MQTT",
+                "pt": "Zigbee2MQTT",
+                "nl": "Zigbee2MQTT",
+                "fr": "Zigbee2MQTT",
+                "it": "Zigbee2MQTT",
+                "es": "Zigbee2MQTT",
+                "pl": "Zigbee2MQTT",
+                "zh-cn": "Zigbee2MQTT"
+            },
+            "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
+            "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+        },
+        "localLinks": {
+            "_default": {
+                "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
+            }
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.13"
+            }
+        ]
     },
-    "titleLang": {
-      "en": "zigbee2mqtt",
-      "de": "zigbee2mqtt",
-      "ru": "зигби2мктт",
-      "pt": "zigbee2mqtt",
-      "nl": "zigbee2mqtt",
-      "fr": "zigbee2mqtt",
-      "it": "zigbee2mqtt",
-      "es": "zigbee2mqtt",
-      "pl": "zigbee2mqtt",
-      "zh-cn": "zigbee2mqtt",
-      "uk": "zigbee2mqtt"
+    "native": {
+        "connectionType": "ws",
+        "wsScheme": "ws",
+        "wsServerIP": "",
+        "wsServerPort": 8080,
+        "wsTokenEnabled": false,
+        "wsToken": "",
+        "dummyMqtt": false,
+        "externalMqttServerIP": "",
+        "externalMqttServerPort": 1883,
+        "externalMqttServerCredentials": false,
+        "externalMqttServerUsername": "",
+        "externalMqttServerPassword": "",
+        "mqttServerIPBind": "0.0.0.0",
+        "mqttServerPort": 1885,
+        "webUIScheme": "http",
+        "webUIServer": "",
+        "webUIPort": 8080,
+        "debugLogEnabled": false,
+        "proxyZ2MLogs": true,
+        "useKelvin": false,
+        "colorTempSyncColor": false,
+        "brightnessMoveOnOff": false,
+        "brightnessStepOnOff": false,
+        "useEventInDesc": true
     },
-    "desc": {
-      "en": "Zigbee2MQTT adapter for ioBroker",
-      "de": "Zigbee2MQTT-Adapter für ioBroker",
-      "ru": "Адаптер Zigbee2MQTT для ioBroker",
-      "pt": "Adaptador Zigbee2MQTT para ioBroker",
-      "nl": "Zigbee2MQTT-adapter voor ioBroker",
-      "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
-      "it": "Adattatore Zigbee2MQTT per ioBroker",
-      "es": "Adaptador Zigbee2MQTT para ioBroker",
-      "pl": "Adapter Zigbee2MQTT do ioBroker",
-      "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
-      "uk": "Адаптер Zigbee2MQTT для ioBroker"
-    },
-    "authors": [
-      "Dennis Rathjen <dennis.rathjen@outlook.de>"
+    "protectedNative": [
+        "externalMqttServerPassword",
+        "wsToken"
     ],
-    "keywords": [
-      "zigbee",
-      "zigbee2mqtt",
-      "hue",
-      "tradfri",
-      "aqara",
-      "tuya"
+    "encryptedNative": [
+        "externalMqttServerPassword",
+        "wsToken"
     ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "zigbee2mqtt.png",
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "hardware",
-    "compact": true,
-    "stopTimeout": 2000,
-    "connectionType": "local",
-    "dataSource": "push",
-    "adminUI": {
-      "config": "json"
-    },
-    "adminTab": {
-      "name": {
-        "en": "Zigbee2MQTT",
-        "de": "Zigbee2MQTT",
-        "ru": "Zigbee2MQTT",
-        "pt": "Zigbee2MQTT",
-        "nl": "Zigbee2MQTT",
-        "fr": "Zigbee2MQTT",
-        "it": "Zigbee2MQTT",
-        "es": "Zigbee2MQTT",
-        "pl": "Zigbee2MQTT",
-        "zh-cn": "Zigbee2MQTT"
-      },
-      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
-      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
-    },
-    "localLinks": {
-      "_default": {
-        "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
-      }
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.22"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=5.1.13"
-      }
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Zigbee2MQTT connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.debugmessages",
+            "type": "state",
+            "common": {
+                "name": "Log changes as warnings for",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.logfilter",
+            "type": "state",
+            "common": {
+                "name": "Logs matching filters are ignored by the LogProxy",
+                "type": "string",
+                "read": true,
+                "write": true,
+                "def": ""
+            },
+            "native": {}
+        }
     ]
-  },
-  "native": {
-    "connectionType": "ws",
-    "wsScheme": "ws",
-    "wsServerIP": "",
-    "wsServerPort": 8080,
-    "wsTokenEnabled": false,
-    "wsToken": "",
-    "dummyMqtt": false,
-    "externalMqttServerIP": "",
-    "externalMqttServerPort": 1883,
-    "mqttServerIPBind": "0.0.0.0",
-    "mqttServerPort": 1885,
-    "webUIScheme": "http",
-    "webUIServer": "",
-    "webUIPort": 8080,
-    "debugLogEnabled": false,
-    "proxyZ2MLogs": true,
-    "useKelvin": false,
-    "colorTempSyncColor": false,
-    "brightnessMoveOnOff": false,
-    "brightnessStepOnOff": false,
-    "useEventInDesc": true
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Zigbee2MQTT connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.debugmessages",
-      "type": "state",
-      "common": {
-        "name": "Log changes as warnings for",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.logfilter",
-      "type": "state",
-      "common": {
-        "name": "Logs matching filters are ignored by the LogProxy",
-        "type": "string",
-        "read": true,
-        "write": true,
-        "def": ""
-      },
-      "native": {}
-    }
-  ]
 }

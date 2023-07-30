@@ -32,6 +32,10 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) added support for external MQTT-Server credentials ([#148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148))
+
 ### 2.9.0 (2023-07-21)
 
 -   (o0shojo0o) added state `send_payload` to send a raw json payload

@@ -72,8 +72,18 @@ class Zigbee2mqtt extends core.Adapter {
                     this.log.warn('Please configure the External MQTT-Server connection!');
                     return;
                 }
-                mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
 
+                // MQTT connection settings
+                const mqttClientOptions = { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 };
+
+                // Set external mqtt credentials
+                if (this.config.externalMqttServerCredentials == true) {
+                    mqttClientOptions.username = this.config.externalMqttServerUsername;
+                    mqttClientOptions.password = this.config.externalMqttServerPassword;
+                }
+
+                // Init connection
+                mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, mqttClientOptions);
             }
             // Internal MQTT-Server
             else {

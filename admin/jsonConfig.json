@@ -97,6 +97,24 @@
 			"newLine": false,
 			"hidden": "data.connectionType != 'exmqtt'"
 		},
+		"externalMqttServerCredentials": {
+			"type": "checkbox",
+			"label": "Use MQTT Credentials",
+			"newLine": true,
+			"hidden": "data.connectionType != 'exmqtt'"
+		},
+		"externalMqttServerUsername": {
+			"type": "text",
+			"label": "MQTT Username",
+			"newLine": true,
+			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
+		},
+		"externalMqttServerPassword": {
+			"type": "password",
+			"label": "MQTT Password",
+			"newLine": false,
+			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
+		},
 		"mqttServerIPBind": {
 			"type": "ip",
 			"label": "MQTT-Server IP-Address bind",
