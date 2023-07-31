@@ -19,7 +19,7 @@
     "url": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt.git"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.6.8",
+    "@iobroker/adapter-core": "^3.0.3",
     "aedes": "^0.50.0",
     "aedes-persistence-nedb": "^2.0.3",
     "mqtt": "^5.0.0",
