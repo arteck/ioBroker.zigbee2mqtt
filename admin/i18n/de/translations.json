@@ -25,5 +25,9 @@
     "Brightness step should also turn the light on or off": "Brightness step soll auch das Licht ein- oder ausschalten",
     "Use Auth-Token": "Auth-Token verwenden",
     "Auth-Token (special characters are not supported)": "Auth-Token (Sonderzeichen werden nicht unterstützt)",
-    "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "Die Ereignisse wie „Gerät entfernt“ oder „Deaktiviert“ werden in der Beschreibung statt im Namen angezeigt."
+    "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.": "Die Ereignisse wie „Gerät entfernt“ oder „Deaktiviert“ werden in der Beschreibung statt im Namen angezeigt.",
+    "Scheme": "Scheme",
+    "Use MQTT Credentials": "MQTT-Anmeldeinformationen verwenden",
+    "MQTT Username": "MQTT-Benutzername",
+    "MQTT Password": "MQTT-Passwort"
 }
