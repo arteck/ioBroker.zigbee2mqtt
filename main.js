@@ -142,8 +142,16 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async messageParse(message) {
-        const messageObj = JSON.parse(message);
-        //this.log.debug(JSON.stringify(messageObj));
+
+        // If the MQTT output type is set to attribute_and_json, the non-valid JSON must be checked here.
+        let messageObj;
+        try {
+            messageObj = JSON.parse(message);
+        } catch (error) {
+            //this.log.debug('Bääämm--->> ' + message);
+            return;
+        }
+
 
         switch (messageObj.topic) {
             case 'bridge/config':
