@@ -33,7 +33,8 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
- 
+
+-   (o0shojo0o) fix for MQTT output type: attribute_and_json ([#87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87))
 -   (o0shojo0o) added support for external MQTT-Server credentials ([#148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148))
   	- *After update, Websocket Auth-Token must be set again, if used.*
 
