@@ -32,7 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.10.0 (2023-08-12)
 
 -   (o0shojo0o) optimisation for the MQTT connection  
 -   (o0shojo0o) fix for MQTT output type: attribute_and_json ([#87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87))
