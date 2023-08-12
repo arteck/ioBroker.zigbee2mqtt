@@ -1,0 +1,48 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch normal",
+            "program": "${workspaceFolder}/main.js",
+            "args": ["--instance", "0", "--force", "--logs", "--debug"],
+            "env": {
+                "NODE_PATH":"${workspaceFolder}/.dev-server/default/node_modules"
+            },
+            "request": "launch",
+            "stopOnEntry": true,
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+    
+        {
+            "name": "Launch install",
+            "program": "${workspaceFolder}/main.js",
+            "args": ["--instance", "0", "--force", "--logs", "--debug", "--install"],
+            "env": {
+                "NODE_PATH":"${workspaceFolder}/.dev-server/default/node_modules"
+            },
+            "request": "launch",
+            "stopOnEntry": true,
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+    
+        {
+            "name": "Attach by Process ID",
+            "processId": "${command:PickProcess}",
+            "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        }
+    ]
+}

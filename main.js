@@ -1,5 +1,4 @@
 'use strict';
-
 /*
  * Created with @iobroker/create-adapter v2.2.1
  */
@@ -8,6 +7,7 @@
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
 const mqtt = require('mqtt');
+const utils = require('./lib/utils');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
 const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
@@ -142,16 +142,12 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async messageParse(message) {
-
         // If the MQTT output type is set to attribute_and_json, the non-valid JSON must be checked here.
-        let messageObj;
-        try {
-            messageObj = JSON.parse(message);
-        } catch (error) {
-            //this.log.debug('Bääämm--->> ' + message);
+        if (utils.isJson(message) == false) {
             return;
         }
 
+        const messageObj = JSON.parse(message);
 
         switch (messageObj.topic) {
             case 'bridge/config':
@@ -232,6 +228,15 @@ class Zigbee2mqtt extends core.Adapter {
                         }
                         // States
                     } else {
+                        // With the MQTT output type attribute_and_json, primitive payloads arrive here that must be discarded.
+                        if (utils.isObject(messageObj.payload) == false) {
+                            return;
+                        }
+                        // If MQTT is used, I have to filter the self-sent 'set' commands.
+                        if (messageObj.topic.endsWith('/set')) {
+                            return;
+                        }
+
                         statesController.processDeviceMessage(messageObj);
                     }
                 }
