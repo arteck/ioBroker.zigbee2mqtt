@@ -32,7 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.10.1 (2023-08-13)
 
 -   (o0shojo0o) fix type definitions (thx @arteck)
 

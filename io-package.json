@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.10.0",
+    "version": "2.10.1",
     "news": {
+      "2.10.1": {
+        "en": "fix type definitions (thx @arteck)",
+        "de": "fix typdefinitionen (thx @arteck)",
+        "ru": "определение типа исправления (thx @arteck)",
+        "pt": "definições de tipo de correção (thx @arteck)",
+        "nl": "vertaling:",
+        "fr": "définitions de type fixe (thx @arteck)",
+        "it": "correggere le definizioni di tipo (thx @arteck)",
+        "es": "fijar definiciones tipo (thx @arteck)",
+        "pl": "definicja typów (tx @arteck)",
+        "uk": "фіксувати визначення типу (thx @arteck)",
+        "zh-cn": "fix类定义(x @arteck)"
+      },
       "2.10.0": {
         "en": "optimisation for the MQTT connection  \nfix for MQTT output type: attribute_and_json ([#87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87))\nadded support for external MQTT-Server credentials ([#148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148))\n*After update, Websocket Auth-Token must be set again, if used.*",
         "de": "optimierung der MQTT-Verbindung\nfix für den MQTT-Ausgangstyp: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\nunterstützung für externe MQTT-Server-Anmeldeinformationen #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Nach dem Update muss Websocket Auth-Token wieder eingestellt werden, wenn verwendet*",
@@ -80,19 +93,6 @@
         "pl": "hotfix",
         "uk": "hotfix для датчика присутності Aqara FP1",
         "zh-cn": "aqara存在侦查员FP1"
-      },
-      "2.7.2": {
-        "en": "rework of the detection of removed devices",
-        "de": "nacharbeiten der erkennung von entfernten geräten",
-        "ru": "переработка обнаружения удаленных устройств",
-        "pt": "retrabalho da detecção de dispositivos removidos",
-        "nl": "_",
-        "fr": "retravail de la détection des dispositifs enlevés",
-        "it": "rielaborazione del rilevamento dei dispositivi rimossi",
-        "es": "rework of the detection of removed devices",
-        "pl": "przepraszanie detekcji usuniętych urządzeń",
-        "uk": "реконструкція виявлення видалених пристроїв",
-        "zh-cn": "清除装置的探查工作"
       }
     },
     "messages": [
