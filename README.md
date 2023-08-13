@@ -32,6 +32,10 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) fix type definitions (thx @arteck)
+
 ### 2.10.0 (2023-08-12)
 
 -   (o0shojo0o) optimisation for the MQTT connection  
