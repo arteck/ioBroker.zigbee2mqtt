@@ -32,6 +32,11 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) added automatic download of device image from zigbee2mqtt to meta-storage
+-   (o0shojo0o) device images from Meta-Storage added to the object 
+
 ### 2.10.1 (2023-08-13)
 
 -   (o0shojo0o) fix type definitions (thx @arteck)
