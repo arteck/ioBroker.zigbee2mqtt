@@ -211,6 +211,11 @@
 			"type": "checkbox",
 			"label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
 			"newLine": true
+		},
+		"useDeviceIcons": {
+			"type": "checkbox",
+			"label": "Download device images from Zigbee2Mqtt and use them as object icons.",
+			"newLine": true
 		}
 	}
 }

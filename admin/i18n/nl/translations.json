@@ -29,5 +29,6 @@
     "Scheme": "Schema",
     "Use MQTT Credentials": "Gebruik MQTT-referenties",
     "MQTT Username": "MQTT-gebruikersnaam",
-    "MQTT Password": "MQTT-wachtwoord"
+    "MQTT Password": "MQTT-wachtwoord",
+    "Download device images from Zigbee2Mqtt and use them as object icons.": "Download apparaatafbeeldingen van Zigbee2Mqtt en gebruik ze als objectpictogrammen."
 }

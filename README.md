@@ -36,6 +36,8 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 -   (o0shojo0o) added automatic download of device image from zigbee2mqtt to meta-storage
 -   (o0shojo0o) device images from Meta-Storage added to the object 
+-   (o0shojo0o) device images from Meta-Storage auto resize to 28x28 pixel for smaller object
+-   (o0shojo0o) added option `Download device images from Zigbee2Mqtt and use them as object icons.`
 
 ### 2.10.1 (2023-08-13)
 

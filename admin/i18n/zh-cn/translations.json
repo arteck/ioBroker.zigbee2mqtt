@@ -29,5 +29,6 @@
     "Scheme": "方案",
     "Use MQTT Credentials": "使用 MQTT 凭证",
     "MQTT Username": "MQTT 用户名",
-    "MQTT Password": "MQTT 密码"
+    "MQTT Password": "MQTT 密码",
+    "Download device images from Zigbee2Mqtt and use them as object icons.": "从 Zigbee2Mqtt 下载设备图像并将其用作对象图标。"
 }
