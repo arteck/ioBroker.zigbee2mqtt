@@ -219,7 +219,7 @@
 		},
 		"expertHeader": {
 			"type": "header",
-			"label": "Expert Settings. Please only use if you know what you're doing",
+			"text": "Expert Settings. Please only use if you know what you're doing",
 			"size": 2,
 			"newLine": true
 		},
