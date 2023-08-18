@@ -216,6 +216,17 @@
 			"type": "checkbox",
 			"label": "Download device images from Zigbee2Mqtt and use them as object icons.",
 			"newLine": true
+		},
+		"expertHeader": {
+			"type": "header",
+			"label": "Expert Settings. Please only use if you know what you're doing",
+			"size": 2,
+			"newLine": true
+		},
+		"allwaysUpdateOccupancyState": {
+			"type": "checkbox",
+			"label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+			"newLine": true
 		}
 	}
 }
