@@ -186,6 +186,24 @@
 			"label": "Use Kelvin instead of mired for the color temps",
 			"newLine": true
 		},
+		"stateHeader": {
+			"type": "header",
+			"text": "State configurations",
+			"size": 2,
+			"newLine": true
+		},
+		"simpleHoldReleaseState": {
+			"type": "checkbox",
+			"label": "Generate simple 'Hold' and 'Release' states",
+			"help": "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.",
+			"newLine": true
+		},
+		"simpleMoveStopState": {
+			"type": "checkbox",
+			"label": "Generate simple 'Move' and 'Stop' states",
+			"help": "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.",
+			"newLine": true
+		},
 		"otherHeader": {
 			"type": "header",
 			"text": "Other configurations",

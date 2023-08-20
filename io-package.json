@@ -248,7 +248,9 @@
         "brightnessMoveOnOff": false,
         "brightnessStepOnOff": false,
         "useEventInDesc": true,
-        "useDeviceIcons": false
+        "useDeviceIcons": false,
+        "simpleHoldReleaseState": true,
+        "simpleMoveStopState": false
     },
     "protectedNative": [
         "externalMqttServerPassword",
