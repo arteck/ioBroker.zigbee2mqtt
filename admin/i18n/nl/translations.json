@@ -30,5 +30,10 @@
     "Use MQTT Credentials": "Gebruik MQTT-referenties",
     "MQTT Username": "MQTT-gebruikersnaam",
     "MQTT Password": "MQTT-wachtwoord",
-    "Download device images from Zigbee2Mqtt and use them as object icons.": "Download apparaatafbeeldingen van Zigbee2Mqtt en gebruik ze als objectpictogrammen."
+    "Download device images from Zigbee2Mqtt and use them as object icons.": "Download apparaatafbeeldingen van Zigbee2Mqtt en gebruik ze als objectpictogrammen.",
+    "Generate simple 'Hold' and 'Release' states": "Genereer eenvoudige 'Hold' en 'Release' statussen",
+    "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Indien ingeschakeld, worden de toestanden 'Hold' en 'Release' gecombineerd en blijft het datapunt 'Hold' waar totdat de 'Release'-gebeurtenis arriveert.",
+    "Generate simple 'Move' and 'Stop' states": "Genereer eenvoudige 'Move' en 'Stop' toestanden",
+    "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Indien ingeschakeld, worden de toestanden 'Verplaatsen' en 'Stop' gecombineerd en blijft het gegevenspunt 'Verplaatsen' waar totdat de gebeurtenis 'Stop' arriveert.",
+    "State configurations": "Staat configuraties"
 }

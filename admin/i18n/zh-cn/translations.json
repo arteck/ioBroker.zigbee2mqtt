@@ -30,5 +30,10 @@
     "Use MQTT Credentials": "使用 MQTT 凭证",
     "MQTT Username": "MQTT 用户名",
     "MQTT Password": "MQTT 密码",
-    "Download device images from Zigbee2Mqtt and use them as object icons.": "从 Zigbee2Mqtt 下载设备图像并将其用作对象图标。"
+    "Download device images from Zigbee2Mqtt and use them as object icons.": "从 Zigbee2Mqtt 下载设备图像并将其用作对象图标。",
+    "Generate simple 'Hold' and 'Release' states": "生成简单的“保持”和“释放”状态",
+    "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "启用后，“保持”和“释放”状态会结合在一起，并且“保持”数据点保持为真，直到“释放”事件到达。",
+    "Generate simple 'Move' and 'Stop' states": "生成简单的“移动”和“停止”状态",
+    "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "启用后，“移动”和“停止”状态将组合在一起，并且“移动”数据点保持为真，直到“停止”事件到达。",
+    "State configurations": "状态配置"
 }
