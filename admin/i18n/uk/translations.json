@@ -35,5 +35,7 @@
     "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Якщо ввімкнено, стани «Утримувати» та «Вивільнити» об’єднуються, а точка даних «Утримувати» залишається істинною, доки не надійде подія «Вивільнення».",
     "Generate simple 'Move' and 'Stop' states": "Створення простих станів «Переміщення» та «Зупинка».",
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Якщо ввімкнено, стани «Переміщення» та «Зупинити» поєднуються, а точка даних «Переміщення» залишається істинною, доки не надійде подія «Зупинити».",
-    "State configurations": "Конфігурації стану"
+    "State configurations": "Конфігурації стану",
+    "Generate simple 'Press' and 'Release' states": "Створення простих станів «Натиснути» та «Випустити».",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Якщо ввімкнено, стани «Натиснути» та «Випустити» поєднуються, а точка даних «Натиснути» залишається істинною, доки не надійде подія «Випуск»."
 }

@@ -41,6 +41,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 -   (o0shojo0o) fixed Hue_Move ([#223](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/223))
 -   (o0shojo0o) added option `Generate simple 'Hold' and 'Release' states`
 -   (o0shojo0o) added option `Generate simple 'Move' and 'Stop' states`
+-   (o0shojo0o) added option `Generate simple 'Press' and 'Release' states`
 
 ### 2.10.1 (2023-08-13)
 

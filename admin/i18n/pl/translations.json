@@ -35,5 +35,7 @@
     "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Po włączeniu stany „Wstrzymaj” i „Zwolnij” są łączone, a punkt danych „Wstrzymaj” pozostaje prawdziwy do momentu nadejścia zdarzenia „Zwolnij”.",
     "Generate simple 'Move' and 'Stop' states": "Generuj proste stany „Przenieś” i „Zatrzymaj”.",
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Po włączeniu stany „Przenieś” i „Zatrzymaj” są łączone, a punkt danych „Przenieś” pozostaje prawdziwy do momentu nadejścia zdarzenia „Zatrzymaj”.",
-    "State configurations": "Konfiguracje stanów"
+    "State configurations": "Konfiguracje stanów",
+    "Generate simple 'Press' and 'Release' states": "Generuj proste stany „Naciśnij” i „Zwolnij”.",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Po włączeniu stany „Naciśnij” i „Zwolnij” są łączone, a punkt danych „Naciśnij” pozostaje prawdziwy do momentu pojawienia się zdarzenia „Zwolnij”."
 }

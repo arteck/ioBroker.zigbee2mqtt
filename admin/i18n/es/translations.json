@@ -35,5 +35,7 @@
     "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Cuando está habilitado, los estados 'Retener' y 'Liberar' se combinan y el punto de datos 'Retener' permanece verdadero hasta que llega el evento 'Liberar'.",
     "Generate simple 'Move' and 'Stop' states": "Genere estados simples de 'Mover' y 'Detener'",
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Cuando está habilitado, los estados 'Mover' y 'Detener' se combinan y el punto de datos 'Mover' permanece verdadero hasta que llega el evento 'Detener'.",
-    "State configurations": "Configuraciones de estado"
+    "State configurations": "Configuraciones de estado",
+    "Generate simple 'Press' and 'Release' states": "Genere estados simples de \"Presionar\" y \"Liberar\"",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Cuando está habilitado, los estados \"Presionar\" y \"Liberar\" se combinan y el punto de datos \"Presionar\" permanece verdadero hasta que llega el evento \"Liberar\"."
 }

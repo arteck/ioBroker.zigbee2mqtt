@@ -204,6 +204,12 @@
 			"help": "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.",
 			"newLine": true
 		},
+		"simplePressReleaseState": {
+			"type": "checkbox",
+			"label": "Generate simple 'Press' and 'Release' states",
+			"help": "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.",
+			"newLine": true
+		},
 		"otherHeader": {
 			"type": "header",
 			"text": "Other configurations",

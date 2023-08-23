@@ -35,5 +35,7 @@
     "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Когда эта функция включена, состояния «Hold» и «Release» объединяются, а точка данных «Hold» остается истинной до тех пор, пока не наступит событие «Release».",
     "Generate simple 'Move' and 'Stop' states": "Создавайте простые состояния «Переместить» и «Стоп»",
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Когда эта функция включена, состояния «Перемещение» и «Стоп» объединяются, и точка данных «Перемещение» остается истинной до тех пор, пока не наступит событие «Стоп».",
-    "State configurations": "Конфигурации состояния"
+    "State configurations": "Конфигурации состояния",
+    "Generate simple 'Press' and 'Release' states": "Создавайте простые состояния «Нажмите» и «Отпустите».",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Если этот параметр включен, состояния «Нажатие» и «Отпуск» объединяются, и точка данных «Нажатие» остается истинной до тех пор, пока не произойдет событие «Отпуск»."
 }

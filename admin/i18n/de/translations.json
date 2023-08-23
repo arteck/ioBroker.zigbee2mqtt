@@ -31,9 +31,11 @@
     "MQTT Username": "MQTT-Benutzername",
     "MQTT Password": "MQTT-Passwort",
     "Download device images from Zigbee2Mqtt and use them as object icons.": "Device Bilder von Zigbee2Mqtt herunterladen und als Objektsymbole verwenden.",
-    "Generate simple 'Hold' and 'Release' states": "Generiert einfache „Hold“- und „Release“-Zustände",
+    "Generate simple 'Hold' and 'Release' states": "Generiert einfache „Hold“ und „Release“ States",
     "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Bei Aktivierung werden die Datenpunkte „Hold“ und „Release“ kombiniert und der Datenpunkt „Hold“ bleibt true, bis das Ereignis „Release“ eintrifft.",
-    "Generate simple 'Move' and 'Stop' states": "Generiert einfache „Move“- und „Stop“-Zustände",
+    "Generate simple 'Move' and 'Stop' states": "Generiert einfache „Move“ und „Stop“ States",
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Bei Aktivierung werden die Datenpunkte „Move“ und „Stop“ kombiniert und der Datenpunkt „Move“ bleibt true, bis das Ereignis „Stop“ eintrifft.",
-    "State configurations": "State konfigurationen"
+    "State configurations": "State konfigurationen",
+    "Generate simple 'Press' and 'Release' states": "Generieren einfache „Press“ und „Release“ States",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Wenn diese Option aktiviert ist, werden die Zustände „Drücken“ und „Release“ kombiniert und der Datenpunkt „Press“ bleibt true, bis das Ereignis „Release“ eintrifft."
 }

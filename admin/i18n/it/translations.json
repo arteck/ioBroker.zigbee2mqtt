@@ -35,5 +35,7 @@
     "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Se abilitato, gli stati \"Hold\" e \"Release\" vengono combinati e il punto dati \"Hold\" rimane vero fino all'arrivo dell'evento \"Release\".",
     "Generate simple 'Move' and 'Stop' states": "Genera semplici stati 'Move' e 'Stop'",
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Se abilitato, gli stati 'Move' e 'Stop' vengono combinati e il punto dati 'Move' rimane vero fino all'arrivo dell'evento 'Stop'.",
-    "State configurations": "Configurazioni di stato"
+    "State configurations": "Configurazioni di stato",
+    "Generate simple 'Press' and 'Release' states": "Genera semplici stati \"Stampa\" e \"Rilascio\".",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Se abilitati, gli stati \"Press\" e \"Rilascio\" vengono combinati e il punto dati \"Press\" rimane vero fino all'arrivo dell'evento \"Rilascio\"."
 }

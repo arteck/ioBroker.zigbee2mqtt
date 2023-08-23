@@ -250,7 +250,8 @@
         "useEventInDesc": true,
         "useDeviceIcons": false,
         "simpleHoldReleaseState": true,
-        "simpleMoveStopState": false
+        "simpleMoveStopState": false,
+        "simplePressReleaseState": false
     },
     "protectedNative": [
         "externalMqttServerPassword",
