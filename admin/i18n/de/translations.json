@@ -37,5 +37,5 @@
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Bei Aktivierung werden die Datenpunkte „Move“ und „Stop“ kombiniert und der Datenpunkt „Move“ bleibt true, bis das Ereignis „Stop“ eintrifft.",
     "State configurations": "State konfigurationen",
     "Generate simple 'Press' and 'Release' states": "Generieren einfache „Press“ und „Release“ States",
-    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Wenn diese Option aktiviert ist, werden die Zustände „Drücken“ und „Release“ kombiniert und der Datenpunkt „Press“ bleibt true, bis das Ereignis „Release“ eintrifft."
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Wenn diese Option aktiviert ist, werden die Zustände „Press“ und „Release“ kombiniert und der Datenpunkt „Press“ bleibt true, bis das Ereignis „Release“ eintrifft."
 }
