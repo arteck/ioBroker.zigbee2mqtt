@@ -30,5 +30,12 @@
     "Use MQTT Credentials": "Используйте учетные данные MQTT",
     "MQTT Username": "Имя пользователя MQTT",
     "MQTT Password": "MQTT-пароль",
-    "Download device images from Zigbee2Mqtt and use them as object icons.": "Загрузите изображения устройств с Zigbee2Mqtt и используйте их в качестве значков объектов."
+    "Download device images from Zigbee2Mqtt and use them as object icons.": "Загрузите изображения устройств с Zigbee2Mqtt и используйте их в качестве значков объектов.",
+    "Generate simple 'Hold' and 'Release' states": "Создавайте простые состояния «Hold» и «Release»",
+    "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.": "Когда эта функция включена, состояния «Hold» и «Release» объединяются, а точка данных «Hold» остается истинной до тех пор, пока не наступит событие «Release».",
+    "Generate simple 'Move' and 'Stop' states": "Создавайте простые состояния «Переместить» и «Стоп»",
+    "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Когда эта функция включена, состояния «Перемещение» и «Стоп» объединяются, и точка данных «Перемещение» остается истинной до тех пор, пока не наступит событие «Стоп».",
+    "State configurations": "Конфигурации состояния",
+    "Generate simple 'Press' and 'Release' states": "Создавайте простые состояния «Нажмите» и «Отпустите».",
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Если этот параметр включен, состояния «Нажатие» и «Отпуск» объединяются, и точка данных «Нажатие» остается истинной до тех пор, пока не произойдет событие «Отпуск»."
 }
