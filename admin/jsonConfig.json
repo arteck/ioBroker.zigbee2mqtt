@@ -210,12 +210,6 @@
 			"help": "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.",
 			"newLine": true
 		},
-		"otherHeader": {
-			"type": "header",
-			"text": "Other configurations",
-			"size": 2,
-			"newLine": true
-		},
 		"brightnessMoveOnOff": {
 			"type": "checkbox",
 			"label": "Brightness move should also turn the light on or off",
@@ -226,6 +220,30 @@
 			"label": "Brightness step should also turn the light on or off",
 			"newLine": true
 		},
+		"imageHeader": {
+			"type": "header",
+			"text": "Device image configurations",
+			"size": 2,
+			"newLine": true
+		},
+		"useDeviceIcons": {
+			"type": "checkbox",
+			"label": "Download device images from Zigbee2Mqtt and use them as object icons.",
+			"help": "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!",
+			"newLine": true
+		},
+		"deviceIconsSize": {
+			"type": "number",
+			"label": "Size of the object icons in pixels",
+			"min": 8,
+			"newLine": true
+		},
+		"otherHeader": {
+			"type": "header",
+			"text": "Other configurations",
+			"size": 2,
+			"newLine": true
+		},
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
@@ -234,11 +252,6 @@
 		"useEventInDesc": {
 			"type": "checkbox",
 			"label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
-			"newLine": true
-		},
-		"useDeviceIcons": {
-			"type": "checkbox",
-			"label": "Download device images from Zigbee2Mqtt and use them as object icons.",
 			"newLine": true
 		}
 	}

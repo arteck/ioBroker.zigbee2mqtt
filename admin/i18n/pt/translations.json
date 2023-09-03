@@ -37,5 +37,6 @@
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Quando ativado, os estados 'Mover' e 'Parar' são combinados e o ponto de dados 'Mover' permanece verdadeiro até que o evento 'Parar' chegue.",
     "State configurations": "configurações de estado",
     "Generate simple 'Press' and 'Release' states": "Gere estados simples de 'Pressionar' e 'Liberar'",
-    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Quando ativado, os estados 'Press' e 'Release' são combinados e o ponto de dados 'Press' permanece verdadeiro até que o evento 'Release' chegue."
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Quando ativado, os estados 'Press' e 'Release' são combinados e o ponto de dados 'Press' permanece verdadeiro até que o evento 'Release' chegue.",
+    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Se o tamanho for alterado posteriormente para um valor maior, as imagens já baixadas deverão ser excluídas. <br> Observe que os ícones são armazenados no objeto e, portanto, não devem ser desnecessariamente grandes!"
 }

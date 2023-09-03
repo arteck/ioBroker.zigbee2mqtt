@@ -37,5 +37,6 @@
     "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.": "Когда эта функция включена, состояния «Перемещение» и «Стоп» объединяются, и точка данных «Перемещение» остается истинной до тех пор, пока не наступит событие «Стоп».",
     "State configurations": "Конфигурации состояния",
     "Generate simple 'Press' and 'Release' states": "Создавайте простые состояния «Нажмите» и «Отпустите».",
-    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Если этот параметр включен, состояния «Нажатие» и «Отпуск» объединяются, и точка данных «Нажатие» остается истинной до тех пор, пока не произойдет событие «Отпуск»."
+    "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Если этот параметр включен, состояния «Нажатие» и «Отпуск» объединяются, и точка данных «Нажатие» остается истинной до тех пор, пока не произойдет событие «Отпуск».",
+    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Если размер позже будет изменен на большее значение, уже загруженные изображения необходимо удалить. <br> Обратите внимание, что значки хранятся в объекте и поэтому не должны быть излишне большими!"
 }
