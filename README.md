@@ -32,6 +32,11 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) added state `info.coordinator_check` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))
+-   (o0shojo0o) added state `info.missing_routers` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))
+
 ### 2.12.0 (2023-09-05)
 
 -   (o0shojo0o) added option `Size of the object icons in pixels`

@@ -310,6 +310,31 @@
       "native": {}
     },
     {
+      "_id": "info.coordinator_check",
+      "type": "state",
+      "common": {
+        "name": "It checks whether routers are missing from the coordinator's memory.",
+        "role": "button",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "def": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.missing_routers",
+      "type": "state",
+      "common": {
+        "name": "Routers missing in the coordinator's memory.",
+        "type": "json",
+        "read": true,
+        "write": false,
+        "def": []
+      },
+      "native": {}
+    },
+    {
       "_id": "",
       "type": "meta",
       "common": {

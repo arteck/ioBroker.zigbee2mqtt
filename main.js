@@ -127,18 +127,20 @@ class Zigbee2mqtt extends core.Adapter {
         websocketController = new WebsocketController(this);
         const wsClient = websocketController.initWsClient();
 
-        wsClient.on('open', () => {
-            this.log.info('Connect to Zigbee2MQTT over websocket connection.');
-        });
+        if (wsClient) {
+            wsClient.on('open', () => {
+                this.log.info('Connect to Zigbee2MQTT over websocket connection.');
+            });
 
-        wsClient.on('message', (message) => {
-            this.messageParse(message);
-        });
+            wsClient.on('message', (message) => {
+                this.messageParse(message);
+            });
 
-        wsClient.on('close', async () => {
-            this.setStateChanged('info.connection', false, true);
-            await statesController.setAllAvailableToFalse();
-        });
+            wsClient.on('close', async () => {
+                this.setStateChanged('info.connection', false, true);
+                await statesController.setAllAvailableToFalse();
+            });
+        }
     }
 
     async messageParse(message) {
@@ -179,6 +181,11 @@ class Zigbee2mqtt extends core.Adapter {
                 statesController.processQueue();
                 break;
             case 'bridge/event':
+                break;
+            case 'bridge/response/coordinator_check':
+                if (messageObj.payload && messageObj.payload.data && messageObj.payload.data.missing_routers) {
+                    this.setStateChanged('info.missing_routers', messageObj.payload.data.missing_routers, true);
+                }
                 break;
             case 'bridge/response/device/remove':
                 break;
@@ -307,12 +314,12 @@ class Zigbee2mqtt extends core.Adapter {
 
     async onStateChange(id, state) {
         if (state && state.ack == false) {
-            if (id.includes('info.debugmessages')) {
+            if (id.endsWith('info.debugmessages')) {
                 logCustomizations.debugDevices = state.val;
                 this.setState(id, state.val, true);
                 return;
             }
-            if (id.includes('info.logfilter')) {
+            if (id.endsWith('info.logfilter')) {
                 logCustomizations.logfilter = state.val.split(';').filter(x => x); // filter removes empty strings here
                 this.setState(id, state.val, true);
                 return;
