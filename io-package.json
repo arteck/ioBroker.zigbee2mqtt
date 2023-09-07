@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.0",
+    "version": "2.13.1",
     "news": {
+      "2.13.1": {
+        "en": "fixed storage name",
+        "de": "fester speichername",
+        "ru": "фиксированное имя хранения",
+        "pt": "nome de armazenamento fixo",
+        "nl": "vertaling:",
+        "fr": "nom de stockage fixe",
+        "it": "nome di archiviazione fisso",
+        "es": "nombre de almacenamiento fijo",
+        "pl": "nazwa pamięci stałej",
+        "uk": "фіксована назва зберігання",
+        "zh-cn": "固定储存名称"
+      },
       "2.13.0": {
         "en": "added state `info.coordinator_check` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers_count` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded option `Automatic check for missing routers in the coordinator memory` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))",
         "de": "zusätzlich state info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzliche Option `Automatische Überprüfung fehlender Router im Koordinatorspeicher` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
@@ -80,19 +93,6 @@
         "pl": "wtedy dodane państwo przesyłają ładunek surowy json",
         "uk": "додано державне відправлення_payload для відправки сировини json",
         "zh-cn": "增派国家派遣国:缴交会费"
-      },
-      "2.8.0": {
-        "en": "added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))\nsmall fixes",
-        "de": "wSS-Unterstützung für Websoket-Verbindung([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\nkleine fixierungen",
-        "ru": "добавлена поддержка WSS для подключения к websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\nнебольшие исправления",
-        "pt": "adicionado suporte WSS para conexão websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequenas correções",
-        "nl": "voegde WSS steun toe voor websoket connectie\nkleine fixes",
-        "fr": "a ajouté le support WSS pour la connexion websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npetites corrections",
-        "it": "supporto WSS aggiunto per il collegamento websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npiccole correzioni",
-        "es": "añadido WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequeños accesorios",
-        "pl": "dodano obsługę stron internetowych (#191(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\ndrobne rozwiązanie",
-        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nмаленькі кріплення",
-        "zh-cn": "增加了WSS支助网络联系([第191](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\n小型配件"
       }
     },
     "messages": [
