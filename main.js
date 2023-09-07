@@ -194,8 +194,8 @@ class Zigbee2mqtt extends core.Adapter {
             case 'bridge/response/coordinator_check':
                 if (messageObj.payload && messageObj.payload.data && messageObj.payload.data.missing_routers) {
                     const missingRoutersCount = messageObj.payload.data.missing_routers.length;
-                    this.setStateChanged('info.missing_routers', JSON.stringify(messageObj.payload.data.missing_routers), true);
-                    this.setStateChanged('info.missing_routers_count', missingRoutersCount, true);
+                    this.setState('info.missing_routers', JSON.stringify(messageObj.payload.data.missing_routers), true);
+                    this.setState('info.missing_routers_count', missingRoutersCount, true);
 
                     if (missingRoutersCount > 0) {
                         this.log[this.config.coordinatorCheckLogLvl](`Coordinator check: ${missingRoutersCount} missing routers were found, please check the data point 'zigbee2mqtt.x.info.missing_routers'!`);
