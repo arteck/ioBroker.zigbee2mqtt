@@ -38,5 +38,9 @@
     "State configurations": "Staat configuraties",
     "Generate simple 'Press' and 'Release' states": "Genereer eenvoudige 'Druk'- en 'loslaat'-statussen",
     "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Indien ingeschakeld, worden de statussen 'Press' en 'Release' gecombineerd en blijft het datapunt 'Press' waar totdat de gebeurtenis 'Release' arriveert.",
-    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Als de grootte later wordt gewijzigd naar een grotere waarde, moeten de reeds gedownloade afbeeldingen worden verwijderd. <br> Let op: iconen worden in het object opgeslagen en mogen dus niet onnodig groot zijn!"
+    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Als de grootte later wordt gewijzigd naar een grotere waarde, moeten de reeds gedownloade afbeeldingen worden verwijderd. <br> Let op: iconen worden in het object opgeslagen en mogen dus niet onnodig groot zijn!",
+    "Automatic check for missing routers in the coordinator memory.": "Automatische controle op ontbrekende routers in het coördinatorgeheugen.",
+    "With which log level should a negative search be logged?": "Met welk logniveau moet een negatieve zoekopdracht worden geregistreerd?",
+    "Time of the automatic check": "Tijdstip van de automatische controle",
+    "More information": "Meer informatie"
 }

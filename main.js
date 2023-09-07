@@ -8,6 +8,7 @@
 const core = require('@iobroker/adapter-core');
 const mqtt = require('mqtt');
 const utils = require('./lib/utils');
+const schedule = require('node-schedule');
 const checkConfig = require('./lib/check').checkConfig;
 const adapterInfo = require('./lib/messages').adapterInfo;
 const zigbee2mqttInfo = require('./lib/messages').zigbee2mqttInfo;
@@ -63,6 +64,14 @@ class Zigbee2mqtt extends core.Adapter {
         if (logfilterState && logfilterState.val) {
             // @ts-ignore
             logCustomizations.logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
+        }
+
+        if (this.config.coordinatorCheck == true) {
+            try {
+                schedule.scheduleJob('coordinatorCheck', this.config.coordinatorCheckCron, () => this.onStateChange('manual_trigger._.info.coordinator_check', { ack: false }));
+            } catch (e) {
+                this.log.error(e);
+            }
         }
         // MQTT
         if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
@@ -184,7 +193,16 @@ class Zigbee2mqtt extends core.Adapter {
                 break;
             case 'bridge/response/coordinator_check':
                 if (messageObj.payload && messageObj.payload.data && messageObj.payload.data.missing_routers) {
-                    this.setStateChanged('info.missing_routers', messageObj.payload.data.missing_routers, true);
+                    const missingRoutersCount = messageObj.payload.data.missing_routers.length;
+                    this.setStateChanged('info.missing_routers', JSON.stringify(messageObj.payload.data.missing_routers), true);
+                    this.setStateChanged('info.missing_routers_count', missingRoutersCount, true);
+
+                    if (missingRoutersCount > 0) {
+                        this.log[this.config.coordinatorCheckLogLvl](`Coordinator check: ${missingRoutersCount} missing routers were found, please check the data point 'zigbee2mqtt.x.info.missing_routers'!`);
+                    }
+                    else {
+                        this.log.info('Coordinator check: No missing router was found.');
+                    }
                 }
                 break;
             case 'bridge/response/device/remove':
