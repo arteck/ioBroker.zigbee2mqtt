@@ -38,5 +38,9 @@
     "State configurations": "Configurations d'état",
     "Generate simple 'Press' and 'Release' states": "Générer des états simples « Presser » et « Relâcher »",
     "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Lorsqu'ils sont activés, les états « Press » et « Release » sont combinés et le point de données « Press » reste vrai jusqu'à ce que l'événement « Release » arrive.",
-    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Si la taille est ultérieurement modifiée pour une valeur plus grande, les images déjà téléchargées doivent être supprimées. <br> Veuillez noter que les icônes sont stockées dans l'objet et ne doivent donc pas être inutilement grandes !"
+    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Si la taille est ultérieurement modifiée pour une valeur plus grande, les images déjà téléchargées doivent être supprimées. <br> Veuillez noter que les icônes sont stockées dans l'objet et ne doivent donc pas être inutilement grandes !",
+    "Automatic check for missing routers in the coordinator memory.": "Vérification automatique des routeurs manquants dans la mémoire du coordinateur.",
+    "With which log level should a negative search be logged?": "Avec quel niveau de journalisation une recherche négative doit-elle être enregistrée ?",
+    "Time of the automatic check": "Heure du contrôle automatique",
+    "More information": "Plus d'information"
 }

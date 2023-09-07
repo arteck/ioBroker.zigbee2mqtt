@@ -38,5 +38,9 @@
 	"State configurations": "State configurations",
 	"Generate simple 'Press' and 'Release' states": "Generate simple 'Press' and 'Release' states",
 	"When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.",
-	"If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!"
+	"If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!",
+	"Automatic check for missing routers in the coordinator memory.": "Automatic check for missing routers in the coordinator memory.",
+	"With which log level should a negative search be logged?": "With which log level should a negative search be logged?",
+	"Time of the automatic check": "Time of the automatic check",
+	"More information": "More information"
 }

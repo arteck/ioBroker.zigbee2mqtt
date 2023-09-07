@@ -38,5 +38,9 @@
     "State configurations": "状态配置",
     "Generate simple 'Press' and 'Release' states": "生成简单的“按下”和“释放”状态",
     "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "启用后，“按下”和“释放”状态将组合在一起，并且“按下”数据点保持为真，直到“释放”事件到达。",
-    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "如果稍后将大小更改为更大的值，则必须删除已下载的图像。 <br> 请注意，图标存储在对象中，因此不应过大！"
+    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "如果稍后将大小更改为更大的值，则必须删除已下载的图像。 <br> 请注意，图标存储在对象中，因此不应过大！",
+    "Automatic check for missing routers in the coordinator memory.": "自动检查协调器内存中丢失的路由器。",
+    "With which log level should a negative search be logged?": "应该使用哪个日志级别来记录负面搜索？",
+    "Time of the automatic check": "自动检查时间",
+    "More information": "更多信息"
 }

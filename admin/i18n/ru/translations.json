@@ -38,5 +38,9 @@
     "State configurations": "Конфигурации состояния",
     "Generate simple 'Press' and 'Release' states": "Создавайте простые состояния «Нажмите» и «Отпустите».",
     "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.": "Если этот параметр включен, состояния «Нажатие» и «Отпуск» объединяются, и точка данных «Нажатие» остается истинной до тех пор, пока не произойдет событие «Отпуск».",
-    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Если размер позже будет изменен на большее значение, уже загруженные изображения необходимо удалить. <br> Обратите внимание, что значки хранятся в объекте и поэтому не должны быть излишне большими!"
+    "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!": "Если размер позже будет изменен на большее значение, уже загруженные изображения необходимо удалить. <br> Обратите внимание, что значки хранятся в объекте и поэтому не должны быть излишне большими!",
+    "Automatic check for missing routers in the coordinator memory.": "Автоматическая проверка отсутствия роутеров в памяти координатора.",
+    "With which log level should a negative search be logged?": "На каком уровне журнала следует регистрировать отрицательный поиск?",
+    "Time of the automatic check": "Время автоматической проверки",
+    "More information": "Больше информации"
 }

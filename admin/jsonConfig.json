@@ -244,6 +244,61 @@
 			"size": 2,
 			"newLine": true
 		},
+		"coordinatorCheck": {
+			"type": "checkbox",
+			"label": "Automatic check for missing routers in the coordinator memory.",
+			"help": "More information",
+			"helpLink": "https://www.zigbee2mqtt.io/guide/usage/mqtt_topics_and_messages.html#zigbee2mqtt-bridge-request-coordinator-check",
+			"newLine": true
+		},
+		"coordinatorCheckLogLvl": {
+			"type": "select",
+			"sm": 3,
+			"label": "With which log level should a negative search be logged?",
+			"options": [
+				{
+					"label": {
+						"en": "Debug"
+					},
+					"value": "debug"
+				},
+				{
+					"label": {
+						"en": "Info"
+					},
+					"value": "info"
+				},
+				{
+					"label": {
+						"en": "Warning"
+					},
+					"value": "warn"
+				},
+				{
+					"label": {
+						"en": "Error"
+					},
+					"value": "error"
+				}
+			],
+			"newLine": true,
+			"hidden": "data.coordinatorCheck != true"
+		},
+		"coordinatorCheckCron": {
+			"type": "cron",
+			"label": "Time of the automatic check",
+			"help": "Default: 0 3 * * * (At 03:00 every day)",
+			"simple": true,
+			"newLine": true,
+			"sm": 3,
+			"hidden": "data.coordinatorCheck != true"
+		},
+		"spacer04": {
+			"type": "staticText",
+			"text": "",
+			"newLine": true,
+			"hidden": "data.coordinatorCheck != true"
+		},
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
