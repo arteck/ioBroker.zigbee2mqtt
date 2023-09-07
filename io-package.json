@@ -1,378 +1,378 @@
 {
-    "common": {
-        "name": "zigbee2mqtt",
-        "version": "2.12.0",
-        "news": {
-            "2.12.0": {
-                "en": "added option `Size of the object icons in pixels`",
-                "de": "zusätzliche Option ` Größe der Objektsymbole in Pixeln`",
-                "ru": "добавлена опция `Размер иконок объекта в пикселях`",
-                "pt": "opção adicionada `Tamanho dos ícones do objeto em pixels`",
-                "nl": "voegde optie van het object in pixels",
-                "fr": "option ajoutée ` Taille de l'objet icônes en pixels`",
-                "it": "opzione aggiunta `Size delle icone dell'oggetto in pixel`",
-                "es": "opción agregada `Tamaño de los iconos objeto en pixels`",
-                "pl": "dodano opcję `Size of the object icons in pixels'",
-                "uk": "додано опцію `Size іконок об’єкта у пікселях`",
-                "zh-cn": "添加了“白盔”的选项。"
-            },
-            "2.11.0": {
-                "en": "added automatic download of device image from zigbee2mqtt to meta-storage\nadded option `Download device images from Zigbee2Mqtt and use them as object icons.`\nfixed Hue_Move \nadded option `Generate simple 'Hold' and 'Release' states`\nadded option `Generate simple 'Move' and 'Stop' states`\nadded option `Generate simple 'Press' and 'Release' states`",
-                "de": "automatischer download des gerätebildes von zigbee2mqtt zu meta-storage\n` Gerätebilder von Zigbee2Mqtt herunterladen und als Objektsymbole verwenden. `\nhue_Move\nzusatzoption `Generieren Sie einfache Halte- und Freigabezustände `\nzusätzliche Option `Generieren Sie einfache Verschiebe- und Stopp-Zustände `\nzusätzliche Option `Generieren Sie einfache Presse- und Freigabezustände `",
-                "ru": "добавлена автоматическая загрузка изображения устройства от zigbee2mqtt до meta-storage\nдобавлена опция `Скачать изображения устройства от Zigbee2Mqtt и использовать их как иконки объекта. »\nфиксированный Hue_Move\nдобавлена опция `Generate simple Hold and Release состояния »\nдобавлена опция `Generate simple Move and Stop состояния`\nдобавлена опция `Generate simple Press and Release состояния »",
-                "pt": "adicionado download automático da imagem do dispositivo de zigbee2mqtt para meta-armazenagem\nopção adicionada `Baixar imagens de dispositivo de Zigbee2Mqtt e usá-las como ícones de objeto. \"\nfixo Hue_Move\nopção adicionada `Gerar simples Hold and Release states \"\nopção adicionada `Gerar simples Mover e parar estados`\nopção adicionada `Gerar estados simples de imprensa e lançamento \"",
-                "nl": "voegde automatische download van het apparaat van zigbee2mqt toe aan meta-storage\nvoegde optie 'Download apparatuur van Zigbee2Mqt toe en gebruik ze als object iconen. _\nvertaling:\nvoegde optie 'Generate Sim Hold and Release staten _\nvoegde optie \"Generate Sim Move and Stop states\"\nvoegde optie 'Generate Sim Press and Release staten _",
-                "fr": "téléchargement automatique de l'image de périphérique de zigbee2mqt à meta-storage\noption ajoutée `Télécharger les images de périphérique de Zigbee2Mqt et les utiliser comme des icônes d'objet. `\nhue_Move\noption ajoutée `Generate simple Hold and Release états `\noption ajoutée `Generate simple Déplacer et arrêter les états`\noption ajoutée `Generate simple Press et les états de publication `",
-                "it": "download automatico dell'immagine del dispositivo da zigbee2mqt a meta-storage\nopzione aggiunta `Scaricare le immagini del dispositivo da Zigbee2Mqt e usarle come icone dell'oggetto. #\nfisso Hue_Move\nopzione aggiunta `Generate simple Hold and Release stati #\nopzione aggiunta `Generate simple Move and Stop stati`\nopzione aggiunta `Generate simple Press and Release stati #",
-                "es": "añadido descarga automática de la imagen del dispositivo desde zigbee2mqt a meta-storage\nopción agregada `Descargar imágenes de dispositivo de Zigbee2Mqtt y utilizarlas como iconos de objetos. `\nhue_Move fijo\nopción agregada `Generate simple Hold and Release states `\nopción agregada `Generate simple Move and Stop states`\nopción agregada `Generate simple Estados de prensa y liberación `",
-                "pl": "dodał automatyczny pobranie obrazu zigbee2mqtt na meta-storage\ndodał dodatki do opcjonalnych zdjęć z Zigbee2Mqtt i używał ich jako ikon obiektowych. `\nugruntowany\ndodano opcjonalne stany Hold i Release. `\ndodano możliwość generowanego prostego Move'a i Stop states'\ndodał opcję \"Generate simple Press and Release states\". `",
-                "uk": "додано автоматичне завантаження зображення пристрою з zigbee2mqtt до мета-сторage\nдодано опцію `Завантажити зображення пристроїв з Zigbee2Mqtt і використовувати їх як іконки об'єкта. й\nфіксована Hue_Move\nдодано варіант `Generate simple Hold and Release State й\nдодано варіант `Generate Simple Move and Stop State`\nдодано варіант `Generate simple Press and Release State й",
-                "zh-cn": "加上自齐格贝德二米克特自动下载器图像\n添加了“Zigbee2Mqt的载荷装置图像”的备选办法,并将这些图像作为目标。 目 录\n固定的He_Move\n增加“简单的霍乱和释放国”的选择 目 录\n增加“简单的摩托和托儿”\n增加的“简单新闻”选择 目 录"
-            },
-            "2.10.1": {
-                "en": "fix type definitions (thx @arteck)",
-                "de": "fix typdefinitionen (thx @arteck)",
-                "ru": "определение типа исправления (thx @arteck)",
-                "pt": "definições de tipo de correção (thx @arteck)",
-                "nl": "vertaling:",
-                "fr": "définitions de type fixe (thx @arteck)",
-                "it": "correggere le definizioni di tipo (thx @arteck)",
-                "es": "fijar definiciones tipo (thx @arteck)",
-                "pl": "definicja typów (tx @arteck)",
-                "uk": "фіксувати визначення типу (thx @arteck)",
-                "zh-cn": "fix类定义(x @arteck)"
-            },
-            "2.10.0": {
-                "en": "optimisation for the MQTT connection  \nfix for MQTT output type: attribute_and_json ([#87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87))\nadded support for external MQTT-Server credentials ([#148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148))\n*After update, Websocket Auth-Token must be set again, if used.*",
-                "de": "optimierung der MQTT-Verbindung\nfix für den MQTT-Ausgangstyp: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\nunterstützung für externe MQTT-Server-Anmeldeinformationen #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Nach dem Update muss Websocket Auth-Token wieder eingestellt werden, wenn verwendet*",
-                "ru": "оптимизация подключения к MQTT\nисправить для типа вывода MQTT: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nдобавлена поддержка внешних учетных записей MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*После обновления, Websocket Auth-Token должен быть установлен снова, если используется *",
-                "pt": "otimização para a conexão MQTT\ncorreção para o tipo de saída MQTT: atributo_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nadicionado suporte para credenciais externas do MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Depois da atualização, Websocket Auth-Token deve ser definido novamente, se usado*",
-                "nl": "vertaling:\nvertaling:\nvoegde steun toe voor externe MQTT-Server credentials 48148:\nNa de update, moeten websocket Auth-Token opnieuw ingesteld worden, als gebruikt",
-                "fr": "optimisation de la connexion MQTT\ncorrection du type de sortie MQTT : attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\najout d ' un appui aux pouvoirs externes de MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Après la mise à jour, Websocket Auth-Token doit être réinitialisé, si utilisé*",
-                "it": "ottimizzazione della connessione MQTT\ncorrezione del tipo di uscita MQTT: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\n[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Dopo l'aggiornamento, Websocket Auth-Token deve essere impostato di nuovo, se utilizzato*",
-                "es": "optimización para la conexión MQTT\nfix for MQTT output type: attributed_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\napoyo añadido a las credenciales externas de MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Después de la actualización, Websocket Auth-Token debe configurarse de nuevo, si se utiliza*",
-                "pl": "optymalizacja połączenia MQTT\nrezultaty na MQTT: attribute_and_json #87(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nwsparcie dla zewnętrznych MQTT-Server Credentials #148 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*After update, Websocket Auth-Token musi być ponownie ustawiony, jeśli jest używany *",
-                "uk": "оптимізація підключення MQTT\njavaScript licenses API Веб-сайт Go1.13.8\nдодано підтримку зовнішніх облікових записів MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Оновлення, Websocket Auth-Token необхідно встановити знову, якщо використовується*",
-                "zh-cn": "最惠国条款的生效\nfix MQTT产出类型:归属_and_json #[87](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\n补充支持外贸总协定(第[148]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/148)\n* 如使用最新资料,必须再次建立万维网。"
-            },
-            "2.9.0": {
-                "en": "added state `send_payload` to send a raw json payload",
-                "de": "add state send_payload to send a roh json payload",
-                "ru": "добавленное государство send_payload для отправки сырья json payload",
-                "pt": "adicionado estado send_payload para enviar uma carga de json cru",
-                "nl": "vertaling:",
-                "fr": "add state send_payload pour envoyer une charge utile json brute",
-                "it": "aggiunto stato send_payload per inviare un grezzo json payload",
-                "es": "añadir estado send_payload para enviar una carga de pago json cruda",
-                "pl": "wtedy dodane państwo przesyłają ładunek surowy json",
-                "uk": "додано державне відправлення_payload для відправки сировини json",
-                "zh-cn": "增派国家派遣国:缴交会费"
-            },
-            "2.8.0": {
-                "en": "added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))\nsmall fixes",
-                "de": "wSS-Unterstützung für Websoket-Verbindung([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\nkleine fixierungen",
-                "ru": "добавлена поддержка WSS для подключения к websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\nнебольшие исправления",
-                "pt": "adicionado suporte WSS para conexão websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequenas correções",
-                "nl": "voegde WSS steun toe voor websoket connectie\nkleine fixes",
-                "fr": "a ajouté le support WSS pour la connexion websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npetites corrections",
-                "it": "supporto WSS aggiunto per il collegamento websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npiccole correzioni",
-                "es": "añadido WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequeños accesorios",
-                "pl": "dodano obsługę stron internetowych (#191(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\ndrobne rozwiązanie",
-                "uk": "javaScript licenses API Веб-сайт Go1.13.8\nмаленькі кріплення",
-                "zh-cn": "增加了WSS支助网络联系([第191](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\n小型配件"
-            },
-            "2.7.5": {
-                "en": "added state `last_seen` contains date/time of last Zigbee message ([#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131))",
-                "de": "add state last_seen enthält Datum/Zeit der letzten Zigbee-Nachricht [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-                "ru": "добавленное состояние last_seen содержит дату/время последнего сообщения Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-                "pt": "adicionado estado last_seen contém data/hora da última mensagem Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-                "nl": "vertaling:",
-                "fr": "add state last_seen contains date/time of last Zigbee message [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-                "it": "aggiunto state last_seen contiene data/ora dell'ultimo messaggio Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-                "es": "añadido state last_seen contiene fecha/hora del último mensaje de Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)",
-                "pl": "dodano stan ostatni_seen:/time of last Zigbee message #131(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-                "uk": "додано стан last_seen містить дату/час останнього повідомлення Zigbee [#131](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/131)",
-                "zh-cn": "添加国家:见最后Zigbee信息的日期/时间[第131号](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/131)"
-            }
+  "common": {
+    "name": "zigbee2mqtt",
+    "version": "2.13.0",
+    "news": {
+      "2.13.0": {
+        "en": "added state `info.coordinator_check` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers_count` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded option `Automatic check for missing routers in the coordinator memory` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))",
+        "de": "zusätzlich state info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzliche Option `Automatische Überprüfung fehlender Router im Koordinatorspeicher` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
+        "ru": "добавлено состояние info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдобавлено состояние info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдобавлено состояние info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдобавлена опция `Автоматическая проверка для пропавших маршрутизаторов в памяти координатора` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)",
+        "pt": "adicionado state info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nadicionado state info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nadicionado state info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nopção adicionada `Verificação automática de roteadores ausentes na memória do coordenador #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)",
+        "nl": "quality over Quantity (QoQ) Releases Vertaling:\nquality over Quantity (QoQ) Releases Vertaling:\nvoegde staatsinformatie toe, mislukt jroutmount 47, httub,com/0shojoo/ioBroker\nvoegde optie 'Automatische cheque toe voor vermiste routers in de coördinator geheugen 47) (htttub,com/0hojoo/ioBroker",
+        "fr": "infos supplémentaires.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\ninfos supplémentaires.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\ninfo état ajoutée.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\noption ajoutée `Automatic check for missing routers in the Coordinator memory` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
+        "it": "#[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\n#[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\naggiunto stato info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nopzione aggiuntiva `Controllo automatico dei router mancanti nella memoria coordinatore` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
+        "es": "añadido información del estado.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nañadido información del estado.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nañadido información del estado.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nañadido la opción `Automatic check for missing routers in the coordinator memory` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
+        "pl": "info.coordinator_check #247(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers #247(https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers_count #247 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)\nautomatic check for missing routers in the coordinator memory` #247(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)",
+        "uk": "додано державну інформацію.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдодано державну інформацію.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/247)\nдодано державну інформацію.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдодано варіант `Автоматичний чек для відсутніх маршрутизаторів в зоні пам'яті координатора #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)",
+        "zh-cn": "补充国家:控制编号[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n添加以下国家:F.missing_routers #[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n增列国家:F.missing_routers_count.[247](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\n添加了“协调员记忆中的缺失路线者进行现场检查”的备选办法[247](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)。"
+      },
+      "2.12.0": {
+        "en": "added option `Size of the object icons in pixels`",
+        "de": "zusätzliche Option ` Größe der Objektsymbole in Pixeln`",
+        "ru": "добавлена опция `Размер иконок объекта в пикселях`",
+        "pt": "opção adicionada `Tamanho dos ícones do objeto em pixels`",
+        "nl": "voegde optie van het object in pixels",
+        "fr": "option ajoutée ` Taille de l'objet icônes en pixels`",
+        "it": "opzione aggiunta `Size delle icone dell'oggetto in pixel`",
+        "es": "opción agregada `Tamaño de los iconos objeto en pixels`",
+        "pl": "dodano opcję `Size of the object icons in pixels'",
+        "uk": "додано опцію `Size іконок об’єкта у пікселях`",
+        "zh-cn": "添加了“白盔”的选项。"
+      },
+      "2.11.0": {
+        "en": "added automatic download of device image from zigbee2mqtt to meta-storage\nadded option `Download device images from Zigbee2Mqtt and use them as object icons.`\nfixed Hue_Move \nadded option `Generate simple 'Hold' and 'Release' states`\nadded option `Generate simple 'Move' and 'Stop' states`\nadded option `Generate simple 'Press' and 'Release' states`",
+        "de": "automatischer download des gerätebildes von zigbee2mqtt zu meta-storage\n` Gerätebilder von Zigbee2Mqtt herunterladen und als Objektsymbole verwenden. `\nhue_Move\nzusatzoption `Generieren Sie einfache Halte- und Freigabezustände `\nzusätzliche Option `Generieren Sie einfache Verschiebe- und Stopp-Zustände `\nzusätzliche Option `Generieren Sie einfache Presse- und Freigabezustände `",
+        "ru": "добавлена автоматическая загрузка изображения устройства от zigbee2mqtt до meta-storage\nдобавлена опция `Скачать изображения устройства от Zigbee2Mqtt и использовать их как иконки объекта. »\nфиксированный Hue_Move\nдобавлена опция `Generate simple Hold and Release состояния »\nдобавлена опция `Generate simple Move and Stop состояния`\nдобавлена опция `Generate simple Press and Release состояния »",
+        "pt": "adicionado download automático da imagem do dispositivo de zigbee2mqtt para meta-armazenagem\nopção adicionada `Baixar imagens de dispositivo de Zigbee2Mqtt e usá-las como ícones de objeto. \"\nfixo Hue_Move\nopção adicionada `Gerar simples Hold and Release states \"\nopção adicionada `Gerar simples Mover e parar estados`\nopção adicionada `Gerar estados simples de imprensa e lançamento \"",
+        "nl": "voegde automatische download van het apparaat van zigbee2mqt toe aan meta-storage\nvoegde optie 'Download apparatuur van Zigbee2Mqt toe en gebruik ze als object iconen. _\nvertaling:\nvoegde optie 'Generate Sim Hold and Release staten _\nvoegde optie \"Generate Sim Move and Stop states\"\nvoegde optie 'Generate Sim Press and Release staten _",
+        "fr": "téléchargement automatique de l'image de périphérique de zigbee2mqt à meta-storage\noption ajoutée `Télécharger les images de périphérique de Zigbee2Mqt et les utiliser comme des icônes d'objet. `\nhue_Move\noption ajoutée `Generate simple Hold and Release états `\noption ajoutée `Generate simple Déplacer et arrêter les états`\noption ajoutée `Generate simple Press et les états de publication `",
+        "it": "download automatico dell'immagine del dispositivo da zigbee2mqt a meta-storage\nopzione aggiunta `Scaricare le immagini del dispositivo da Zigbee2Mqt e usarle come icone dell'oggetto. #\nfisso Hue_Move\nopzione aggiunta `Generate simple Hold and Release stati #\nopzione aggiunta `Generate simple Move and Stop stati`\nopzione aggiunta `Generate simple Press and Release stati #",
+        "es": "añadido descarga automática de la imagen del dispositivo desde zigbee2mqt a meta-storage\nopción agregada `Descargar imágenes de dispositivo de Zigbee2Mqtt y utilizarlas como iconos de objetos. `\nhue_Move fijo\nopción agregada `Generate simple Hold and Release states `\nopción agregada `Generate simple Move and Stop states`\nopción agregada `Generate simple Estados de prensa y liberación `",
+        "pl": "dodał automatyczny pobranie obrazu zigbee2mqtt na meta-storage\ndodał dodatki do opcjonalnych zdjęć z Zigbee2Mqtt i używał ich jako ikon obiektowych. `\nugruntowany\ndodano opcjonalne stany Hold i Release. `\ndodano możliwość generowanego prostego Move'a i Stop states'\ndodał opcję \"Generate simple Press and Release states\". `",
+        "uk": "додано автоматичне завантаження зображення пристрою з zigbee2mqtt до мета-сторage\nдодано опцію `Завантажити зображення пристроїв з Zigbee2Mqtt і використовувати їх як іконки об'єкта. й\nфіксована Hue_Move\nдодано варіант `Generate simple Hold and Release State й\nдодано варіант `Generate Simple Move and Stop State`\nдодано варіант `Generate simple Press and Release State й",
+        "zh-cn": "加上自齐格贝德二米克特自动下载器图像\n添加了“Zigbee2Mqt的载荷装置图像”的备选办法,并将这些图像作为目标。 目 录\n固定的He_Move\n增加“简单的霍乱和释放国”的选择 目 录\n增加“简单的摩托和托儿”\n增加的“简单新闻”选择 目 录"
+      },
+      "2.10.1": {
+        "en": "fix type definitions (thx @arteck)",
+        "de": "fix typdefinitionen (thx @arteck)",
+        "ru": "определение типа исправления (thx @arteck)",
+        "pt": "definições de tipo de correção (thx @arteck)",
+        "nl": "vertaling:",
+        "fr": "définitions de type fixe (thx @arteck)",
+        "it": "correggere le definizioni di tipo (thx @arteck)",
+        "es": "fijar definiciones tipo (thx @arteck)",
+        "pl": "definicja typów (tx @arteck)",
+        "uk": "фіксувати визначення типу (thx @arteck)",
+        "zh-cn": "fix类定义(x @arteck)"
+      },
+      "2.10.0": {
+        "en": "optimisation for the MQTT connection  \nfix for MQTT output type: attribute_and_json ([#87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87))\nadded support for external MQTT-Server credentials ([#148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148))\n*After update, Websocket Auth-Token must be set again, if used.*",
+        "de": "optimierung der MQTT-Verbindung\nfix für den MQTT-Ausgangstyp: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\nunterstützung für externe MQTT-Server-Anmeldeinformationen #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Nach dem Update muss Websocket Auth-Token wieder eingestellt werden, wenn verwendet*",
+        "ru": "оптимизация подключения к MQTT\nисправить для типа вывода MQTT: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nдобавлена поддержка внешних учетных записей MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*После обновления, Websocket Auth-Token должен быть установлен снова, если используется *",
+        "pt": "otimização para a conexão MQTT\ncorreção para o tipo de saída MQTT: atributo_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nadicionado suporte para credenciais externas do MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Depois da atualização, Websocket Auth-Token deve ser definido novamente, se usado*",
+        "nl": "vertaling:\nvertaling:\nvoegde steun toe voor externe MQTT-Server credentials 48148:\nNa de update, moeten websocket Auth-Token opnieuw ingesteld worden, als gebruikt",
+        "fr": "optimisation de la connexion MQTT\ncorrection du type de sortie MQTT : attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\najout d ' un appui aux pouvoirs externes de MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Après la mise à jour, Websocket Auth-Token doit être réinitialisé, si utilisé*",
+        "it": "ottimizzazione della connessione MQTT\ncorrezione del tipo di uscita MQTT: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\n[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Dopo l'aggiornamento, Websocket Auth-Token deve essere impostato di nuovo, se utilizzato*",
+        "es": "optimización para la conexión MQTT\nfix for MQTT output type: attributed_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\napoyo añadido a las credenciales externas de MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Después de la actualización, Websocket Auth-Token debe configurarse de nuevo, si se utiliza*",
+        "pl": "optymalizacja połączenia MQTT\nrezultaty na MQTT: attribute_and_json #87(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nwsparcie dla zewnętrznych MQTT-Server Credentials #148 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*After update, Websocket Auth-Token musi być ponownie ustawiony, jeśli jest używany *",
+        "uk": "оптимізація підключення MQTT\njavaScript licenses API Веб-сайт Go1.13.8\nдодано підтримку зовнішніх облікових записів MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Оновлення, Websocket Auth-Token необхідно встановити знову, якщо використовується*",
+        "zh-cn": "最惠国条款的生效\nfix MQTT产出类型:归属_and_json #[87](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\n补充支持外贸总协定(第[148]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/148)\n* 如使用最新资料,必须再次建立万维网。"
+      },
+      "2.9.0": {
+        "en": "added state `send_payload` to send a raw json payload",
+        "de": "add state send_payload to send a roh json payload",
+        "ru": "добавленное государство send_payload для отправки сырья json payload",
+        "pt": "adicionado estado send_payload para enviar uma carga de json cru",
+        "nl": "vertaling:",
+        "fr": "add state send_payload pour envoyer une charge utile json brute",
+        "it": "aggiunto stato send_payload per inviare un grezzo json payload",
+        "es": "añadir estado send_payload para enviar una carga de pago json cruda",
+        "pl": "wtedy dodane państwo przesyłają ładunek surowy json",
+        "uk": "додано державне відправлення_payload для відправки сировини json",
+        "zh-cn": "增派国家派遣国:缴交会费"
+      },
+      "2.8.0": {
+        "en": "added WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191))\nsmall fixes",
+        "de": "wSS-Unterstützung für Websoket-Verbindung([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\nkleine fixierungen",
+        "ru": "добавлена поддержка WSS для подключения к websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\nнебольшие исправления",
+        "pt": "adicionado suporte WSS para conexão websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequenas correções",
+        "nl": "voegde WSS steun toe voor websoket connectie\nkleine fixes",
+        "fr": "a ajouté le support WSS pour la connexion websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npetites corrections",
+        "it": "supporto WSS aggiunto per il collegamento websoket([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\npiccole correzioni",
+        "es": "añadido WSS support for websoket connection([#191](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\npequeños accesorios",
+        "pl": "dodano obsługę stron internetowych (#191(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/191)\ndrobne rozwiązanie",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nмаленькі кріплення",
+        "zh-cn": "增加了WSS支助网络联系([第191](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/191)\n小型配件"
+      }
+    },
+    "messages": [
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<2.10.0",
+            "newVersion>=2.10.0"
+          ]
         },
-        "messages": [
-            {
-                "condition": {
-                    "operand": "and",
-                    "rules": [
-                        "oldVersion<2.10.0",
-                        "newVersion>=2.10.0"
-                    ]
-                },
-                "title": {
-                    "en": "Important notice!",
-                    "de": "Wichtiger Hinweis!",
-                    "ru": "Важное замечание!",
-                    "pt": "Notícia importante!",
-                    "nl": "Belangrijke mededeling!",
-                    "fr": "Avis important!",
-                    "it": "Avviso IMPORTANTE!",
-                    "es": "¡Noticia importante!",
-                    "pl": "Ważna uwaga!",
-                    "uk": "Важливе повідомлення!",
-                    "zh-cn": "重要的提醒！"
-                },
-                "text": {
-                    "en": "After the update, the Websocket Auth-Token must be set again, if used.",
-                    "de": "Nach dem Update muss der Websocket Auth-Token, falls verwendet, erneut gesetzt werden.",
-                    "ru": "После обновления необходимо снова установить Auth-Token Websocket, если он используется.",
-                    "pt": "Após a atualização, o Websocket Auth-Token deve ser configurado novamente, caso seja utilizado.",
-                    "nl": "Na de update moet het Websocket Auth-Token, indien gebruikt, opnieuw worden ingesteld.",
-                    "fr": "Après la mise à jour, le jeton d'authentification Websocket doit être à nouveau défini, s'il est utilisé.",
-                    "it": "Dopo l'aggiornamento, il Websocket Auth-Token deve essere reimpostato, se utilizzato.",
-                    "es": "Después de la actualización, el token de autenticación de Websocket debe configurarse nuevamente, si se usa.",
-                    "pl": "Po aktualizacji należy ponownie ustawić Websocket Auth-Token, jeśli jest używany.",
-                    "uk": "Після оновлення Websocket Auth-Token має бути встановлено знову, якщо він використовується.",
-                    "zh-cn": "更新后，如果使用 Websocket Auth-Token，则必须重新设置。"
-                },
-                "level": "warn",
-                "buttons": [
-                    "agree",
-                    "cancel"
-                ]
-            }
-        ],
-        "titleLang": {
-            "en": "zigbee2mqtt",
-            "de": "zigbee2mqtt",
-            "ru": "зигби2мктт",
-            "pt": "zigbee2mqtt",
-            "nl": "zigbee2mqtt",
-            "fr": "zigbee2mqtt",
-            "it": "zigbee2mqtt",
-            "es": "zigbee2mqtt",
-            "pl": "zigbee2mqtt",
-            "zh-cn": "zigbee2mqtt",
-            "uk": "zigbee2mqtt"
+        "title": {
+          "en": "Important notice!",
+          "de": "Wichtiger Hinweis!",
+          "ru": "Важное замечание!",
+          "pt": "Notícia importante!",
+          "nl": "Belangrijke mededeling!",
+          "fr": "Avis important!",
+          "it": "Avviso IMPORTANTE!",
+          "es": "¡Noticia importante!",
+          "pl": "Ważna uwaga!",
+          "uk": "Важливе повідомлення!",
+          "zh-cn": "重要的提醒！"
         },
-        "desc": {
-            "en": "Zigbee2MQTT adapter for ioBroker",
-            "de": "Zigbee2MQTT-Adapter für ioBroker",
-            "ru": "Адаптер Zigbee2MQTT для ioBroker",
-            "pt": "Adaptador Zigbee2MQTT para ioBroker",
-            "nl": "Zigbee2MQTT-adapter voor ioBroker",
-            "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
-            "it": "Adattatore Zigbee2MQTT per ioBroker",
-            "es": "Adaptador Zigbee2MQTT para ioBroker",
-            "pl": "Adapter Zigbee2MQTT do ioBroker",
-            "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
-            "uk": "Адаптер Zigbee2MQTT для ioBroker"
+        "text": {
+          "en": "After the update, the Websocket Auth-Token must be set again, if used.",
+          "de": "Nach dem Update muss der Websocket Auth-Token, falls verwendet, erneut gesetzt werden.",
+          "ru": "После обновления необходимо снова установить Auth-Token Websocket, если он используется.",
+          "pt": "Após a atualização, o Websocket Auth-Token deve ser configurado novamente, caso seja utilizado.",
+          "nl": "Na de update moet het Websocket Auth-Token, indien gebruikt, opnieuw worden ingesteld.",
+          "fr": "Après la mise à jour, le jeton d'authentification Websocket doit être à nouveau défini, s'il est utilisé.",
+          "it": "Dopo l'aggiornamento, il Websocket Auth-Token deve essere reimpostato, se utilizzato.",
+          "es": "Después de la actualización, el token de autenticación de Websocket debe configurarse nuevamente, si se usa.",
+          "pl": "Po aktualizacji należy ponownie ustawić Websocket Auth-Token, jeśli jest używany.",
+          "uk": "Після оновлення Websocket Auth-Token має бути встановлено знову, якщо він використовується.",
+          "zh-cn": "更新后，如果使用 Websocket Auth-Token，则必须重新设置。"
         },
-        "authors": [
-            "Dennis Rathjen <dennis.rathjen@outlook.de>"
-        ],
-        "keywords": [
-            "zigbee",
-            "zigbee2mqtt",
-            "hue",
-            "tradfri",
-            "aqara",
-            "tuya"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "zigbee2mqtt.png",
-        "enabled": false,
-        "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-        "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "hardware",
-        "compact": true,
-        "stopTimeout": 2000,
-        "connectionType": "local",
-        "dataSource": "push",
-        "adminUI": {
-            "config": "json"
-        },
-        "adminTab": {
-            "name": {
-                "en": "Zigbee2MQTT",
-                "de": "Zigbee2MQTT",
-                "ru": "Zigbee2MQTT",
-                "pt": "Zigbee2MQTT",
-                "nl": "Zigbee2MQTT",
-                "fr": "Zigbee2MQTT",
-                "it": "Zigbee2MQTT",
-                "es": "Zigbee2MQTT",
-                "pl": "Zigbee2MQTT",
-                "zh-cn": "Zigbee2MQTT"
-            },
-            "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
-            "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
-        },
-        "localLinks": {
-            "_default": {
-                "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
-            }
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.13"
-            }
+        "level": "warn",
+        "buttons": [
+          "agree",
+          "cancel"
         ]
-    },
-    "native": {
-        "connectionType": "ws",
-        "wsScheme": "ws",
-        "wsServerIP": "",
-        "wsServerPort": 8080,
-        "wsTokenEnabled": false,
-        "wsToken": "",
-        "dummyMqtt": false,
-        "externalMqttServerIP": "",
-        "externalMqttServerPort": 1883,
-        "externalMqttServerCredentials": false,
-        "externalMqttServerUsername": "",
-        "externalMqttServerPassword": "",
-        "mqttServerIPBind": "0.0.0.0",
-        "mqttServerPort": 1885,
-        "webUIScheme": "http",
-        "webUIServer": "",
-        "webUIPort": 8080,
-        "debugLogEnabled": false,
-        "proxyZ2MLogs": true,
-        "useKelvin": false,
-        "colorTempSyncColor": false,
-        "brightnessMoveOnOff": false,
-        "brightnessStepOnOff": false,
-        "useEventInDesc": true,
-        "useDeviceIcons": false,
-        "deviceIconsSize": 28,
-        "simpleHoldReleaseState": true,
-        "simpleMoveStopState": false,
-        "simplePressReleaseState": false,
-        "coordinatorCheck": false,
-        "coordinatorCheckLogLvl": "info",
-        "coordinatorCheckCron": "0 3 * * *"
-    },
-    "protectedNative": [
-        "externalMqttServerPassword",
-        "wsToken"
+      }
     ],
-    "encryptedNative": [
-        "externalMqttServerPassword",
-        "wsToken"
+    "titleLang": {
+      "en": "zigbee2mqtt",
+      "de": "zigbee2mqtt",
+      "ru": "зигби2мктт",
+      "pt": "zigbee2mqtt",
+      "nl": "zigbee2mqtt",
+      "fr": "zigbee2mqtt",
+      "it": "zigbee2mqtt",
+      "es": "zigbee2mqtt",
+      "pl": "zigbee2mqtt",
+      "zh-cn": "zigbee2mqtt",
+      "uk": "zigbee2mqtt"
+    },
+    "desc": {
+      "en": "Zigbee2MQTT adapter for ioBroker",
+      "de": "Zigbee2MQTT-Adapter für ioBroker",
+      "ru": "Адаптер Zigbee2MQTT для ioBroker",
+      "pt": "Adaptador Zigbee2MQTT para ioBroker",
+      "nl": "Zigbee2MQTT-adapter voor ioBroker",
+      "fr": "Adaptateur Zigbee2MQTT pour ioBroker",
+      "it": "Adattatore Zigbee2MQTT per ioBroker",
+      "es": "Adaptador Zigbee2MQTT para ioBroker",
+      "pl": "Adapter Zigbee2MQTT do ioBroker",
+      "zh-cn": "用于 ioBroker 的 Zigbee2MQTT 适配器",
+      "uk": "Адаптер Zigbee2MQTT для ioBroker"
+    },
+    "authors": [
+      "Dennis Rathjen <dennis.rathjen@outlook.de>"
     ],
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Zigbee2MQTT connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.debugmessages",
-            "type": "state",
-            "common": {
-                "name": "Log changes as warnings for",
-                "type": "string",
-                "role": "state",
-                "read": true,
-                "write": true,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.logfilter",
-            "type": "state",
-            "common": {
-                "name": "Logs matching filters are ignored by the LogProxy",
-                "type": "string",
-                "role": "state",
-                "read": true,
-                "write": true,
-                "def": ""
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.coordinator_check",
-            "type": "state",
-            "common": {
-                "name": "It checks whether routers are missing from the coordinator's memory.",
-                "role": "button",
-                "write": true,
-                "read": true,
-                "type": "boolean",
-                "def": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.missing_routers",
-            "type": "state",
-            "common": {
-                "name": "Routers missing in the coordinator's memory.",
-                "type": "json",
-                "role": "json",
-                "read": true,
-                "write": false,
-                "def": []
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.missing_routers_count",
-            "type": "state",
-            "common": {
-                "name": "Count of missing routers missing in the coordinator's memory.",
-                "type": "number",
-                "role": "state",
-                "read": true,
-                "write": false,
-                "def": 0
-            },
-            "native": {}
-        },
-        {
-            "_id": "",
-            "type": "meta",
-            "common": {
-                "name": {
-                    "en": "File storage",
-                    "de": "Dateispeicher",
-                    "ru": "Хранение файлов",
-                    "pt": "Armazenamento de arquivos",
-                    "nl": "Veldopslag",
-                    "fr": "Stockage de fichiers",
-                    "it": "Archiviazione file",
-                    "es": "Almacenamiento de archivos",
-                    "pl": "Storage room",
-                    "uk": "Зберігання файлів",
-                    "zh-cn": "储存"
-                },
-                "type": "meta.user"
-            },
-            "native": {}
-        }
+    "keywords": [
+      "zigbee",
+      "zigbee2mqtt",
+      "hue",
+      "tradfri",
+      "aqara",
+      "tuya"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "zigbee2mqtt.png",
+    "enabled": false,
+    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "hardware",
+    "compact": true,
+    "stopTimeout": 2000,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "adminTab": {
+      "name": {
+        "en": "Zigbee2MQTT",
+        "de": "Zigbee2MQTT",
+        "ru": "Zigbee2MQTT",
+        "pt": "Zigbee2MQTT",
+        "nl": "Zigbee2MQTT",
+        "fr": "Zigbee2MQTT",
+        "it": "Zigbee2MQTT",
+        "es": "Zigbee2MQTT",
+        "pl": "Zigbee2MQTT",
+        "zh-cn": "Zigbee2MQTT"
+      },
+      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
+      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+    },
+    "localLinks": {
+      "_default": {
+        "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
+      }
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.22"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.13"
+      }
     ]
+  },
+  "native": {
+    "connectionType": "ws",
+    "wsScheme": "ws",
+    "wsServerIP": "",
+    "wsServerPort": 8080,
+    "wsTokenEnabled": false,
+    "wsToken": "",
+    "dummyMqtt": false,
+    "externalMqttServerIP": "",
+    "externalMqttServerPort": 1883,
+    "externalMqttServerCredentials": false,
+    "externalMqttServerUsername": "",
+    "externalMqttServerPassword": "",
+    "mqttServerIPBind": "0.0.0.0",
+    "mqttServerPort": 1885,
+    "webUIScheme": "http",
+    "webUIServer": "",
+    "webUIPort": 8080,
+    "debugLogEnabled": false,
+    "proxyZ2MLogs": true,
+    "useKelvin": false,
+    "colorTempSyncColor": false,
+    "brightnessMoveOnOff": false,
+    "brightnessStepOnOff": false,
+    "useEventInDesc": true,
+    "useDeviceIcons": false,
+    "deviceIconsSize": 28,
+    "simpleHoldReleaseState": true,
+    "simpleMoveStopState": false,
+    "simplePressReleaseState": false,
+    "coordinatorCheck": false,
+    "coordinatorCheckLogLvl": "info",
+    "coordinatorCheckCron": "0 3 * * *"
+  },
+  "protectedNative": [
+    "externalMqttServerPassword",
+    "wsToken"
+  ],
+  "encryptedNative": [
+    "externalMqttServerPassword",
+    "wsToken"
+  ],
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Zigbee2MQTT connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.debugmessages",
+      "type": "state",
+      "common": {
+        "name": "Log changes as warnings for",
+        "type": "string",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.logfilter",
+      "type": "state",
+      "common": {
+        "name": "Logs matching filters are ignored by the LogProxy",
+        "type": "string",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.coordinator_check",
+      "type": "state",
+      "common": {
+        "name": "It checks whether routers are missing from the coordinator's memory.",
+        "role": "button",
+        "write": true,
+        "read": true,
+        "type": "boolean",
+        "def": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.missing_routers",
+      "type": "state",
+      "common": {
+        "name": "Routers missing in the coordinator's memory.",
+        "type": "json",
+        "role": "json",
+        "read": true,
+        "write": false,
+        "def": []
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.missing_routers_count",
+      "type": "state",
+      "common": {
+        "name": "Count of missing routers missing in the coordinator's memory.",
+        "type": "number",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "",
+      "type": "meta",
+      "common": {
+        "name": {
+          "en": "File storage",
+          "de": "Dateispeicher",
+          "ru": "Хранение файлов",
+          "pt": "Armazenamento de arquivos",
+          "nl": "Veldopslag",
+          "fr": "Stockage de fichiers",
+          "it": "Archiviazione file",
+          "es": "Almacenamiento de archivos",
+          "pl": "Storage room",
+          "uk": "Зберігання файлів",
+          "zh-cn": "储存"
+        },
+        "type": "meta.user"
+      },
+      "native": {}
+    }
+  ]
 }
