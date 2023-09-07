@@ -294,6 +294,7 @@
             "common": {
                 "name": "Log changes as warnings for",
                 "type": "string",
+                "role": "state",
                 "read": true,
                 "write": true,
                 "def": ""
@@ -306,6 +307,7 @@
             "common": {
                 "name": "Logs matching filters are ignored by the LogProxy",
                 "type": "string",
+                "role": "state",
                 "read": true,
                 "write": true,
                 "def": ""
@@ -331,6 +333,7 @@
             "common": {
                 "name": "Routers missing in the coordinator's memory.",
                 "type": "json",
+                "role": "json",
                 "read": true,
                 "write": false,
                 "def": []
@@ -343,6 +346,7 @@
             "common": {
                 "name": "Count of missing routers missing in the coordinator's memory.",
                 "type": "number",
+                "role": "state",
                 "read": true,
                 "write": false,
                 "def": 0
