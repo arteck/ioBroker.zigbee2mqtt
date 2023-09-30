@@ -32,6 +32,10 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+-   (o0shojo0o) fixed for when HASS integration is activated
+
 ### 2.13.1 (2023-09-07)
 
 -   (o0shojo0o) fixed storage name
