@@ -34,7 +34,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 -->
 ### **WORK IN PROGRESS**
 
--   (o0shojo0o) fixed for when HASS integration is activated
+-   (o0shojo0o) fixed NULL values when HASS integration is enabled in zigbee2mqtt
 
 ### 2.13.1 (2023-09-07)
 
