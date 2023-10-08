@@ -336,7 +336,7 @@
         "role": "json",
         "read": true,
         "write": false,
-        "def": []
+        "def": "[]"
       },
       "native": {}
     },
