@@ -38,9 +38,9 @@ body:
     id: adapterconfiglog
     attributes:
       label: Adapter Config Log
-      placeholder: >
+      placeholder: |
         ```
-        ================================= Adapter Config =================================
+        ================================= Adapter Config =================================/n
         || Zigbee2MQTT Frontend Scheme: http
         || Zigbee2MQTT Frontend Server: 192.168.0.1
         || Zigbee2MQTT Frontend Port: 8080
