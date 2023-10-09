@@ -35,6 +35,44 @@ body:
     validations:
       required: true
   - type: textarea
+    id: adapterconfiglog
+    attributes:
+      label: Adapter Config Log
+      placeholder: >
+        ```
+        ================================= Adapter Config =================================
+        || Zigbee2MQTT Frontend Scheme: http
+        || Zigbee2MQTT Frontend Server: 192.168.0.1
+        || Zigbee2MQTT Frontend Port: 8080
+        || Zigbee2MQTT Connection Type: ws
+        || Zigbee2MQTT Websocket Scheme: ws
+        || Zigbee2MQTT Websocket Server: 192.168.0.1
+        || Zigbee2MQTT Websocket Port: 8080
+        || Zigbee2MQTT Websocket Auth-Token: unused
+        || Zigbee2MQTT Websocket Dummy MQTT-Server: deactivated
+        || Zigbee2MQTT Debug Log: deactivated
+        || Proxy Zigbee2MQTT Logs to ioBroker Logs: activated
+        || Use Kelvin: no
+        || Use ColorTemperature ColorSync: yes
+        || Use BrightnessMove OnOff: no
+        || Use BrightnessStep OnOff: no
+        || Use Event In Desc: yes
+        || Use Device Icons: yes
+        || Use Simple Hold/Release State: yes
+        || Use Simple Move/Stop State: yes
+        || Use Simple Press/Release State: yes
+        || Use Automatic Coordinator Check: yes
+        || Coordinator Check Loglevel: error
+        || Coordinator Check Cron : 0 3 * * *
+        ==================================================================================
+        ============================ Zigbee2MQTT Information =============================
+        || Zigbee2MQTT Version: 1.33.1
+        || Coordinator type: zStack3x0 Version: 20220219 Serial: /dev/ttyACM0
+        || Network panid 212 channel: 15 ext_pan_id: 0x0000000000000000
+        ```
+    validations:
+      required: true
+  - type: textarea
     id: log
     attributes:
       label: Log
