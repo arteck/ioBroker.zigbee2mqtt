@@ -39,8 +39,7 @@ body:
     attributes:
       label: Adapter Config Log
       placeholder: |
-        ```
-        ================================= Adapter Config =================================/n
+        ================================= Adapter Config =================================
         || Zigbee2MQTT Frontend Scheme: http
         || Zigbee2MQTT Frontend Server: 192.168.0.1
         || Zigbee2MQTT Frontend Port: 8080
@@ -68,8 +67,7 @@ body:
         ============================ Zigbee2MQTT Information =============================
         || Zigbee2MQTT Version: 1.33.1
         || Coordinator type: zStack3x0 Version: 20220219 Serial: /dev/ttyACM0
-        || Network panid 212 channel: 15 ext_pan_id: 0x0000000000000000
-        ```
+        || Network panid 212 channel: 15 ext_pan_id: 0x0000000000000000     
     validations:
       required: true
   - type: textarea
