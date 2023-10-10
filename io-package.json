@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.2",
+    "version": "2.13.3",
     "news": {
+      "2.13.3": {
+        "en": "fixed devices erroneous offline indication ([#255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255))",
+        "de": "feste Geräte fehlerhafte Offline-Anzeige #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
+        "ru": "фиксированные устройства ошибочные оффлайн индикация #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255)",
+        "pt": "dispositivos fixos errônea indicação offline #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255)",
+        "nl": "quality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "signalisation erroneous offline #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
+        "it": "#[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
+        "es": "dispositivos fijos erroneous offline indicating #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
+        "pl": "uruchomione urządzenia błędne, #255 (https:/github.com/o0shojo0o/ioBroker,zigbee2mqtt/issues/255)",
+        "uk": "фіксовані пристрої erroneous офлайн показання # [255] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/255)",
+        "zh-cn": "固定装置随线标明编号[255](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/255)"
+      },
       "2.13.2": {
         "en": "fixed NULL values when HASS integration is enabled in zigbee2mqtt",
         "de": "feste NULL-Werte, wenn die HASS-Integration in zigbee2mqtt aktiviert ist",
@@ -80,19 +93,6 @@
         "pl": "definicja typów (tx @arteck)",
         "uk": "фіксувати визначення типу (thx @arteck)",
         "zh-cn": "fix类定义(x @arteck)"
-      },
-      "2.10.0": {
-        "en": "optimisation for the MQTT connection  \nfix for MQTT output type: attribute_and_json ([#87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87))\nadded support for external MQTT-Server credentials ([#148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148))\n*After update, Websocket Auth-Token must be set again, if used.*",
-        "de": "optimierung der MQTT-Verbindung\nfix für den MQTT-Ausgangstyp: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\nunterstützung für externe MQTT-Server-Anmeldeinformationen #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Nach dem Update muss Websocket Auth-Token wieder eingestellt werden, wenn verwendet*",
-        "ru": "оптимизация подключения к MQTT\nисправить для типа вывода MQTT: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nдобавлена поддержка внешних учетных записей MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*После обновления, Websocket Auth-Token должен быть установлен снова, если используется *",
-        "pt": "otimização para a conexão MQTT\ncorreção para o tipo de saída MQTT: atributo_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nadicionado suporte para credenciais externas do MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Depois da atualização, Websocket Auth-Token deve ser definido novamente, se usado*",
-        "nl": "vertaling:\nvertaling:\nvoegde steun toe voor externe MQTT-Server credentials 48148:\nNa de update, moeten websocket Auth-Token opnieuw ingesteld worden, als gebruikt",
-        "fr": "optimisation de la connexion MQTT\ncorrection du type de sortie MQTT : attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\najout d ' un appui aux pouvoirs externes de MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Après la mise à jour, Websocket Auth-Token doit être réinitialisé, si utilisé*",
-        "it": "ottimizzazione della connessione MQTT\ncorrezione del tipo di uscita MQTT: attribute_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\n[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/148)\n*Dopo l'aggiornamento, Websocket Auth-Token deve essere impostato di nuovo, se utilizzato*",
-        "es": "optimización para la conexión MQTT\nfix for MQTT output type: attributed_and_json #[87](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\napoyo añadido a las credenciales externas de MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Después de la actualización, Websocket Auth-Token debe configurarse de nuevo, si se utiliza*",
-        "pl": "optymalizacja połączenia MQTT\nrezultaty na MQTT: attribute_and_json #87(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/87)\nwsparcie dla zewnętrznych MQTT-Server Credentials #148 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*After update, Websocket Auth-Token musi być ponownie ustawiony, jeśli jest używany *",
-        "uk": "оптимізація підключення MQTT\njavaScript licenses API Веб-сайт Go1.13.8\nдодано підтримку зовнішніх облікових записів MQTT-Server #[148](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/148)\n*Оновлення, Websocket Auth-Token необхідно встановити знову, якщо використовується*",
-        "zh-cn": "最惠国条款的生效\nfix MQTT产出类型:归属_and_json #[87](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/87)\n补充支持外贸总协定(第[148]号(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/148)\n* 如使用最新资料,必须再次建立万维网。"
       }
     },
     "messages": [
