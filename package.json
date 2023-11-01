@@ -22,7 +22,7 @@
     "node": ">= 16"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.0.3",
+    "@iobroker/adapter-core": "^3.0.4",
     "aedes": "^0.50.0",
     "aedes-persistence-nedb": "^2.0.3",
     "mqtt": "~5.0.5",
