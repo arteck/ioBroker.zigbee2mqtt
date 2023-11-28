@@ -186,6 +186,7 @@
     "type": "hardware",
     "compact": true,
     "stopTimeout": 2000,
+    "tier": 2,
     "connectionType": "local",
     "dataSource": "push",
     "adminUI": {
