@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.3",
+    "version": "2.13.4",
     "news": {
+      "2.13.4": {
+        "en": "fixed unnecessary warning for special value ([269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269))",
+        "de": "feste unnötige Warnung für Sonderwert [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/269)",
+        "ru": "фиксированное ненужное предупреждение для особенного значения [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "pt": "aviso desnecessário fixo para valor especial [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "nl": "onnodig gewaarschuwd voor speciale waarde voor speciale waarde [269)",
+        "fr": "avertissement inutile fixe pour valeur spéciale [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/269)",
+        "it": "[269](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/269)",
+        "es": "fija innecesaria advertencia para valor especial [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "pl": "niepotrzebne ostrzeżenie dla specjalnej wartości (269)(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "uk": "виправлено непотрібне попередження про спеціальне значення [269] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "zh-cn": "(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/269)"
+      },
       "2.13.3": {
         "en": "fixed devices erroneous offline indication ([#255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255))",
         "de": "feste Geräte fehlerhafte Offline-Anzeige #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
@@ -80,19 +93,6 @@
         "pl": "dodał automatyczny pobranie obrazu zigbee2mqtt na meta-storage\ndodał dodatki do opcjonalnych zdjęć z Zigbee2Mqtt i używał ich jako ikon obiektowych. `\nugruntowany\ndodano opcjonalne stany Hold i Release. `\ndodano możliwość generowanego prostego Move'a i Stop states'\ndodał opcję \"Generate simple Press and Release states\". `",
         "uk": "додано автоматичне завантаження зображення пристрою з zigbee2mqtt до мета-сторage\nдодано опцію `Завантажити зображення пристроїв з Zigbee2Mqtt і використовувати їх як іконки об'єкта. й\nфіксована Hue_Move\nдодано варіант `Generate simple Hold and Release State й\nдодано варіант `Generate Simple Move and Stop State`\nдодано варіант `Generate simple Press and Release State й",
         "zh-cn": "加上自齐格贝德二米克特自动下载器图像\n添加了“Zigbee2Mqt的载荷装置图像”的备选办法,并将这些图像作为目标。 目 录\n固定的He_Move\n增加“简单的霍乱和释放国”的选择 目 录\n增加“简单的摩托和托儿”\n增加的“简单新闻”选择 目 录"
-      },
-      "2.10.1": {
-        "en": "fix type definitions (thx @arteck)",
-        "de": "fix typdefinitionen (thx @arteck)",
-        "ru": "определение типа исправления (thx @arteck)",
-        "pt": "definições de tipo de correção (thx @arteck)",
-        "nl": "vertaling:",
-        "fr": "définitions de type fixe (thx @arteck)",
-        "it": "correggere le definizioni di tipo (thx @arteck)",
-        "es": "fijar definiciones tipo (thx @arteck)",
-        "pl": "definicja typów (tx @arteck)",
-        "uk": "фіксувати визначення типу (thx @arteck)",
-        "zh-cn": "fix类定义(x @arteck)"
       }
     },
     "messages": [
