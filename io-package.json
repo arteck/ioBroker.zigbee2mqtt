@@ -186,6 +186,9 @@
     "mode": "daemon",
     "type": "hardware",
     "compact": true,
+    "supportedMessages": {
+      "deviceManager": true
+    },
     "stopTimeout": 2000,
     "tier": 2,
     "connectionType": "local",
