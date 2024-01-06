@@ -28,7 +28,7 @@
     "mqtt": "~5.1.4",
     "net": "^1.0.2",
     "node-schedule": "^2.1.1",
-    "sharp": "^0.32.6",
+    "sharp": "^0.33.1",
     "ws": "^8.13.0"
   },
   "devDependencies": {
