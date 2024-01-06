@@ -4,29 +4,29 @@
     "version": "2.13.4",
     "news": {
       "2.13.4": {
-        "en": "fixed unnecessary warning for special value ([269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269))",
-        "de": "feste unnötige Warnung für Sonderwert [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/269)",
-        "ru": "фиксированное ненужное предупреждение для особенного значения [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
-        "pt": "aviso desnecessário fixo para valor especial [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "en": "fixed unnecessary warning for special value ([269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269))",
+        "de": "feste unnötige Warnung für Sonderwert [269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
+        "ru": "фиксированное ненужное предупреждение для особенного значения [269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
+        "pt": "aviso desnecessário fixo para valor especial [269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
         "nl": "onnodig gewaarschuwd voor speciale waarde voor speciale waarde [269)",
-        "fr": "avertissement inutile fixe pour valeur spéciale [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/269)",
-        "it": "[269](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/269)",
-        "es": "fija innecesaria advertencia para valor especial [269](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
-        "pl": "niepotrzebne ostrzeżenie dla specjalnej wartości (269)(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
-        "uk": "виправлено непотрібне попередження про спеціальне значення [269] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/269)",
+        "fr": "avertissement inutile fixe pour valeur spéciale [269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
+        "it": "[269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
+        "es": "fija innecesaria advertencia para valor especial [269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
+        "pl": "niepotrzebne ostrzeżenie dla specjalnej wartości (269)(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
+        "uk": "виправлено непотрібне попередження про спеціальне значення [269] (https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
         "zh-cn": "(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/269)"
       },
       "2.13.3": {
-        "en": "fixed devices erroneous offline indication ([#255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255))",
-        "de": "feste Geräte fehlerhafte Offline-Anzeige #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
-        "ru": "фиксированные устройства ошибочные оффлайн индикация #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255)",
-        "pt": "dispositivos fixos errônea indicação offline #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/255)",
+        "en": "fixed devices erroneous offline indication ([#255](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/255))",
+        "de": "feste Geräte fehlerhafte Offline-Anzeige #[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
+        "ru": "фиксированные устройства ошибочные оффлайн индикация #[255](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/255)",
+        "pt": "dispositivos fixos errônea indicação offline #[255](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/255)",
         "nl": "quality over Quantity (QoQ) Releases Vertaling:",
-        "fr": "signalisation erroneous offline #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
-        "it": "#[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
-        "es": "dispositivos fijos erroneous offline indicating #[255](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/255)",
-        "pl": "uruchomione urządzenia błędne, #255 (https:/github.com/o0shojo0o/ioBroker,zigbee2mqtt/issues/255)",
-        "uk": "фіксовані пристрої erroneous офлайн показання # [255] (https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/255)",
+        "fr": "signalisation erroneous offline #[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
+        "it": "#[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
+        "es": "dispositivos fijos erroneous offline indicating #[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
+        "pl": "uruchomione urządzenia błędne, #255 (https:/github.com/arteck/ioBroker,zigbee2mqtt/issues/255)",
+        "uk": "фіксовані пристрої erroneous офлайн показання # [255] (https://github.com/arteck/ioBroker.zigbee2mqtt/products/255)",
         "zh-cn": "固定装置随线标明编号[255](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/255)"
       },
       "2.13.2": {
@@ -56,17 +56,17 @@
         "zh-cn": "固定储存名称"
       },
       "2.13.0": {
-        "en": "added state `info.coordinator_check` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers_count` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))\nadded option `Automatic check for missing routers in the coordinator memory` ([#247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247))",
-        "de": "zusätzlich state info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nzusätzliche Option `Automatische Überprüfung fehlender Router im Koordinatorspeicher` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
-        "ru": "добавлено состояние info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдобавлено состояние info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдобавлено состояние info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдобавлена опция `Автоматическая проверка для пропавших маршрутизаторов в памяти координатора` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)",
-        "pt": "adicionado state info.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nadicionado state info.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nadicionado state info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nopção adicionada `Verificação automática de roteadores ausentes na memória do coordenador #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)",
+        "en": "added state `info.coordinator_check` ([#247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers` ([#247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247))\nadded state `info.missing_routers_count` ([#247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247))\nadded option `Automatic check for missing routers in the coordinator memory` ([#247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247))",
+        "de": "zusätzlich state info.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\nzusätzlich state info.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\nzusätzliche Option `Automatische Überprüfung fehlender Router im Koordinatorspeicher` #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)",
+        "ru": "добавлено состояние info.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдобавлено состояние info.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдобавлено состояние info.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдобавлена опция `Автоматическая проверка для пропавших маршрутизаторов в памяти координатора` #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)",
+        "pt": "adicionado state info.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nadicionado state info.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nadicionado state info.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nopção adicionada `Verificação automática de roteadores ausentes na memória do coordenador #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)",
         "nl": "quality over Quantity (QoQ) Releases Vertaling:\nquality over Quantity (QoQ) Releases Vertaling:\nvoegde staatsinformatie toe, mislukt jroutmount 47, httub,com/0shojoo/ioBroker\nvoegde optie 'Automatische cheque toe voor vermiste routers in de coördinator geheugen 47) (htttub,com/0hojoo/ioBroker",
-        "fr": "infos supplémentaires.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\ninfos supplémentaires.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\ninfo état ajoutée.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\noption ajoutée `Automatic check for missing routers in the Coordinator memory` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
-        "it": "#[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\n#[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\naggiunto stato info.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nopzione aggiuntiva `Controllo automatico dei router mancanti nella memoria coordinatore` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
-        "es": "añadido información del estado.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\nañadido información del estado.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nañadido información del estado.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nañadido la opción `Automatic check for missing routers in the coordinator memory` #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)",
-        "pl": "info.coordinator_check #247(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers #247(https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers_count #247 (https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)\nautomatic check for missing routers in the coordinator memory` #247(https:/github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247) (ang.)",
-        "uk": "додано державну інформацію.coordinator_check #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдодано державну інформацію.missing_routers #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/products/247)\nдодано державну інформацію.missing_routers_count #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)\nдодано варіант `Автоматичний чек для відсутніх маршрутизаторів в зоні пам'яті координатора #[247](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues/247)",
-        "zh-cn": "补充国家:控制编号[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n添加以下国家:F.missing_routers #[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n增列国家:F.missing_routers_count.[247](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)\n添加了“协调员记忆中的缺失路线者进行现场检查”的备选办法[247](http://github.com/o0shojo0o/ioBroker.zigbee2mqt/issues/247)。"
+        "fr": "infos supplémentaires.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\ninfos supplémentaires.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\ninfo état ajoutée.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\noption ajoutée `Automatic check for missing routers in the Coordinator memory` #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)",
+        "it": "#[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\n#[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\naggiunto stato info.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\nopzione aggiuntiva `Controllo automatico dei router mancanti nella memoria coordinatore` #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)",
+        "es": "añadido información del estado.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\nañadido información del estado.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nañadido información del estado.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nañadido la opción `Automatic check for missing routers in the coordinator memory` #[247](https://github.com/arteck/ioBroker.zigbee2mqt/issues/247)",
+        "pl": "info.coordinator_check #247(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers #247(https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers_count #247 (https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)\nautomatic check for missing routers in the coordinator memory` #247(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)",
+        "uk": "додано державну інформацію.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдодано державну інформацію.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/products/247)\nдодано державну інформацію.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдодано варіант `Автоматичний чек для відсутніх маршрутизаторів в зоні пам'яті координатора #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)",
+        "zh-cn": "补充国家:控制编号[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n添加以下国家:F.missing_routers #[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n增列国家:F.missing_routers_count.[247](http://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\n添加了“协调员记忆中的缺失路线者进行现场检查”的备选办法[247](http://github.com/arteck/ioBroker.zigbee2mqt/issues/247)。"
       },
       "2.12.0": {
         "en": "added option `Size of the object icons in pixels`",
@@ -164,6 +164,7 @@
       "uk": "Адаптер Zigbee2MQTT для ioBroker"
     },
     "authors": [
+      "arteck <arteck@outlook.com>",
       "Dennis Rathjen <dennis.rathjen@outlook.de>"
     ],
     "keywords": [
@@ -179,8 +180,8 @@
     "main": "main.js",
     "icon": "zigbee2mqtt.png",
     "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/o0shojo0o/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
-    "readme": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/README.md",
+    "extIcon": "https://raw.githubusercontent.com/arteck/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
+    "readme": "https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/README.md",
     "loglevel": "info",
     "mode": "daemon",
     "type": "hardware",

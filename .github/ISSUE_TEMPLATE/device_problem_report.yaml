@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         **IMPORTANT:** Before submitting:
-        - You read the [FAQ](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md)        
+        - You read the [FAQ](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md)        
   - type: input
     id: link
     attributes:
@@ -33,7 +33,7 @@ body:
   - type: textarea
     attributes:
       label: Device exposes
-      description: You can get this information via the adapter, [How to do this](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md#how-do-i-get-the-exposes-from-a-device-).
+      description: You can get this information via the adapter, [How to do this](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/EN/EN_faq.md#how-do-i-get-the-exposes-from-a-device-).
       render: JSON
     validations:
       required: true

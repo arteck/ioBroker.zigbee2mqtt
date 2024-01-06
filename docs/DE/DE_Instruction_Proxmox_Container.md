@@ -30,7 +30,7 @@ Meine Vorgehensweise für Proxmox-Container in etwa:
 
 ### ioBroker Zigbee2MQTT-Adapter
 
--   Vorgehensweise gemäß Doku - [Installation inkl. Umzug vom ioBroker/Zigbee Adapter](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/blob/main/docs/DE/DE_get-started_move.md)
+-   Vorgehensweise gemäß Doku - [Installation inkl. Umzug vom ioBroker/Zigbee Adapter](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/DE/DE_get-started_move.md)
 -   **Wichtig, falls ConBee II Stick**: `configuration.yaml` nochmal anpassen:
     1.  Unter `serial` eintragen: `adapter: deconz`
     2.  Unter `advanced` die Zeile `transmit_power: 20` löschen, das scheint der ConBee II nicht zu können und es kommen Fehler beim Start von Zigbee2MQTT

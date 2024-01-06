@@ -3,10 +3,10 @@
   "version": "2.13.4",
   "description": "Zigbee2MQTT adapter for ioBroker",
   "author": {
-    "name": "Dennis Rathjen",
-    "email": "dennis.rathjen@outlook.de"
+    "name": "Dennis Rathjen and Arthur Rupp",
+    "email": "arteck@outlook.com"
   },
-  "homepage": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt",
+  "homepage": "https://github.com/arteck/ioBroker.zigbee2mqtt",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt.git"
+    "url": "https://github.com/arteck/ioBroker.zigbee2mqtt.git"
   },
   "engines": {
     "node": ">= 16"
@@ -80,7 +80,7 @@
     "release": "release-script"
   },
   "bugs": {
-    "url": "https://github.com/o0shojo0o/ioBroker.zigbee2mqtt/issues"
+    "url": "https://github.com/arteck/ioBroker.zigbee2mqtt/issues"
   },
   "readmeFilename": "README.md"
 }
