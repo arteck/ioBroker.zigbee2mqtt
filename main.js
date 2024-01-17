@@ -265,7 +265,7 @@ class Zigbee2mqtt extends core.Adapter {
             if (mqttClient && !mqttClient.closed) {
                 try {
                     if (mqttClient) {
-                        mqttClient.close();
+                        mqttClient.end();
                     }
                 } catch (e) {
                     this.log.error(e);
