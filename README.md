@@ -32,6 +32,9 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### next
+-   (arteck) fixed mqttClient.end()
+
 ### 2.13.4 (2023-12-17)
 
 -   (o0shojo0o) fixed unnecessary warning for special value ([269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269))
