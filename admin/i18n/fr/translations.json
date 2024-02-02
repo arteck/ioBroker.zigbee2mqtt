@@ -3,7 +3,7 @@
     "Select and configure your Zigbee2MQTT connection": "Sélectionnez et configurez la connexion Zigbee2MQTT",
     "Select connection to Zigbee2MQTT": "Sélectionnez la connexion à Zigbee2MQTT",
     "Websocket": "Websocket",
-    "External MQTT-Server (Experimental)": "Serveur MQTT externe (expérimental)",
+    "External MQTT-Server": "Serveur MQTT externe",
     "Internal MQTT-Server (Experimental)": "Serveur MQTT interne (expérimental)",
     "Configure your Zigbee2MQTT connection": "Configurez votre connexion Zigbee2MQTT",
     "Websocket IP-Address": "Adresse IP Websocket",

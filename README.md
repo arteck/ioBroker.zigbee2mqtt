@@ -32,7 +32,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### next
+### 2.13.5 (2024-02-02)
 -   (arteck) fixed mqttClient.end()
 
 ### 2.13.4 (2023-12-17)

@@ -3,7 +3,7 @@
     "Select and configure your Zigbee2MQTT connection": "选择并配置 Zigbee2MQTT 连接",
     "Select connection to Zigbee2MQTT": "选择与 Zigbee2MQTT 的连接",
     "Websocket": "网络套接字",
-    "External MQTT-Server (Experimental)": "外部 MQTT 服务器（实验性）",
+    "External MQTT-Server": "外部 MQTT 服务器",
     "Internal MQTT-Server (Experimental)": "内部 MQTT 服务器（实验性）",
     "Configure your Zigbee2MQTT connection": "配置您的 Zigbee2MQTT 连接",
     "Websocket IP-Address": "Websocket IP 地址",

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.4",
+    "version": "2.13.5",
     "news": {
+      "2.13.5": {
+        "en": "fixed mqttClient.end()",
+        "de": "mqttClient.end()",
+        "ru": "фиксированный mqtClient.end()",
+        "pt": "fixo mqttClient.end()",
+        "nl": "vaste mqttClient.end()",
+        "fr": "mqttClient.end() fixe",
+        "it": "fisso mqttClient.end()",
+        "es": "mqttClient.end()",
+        "pl": "stałe mqttClient.end ()",
+        "uk": "фіксований mqttClient.end()",
+        "zh-cn": "固定的 mqttClient.end ()"
+      },
       "2.13.4": {
         "en": "fixed unnecessary warning for special value ([269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269))",
         "de": "feste unnötige Warnung für Sonderwert [269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
@@ -80,19 +93,6 @@
         "pl": "dodano opcję `Size of the object icons in pixels'",
         "uk": "додано опцію `Size іконок об’єкта у пікселях`",
         "zh-cn": "添加了“白盔”的选项。"
-      },
-      "2.11.0": {
-        "en": "added automatic download of device image from zigbee2mqtt to meta-storage\nadded option `Download device images from Zigbee2Mqtt and use them as object icons.`\nfixed Hue_Move \nadded option `Generate simple 'Hold' and 'Release' states`\nadded option `Generate simple 'Move' and 'Stop' states`\nadded option `Generate simple 'Press' and 'Release' states`",
-        "de": "automatischer download des gerätebildes von zigbee2mqtt zu meta-storage\n` Gerätebilder von Zigbee2Mqtt herunterladen und als Objektsymbole verwenden. `\nhue_Move\nzusatzoption `Generieren Sie einfache Halte- und Freigabezustände `\nzusätzliche Option `Generieren Sie einfache Verschiebe- und Stopp-Zustände `\nzusätzliche Option `Generieren Sie einfache Presse- und Freigabezustände `",
-        "ru": "добавлена автоматическая загрузка изображения устройства от zigbee2mqtt до meta-storage\nдобавлена опция `Скачать изображения устройства от Zigbee2Mqtt и использовать их как иконки объекта. »\nфиксированный Hue_Move\nдобавлена опция `Generate simple Hold and Release состояния »\nдобавлена опция `Generate simple Move and Stop состояния`\nдобавлена опция `Generate simple Press and Release состояния »",
-        "pt": "adicionado download automático da imagem do dispositivo de zigbee2mqtt para meta-armazenagem\nopção adicionada `Baixar imagens de dispositivo de Zigbee2Mqtt e usá-las como ícones de objeto. \"\nfixo Hue_Move\nopção adicionada `Gerar simples Hold and Release states \"\nopção adicionada `Gerar simples Mover e parar estados`\nopção adicionada `Gerar estados simples de imprensa e lançamento \"",
-        "nl": "voegde automatische download van het apparaat van zigbee2mqt toe aan meta-storage\nvoegde optie 'Download apparatuur van Zigbee2Mqt toe en gebruik ze als object iconen. _\nvertaling:\nvoegde optie 'Generate Sim Hold and Release staten _\nvoegde optie \"Generate Sim Move and Stop states\"\nvoegde optie 'Generate Sim Press and Release staten _",
-        "fr": "téléchargement automatique de l'image de périphérique de zigbee2mqt à meta-storage\noption ajoutée `Télécharger les images de périphérique de Zigbee2Mqt et les utiliser comme des icônes d'objet. `\nhue_Move\noption ajoutée `Generate simple Hold and Release états `\noption ajoutée `Generate simple Déplacer et arrêter les états`\noption ajoutée `Generate simple Press et les états de publication `",
-        "it": "download automatico dell'immagine del dispositivo da zigbee2mqt a meta-storage\nopzione aggiunta `Scaricare le immagini del dispositivo da Zigbee2Mqt e usarle come icone dell'oggetto. #\nfisso Hue_Move\nopzione aggiunta `Generate simple Hold and Release stati #\nopzione aggiunta `Generate simple Move and Stop stati`\nopzione aggiunta `Generate simple Press and Release stati #",
-        "es": "añadido descarga automática de la imagen del dispositivo desde zigbee2mqt a meta-storage\nopción agregada `Descargar imágenes de dispositivo de Zigbee2Mqtt y utilizarlas como iconos de objetos. `\nhue_Move fijo\nopción agregada `Generate simple Hold and Release states `\nopción agregada `Generate simple Move and Stop states`\nopción agregada `Generate simple Estados de prensa y liberación `",
-        "pl": "dodał automatyczny pobranie obrazu zigbee2mqtt na meta-storage\ndodał dodatki do opcjonalnych zdjęć z Zigbee2Mqtt i używał ich jako ikon obiektowych. `\nugruntowany\ndodano opcjonalne stany Hold i Release. `\ndodano możliwość generowanego prostego Move'a i Stop states'\ndodał opcję \"Generate simple Press and Release states\". `",
-        "uk": "додано автоматичне завантаження зображення пристрою з zigbee2mqtt до мета-сторage\nдодано опцію `Завантажити зображення пристроїв з Zigbee2Mqtt і використовувати їх як іконки об'єкта. й\nфіксована Hue_Move\nдодано варіант `Generate simple Hold and Release State й\nдодано варіант `Generate Simple Move and Stop State`\nдодано варіант `Generate simple Press and Release State й",
-        "zh-cn": "加上自齐格贝德二米克特自动下载器图像\n添加了“Zigbee2Mqt的载荷装置图像”的备选办法,并将这些图像作为目标。 目 录\n固定的He_Move\n增加“简单的霍乱和释放国”的选择 目 录\n增加“简单的摩托和托儿”\n增加的“简单新闻”选择 目 录"
       }
     },
     "messages": [
