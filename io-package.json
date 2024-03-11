@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.5",
+    "version": "2.13.6",
     "news": {
+      "2.13.6": {
+        "en": "update dependecy",
+        "de": "aktualisierung abhängigkeit",
+        "ru": "обновление",
+        "pt": "atualização",
+        "nl": "afhankelijkheid bijwerken",
+        "fr": "mettre à jour la dépendance",
+        "it": "aggiornamento dipendenza",
+        "es": "dependencia de actualización",
+        "pl": "aktualizacja zależności",
+        "uk": "оновлення залежності",
+        "zh-cn": "更新依赖性"
+      },
       "2.13.5": {
         "en": "fixed mqttClient.end()",
         "de": "mqttClient.end()",
@@ -80,19 +93,6 @@
         "pl": "info.coordinator_check #247(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers #247(https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)\ninfo.missing_routers_count #247 (https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)\nautomatic check for missing routers in the coordinator memory` #247(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/247) (ang.)",
         "uk": "додано державну інформацію.coordinator_check #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдодано державну інформацію.missing_routers #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/products/247)\nдодано державну інформацію.missing_routers_count #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)\nдодано варіант `Автоматичний чек для відсутніх маршрутизаторів в зоні пам'яті координатора #[247](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/247)",
         "zh-cn": "补充国家:控制编号[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n添加以下国家:F.missing_routers #[247](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/247)\n增列国家:F.missing_routers_count.[247](http://github.com/arteck/ioBroker.zigbee2mqt/issues/247)\n添加了“协调员记忆中的缺失路线者进行现场检查”的备选办法[247](http://github.com/arteck/ioBroker.zigbee2mqt/issues/247)。"
-      },
-      "2.12.0": {
-        "en": "added option `Size of the object icons in pixels`",
-        "de": "zusätzliche Option ` Größe der Objektsymbole in Pixeln`",
-        "ru": "добавлена опция `Размер иконок объекта в пикселях`",
-        "pt": "opção adicionada `Tamanho dos ícones do objeto em pixels`",
-        "nl": "voegde optie van het object in pixels",
-        "fr": "option ajoutée ` Taille de l'objet icônes en pixels`",
-        "it": "opzione aggiunta `Size delle icone dell'oggetto in pixel`",
-        "es": "opción agregada `Tamaño de los iconos objeto en pixels`",
-        "pl": "dodano opcję `Size of the object icons in pixels'",
-        "uk": "додано опцію `Size іконок об’єкта у пікселях`",
-        "zh-cn": "添加了“白盔”的选项。"
       }
     },
     "messages": [
