@@ -308,6 +308,17 @@
 			"type": "checkbox",
 			"label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
 			"newLine": true
+		},
+		"expertHeader": {
+			"type": "header",
+			"text": "Expert Settings. Please only use if you know what you're doing",
+			"size": 2,
+			"newLine": true
+		},
+		"allwaysUpdateOccupancyState": {
+			"type": "checkbox",
+			"label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+			"newLine": true
 		}
 	}
 }
