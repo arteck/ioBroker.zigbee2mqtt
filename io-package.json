@@ -260,7 +260,8 @@
     "simplePressReleaseState": false,
     "coordinatorCheck": false,
     "coordinatorCheckLogLvl": "info",
-    "coordinatorCheckCron": "0 3 * * *"
+    "coordinatorCheckCron": "0 3 * * *",
+    "allwaysUpdateOccupancyState": false
   },
   "protectedNative": [
     "externalMqttServerPassword",
