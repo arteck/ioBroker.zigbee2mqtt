@@ -24,6 +24,9 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 
 ## Changelog
+### 2.13.8 (2024-05-13)
+-   (arteck) fix icon path
+
 ### 2.13.7 (2024-04-20)
 -   (arteck) core dependecy
 -   (arteck) update dependecy

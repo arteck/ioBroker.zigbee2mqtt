@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.7",
+    "version": "2.13.8",
     "news": {
+      "2.13.8": {
+        "en": "fix icon path",
+        "de": "iconpfad aktivieren",
+        "ru": "исправить значок",
+        "pt": "corrigir o caminho do ícone",
+        "nl": "pictogrampad herstellen",
+        "fr": "correction du chemin de l'icône",
+        "it": "corretto percorso icona",
+        "es": "fijar la ruta del icono",
+        "pl": "naprawić ścieżkę ikon",
+        "uk": "фіксувати шлях іконки",
+        "zh-cn": "修补图标路径"
+      },
       "2.13.7": {
         "en": "core dependecy\nupdate dependecy\nEnable occupancy to be always updated if true",
         "de": "kernabhängigkeit\naktualisierung abhängigkeit\nErmöglichen Sie die Belegung immer aktualisieren, wenn zutreffend",
@@ -80,19 +93,6 @@
         "pl": "zastawione wartości NULL, gdy integracja HASS jest dostępna w zigbee2mqtt",
         "uk": "виправлено значення NULL при інтеграції HASS у Zigbee2mqtt",
         "zh-cn": "当人道协调厅的一体化得以在齐格贝2mqtttt条件下实现固定的NULL数值。"
-      },
-      "2.13.1": {
-        "en": "fixed storage name",
-        "de": "fester speichername",
-        "ru": "фиксированное имя хранения",
-        "pt": "nome de armazenamento fixo",
-        "nl": "vertaling:",
-        "fr": "nom de stockage fixe",
-        "it": "nome di archiviazione fisso",
-        "es": "nombre de almacenamiento fijo",
-        "pl": "nazwa pamięci stałej",
-        "uk": "фіксована назва зберігання",
-        "zh-cn": "固定储存名称"
       }
     },
     "messages": [
