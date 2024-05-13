@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.8",
+    "version": "2.13.9",
     "news": {
+      "2.13.9": {
+        "en": "fix lint\nupdate dependecy",
+        "de": "lint zu entfernen\naktualisierung abhängigkeit",
+        "ru": "фиксация линта\nобновление",
+        "pt": "forro de correção\natualização",
+        "nl": "fix pluis\nafhankelijkheid bijwerken",
+        "fr": "fixer le lint\nmettre à jour la dépendance",
+        "it": "fissaggio lunetta\naggiornamento dipendenza",
+        "es": "\ndependencia de actualización",
+        "pl": "fix lint\naktualizacja zależności",
+        "uk": "засупу 10 ток\nоновлення залежності",
+        "zh-cn": "修正线\n更新依赖性"
+      },
       "2.13.8": {
         "en": "fix icon path",
         "de": "iconpfad aktivieren",
@@ -80,19 +93,6 @@
         "pl": "uruchomione urządzenia błędne, #255 (https:/github.com/arteck/ioBroker,zigbee2mqtt/issues/255)",
         "uk": "фіксовані пристрої erroneous офлайн показання # [255] (https://github.com/arteck/ioBroker.zigbee2mqtt/products/255)",
         "zh-cn": "固定装置随线标明编号[255](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/255)"
-      },
-      "2.13.2": {
-        "en": "fixed NULL values when HASS integration is enabled in zigbee2mqtt",
-        "de": "feste NULL-Werte, wenn die HASS-Integration in zigbee2mqtt aktiviert ist",
-        "ru": "фиксированные значения NULL, когда интеграция HASS включена в zigbee2mqtt",
-        "pt": "valores NULL fixos quando a integração HASS é ativada em zigbee2mqtt",
-        "nl": "gerepareerde NUll waarden wanneer HASS integratie in staat is in Zigbee2mqt",
-        "fr": "valeurs NULL fixes lorsque l'intégration HASS est activée en zigbee2mqt",
-        "it": "valori NULL fissi quando l'integrazione HASS è attivata in zigbee2mqtt",
-        "es": "valores fijos NULL cuando la integración HASS está habilitada en zigbee2mqt",
-        "pl": "zastawione wartości NULL, gdy integracja HASS jest dostępna w zigbee2mqtt",
-        "uk": "виправлено значення NULL при інтеграції HASS у Zigbee2mqtt",
-        "zh-cn": "当人道协调厅的一体化得以在齐格贝2mqtttt条件下实现固定的NULL数值。"
       }
     },
     "messages": [
