@@ -26,7 +26,7 @@
     "@iobroker/dm-utils": "^0.1.9",
     "aedes": "^0.51.0",
     "aedes-persistence-nedb": "^2.0.3",
-    "mqtt": "~5.5.5",
+    "mqtt": "^5.9.0",
     "net": "^1.0.2",
     "node-schedule": "^2.1.1",
     "sharp": "^0.33.3",
