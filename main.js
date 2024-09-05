@@ -18,11 +18,10 @@ const StatesController = require('./lib/statesController').StatesController;
 const WebsocketController = require('./lib/websocketController').WebsocketController;
 const MqttServerController = require('./lib/mqttServerController').MqttServerController;
 
-
 let mqttClient;
-// eslint-disable-next-line prefer-const
+
 let deviceCache = [];
-// eslint-disable-next-line prefer-const
+
 let groupCache = [];
 const createCache = {};
 const logCustomizations = { debugDevices: '', logfilter: [] };
@@ -34,7 +33,6 @@ let websocketController;
 let mqttServerController;
 
 class Zigbee2mqtt extends core.Adapter {
-
     constructor(options) {
         super({
             ...options,
@@ -47,7 +45,14 @@ class Zigbee2mqtt extends core.Adapter {
 
     async onReady() {
         statesController = new StatesController(this, deviceCache, groupCache, logCustomizations, createCache);
-        deviceController = new DeviceController(this, deviceCache, groupCache, this.config, logCustomizations, createCache);
+        deviceController = new DeviceController(
+            this,
+            deviceCache,
+            groupCache,
+            this.config,
+            logCustomizations,
+            createCache
+        );
         z2mController = new Z2mController(this, deviceCache, groupCache, logCustomizations);
 
         // Initialize your adapter here
@@ -63,12 +68,16 @@ class Zigbee2mqtt extends core.Adapter {
         const logfilterState = await this.getStateAsync('info.logfilter');
         if (logfilterState && logfilterState.val) {
             // @ts-ignore
-            logCustomizations.logfilter = String(logfilterState.val).split(';').filter(x => x); // filter removes empty strings here
+            logCustomizations.logfilter = String(logfilterState.val)
+                .split(';')
+                .filter((x) => x); // filter removes empty strings here
         }
 
         if (this.config.coordinatorCheck == true) {
             try {
-                schedule.scheduleJob('coordinatorCheck', this.config.coordinatorCheckCron, () => this.onStateChange('manual_trigger._.info.coordinator_check', { ack: false }));
+                schedule.scheduleJob('coordinatorCheck', this.config.coordinatorCheckCron, () =>
+                    this.onStateChange('manual_trigger._.info.coordinator_check', { ack: false })
+                );
             } catch (e) {
                 this.log.error(e);
             }
@@ -83,7 +92,11 @@ class Zigbee2mqtt extends core.Adapter {
                 }
 
                 // MQTT connection settings
-                const mqttClientOptions = { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 };
+                const mqttClientOptions = {
+                    clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
+                    clean: true,
+                    reconnectPeriod: 500,
+                };
 
                 // Set external mqtt credentials
                 if (this.config.externalMqttServerCredentials == true) {
@@ -92,19 +105,28 @@ class Zigbee2mqtt extends core.Adapter {
                 }
 
                 // Init connection
-                mqttClient = mqtt.connect(`mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`, mqttClientOptions);
+                mqttClient = mqtt.connect(
+                    `mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`,
+                    mqttClientOptions
+                );
             }
             // Internal MQTT-Server
             else {
                 mqttServerController = new MqttServerController(this);
                 await mqttServerController.createMQTTServer();
                 await this.delay(1500);
-                mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, { clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`, clean: true, reconnectPeriod: 500 });
+                mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, {
+                    clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
+                    clean: true,
+                    reconnectPeriod: 500,
+                });
             }
 
             // MQTT Client
             mqttClient.on('connect', () => {
-                this.log.info(`Connect to Zigbee2MQTT over ${this.config.connectionType == 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`);
+                this.log.info(
+                    `Connect to Zigbee2MQTT over ${this.config.connectionType == 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
+                );
             });
 
             mqttClient.subscribe('zigbee2mqtt/#');
@@ -237,7 +259,7 @@ class Zigbee2mqtt extends core.Adapter {
                             // {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
                             const newMessage = {
                                 payload: { available: messageObj.payload.state == 'online' },
-                                topic: messageObj.topic.replace('/availability', '')
+                                topic: messageObj.topic.replace('/availability', ''),
                             };
                             statesController.processDeviceMessage(newMessage);
                         }
@@ -328,12 +350,12 @@ class Zigbee2mqtt extends core.Adapter {
                 return;
             }
             if (id.endsWith('info.logfilter')) {
-                logCustomizations.logfilter = state.val.split(';').filter(x => x); // filter removes empty strings here
+                logCustomizations.logfilter = state.val.split(';').filter((x) => x); // filter removes empty strings here
                 this.setState(id, state.val, true);
                 return;
             }
 
-            const message = await z2mController.createZ2MMessage(id, state) || { topic: '', payload: '' };
+            const message = (await z2mController.createZ2MMessage(id, state)) || { topic: '', payload: '' };
 
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
                 mqttClient.publish(`zigbee2mqtt/${message.topic}`, JSON.stringify(message.payload));
@@ -344,12 +366,11 @@ class Zigbee2mqtt extends core.Adapter {
     }
 }
 
-
 if (require.main !== module) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<core.AdapterOptions>} [options={}]
-     */
+	 * @param {Partial<core.AdapterOptions>} [options={}]
+	 */
     module.exports = (options) => new Zigbee2mqtt(options);
 } else {
     // otherwise start the instance directly

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.9",
+    "version": "2.13.10",
     "news": {
+      "2.13.10": {
+        "en": "update dependecy\nadd available object for groups",
+        "de": "aktualisierung abhängigkeit\nobjekt für gruppen hinzufügen",
+        "ru": "обновление\nдобавить доступный объект для групп",
+        "pt": "atualização\nadicionar objeto disponível para grupos",
+        "nl": "afhankelijkheid bijwerken\nbeschikbaar object voor groepen toevoegen",
+        "fr": "mettre à jour la dépendance\najouter un objet disponible pour les groupes",
+        "it": "aggiornamento dipendenza\naggiungere oggetto disponibile per gruppi",
+        "es": "dependencia de actualización\nañadir objeto disponible para grupos",
+        "pl": "aktualizacja zależności\ndodaj dostępny obiekt dla grup",
+        "uk": "оновлення залежності\nдодати доступний об'єкт для груп",
+        "zh-cn": "更新依赖性\n为组添加可用对象"
+      },
       "2.13.9": {
         "en": "fix lint\nupdate dependecy",
         "de": "lint zu entfernen\naktualisierung abhängigkeit",
@@ -80,19 +93,6 @@
         "pl": "niepotrzebne ostrzeżenie dla specjalnej wartości (269)(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
         "uk": "виправлено непотрібне попередження про спеціальне значення [269] (https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
         "zh-cn": "(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/269)"
-      },
-      "2.13.3": {
-        "en": "fixed devices erroneous offline indication ([#255](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/255))",
-        "de": "feste Geräte fehlerhafte Offline-Anzeige #[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
-        "ru": "фиксированные устройства ошибочные оффлайн индикация #[255](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/255)",
-        "pt": "dispositivos fixos errônea indicação offline #[255](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/255)",
-        "nl": "quality over Quantity (QoQ) Releases Vertaling:",
-        "fr": "signalisation erroneous offline #[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
-        "it": "#[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
-        "es": "dispositivos fijos erroneous offline indicating #[255](https://github.com/arteck/ioBroker.zigbee2mqt/issues/255)",
-        "pl": "uruchomione urządzenia błędne, #255 (https:/github.com/arteck/ioBroker,zigbee2mqtt/issues/255)",
-        "uk": "фіксовані пристрої erroneous офлайн показання # [255] (https://github.com/arteck/ioBroker.zigbee2mqtt/products/255)",
-        "zh-cn": "固定装置随线标明编号[255](http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/255)"
       }
     },
     "messages": [
@@ -175,9 +175,8 @@
       "aqara",
       "tuya"
     ],
-    "license": "MIT",
+    "licenseInformation": "MIT",
     "platform": "Javascript/Node.js",
-    "main": "main.js",
     "icon": "zigbee2mqtt.png",
     "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/arteck/ioBroker.zigbee2mqtt/main/admin/zigbee2mqtt.png",
@@ -219,7 +218,7 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=3.3.22"
+        "js-controller": ">= 5.0.19"
       }
     ],
     "globalDependencies": [

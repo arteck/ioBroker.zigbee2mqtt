@@ -17,27 +17,27 @@ Offizielle Dokumentation: https://www.zigbee2mqtt.io/guide/getting-started
 
 
 ## Verbidung/Konfigurationsseite zu Zigbee2MQTT wird nicht angezeigt im ioBroker <a name="1"></a>
-Ausgangssituation:
+Ausgangssituattion:
 
 Nutzt man im ioBroker Admin eine verschlüsselte Verbindung über HTTPS lädt der Browser die eingebettete Zigbee2MQTT UI nicht.
 
 Ursache:
 
-Leider kann in Zigbee2MQTT (noch) keine verschlüsselte Verbindung konfiguriert werden. Durch die Verwendung der HTTPS Verbindung des Admin Adapter kann leider keine unverschlüsselte iFrame Verbindung genutzt werden, was hier der Fall ist.
+Leider kann in Zigbee2MQTT (noch) keine Verschlüsselte Verbindung konfigurirt werden. Durch die Verwendung der HTTPS Verbindung des Admin Adapter kann leider keine unverschlüsselte iFrame Verbindung genutzt werden, was hier der Fall ist.
 
 Lösung:
-1. Deaktivieren der HTTPS Verbindung im Admin Adapter
-2. Proxy Verbindung für die Konfigurationsseite von Zigbee2MQTT, noch ist aber nicht klar ob die Websocket Verbindung die dieser Adapter nutzt dann noch funktioniert.
+1. Deaktivieren der HTTPS verbindung im Admin Adapter
+2. Proxy Verbindung für die Konfigurationsseite von Zigbee2MQTT, noch ist aber nicht klar ob die Websocket Verbindung die dieser Adpter nutzt dann noch funktioniert.
 
 ## Was ist der Unterschied zwischen diesem Adapter und dem ioBroker/Zigbee Adapter? <a name="2"></a>
 Der ioBroker/Zigbee Adapter nutzt die Datenbasis von Zigbee2MQTT, jedoch verwaltet dieser seine Geräte selber.
 
 Dieser Zigbee2MQTT Adapter lagert die Verwaltung der Geräte an die offizielle Software aus und holt sich nur die Daten aus dieser, um die Geräte via ioBroker zu steuern. 
-Heißt, das Zigbee Netz läuft unabhängig vom ioBroker. Ein, aus Entwicklersicht, viel größerer Vorteil ist, dass neue Funktionen nicht durch ein 1-3 Mann Team umgesetzt werden müssen (so wie bei dem ioBroker/Zigbee Adapter), sondern durch ein viel größeres Team mit einigen hundert Entwicklern und einer noch viel größeren Community, da Zigbee2MQTT auch von diversen anderen Systemen als Basis genutzt wird. 
+Heißt, das Zigbee Netz läuft unabhängig vom ioBroker. ein aus Entwicklersicht viel größer Vorteil ist es, dass neue Funktionen nicht durch ein 1-3 Mann Team umgesetzt werden muss (sowie bei dem ioBroker/Zigbee Adapter), sondern durch ein viel größeres Team mit einigen Hundert Entwicklern und einer noch viel größeren Community, da Zigbee2MQTT auch von diversen anderen Systemen als Basis genutzt wird. 
 
 ## Was genau ist Zigbee2MQTT/Z2M? <a name="3"></a>
-Zigbee2MQTT ist ein Open-Source-Projekt (vermutlich DAS Projekt, wenn es um Zigbee im Open Source Bereich geht), mit dem Zigbee Geräte über MQTT direkt angesprochen und verwaltet werden können, ohne dass hierfür eine Bridge eines Herstellers benötigt wird. Somit ist es auch möglich Geräte mehrerer Hersteller über ein System zu verwalten, ohne dass man zu Hause immer die Bridge des jeweiligen Herstellers braucht. 
-Zigbee2MQTT ist die Basis vieler verschiedener SmartHome Zentralen, wie FEHM, HomeAssistant und jetzt auch ioBroker, wenn es um die Verwaltung von Zigbee Geräten geht.
+Zigbee2MQTT ist ein Open-Source-Projekt (vermutlich DAS Projekt, wenn es um Zigbee im Open Source Bereich geht), mit dem Zigbee Geräte über MQTT direkt angesprochen und verwaltet werden können, ohne dass hierfür eine Bridge eines Herstellers benötigt wird. Somit ist es auch möglich Geräte mehrere Hersteller über ein System zu verwalten, ohne dass man zu Hause immer die Bridge des jeweiligen Herstellers braucht. 
+Zigbee2MQTT ist die Basis vieler Verschiedener SmartHome Zentralen, wie FEHM, HomeAssitent und jetzt auch ioBroker, wenn es um die Verwaltung von Zigbee Geräten geht.
 Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet und gepflegt werden muss!
 
 ## Wie erhalte ich die Expositionsdaten eines Geräts? <a name="4"></a>
@@ -64,6 +64,6 @@ availability: true
 ```
 
 
-## Warum werden Geräte in ioBroker nach dem Löschen aus z2m nicht auch gelöscht? <a name="5"></a>
-Da die Datenpunkte sehr dynamisch erstellt werden und um eventuellen Fehlern vorzubeugen, werden die Geräte nicht gelöscht. Den sonst würden die benutzerdefinierten Einstellungen (falls vorhanden) des Datenpunktes verloren gehen.
+## Warum werden Geräte in ioBroker nach dem löschen aus z2m nicht auch gelöscht? <a name="5"></a>
+Da die Datenpunkte sehr dynamisch erstellt werden und um eventuellen Fehler vorzubeugen, werden die Geräte nicht gelöscht. Den sonst würden die benutzerdefinierten Einstellungen (falls vorhanden) des Datenpunktes verloren gehen.
 Normalerweise sollte der Name durch "Device removed!" ersetzt werden und available sollte auf "false" gesetzt werden, somit kann man dann die Datenpunkte nachträglich löschen wenn es gewünscht ist.
