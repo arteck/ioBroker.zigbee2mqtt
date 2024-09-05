@@ -175,7 +175,10 @@
       "aqara",
       "tuya"
     ],
-    "licenseInformation": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "icon": "zigbee2mqtt.png",
     "enabled": false,
