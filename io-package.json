@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.10",
+    "version": "2.13.11",
     "news": {
+      "2.13.11": {
+        "en": "corr package.json",
+        "de": "korr paket.json",
+        "ru": "коррек-пакет.json",
+        "pt": "corr pacote.json",
+        "nl": "corr package.json",
+        "fr": "c'est ce qu'il a dit",
+        "it": "pacchetto corr.json",
+        "es": "corr package.json",
+        "pl": "corr package.json",
+        "uk": "english, українська, français..",
+        "zh-cn": "corr 软件包.json"
+      },
       "2.13.10": {
         "en": "update dependecy\nadd available object for groups",
         "de": "aktualisierung abhängigkeit\nobjekt für gruppen hinzufügen",
@@ -80,19 +93,6 @@
         "pl": "stałe mqttClient.end ()",
         "uk": "фіксований mqttClient.end()",
         "zh-cn": "固定的 mqttClient.end ()"
-      },
-      "2.13.4": {
-        "en": "fixed unnecessary warning for special value ([269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269))",
-        "de": "feste unnötige Warnung für Sonderwert [269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
-        "ru": "фиксированное ненужное предупреждение для особенного значения [269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
-        "pt": "aviso desnecessário fixo para valor especial [269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
-        "nl": "onnodig gewaarschuwd voor speciale waarde voor speciale waarde [269)",
-        "fr": "avertissement inutile fixe pour valeur spéciale [269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
-        "it": "[269](https://github.com/arteck/ioBroker.zigbee2mqt/issues/269)",
-        "es": "fija innecesaria advertencia para valor especial [269](https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
-        "pl": "niepotrzebne ostrzeżenie dla specjalnej wartości (269)(https:/github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
-        "uk": "виправлено непотрібне попередження про спеціальне значення [269] (https://github.com/arteck/ioBroker.zigbee2mqtt/issues/269)",
-        "zh-cn": "(http://github.com/oshojo0o/ioBroker.zigbee2mqt/issues/269)"
       }
     },
     "messages": [
