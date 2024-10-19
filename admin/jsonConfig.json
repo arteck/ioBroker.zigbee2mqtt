@@ -113,6 +113,7 @@
 			"type": "password",
 			"label": "MQTT Password",
 			"newLine": false,
+			"visible": true,
 			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
 		},
 		"mqttServerIPBind": {
