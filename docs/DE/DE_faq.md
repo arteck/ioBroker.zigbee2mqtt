@@ -57,7 +57,7 @@ advanced:
     legacy_api: false
     legacy_availability_payload: false
     cache_state: false
-    output: json
+    output: 'json'
 device_options:
     legacy: false
 availability: true
