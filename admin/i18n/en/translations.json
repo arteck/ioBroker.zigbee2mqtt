@@ -42,5 +42,7 @@
 	"Automatic check for missing routers in the coordinator memory.": "Automatic check for missing routers in the coordinator memory.",
 	"With which log level should a negative search be logged?": "With which log level should a negative search be logged?",
 	"Time of the automatic check": "Time of the automatic check",
-	"More information": "More information"
+	"More information": "More information",
+	"Expert Settings. Please only use if you know what you're doing": "Expert Settings. Please only use if you know what you're doing",
+	"Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System" : "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System"
 }
