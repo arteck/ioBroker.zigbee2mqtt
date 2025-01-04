@@ -51,7 +51,7 @@ Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet
 
 ## Which Zigbee2MQTT configuration parameters are needed? <a name="5"></a>
 
-This adapter is based on the current JSON payload of Zigbee2MQTT, so the legacy mode is not supported.  
+This adapter is based on the current JSON payload of Zigbee2MQTT, so the legacy mode is not supported in v1.
 This means that the following config parameters are **mandatory** for the adapter to work properly!
 
 ```yaml
@@ -64,6 +64,17 @@ advanced:
 device_options:
     legacy: false
 availability: true
+```
+
+If you install v2 
+
+```yaml
+advanced:
+    <Your other parameters>  
+    cache_state: false
+    output: json
+availability:
+    enabled: true
 ```
 
 ## Why are devices in ioBroker not also deleted after being deleted from z2m? <a name="6"></a>
