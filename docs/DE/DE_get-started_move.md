@@ -55,9 +55,11 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung gegeben!
 
    Für den Adapter **optimierte und empfohlene** Version - Werte mit "Your Data" müssen dabei an euere Umgebung angepasst werden.
 
+   für Version v1.
+   
    ```yml
    homeassistant: false
-   permit_join: true
+   permit_join: false
    frontend:
       port: 8080
       host: 0.0.0.0
@@ -77,12 +79,42 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung gegeben!
       legacy_availability_payload: false
       cache_state: false
       output: json
-      transmit_power: 20
+      transmit_power: 10
       log_level: warn
    device_options:
       legacy: false
    availability: true
    ```
+
+   für Version v2.
+   ```yml
+   homeassistant:
+      enabled: false
+   permit_join: false
+   frontend:
+      port: 8080
+      host: 0.0.0.0
+      enabled: true
+   mqtt:
+      base_topic: zigbee2mqtt
+      server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
+   serial:
+      port: /dev/ttyUSB0
+   advanced:
+      pan_id: Your Data
+      ext_pan_id: Your Data
+      channel: Your Data
+      network_key: Your Data
+      last_seen: ISO_8601_local      
+      cache_state: false
+      output: json
+      transmit_power: 10
+      log_level: warn
+   device_options:      
+   availability:
+      enabled: true
+   ```
+
     Hier ein Beispiel aus der Konfiguration des Zigbee Adapters im ioBroker und wie diese Umgeändert eingetragen werden muss:
 
    ![Zigbee Konfiguration](../img/zigbeeAdpter.png)
@@ -112,24 +144,24 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung gegeben!
    
    Das ist wichtig da sonst bei falsch Konfiguration der Coordinator falsche Daten bekommt und ihr das Netz nicht wieder einfach "so" aufgebaut bekommt.
 
-3. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt aktuell für diesen Adapter keine Funktion, wird aber zum Starten benötigt.
+2. Wie zu sehen ist, wird ein MQTT Server benötigt, dieser übernimmt aktuell für diesen Adapter keine Funktion, wird aber zum Starten benötigt.
    Dazu kann im Adapter in ioBroker einer konfiguriert werden oder wie in der Originalen Doku ein zusätzlicher Docker Container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt) genutzt werden.
 
-4. Jetzt müsst ihr mit dem Umzugsvorbereitungen beginnen. Dazu geht ihr bitte wie folgt vor:
+3. Jetzt müsst ihr mit dem Umzugsvorbereitungen beginnen. Dazu geht ihr bitte wie folgt vor:
    - Löschen aller Gruppen im aktuellen Zigbee Adpter. Diese führen leider zu div. Fehlern beim import der Datenbank. Wenn diese hier nicht raus genommen werden müssen sie aus der Datenbank manuell gelöscht werden. Dies ist aufwendig und bei Fehlern ist die Datenbank korrupt. Ein löschen dieser Gruppen in Zigbee2MQTT ist leider nicht möglich.
    - ioBroker/Zigbee Adpater stoppen
    - Die Datenbank aus dem ioBroker in den Container kopieren und umbennen. 
    Quelle: /opt/iobroker/iobroker-data/zigbee_/shepart.db
    Ziel: "Docker-Verzeichnis"/zigbee2mqtt/data/database.db
 
-5. Habt ihr das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen und der Container gestaltet werden.
+4. Habt ihr das alles erledigt, dann kann mit `docker-compose up -d` die Docker Konfiguration übernommen und der Container gestaltet werden.
    Nach einer kurzen Zeit können wir uns dann mit http://Dockerhost-IP:8080, mit dem Webinterface von Zigbee2MQTT verbinden. Auch sollte sich nun die Konfiguration geändert haben und die Hex Werte die wir eingetragen haben müssten umgerechnet worden sein. Sollte das Webinterface nicht hoch kommen/erreichbar sein liegt noch ein Fehler vor und wird zu 99% im Log des Containers angezeigt.
 
-6. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
+5. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
 
-7. Konfiguration des Adapters Siehe dazu [Adapter Konfiguration](./DE/DE_AdapterConfig.md)
+6. Konfiguration des Adapters Siehe dazu [Adapter Konfiguration](./DE/DE_AdapterConfig.md)
 
-8. Wenn jetzt alles gut gegangen ist, haben wir unsere Zigbee Netzwerk erfolgreich umgestellt und wir können noch ein paar anpassungen machen an dem neuen System.
+7. Wenn jetzt alles gut gegangen ist, haben wir unsere Zigbee Netzwerk erfolgreich umgestellt und wir können noch ein paar anpassungen machen an dem neuen System.
    - Gelöschte Gruppen wieder anlegen
    - Geräte mit einem Namen versehen
    - und zu guter letzt noch alle Skripte und Sonstige Adapter anpassen die auf gewisse States angewisen sind aus dem Zigbee Netzwerkes.
