@@ -52,16 +52,17 @@ In our example, Zigbee2MQTT is set up via Docker / Docker Compose. More setup me
    ```
 
    For the adapter **optimized and recommended** version - values with "Your Data" must be adapted to your environment.
-
-   ```yml
+   
+   for Version v1.
+  ```yml
    homeassistant: false
-   permit_join: true
+   permit_join: false
    frontend:
       port: 8080
       host: 0.0.0.0
    mqtt:
       base_topic: zigbee2mqtt
-      server: mqtt://Your Data:Your Port (in the normal case the port is : 1885)
+      server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
    serial:
       port: /dev/ttyUSB0
    advanced:
@@ -75,11 +76,40 @@ In our example, Zigbee2MQTT is set up via Docker / Docker Compose. More setup me
       legacy_availability_payload: false
       cache_state: false
       output: json
-      transmit_power: 20
+      transmit_power: 10
       log_level: warn
    device_options:
       legacy: false
    availability: true
+   ```
+
+   for Version v2.
+   ```yml
+   homeassistant:
+      enabled: false
+   permit_join: false
+   frontend:
+      port: 8080
+      host: 0.0.0.0
+      enabled: true
+   mqtt:
+      base_topic: zigbee2mqtt
+      server: mqtt://Your Data:Your Port (im normall Fall lautet der Port : 1885)
+   serial:
+      port: /dev/ttyUSB0
+   advanced:
+      pan_id: Your Data
+      ext_pan_id: Your Data
+      channel: Your Data
+      network_key: Your Data
+      last_seen: ISO_8601_local      
+      cache_state: false
+      output: json
+      transmit_power: 10
+      log_level: warn
+   device_options:      
+   availability:
+      enabled: true
    ```
     Here is an example from the configuration of the Zigbee adapter in ioBroker and how this must be changed:
 
