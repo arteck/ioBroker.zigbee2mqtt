@@ -48,7 +48,7 @@ Bedeutet aber auch das hier eine zusätzliche Software installiert, eingerichtet
 
 ## Welche Zigbee2MQTT Konfigurationsparameter werden benötigt?? <a name="5"></a>
 
-Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2MQTT, daher wird der Legacy Modus nicht unterstützt.  
+Dieser Adapter basiert auf dem aktuellen JSON Payload von Zigbee2MQTT, daher wird der Legacy Modus nicht unterstützt in v1.  
 Das bedeutet, dass die folgenden Konfigurationsparameter **zwingend notwendig** sind, damit der Adapter richtig funktioniert!
 
 ```yaml
@@ -63,6 +63,15 @@ device_options:
 availability: true
 ```
 
+Ist die v2 installiert :
+```yaml
+advanced:
+    <Your other parameters>  
+    cache_state: false
+    output: json
+availability:
+    enabled: true
+```
 
 ## Warum werden Geräte in ioBroker nach dem löschen aus z2m nicht auch gelöscht? <a name="5"></a>
 Da die Datenpunkte sehr dynamisch erstellt werden und um eventuellen Fehler vorzubeugen, werden die Geräte nicht gelöscht. Den sonst würden die benutzerdefinierten Einstellungen (falls vorhanden) des Datenpunktes verloren gehen.
