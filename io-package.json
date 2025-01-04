@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "2.13.11",
+    "version": "3.0.0",
     "news": {
+      "3.0.0": {
+        "en": "adaptation z2m 2.x",
+        "de": "anpassung z2m 2.x",
+        "ru": "адаптация z2m 2.x",
+        "pt": "adaptação z2m 2.x",
+        "nl": "aanpassing z2m 2.x",
+        "fr": "adaptation z2m 2.x",
+        "it": "adattamento z2m 2.x",
+        "es": "adaptación z2m 2.x",
+        "pl": "adaptacja z2m 2.x",
+        "uk": "адаптація z2m 2.x",
+        "zh-cn": "适应z2m 2.x"
+      },
       "2.13.11": {
         "en": "corr package.json",
         "de": "korr paket.json",
@@ -67,32 +80,6 @@
         "pl": "zasadnicza zależność\naktualizacja zależności\nWłącz zawsze aktualizację obłożenia, jeśli jest prawdziwe",
         "uk": "сердечник\nоновлення залежності\nУвімкнути можливість постійно оновлюватися, якщо правда",
         "zh-cn": "核心依赖性\n更新依赖性\n启用若为真则总是更新占用"
-      },
-      "2.13.6": {
-        "en": "update dependecy",
-        "de": "aktualisierung abhängigkeit",
-        "ru": "обновление",
-        "pt": "atualização",
-        "nl": "afhankelijkheid bijwerken",
-        "fr": "mettre à jour la dépendance",
-        "it": "aggiornamento dipendenza",
-        "es": "dependencia de actualización",
-        "pl": "aktualizacja zależności",
-        "uk": "оновлення залежності",
-        "zh-cn": "更新依赖性"
-      },
-      "2.13.5": {
-        "en": "fixed mqttClient.end()",
-        "de": "mqttClient.end()",
-        "ru": "фиксированный mqtClient.end()",
-        "pt": "fixo mqttClient.end()",
-        "nl": "vaste mqttClient.end()",
-        "fr": "mqttClient.end() fixe",
-        "it": "fisso mqttClient.end()",
-        "es": "mqttClient.end()",
-        "pl": "stałe mqttClient.end ()",
-        "uk": "фіксований mqttClient.end()",
-        "zh-cn": "固定的 mqttClient.end ()"
       }
     },
     "messages": [
@@ -100,35 +87,35 @@
         "condition": {
           "operand": "and",
           "rules": [
-            "oldVersion<2.10.0",
-            "newVersion>=2.10.0"
+            "oldVersion<=2.13.11",
+            "newVersion>=3.0.0"
           ]
         },
         "title": {
-          "en": "Important notice!",
-          "de": "Wichtiger Hinweis!",
-          "ru": "Важное замечание!",
-          "pt": "Notícia importante!",
-          "nl": "Belangrijke mededeling!",
-          "fr": "Avis important!",
-          "it": "Avviso IMPORTANTE!",
-          "es": "¡Noticia importante!",
-          "pl": "Ważna uwaga!",
-          "uk": "Важливе повідомлення!",
-          "zh-cn": "重要的提醒！"
+          "en": "Important notice! zigbee2mqtt 2.0",
+          "de": "Wichtiger Hinweis! zigbee2mqtt 2.0",
+          "ru": "Важное замечание! zigbee2mqtt 2.0",
+          "pt": "Notícia importante! zigbee2mqtt 2.0",
+          "nl": "Belangrijke mededeling! zigbee2mqtt 2.0",
+          "fr": "Avis important! zigbee2mqtt 2.0",
+          "it": "Avviso IMPORTANTE! zigbee2mqtt 2.0",
+          "es": "¡Noticia importante! zigbee2mqtt 2.0",
+          "pl": "Ważna uwaga! zigbee2mqtt 2.0",
+          "uk": "Важливе повідомлення! zigbee2mqtt 2.0",
+          "zh-cn": "重要的提醒！ zigbee2mqtt 2.0"
         },
         "text": {
-          "en": "After the update, the Websocket Auth-Token must be set again, if used.",
-          "de": "Nach dem Update muss der Websocket Auth-Token, falls verwendet, erneut gesetzt werden.",
-          "ru": "После обновления необходимо снова установить Auth-Token Websocket, если он используется.",
-          "pt": "Após a atualização, o Websocket Auth-Token deve ser configurado novamente, caso seja utilizado.",
-          "nl": "Na de update moet het Websocket Auth-Token, indien gebruikt, opnieuw worden ingesteld.",
-          "fr": "Après la mise à jour, le jeton d'authentification Websocket doit être à nouveau défini, s'il est utilisé.",
-          "it": "Dopo l'aggiornamento, il Websocket Auth-Token deve essere reimpostato, se utilizzato.",
-          "es": "Después de la actualización, el token de autenticación de Websocket debe configurarse nuevamente, si se usa.",
-          "pl": "Po aktualizacji należy ponownie ustawić Websocket Auth-Token, jeśli jest używany.",
-          "uk": "Після оновлення Websocket Auth-Token має бути встановлено знову, якщо він використовується.",
-          "zh-cn": "更新后，如果使用 Websocket Auth-Token，则必须重新设置。"
+          "en": "check zigbee2mqtt notification, for breaking changes\n (link: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nhere are some object renamed and you have to adjust your scripts",
+          "de": "Prüfen Sie die zigbee2mqtt-Benachrichtigung, um Änderungen zu erkennen \n(Link: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nEs wurden einige Objekte umbenannt und Sie müssen Ihre Skripte anpassen",
+          "ru": "проверьте уведомление zigbee2mqtt об изменениях\n (ссылка: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nгде некоторые объекты переименованы, и вам придется скорректировать свои скрипты",
+          "pt": "verifique a notificação do zigbee2mqtt, para alterações de última hora \n(ligação: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nAlguns objectos foram renomeados e é necessário ajustar os scripts",
+          "nl": "controleer de zigbee2mqtt melding voor wijzigingen \n(link: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nEr zijn enkele objecten hernoemd en je moet je scripts aanpassen",
+          "fr": "Vérifiez la notification de zigbee2mqtt, pour les changements importants \n(lien : https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nIl y a des objets renommés et vous devez ajuster vos scripts.",
+          "it": "controllare la notifica di zigbee2mqtt, per le modifiche di rottura \n(link: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nAlcuni oggetti sono stati rinominati e occorre modificare gli script.",
+          "es": "revisa la notificación de zigbee2mqtt, para cambios de última hora\n (enlace: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nHay algunos objetos renombrados y tienes que ajustar tus scripts.",
+          "pl": "sprawdź powiadomienie zigbee2mqtt, aby uzyskać informacje o zmianach\n (link: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nZmieniono nazwy niektórych obiektów i należy dostosować skrypty.",
+          "uk": "перевірте сповіщення zigbee2mqtt на наявність змін\n (посилання: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nдеякі об'єкти перейменовано, і вам доведеться скоригувати свої скрипти",
+          "zh-cn": "check zigbee2mqtt notification, for breaking changes\n (link: https://github.com/Koenkk/zigbee2mqtt/discussions/24198). \nhere are some object renamed and you have to adjust your scripts"
         },
         "level": "warn",
         "buttons": [

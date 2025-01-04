@@ -190,7 +190,7 @@ class Zigbee2mqtt extends core.Adapter {
             case 'bridge/info':
                 if (showInfo) {
                     zigbee2mqttInfo(messageObj.payload, this.log);
-                    checkConfig(messageObj.payload.config, this.log);
+                    checkConfig(messageObj.payload.config, this.log, messageObj.payload.version);
                     showInfo = false;
                 }
                 break;
