@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "news": {
+      "3.0.1": {
+        "en": "corr icon download",
+        "de": "corr icon herunterladen",
+        "ru": "скачать значок",
+        "pt": "corrimento ícone download",
+        "nl": "corr pictogramdownload",
+        "fr": "corr icon télécharger",
+        "it": "icona corr scaricare",
+        "es": "corr icono descargar",
+        "pl": "pobierz ikonę corr",
+        "uk": "cкачати ігру corr",
+        "zh-cn": "corr 图标下载"
+      },
       "3.0.0": {
         "en": "adaptation z2m 2.x",
         "de": "anpassung z2m 2.x",
