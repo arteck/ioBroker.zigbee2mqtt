@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "news": {
+      "3.0.2": {
+        "en": "corr WebSocket connection",
+        "de": "korr WebSocket Verbindung",
+        "ru": "гофровое соединение WebSocket",
+        "pt": "conexão da WebSocket",
+        "nl": "corr WebSocket-verbinding",
+        "fr": "corr Connexion WebSocket",
+        "it": "collegamento corr WebSocket",
+        "es": "corr WebSocket connection",
+        "pl": "połączenie corr WebSocket",
+        "uk": "корр WebSocket підключення",
+        "zh-cn": "corr WebSocket 连接"
+      },
       "3.0.1": {
         "en": "corr icon download",
         "de": "corr icon herunterladen",
@@ -80,19 +93,6 @@
         "pl": "naprawić ścieżkę ikon",
         "uk": "фіксувати шлях іконки",
         "zh-cn": "修补图标路径"
-      },
-      "2.13.7": {
-        "en": "core dependecy\nupdate dependecy\nEnable occupancy to be always updated if true",
-        "de": "kernabhängigkeit\naktualisierung abhängigkeit\nErmöglichen Sie die Belegung immer aktualisieren, wenn zutreffend",
-        "ru": "основополагающая зависимость\nобновление\nВозможность всегда обновляться, если это правда",
-        "pt": "dependência do núcleo\natualização\nPermite que a ocupação seja sempre atualizada se for verdade",
-        "nl": "core afhankelijkheid\nafhankelijkheid bijwerken\nDe bezetting wordt altijd bijgewerkt indien deze waar is",
-        "fr": "dépendance du noyau\nmettre à jour la dépendance\nActiver l'occupation pour être toujours mis à jour si vrai",
-        "it": "core dipendenza\naggiornamento dipendenza\nAbilitare l'occupazione di essere sempre aggiornato se vero",
-        "es": "dependencia básica\ndependencia de actualización\nActivar ocupación para ser siempre actualizada si es verdad",
-        "pl": "zasadnicza zależność\naktualizacja zależności\nWłącz zawsze aktualizację obłożenia, jeśli jest prawdziwe",
-        "uk": "сердечник\nоновлення залежності\nУвімкнути можливість постійно оновлюватися, якщо правда",
-        "zh-cn": "核心依赖性\n更新依赖性\n启用若为真则总是更新占用"
       }
     },
     "messages": [

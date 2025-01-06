@@ -22,6 +22,9 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### 3.0.2 (2025-01-06)
+-   (simateck) corr WebSocket connection
+
 ### 3.0.1 (2025-01-04)
 -   (arteck) corr icon download
 
