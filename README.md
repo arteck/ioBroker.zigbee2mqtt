@@ -23,7 +23,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ## Changelog
 ### **WORK IN PROGRESS**
--   (arteck) corr illuminance
+-   (arteck) corr illuminance (del illuminance_raw)
 
 ### 3.0.2 (2025-01-06)
 -   (simateck) corr WebSocket connection
