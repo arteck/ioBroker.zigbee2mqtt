@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "news": {
+      "3.0.3": {
+        "en": "corr illuminance (del illuminance_raw)\nindicator.alarm.flood",
+        "de": "korr illuminance (del illuminance_raw)\nindikator.alarm.flood",
+        "ru": "коррозионная иллюминация (подлинный рисунок)\nindicator.alarm.flood",
+        "pt": "illuminance de corr (del illuminance_raw)\nindicador.alarm.flood",
+        "nl": "verlichtingssterkte (del verlichtingssterkte_raw)\nindicator.alarm.vloed",
+        "fr": "illuminance du corr (del illuminance_raw)\nindicateur.alarme.inondation",
+        "it": "illuminazione corr (del illuminance_raw)\nindicatore.alarm.flood",
+        "es": "iluminancia del corr (iluminación del dedo_raw)\nindicador.alarm.flood",
+        "pl": "krzak świetlny (del luminance _ raw)\nindicator.alarm.powódź",
+        "uk": "апошні\nіндикатор.alarm.flood",
+        "zh-cn": "corr 灯光( del 灯光_ raw)\n指标. alarm.flood"
+      },
       "3.0.2": {
         "en": "corr WebSocket connection",
         "de": "korr WebSocket Verbindung",
@@ -80,19 +93,6 @@
         "pl": "fix lint\naktualizacja zależności",
         "uk": "засупу 10 ток\nоновлення залежності",
         "zh-cn": "修正线\n更新依赖性"
-      },
-      "2.13.8": {
-        "en": "fix icon path",
-        "de": "iconpfad aktivieren",
-        "ru": "исправить значок",
-        "pt": "corrigir o caminho do ícone",
-        "nl": "pictogrampad herstellen",
-        "fr": "correction du chemin de l'icône",
-        "it": "corretto percorso icona",
-        "es": "fijar la ruta del icono",
-        "pl": "naprawić ścieżkę ikon",
-        "uk": "фіксувати шлях іконки",
-        "zh-cn": "修补图标路径"
       }
     },
     "messages": [
