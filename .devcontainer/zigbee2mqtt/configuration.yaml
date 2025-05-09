@@ -1,0 +1,55 @@
+homeassistant:
+  enabled: false
+frontend:
+  enabled: true
+  port: 8080
+  host: 0.0.0.0
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt:1883
+serial:
+  # Configure your serial adapter here
+  adapter: ember
+  port: tcp://192.168.0.17:6638
+  baudrate: 115200
+  disable_led: false
+  rtscts: true
+advanced:
+  pan_id: 31629
+  ext_pan_id:
+    - 221
+    - 221
+    - 221
+    - 221
+    - 221
+    - 221
+    - 221
+    - 221
+  channel: 11
+  network_key:
+    - 228
+    - 252
+    - 59
+    - 28
+    - 37
+    - 209
+    - 106
+    - 54
+    - 217
+    - 160
+    - 68
+    - 82
+    - 188
+    - 24
+    - 233
+    - 81
+  last_seen: ISO_8601_local
+  cache_state: false
+  output: json
+  transmit_power: 20
+  log_level: info
+device_options: {}
+availability:
+  enabled: true
+version: 4
+
