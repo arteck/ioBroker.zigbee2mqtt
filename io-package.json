@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.3",
+    "version": "3.0.4",
     "news": {
+      "3.0.4": {
+        "en": "update admin",
+        "de": "admin",
+        "ru": "обновление admin",
+        "pt": "atualização admin",
+        "nl": "admin bijwerken",
+        "fr": "mettre à jour l'administrateur",
+        "it": "aggiornamento",
+        "es": "actualización admin",
+        "pl": "aktualizacja admin",
+        "uk": "оновлення адмін",
+        "zh-cn": "更新管理员"
+      },
       "3.0.3": {
         "en": "corr illuminance (del illuminance_raw)\nindicator.alarm.flood",
         "de": "korr illuminance (del illuminance_raw)\nindikator.alarm.flood",
@@ -80,19 +93,6 @@
         "pl": "aktualizacja zależności\ndodaj dostępny obiekt dla grup",
         "uk": "оновлення залежності\nдодати доступний об'єкт для груп",
         "zh-cn": "更新依赖性\n为组添加可用对象"
-      },
-      "2.13.9": {
-        "en": "fix lint\nupdate dependecy",
-        "de": "lint zu entfernen\naktualisierung abhängigkeit",
-        "ru": "фиксация линта\nобновление",
-        "pt": "forro de correção\natualização",
-        "nl": "fix pluis\nafhankelijkheid bijwerken",
-        "fr": "fixer le lint\nmettre à jour la dépendance",
-        "it": "fissaggio lunetta\naggiornamento dipendenza",
-        "es": "\ndependencia de actualización",
-        "pl": "fix lint\naktualizacja zależności",
-        "uk": "засупу 10 ток\nоновлення залежності",
-        "zh-cn": "修正线\n更新依赖性"
       }
     },
     "messages": [
@@ -226,7 +226,7 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=5.1.13"
+        "admin": ">=6.6.14"
       }
     ]
   },

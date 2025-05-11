@@ -10,7 +10,11 @@
 		},
 		"connectionType": {
 			"label": "Select connection to Zigbee2MQTT",
-			"sm": 5,
+			"xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"type": "select",
 			"options": [
 				{
@@ -31,11 +35,21 @@
 		"spacer01": {
 			"type": "staticText",
 			"text": "",
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": true
 		},
 		"wsHeader": {
 			"type": "staticText",
 			"text": "Configure your Zigbee2MQTT connection",
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": true
 		},
 		"wsScheme": {
@@ -52,11 +66,21 @@
 				}
 			],
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'ws'"
 		},
 		"wsServerIP": {
 			"type": "text",
 			"label": "Websocket IP-Address",
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": false,
 			"hidden": "data.connectionType != 'ws'"
 		},
@@ -64,18 +88,33 @@
 			"type": "number",
 			"label": "Websocket Port",
 			"newLine": false,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'ws'"
 		},
 		"wsTokenEnabled": {
 			"type": "checkbox",
 			"label": "Use Auth-Token",
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'ws'"
 		},
 		"wsToken": {
 			"type": "password",
 			"label": "Auth-Token (special characters are not supported)",
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"lg": 5,
 			"hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
 		},
@@ -83,36 +122,66 @@
 			"type": "checkbox",
 			"label": "Create a dummy MQTT-Server for Zigbee2MQTT",
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'ws'"
 		},
 		"externalMqttServerIP": {
 			"type": "text",
 			"label": "External MQTT-Server IP-Address",
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'exmqtt'"
 		},
 		"externalMqttServerPort": {
 			"type": "number",
 			"label": "External MQTT-Server Port",
 			"newLine": false,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'exmqtt'"
 		},
 		"externalMqttServerCredentials": {
 			"type": "checkbox",
 			"label": "Use MQTT Credentials",
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.connectionType != 'exmqtt'"
 		},
 		"externalMqttServerUsername": {
 			"type": "text",
 			"label": "MQTT Username",
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
 		},
 		"externalMqttServerPassword": {
 			"type": "password",
 			"label": "MQTT Password",
 			"newLine": false,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"visible": true,
 			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
 		},
@@ -120,12 +189,22 @@
 			"type": "ip",
 			"label": "MQTT-Server IP-Address bind",
 			"listenOnAllPorts": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": true,
 			"hidden": "data.connectionType == 'exmqtt' || data.dummyMqtt == false && data.connectionType == 'ws'"
 		},
 		"mqttServerPort": {
 			"type": "number",
 			"label": "MQTT-Server Port",
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": false,
 			"hidden": "data.connectionType == 'exmqtt' || data.dummyMqtt == false && data.connectionType == 'ws'"
 		},
@@ -154,16 +233,31 @@
 					"value": "https"
 				}
 			],
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": true
 		},
 		"webUIServer": {
 			"type": "text",
 			"label": "WebUi Address",
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": false
 		},
 		"webUIPort": {
 			"type": "number",
 			"label": "WebUi Port",
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": false
 		},
 		"spacer03": {
@@ -237,6 +331,11 @@
 			"type": "number",
 			"label": "Size of the object icons in pixels",
 			"min": 8,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"newLine": true
 		},
 		"otherHeader": {
@@ -283,6 +382,11 @@
 				}
 			],
 			"newLine": true,
+      "xs": 12,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "xl": 4,
 			"hidden": "data.coordinatorCheck != true"
 		},
 		"coordinatorCheckCron": {
