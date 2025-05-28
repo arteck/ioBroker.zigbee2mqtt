@@ -25,6 +25,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 ### **WORK IN PROGRESS**
 -   (arteck) add additional folder for some devices (like smoke detector)
 -   (arteck) state.js cleanup
+-   (arteck) set available State to true if device message include last_seen status
 
 ### 3.0.4 (2025-05-11)
 -   (arteck) update admin

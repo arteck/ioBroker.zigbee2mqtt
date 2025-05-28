@@ -226,9 +226,10 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=7.4.10"
+        "admin": ">=6.6.14"
       }
-    ]
+    ],
+    "installedFrom": "iobroker.zigbee2mqtt@3.0.4"
   },
   "native": {
     "connectionType": "ws",
@@ -263,7 +264,8 @@
     "coordinatorCheck": false,
     "coordinatorCheckLogLvl": "info",
     "coordinatorCheckCron": "0 3 * * *",
-    "allwaysUpdateOccupancyState": false
+    "allwaysUpdateOccupancyState": false,
+    "allwaysUpdateAvailableState": false
   },
   "protectedNative": [
     "externalMqttServerPassword",
