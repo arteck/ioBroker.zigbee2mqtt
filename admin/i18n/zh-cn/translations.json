@@ -42,5 +42,6 @@
     "Automatic check for missing routers in the coordinator memory.": "自动检查协调器内存中丢失的路由器。",
     "With which log level should a negative search be logged?": "应该使用哪个日志级别来记录负面搜索？",
     "Time of the automatic check": "自动检查时间",
-    "More information": "更多信息"
+    "More information": "更多信息",
+    "Allways update available state when message included last_seen status": "当消息包含 last_seen 状态时，总是更新可用状态",
 }

@@ -42,5 +42,6 @@
     "Automatic check for missing routers in the coordinator memory.": "Автоматическая проверка отсутствия роутеров в памяти координатора.",
     "With which log level should a negative search be logged?": "На каком уровне журнала следует регистрировать отрицательный поиск?",
     "Time of the automatic check": "Время автоматической проверки",
-    "More information": "Больше информации"
+    "More information": "Больше информации",
+    "Allways update available state when message included last_seen status": "Всегда обновляйте доступное состояние, когда сообщение включает статус last_seen"
 }

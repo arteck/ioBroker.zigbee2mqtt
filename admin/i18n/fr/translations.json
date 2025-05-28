@@ -42,5 +42,6 @@
     "Automatic check for missing routers in the coordinator memory.": "Vérification automatique des routeurs manquants dans la mémoire du coordinateur.",
     "With which log level should a negative search be logged?": "Avec quel niveau de journalisation une recherche négative doit-elle être enregistrée ?",
     "Time of the automatic check": "Heure du contrôle automatique",
-    "More information": "Plus d'information"
+    "More information": "Plus d'information",
+    "Allways update available state when message included last_seen status": "Mettre à jour l'état disponible lorsque le message inclut le statut last_seen"
 }

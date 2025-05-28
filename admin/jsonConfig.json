@@ -212,11 +212,6 @@
 			"type": "staticText",
 			"text": "",
 			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"hidden": "data.connectionType == 'ws'"
 		},
 		"webUIHeader": {
@@ -268,42 +263,22 @@
 		"spacer03": {
 			"type": "staticText",
 			"text": "",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"colorHeader": {
 			"type": "header",
 			"text": "Color configurations",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"size": 2,
 			"newLine": true
 		},
 		"colorTempSyncColor": {
 			"type": "checkbox",
 			"label": "Color temperature sync with color",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"useKelvin": {
 			"type": "checkbox",
 			"label": "Use Kelvin instead of mired for the color temps",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"stateHeader": {
@@ -315,70 +290,40 @@
 		"simpleHoldReleaseState": {
 			"type": "checkbox",
 			"label": "Generate simple 'Hold' and 'Release' states",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"help": "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.",
 			"newLine": true
 		},
 		"simpleMoveStopState": {
 			"type": "checkbox",
 			"label": "Generate simple 'Move' and 'Stop' states",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"help": "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.",
 			"newLine": true
 		},
 		"simplePressReleaseState": {
 			"type": "checkbox",
 			"label": "Generate simple 'Press' and 'Release' states",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"help": "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.",
 			"newLine": true
 		},
 		"brightnessMoveOnOff": {
 			"type": "checkbox",
 			"label": "Brightness move should also turn the light on or off",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"brightnessStepOnOff": {
 			"type": "checkbox",
 			"label": "Brightness step should also turn the light on or off",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"imageHeader": {
 			"type": "header",
-			"text": "Device image configurations",      
+			"text": "Device image configurations",
 			"size": 2,
 			"newLine": true
 		},
 		"useDeviceIcons": {
 			"type": "checkbox",
 			"label": "Download device images from Zigbee2Mqtt and use them as object icons.",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"help": "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!",
 			"newLine": true
 		},
@@ -402,17 +347,13 @@
 		"coordinatorCheck": {
 			"type": "checkbox",
 			"label": "Automatic check for missing routers in the coordinator memory.",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"help": "More information",
 			"helpLink": "https://www.zigbee2mqtt.io/guide/usage/mqtt_topics_and_messages.html#zigbee2mqtt-bridge-request-coordinator-check",
 			"newLine": true
 		},
 		"coordinatorCheckLogLvl": {
 			"type": "select",
+			"sm": 3,
 			"label": "With which log level should a negative search be logged?",
 			"options": [
 				{
@@ -454,42 +395,23 @@
 			"help": "Default: 0 3 * * * (At 03:00 every day)",
 			"simple": true,
 			"newLine": true,
-			"xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
+			"sm": 3,
 			"hidden": "data.coordinatorCheck != true"
 		},
 		"spacer04": {
 			"type": "staticText",
 			"text": "",
 			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"hidden": "data.coordinatorCheck != true"
 		},
 		"proxyZ2MLogs": {
 			"type": "checkbox",
 			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"useEventInDesc": {
 			"type": "checkbox",
 			"label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
 			"newLine": true
 		},
 		"expertHeader": {
@@ -501,11 +423,11 @@
 		"allwaysUpdateOccupancyState": {
 			"type": "checkbox",
 			"label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
+			"newLine": true
+		},
+		"allwaysUpdateAvailableState": {
+			"type": "checkbox",
+			"label": "Allways update available state when message included last_seen status",
 			"newLine": true
 		}
 	}

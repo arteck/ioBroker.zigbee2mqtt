@@ -44,6 +44,7 @@
     "Time of the automatic check": "Zeitpunkt der automatischen Prüfung",
     "More information": "Mehr Informationen",
     "Expert Settings. Please only use if you know what you're doing": "Expert Einstellungen. Bitte nur verwenden, wenn Du weisst was du machst",
-  	"Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System" : "Aktualisiert immer den Status für die Bewegung, wenn eine Nachricht vom zigbee2mqtt-Server eintrifft (nur bei true). Erhöht die Last auf dem ioBroker"
+  	"Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System" : "Aktualisiert immer den Status für die Bewegung, wenn eine Nachricht vom zigbee2mqtt-Server eintrifft (nur bei true). Erhöht die Last auf dem ioBroker",
+    "Allways update available state when message included last_seen status": "Aktualisiert immer den available Status, wenn die Nachricht last_seen Status enthält"
 
 }
