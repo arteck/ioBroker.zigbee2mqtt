@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "news": {
+      "3.0.5": {
+        "en": "add additional folder for some devices (like smoke detector)\nstate.js cleanup\nset available State to true if device message include last_seen status",
+        "de": "zusätzliche ordner für einige geräte hinzufügen (wie rauchmelder)\nstate.js cleanup\neingestellt verfügbar Zustand, um wahr zu sein, wenn die Gerätenachricht last_seen status enthält",
+        "ru": "добавьте дополнительную папку для некоторых устройств (например, детектор дыма)\nочистка state.js\nустановленное состояние истинно, если сообщение устройства включает в себя статус last_seen",
+        "pt": "adicionar pasta adicional para alguns dispositivos (como detector de fumaça)\nlimpeza state.js\nset available Estado para true se a mensagem do dispositivo incluir status last_seen",
+        "nl": "extra map toevoegen voor sommige apparaten (zoals rookmelder)\nstate.js opruimen\nbeschikbare status instellen op true als apparaatbericht laatste_geziene status bevat",
+        "fr": "ajouter un dossier supplémentaire pour certains appareils (comme le détecteur de fumée)\nétat.js nettoyage\ndéfinir l'État disponible à true si le message de périphérique inclut le statut last_seen",
+        "it": "aggiungere cartella aggiuntiva per alcuni dispositivi (come rilevatore di fumo)\nstato.js pulizia\nse il messaggio del dispositivo include lo stato di last_seen",
+        "es": "añadir carpeta adicional para algunos dispositivos (como detector de humos)\nestado.js limpieza\nestado disponible para ver si el mensaje del dispositivo incluye el estado de último visto",
+        "pl": "dodaj dodatkowy folder dla niektórych urządzeń (np. czujnik dymu)\nstan. js cleanup\nustaw dostępny stan na true jeśli wiadomość urządzenia zawiera status last _ seen",
+        "uk": "додати додаткову папку для деяких пристроїв (наприклад, детектор диму)\nстан.js cleanup\nвстановити доступну державу, якщо повідомлення про пристрій включають статус останнього_seen",
+        "zh-cn": "为一些设备添加额外的文件夹( 如烟雾探测器)\n状态.js 清理\n如果设备消息包含最后的_ Seenn 状态, 将可用状态设定为 true"
+      },
       "3.0.4": {
         "en": "update admin",
         "de": "admin",
@@ -80,19 +93,6 @@
         "pl": "corr package.json",
         "uk": "english, українська, français..",
         "zh-cn": "corr 软件包.json"
-      },
-      "2.13.10": {
-        "en": "update dependecy\nadd available object for groups",
-        "de": "aktualisierung abhängigkeit\nobjekt für gruppen hinzufügen",
-        "ru": "обновление\nдобавить доступный объект для групп",
-        "pt": "atualização\nadicionar objeto disponível para grupos",
-        "nl": "afhankelijkheid bijwerken\nbeschikbaar object voor groepen toevoegen",
-        "fr": "mettre à jour la dépendance\najouter un objet disponible pour les groupes",
-        "it": "aggiornamento dipendenza\naggiungere oggetto disponibile per gruppi",
-        "es": "dependencia de actualización\nañadir objeto disponible para grupos",
-        "pl": "aktualizacja zależności\ndodaj dostępny obiekt dla grup",
-        "uk": "оновлення залежності\nдодати доступний об'єкт для груп",
-        "zh-cn": "更新依赖性\n为组添加可用对象"
       }
     },
     "messages": [
