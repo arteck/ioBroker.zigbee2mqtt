@@ -1,10 +1,12 @@
 {
+    "click for Documentation": "点击查看文档",
+    "A detailed documentation with explanations and all further information can be found on this GitHub page:": "有关更多信息，请参见 GitHub 页面上的详细说明和解释：",
     "zigbee2mqtt adapter settings": "zigbee2mqtt 的适配器设置",
     "Select and configure your Zigbee2MQTT connection": "选择并配置 Zigbee2MQTT 连接",
     "Select connection to Zigbee2MQTT": "选择与 Zigbee2MQTT 的连接",
     "Websocket": "网络套接字",
     "External MQTT-Server": "外部 MQTT 服务器",
-    "Internal MQTT-Server (Experimental)": "内部 MQTT 服务器（实验性）",
+    "Internal MQTT-Server": "内部 MQTT 服务器",
     "Configure your Zigbee2MQTT connection": "配置您的 Zigbee2MQTT 连接",
     "Websocket IP-Address": "Websocket IP 地址",
     "Websocket Port": "Websocket 端口",

@@ -1,10 +1,12 @@
 {
+    "click for Documentation": "kliknij, aby uzyskać dokumentację",
+    "A detailed documentation with explanations and all further information can be found on this GitHub page:": "Szczegółowa dokumentacja z wyjaśnieniami i wszystkimi dalszymi informacjami można znaleźć na tej stronie GitHub:",
     "zigbee2mqtt adapter settings": "Ustawienia adaptera dla zigbee2mqtt",
     "Select and configure your Zigbee2MQTT connection": "Wybierz i skonfiguruj połączenie Zigbee2MQTT",
     "Select connection to Zigbee2MQTT": "Wybierz połączenie z Zigbee2MQTT",
     "Websocket": "Gniazdo sieciowe",
     "External MQTT-Server": "Zewnętrzny serwer MQTT",
-    "Internal MQTT-Server (Experimental)": "Wewnętrzny serwer MQTT (eksperymentalny)",
+    "Internal MQTT-Server": "Wewnętrzny serwer MQTT",
     "Configure your Zigbee2MQTT connection": "Skonfiguruj połączenie Zigbee2MQTT",
     "Websocket IP-Address": "Adres IP gniazda internetowego",
     "Websocket Port": "Gniazdo sieciowe",

@@ -16,7 +16,7 @@
         },
         "_textStart": {
             "type": "staticText",
-            "text": "A detailed documentation with explanations and all further information can be found on this GitHub page:",
+            "text": "A detailed documentation with explanations and all further information can be found on this GitHub page",
             "xs": 12,
             "sm": 12,
             "md": 6,
@@ -26,7 +26,7 @@
                 "fontSize": 14,
                 "marginTop": 0
             }
-        },        
+        },
         "_documentationLink": {
             "type": "staticLink",
             "label": "click for Documentation",
@@ -66,7 +66,7 @@
               "value": "exmqtt"
             },
             {
-              "label": "Internal MQTT-Server (Experimental)",
+              "label": "Internal MQTT-Server",
               "value": "intmqtt"
             }
           ],
@@ -378,7 +378,7 @@
       "type": "panel",
       "label": "Other configurations",
       "items": {
-        
+
         "proxyZ2MLogs": {
           "type": "checkbox",
           "label": "Proxy Zigbee2MQTT logs to ioBroker logs",
@@ -460,7 +460,7 @@
           "newLine": true,
           "hidden": "data.coordinatorCheck != true"
         },
-        
+
         "allwaysUpdateOccupancyState": {
           "type": "checkbox",
           "label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
