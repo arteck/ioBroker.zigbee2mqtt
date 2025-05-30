@@ -1,434 +1,477 @@
 {
-	"i18n": true,
-	"type": "panel",
-	"items": {
-		"connectionHeader": {
-			"type": "header",
-			"text": "Select and configure your Zigbee2MQTT connection",
-			"size": 2,
-			"newLine": true
-		},
-		"connectionType": {
-			"label": "Select connection to Zigbee2MQTT",
-			"xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"type": "select",
-			"options": [
-				{
-					"label": "Websocket",
-					"value": "ws"
-				},
-				{
-					"label": "External MQTT-Server",
-					"value": "exmqtt"
-				},
-				{
-					"label": "Internal MQTT-Server (Experimental)",
-					"value": "intmqtt"
-				}
-			],
-			"newLine": true
-		},
-		"spacer01": {
-			"type": "staticText",
-			"text": "",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": true
-		},
-		"wsHeader": {
-			"type": "staticText",
-			"text": "Configure your Zigbee2MQTT connection",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": true
-		},
-		"wsScheme": {
-			"type": "select",
-			"label": "Scheme",
-			"options": [
-				{
-					"label": "WS",
-					"value": "ws"
-				},
-				{
-					"label": "WSS (SSL)",
-					"value": "wss"
-				}
-			],
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'ws'"
-		},
-		"wsServerIP": {
-			"type": "text",
-			"label": "Websocket IP-Address",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": false,
-			"hidden": "data.connectionType != 'ws'"
-		},
-		"wsServerPort": {
-			"type": "number",
-			"label": "Websocket Port",
-			"newLine": false,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'ws'"
-		},
-		"wsTokenEnabled": {
-			"type": "checkbox",
-			"label": "Use Auth-Token",
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'ws'"
-		},
-		"wsToken": {
-			"type": "password",
-			"label": "Auth-Token (special characters are not supported)",
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"lg": 5,
-			"hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
-		},
-		"dummyMqtt": {
-			"type": "checkbox",
-			"label": "Create a dummy MQTT-Server for Zigbee2MQTT",
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'ws'"
-		},
-		"externalMqttServerIP": {
-			"type": "text",
-			"label": "External MQTT-Server IP-Address",
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'exmqtt'"
-		},
-		"externalMqttServerPort": {
-			"type": "number",
-			"label": "External MQTT-Server Port",
-			"newLine": false,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'exmqtt'"
-		},
-		"externalMqttServerCredentials": {
-			"type": "checkbox",
-			"label": "Use MQTT Credentials",
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.connectionType != 'exmqtt'"
-		},
-		"externalMqttServerUsername": {
-			"type": "text",
-			"label": "MQTT Username",
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
-		},
-		"externalMqttServerPassword": {
-			"type": "password",
-			"label": "MQTT Password",
-			"newLine": false,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"visible": true,
-			"hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
-		},
-		"mqttServerIPBind": {
-			"type": "ip",
-			"label": "MQTT-Server IP-Address bind",
-			"listenOnAllPorts": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": true,
-			"hidden": "data.connectionType == 'exmqtt' || data.dummyMqtt == false && data.connectionType == 'ws'"
-		},
-		"mqttServerPort": {
-			"type": "number",
-			"label": "MQTT-Server Port",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": false,
-			"hidden": "data.connectionType == 'exmqtt' || data.dummyMqtt == false && data.connectionType == 'ws'"
-		},
-		"spacer02": {
-			"type": "staticText",
-			"text": "",
-			"newLine": true,
-			"hidden": "data.connectionType == 'ws'"
-		},
-		"webUIHeader": {
-			"type": "header",
-			"text": "Configure your Zigbee2MQTT WebUi connection",
-			"size": 2,
-			"newLine": true
-		},
-		"webUIScheme": {
-			"type": "select",
-			"label": "Scheme",
-			"options": [
-				{
-					"label": "HTTP",
-					"value": "http"
-				},
-				{
-					"label": "HTTPS",
-					"value": "https"
-				}
-			],
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": true
-		},
-		"webUIServer": {
-			"type": "text",
-			"label": "WebUi Address",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": false
-		},
-		"webUIPort": {
-			"type": "number",
-			"label": "WebUi Port",
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": false
-		},
-		"spacer03": {
-			"type": "staticText",
-			"text": "",
-			"newLine": true
-		},
-		"colorHeader": {
-			"type": "header",
-			"text": "Color configurations",
-			"size": 2,
-			"newLine": true
-		},
-		"colorTempSyncColor": {
-			"type": "checkbox",
-			"label": "Color temperature sync with color",
-			"newLine": true
-		},
-		"useKelvin": {
-			"type": "checkbox",
-			"label": "Use Kelvin instead of mired for the color temps",
-			"newLine": true
-		},
-		"stateHeader": {
-			"type": "header",
-			"text": "State configurations",
-			"size": 2,
-			"newLine": true
-		},
-		"simpleHoldReleaseState": {
-			"type": "checkbox",
-			"label": "Generate simple 'Hold' and 'Release' states",
-			"help": "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.",
-			"newLine": true
-		},
-		"simpleMoveStopState": {
-			"type": "checkbox",
-			"label": "Generate simple 'Move' and 'Stop' states",
-			"help": "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.",
-			"newLine": true
-		},
-		"simplePressReleaseState": {
-			"type": "checkbox",
-			"label": "Generate simple 'Press' and 'Release' states",
-			"help": "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.",
-			"newLine": true
-		},
-		"brightnessMoveOnOff": {
-			"type": "checkbox",
-			"label": "Brightness move should also turn the light on or off",
-			"newLine": true
-		},
-		"brightnessStepOnOff": {
-			"type": "checkbox",
-			"label": "Brightness step should also turn the light on or off",
-			"newLine": true
-		},
-		"imageHeader": {
-			"type": "header",
-			"text": "Device image configurations",
-			"size": 2,
-			"newLine": true
-		},
-		"useDeviceIcons": {
-			"type": "checkbox",
-			"label": "Download device images from Zigbee2Mqtt and use them as object icons.",
-			"help": "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!",
-			"newLine": true
-		},
-		"deviceIconsSize": {
-			"type": "number",
-			"label": "Size of the object icons in pixels",
-			"min": 8,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"newLine": true
-		},
-		"otherHeader": {
-			"type": "header",
-			"text": "Other configurations",
-			"size": 2,
-			"newLine": true
-		},
-		"coordinatorCheck": {
-			"type": "checkbox",
-			"label": "Automatic check for missing routers in the coordinator memory.",
-			"help": "More information",
-			"helpLink": "https://www.zigbee2mqtt.io/guide/usage/mqtt_topics_and_messages.html#zigbee2mqtt-bridge-request-coordinator-check",
-			"newLine": true
-		},
-		"coordinatorCheckLogLvl": {
-			"type": "select",
-			"sm": 3,
-			"label": "With which log level should a negative search be logged?",
-			"options": [
-				{
-					"label": {
-						"en": "Debug"
-					},
-					"value": "debug"
-				},
-				{
-					"label": {
-						"en": "Info"
-					},
-					"value": "info"
-				},
-				{
-					"label": {
-						"en": "Warning"
-					},
-					"value": "warn"
-				},
-				{
-					"label": {
-						"en": "Error"
-					},
-					"value": "error"
-				}
-			],
-			"newLine": true,
-      "xs": 12,
-      "sm": 12,
-      "md": 6,
-      "lg": 4,
-      "xl": 4,
-			"hidden": "data.coordinatorCheck != true"
-		},
-		"coordinatorCheckCron": {
-			"type": "cron",
-			"label": "Time of the automatic check",
-			"help": "Default: 0 3 * * * (At 03:00 every day)",
-			"simple": true,
-			"newLine": true,
-			"sm": 3,
-			"hidden": "data.coordinatorCheck != true"
-		},
-		"spacer04": {
-			"type": "staticText",
-			"text": "",
-			"newLine": true,
-			"hidden": "data.coordinatorCheck != true"
-		},
-		"proxyZ2MLogs": {
-			"type": "checkbox",
-			"label": "Proxy Zigbee2MQTT logs to ioBroker logs",
-			"newLine": true
-		},
-		"useEventInDesc": {
-			"type": "checkbox",
-			"label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
-			"newLine": true
-		},
-		"expertHeader": {
-			"type": "header",
-			"text": "Expert Settings. Please only use if you know what you're doing",
-			"size": 2,
-			"newLine": true
-		},
-		"allwaysUpdateOccupancyState": {
-			"type": "checkbox",
-			"label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
-			"newLine": true
-		},
-		"allwaysUpdateAvailableState": {
-			"type": "checkbox",
-			"label": "Allways update available state when message included last_seen status",
-			"newLine": true
-		}
-	}
+  "i18n": true,
+  "type": "tabs",
+  "tabsStyle": {
+    "width": "calc(100% - 100px)"
+  },
+  "items": {
+    "_tab_Start": {
+      "type": "panel",
+      "label": "Main Settings",
+      "items": {
+        "header_Start": {
+            "type": "header",
+            "text": "Welcome to Zigbee2MQTT Adapter",
+            "size": 2
+        },
+        "_textStart": {
+            "type": "staticText",
+            "text": "A detailed documentation with explanations and all further information can be found on this GitHub page:",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 4,
+            "xl": 4,
+            "style": {
+                "fontSize": 14,
+                "marginTop": 0
+            }
+        },        
+        "_documentationLink": {
+            "type": "staticLink",
+            "label": "click for Documentation",
+            "button": true,
+            "href": "https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md",
+            "xs": 12,
+            "sm": 12,
+            "md": 6,
+            "lg": 4,
+            "xl": 4,
+            "style": {
+                "fontSize": 18,
+                "marginTop": 0
+            }
+        },
+        "connectionHeader": {
+          "type": "header",
+          "text": "Select and configure your Zigbee2MQTT connection",
+          "size": 2,
+          "newLine": true
+        },
+        "connectionType": {
+          "label": "Select connection to Zigbee2MQTT",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "type": "select",
+          "options": [
+            {
+              "label": "Websocket",
+              "value": "ws"
+            },
+            {
+              "label": "External MQTT-Server",
+              "value": "exmqtt"
+            },
+            {
+              "label": "Internal MQTT-Server (Experimental)",
+              "value": "intmqtt"
+            }
+          ],
+          "newLine": true
+        },
+        "spacer01": {
+          "type": "staticText",
+          "text": "",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "wsHeader": {
+          "type": "staticText",
+          "text": "Configure your Zigbee2MQTT connection",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "wsScheme": {
+          "type": "select",
+          "label": "Scheme",
+          "options": [
+            {
+              "label": "WS",
+              "value": "ws"
+            },
+            {
+              "label": "WSS (SSL)",
+              "value": "wss"
+            }
+          ],
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'ws'"
+        },
+        "wsServerIP": {
+          "type": "text",
+          "label": "Websocket IP-Address",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": false,
+          "hidden": "data.connectionType != 'ws'"
+        },
+        "wsServerPort": {
+          "type": "number",
+          "label": "Websocket Port",
+          "newLine": false,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'ws'"
+        },
+        "wsTokenEnabled": {
+          "type": "checkbox",
+          "label": "Use Auth-Token",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'ws'"
+        },
+        "wsToken": {
+          "type": "password",
+          "label": "Auth-Token (special characters are not supported)",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 5,
+          "xl": 4,
+          "hidden": "data.wsTokenEnabled != true || data.connectionType != 'ws'"
+        },
+        "dummyMqtt": {
+          "type": "checkbox",
+          "label": "Create a dummy MQTT-Server for Zigbee2MQTT",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'ws'"
+        },
+        "externalMqttServerIP": {
+          "type": "text",
+          "label": "External MQTT-Server IP-Address",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'exmqtt'"
+        },
+        "externalMqttServerPort": {
+          "type": "number",
+          "label": "External MQTT-Server Port",
+          "newLine": false,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'exmqtt'"
+        },
+        "externalMqttServerCredentials": {
+          "type": "checkbox",
+          "label": "Use MQTT Credentials",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType != 'exmqtt'"
+        },
+        "externalMqttServerUsername": {
+          "type": "text",
+          "label": "MQTT Username",
+          "newLine": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
+        },
+        "externalMqttServerPassword": {
+          "type": "password",
+          "label": "MQTT Password",
+          "newLine": false,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "visible": true,
+          "hidden": "data.externalMqttServerCredentials != true ||data.connectionType != 'exmqtt'"
+        },
+        "mqttServerIPBind": {
+          "type": "ip",
+          "label": "MQTT-Server IP-Address bind",
+          "listenOnAllPorts": true,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true,
+          "hidden": "data.connectionType == 'exmqtt' || data.dummyMqtt == false && data.connectionType == 'ws'"
+        },
+        "mqttServerPort": {
+          "type": "number",
+          "label": "MQTT-Server Port",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": false,
+          "hidden": "data.connectionType == 'exmqtt' || data.dummyMqtt == false && data.connectionType == 'ws'"
+        },
+        "spacer02": {
+          "type": "staticText",
+          "text": "",
+          "newLine": true,
+          "hidden": "data.connectionType == 'ws'"
+        },
+        "webUIHeader": {
+          "type": "header",
+          "text": "Configure your Zigbee2MQTT WebUi connection",
+          "size": 2,
+          "newLine": true
+        },
+        "webUIScheme": {
+          "type": "select",
+          "label": "Scheme",
+          "options": [
+            {
+              "label": "HTTP",
+              "value": "http"
+            },
+            {
+              "label": "HTTPS",
+              "value": "https"
+            }
+          ],
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "webUIServer": {
+          "type": "text",
+          "label": "WebUi Address",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": false
+        },
+        "webUIPort": {
+          "type": "number",
+          "label": "WebUi Port",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": false
+        }
+      }
+    },
+    "_tab_Color Settings": {
+      "type": "panel",
+      "label": "Color configurations",
+      "items": {
+        "colorTempSyncColor": {
+          "type": "checkbox",
+          "label": "Color temperature sync with color",
+          "newLine": true
+        },
+        "useKelvin": {
+          "type": "checkbox",
+          "label": "Use Kelvin instead of mired for the color temps",
+          "newLine": true
+        }
+      }
+    },
+    "_tab_State Settings": {
+      "type": "panel",
+      "label": "State configurations",
+      "items": {
+        "simpleHoldReleaseState": {
+          "type": "checkbox",
+          "label": "Generate simple 'Hold' and 'Release' states",
+          "help": "When enabled, the 'Hold' and 'Release' states are combined and the 'Hold' data point remains true until the 'Release' event arrives.",
+          "newLine": true
+        },
+        "simpleMoveStopState": {
+          "type": "checkbox",
+          "label": "Generate simple 'Move' and 'Stop' states",
+          "help": "When enabled, the 'Move' and 'Stop' states are combined and the 'Move' data point remains true until the 'Stop' event arrives.",
+          "newLine": true
+        },
+        "simplePressReleaseState": {
+          "type": "checkbox",
+          "label": "Generate simple 'Press' and 'Release' states",
+          "help": "When enabled, the 'Press' and 'Release' states are combined and the 'Press' data point remains true until the 'Release' event arrives.",
+          "newLine": true
+        },
+        "brightnessMoveOnOff": {
+          "type": "checkbox",
+          "label": "Brightness move should also turn the light on or off",
+          "newLine": true
+        },
+        "brightnessStepOnOff": {
+          "type": "checkbox",
+          "label": "Brightness step should also turn the light on or off",
+          "newLine": true
+        }
+      }
+    },
+    "_tab_Image Settings": {
+      "type": "panel",
+      "label": "Device image configurations",
+      "items": {
+        "useDeviceIcons": {
+          "type": "checkbox",
+          "label": "Download device images from Zigbee2Mqtt and use them as object icons.",
+          "help": "If the size is later changed to a larger value, the images already downloaded must be deleted. <br> Please note that icons are stored in the object and should therefore not be unnecessarily large!",
+          "newLine": true
+        },
+        "deviceIconsSize": {
+          "type": "number",
+          "label": "Size of the object icons in pixels",
+          "min": 8,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        }
+      }
+    },
+    "_tab_Other Settings": {
+      "type": "panel",
+      "label": "Other configurations",
+      "items": {
+        
+        "proxyZ2MLogs": {
+          "type": "checkbox",
+          "label": "Proxy Zigbee2MQTT logs to ioBroker logs",
+          "newLine": true
+        },
+        "useEventInDesc": {
+          "type": "checkbox",
+          "label": "The events such as 'Device removed' or 'Disabled' are displayed in the description instead of in the name.",
+          "newLine": true
+        }
+      }
+    },
+    "_tab_Expert Settings": {
+      "type": "panel",
+      "label": "Expert configurations",
+      "items": {
+        "expertHeader": {
+          "type": "header",
+          "text": "Expert Settings. Please only use if you know what you're doing",
+          "size": 2,
+          "newLine": true
+        },
+        "coordinatorCheck": {
+          "type": "checkbox",
+          "label": "Automatic check for missing routers in the coordinator memory.",
+          "help": "More information",
+          "helpLink": "https://www.zigbee2mqtt.io/guide/usage/mqtt_topics_and_messages.html#zigbee2mqtt-bridge-request-coordinator-check",
+          "newLine": true
+        },
+        "coordinatorCheckLogLvl": {
+          "type": "select",
+          "sm": 12,
+          "label": "With which log level should a negative search be logged?",
+          "options": [
+            {
+              "label": {
+                "en": "Debug"
+              },
+              "value": "debug"
+            },
+            {
+              "label": {
+                "en": "Info"
+              },
+              "value": "info"
+            },
+            {
+              "label": {
+                "en": "Warning"
+              },
+              "value": "warn"
+            },
+            {
+              "label": {
+                "en": "Error"
+              },
+              "value": "error"
+            }
+          ],
+          "newLine": true,
+          "xs": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.coordinatorCheck != true"
+        },
+        "coordinatorCheckCron": {
+          "type": "cron",
+          "label": "Time of the automatic check",
+          "help": "Default: 0 3 * * * (At 03:00 every day)",
+          "simple": true,
+          "newLine": true,
+          "sm": 3,
+          "hidden": "data.coordinatorCheck != true"
+        },
+        "spacer04": {
+          "type": "staticText",
+          "text": "",
+          "newLine": true,
+          "hidden": "data.coordinatorCheck != true"
+        },
+        
+        "allwaysUpdateOccupancyState": {
+          "type": "checkbox",
+          "label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+          "newLine": true
+        },
+        "allwaysUpdateAvailableState": {
+          "type": "checkbox",
+          "label": "Allways update available state when message included last_seen status",
+          "newLine": true
+        }
+      }
+    }
+  }
 }
