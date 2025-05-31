@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "news": {
+      "3.0.6": {
+        "en": "settings restructure\nfix icon not found message",
+        "de": "einstellungen restrukturieren\nsymbol nicht gefunden",
+        "ru": "реструктуризация настроек\nисправить иконку не найдено сообщение",
+        "pt": "reestruturação de configurações\ncorrigir ícone não encontrado mensagem",
+        "nl": "instellingen herstructureren\npictogram niet gevonden bericht herstellen",
+        "fr": "restructuration des paramètres\ncorrection icône non trouvée message",
+        "it": "installazione\nfix icona non trovato messaggio",
+        "es": "configuración de reestructuración\nfijar icono no encontrado mensaje",
+        "pl": "restrukturyzacja ustawień\nnie znaleziono ikony",
+        "uk": "реструктуризація параметрів\nне знайдено повідомлення",
+        "zh-cn": "设置调整\n未找到消息的修复图标"
+      },
       "3.0.5": {
         "en": "add additional folder for some devices (like smoke detector)\nstate.js cleanup\nset available State to true if device message include last_seen status",
         "de": "zusätzliche ordner für einige geräte hinzufügen (wie rauchmelder)\nstate.js cleanup\neingestellt verfügbar Zustand, um wahr zu sein, wenn die Gerätenachricht last_seen status enthält",
@@ -80,19 +93,6 @@
         "pl": "adaptacja z2m 2.x",
         "uk": "адаптація z2m 2.x",
         "zh-cn": "适应z2m 2.x"
-      },
-      "2.13.11": {
-        "en": "corr package.json",
-        "de": "korr paket.json",
-        "ru": "коррек-пакет.json",
-        "pt": "corr pacote.json",
-        "nl": "corr package.json",
-        "fr": "c'est ce qu'il a dit",
-        "it": "pacchetto corr.json",
-        "es": "corr package.json",
-        "pl": "corr package.json",
-        "uk": "english, українська, français..",
-        "zh-cn": "corr 软件包.json"
       }
     },
     "messages": [
