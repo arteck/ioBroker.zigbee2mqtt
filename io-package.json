@@ -228,8 +228,7 @@
       {
         "admin": ">=6.6.14"
       }
-    ],
-    "installedFrom": "iobroker.zigbee2mqtt@3.0.4"
+    ]
   },
   "native": {
     "connectionType": "ws",
