@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.6",
+    "version": "3.0.7",
     "news": {
+      "3.0.7": {
+        "en": "fix jsconconf",
+        "de": "fix jsconf",
+        "ru": "исправить jsconconf",
+        "pt": "corrigir jsconconf",
+        "nl": "jsconconf repareren",
+        "fr": "corriger jsconconf",
+        "it": "correzione jsconconf",
+        "es": "jsconf",
+        "pl": "fix jsconconf",
+        "uk": "закріпити jsconconf",
+        "zh-cn": "修复 jsconconconf"
+      },
       "3.0.6": {
         "en": "settings restructure\nfix icon not found message",
         "de": "einstellungen restrukturieren\nsymbol nicht gefunden",
@@ -80,19 +93,6 @@
         "pl": "pobierz ikonę corr",
         "uk": "cкачати ігру corr",
         "zh-cn": "corr 图标下载"
-      },
-      "3.0.0": {
-        "en": "adaptation z2m 2.x",
-        "de": "anpassung z2m 2.x",
-        "ru": "адаптация z2m 2.x",
-        "pt": "adaptação z2m 2.x",
-        "nl": "aanpassing z2m 2.x",
-        "fr": "adaptation z2m 2.x",
-        "it": "adattamento z2m 2.x",
-        "es": "adaptación z2m 2.x",
-        "pl": "adaptacja z2m 2.x",
-        "uk": "адаптація z2m 2.x",
-        "zh-cn": "适应z2m 2.x"
       }
     },
     "messages": [
@@ -226,7 +226,7 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=6.6.14"
+        "admin": ">=7.4.10"
       }
     ]
   },
