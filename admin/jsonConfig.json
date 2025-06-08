@@ -250,6 +250,11 @@
         "spacer02": {
           "type": "staticText",
           "text": "",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
           "newLine": true,
           "hidden": "data.connectionType == 'ws'"
         },
@@ -516,6 +521,11 @@
         "spacer04": {
           "type": "staticText",
           "text": "",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12,
           "newLine": true,
           "hidden": "data.coordinatorCheck != true"
         },
