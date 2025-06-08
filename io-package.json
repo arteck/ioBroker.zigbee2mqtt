@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.7",
+    "version": "3.0.8",
     "news": {
+      "3.0.8": {
+        "en": "fix device is deleted\nfix translation",
+        "de": "fix device wird gelöscht\nbersetzung",
+        "ru": "фиксировать устройство удалено\nперевод",
+        "pt": "dispositivo de correção é excluído\ncorrigir tradução",
+        "nl": "fix apparaat wordt verwijderd\nfix vertaling",
+        "fr": "le dispositif de correction est supprimé\ncorriger la traduction",
+        "it": "dispositivo di correzione viene eliminato\ncorrezione della traduzione",
+        "es": "dispositivo de solución se elimina\ntraducción",
+        "pl": "urządzenie naprawcze zostaje usunięte\ntłumaczenie",
+        "uk": "видалити пристрій\nфіксувати переклад",
+        "zh-cn": "固定设备被删除\n固定翻译"
+      },
       "3.0.7": {
         "en": "fix jsconconf",
         "de": "fix jsconf",
@@ -80,19 +93,6 @@
         "pl": "połączenie corr WebSocket",
         "uk": "корр WebSocket підключення",
         "zh-cn": "corr WebSocket 连接"
-      },
-      "3.0.1": {
-        "en": "corr icon download",
-        "de": "corr icon herunterladen",
-        "ru": "скачать значок",
-        "pt": "corrimento ícone download",
-        "nl": "corr pictogramdownload",
-        "fr": "corr icon télécharger",
-        "it": "icona corr scaricare",
-        "es": "corr icono descargar",
-        "pl": "pobierz ikonę corr",
-        "uk": "cкачати ігру corr",
-        "zh-cn": "corr 图标下载"
       }
     },
     "messages": [
