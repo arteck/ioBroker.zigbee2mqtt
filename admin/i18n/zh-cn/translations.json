@@ -46,6 +46,6 @@
   "Time of the automatic check": "自动检查时间",
   "More information": "更多信息",
   "Expert Settings. Please only use if you know what you're doing": "专家设置。请仅在您清楚操作的情况下使用",
-  "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "当来自 zigbee2mqtt 服务器的消息到达时始终更新占用状态（仅限为 true 的状态）。会增加 ioBroker 系统负载",
-  "Allways update available state when message included last_seen status": "当消息包含 last_seen 状态时始终更新可用状态"
+  "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "当来自 zigbee2mqtt 服务器的消息到达时始终更新占用状态（仅限为 true 的状态）。会增加 ioBroker 系统负载",
+  "Always update available state when message included last_seen status": "当消息包含 last_seen 状态时始终更新可用状态"
 }

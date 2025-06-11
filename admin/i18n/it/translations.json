@@ -45,5 +45,5 @@
     "With which log level should a negative search be logged?": "Con quale livello di registro deve essere registrata una ricerca negativa?",
     "Time of the automatic check": "Orario del controllo automatico",
     "More information": "Maggiori informazioni",
-    "Allways update available state when message included last_seen status": "Aggiorna sempre lo stato disponibile quando il messaggio include lo stato last_seen"
+    "Always update available state when message included last_seen status": "Aggiorna sempre lo stato disponibile quando il messaggio include lo stato last_seen"
 }
