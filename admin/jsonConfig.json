@@ -532,7 +532,7 @@
 
         "allwaysUpdateOccupancyState": {
           "type": "checkbox",
-          "label": "Allways update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+          "label": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
           "xs": 12,
           "sm": 12,
           "md": 12,
@@ -542,7 +542,7 @@
         },
         "allwaysUpdateAvailableState": {
           "type": "checkbox",
-          "label": "Allways update available state when message included last_seen status",
+          "label": "Always update available state when message included last_seen status",
           "xs": 12,
           "sm": 12,
           "md": 12,

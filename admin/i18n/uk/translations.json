@@ -45,5 +45,5 @@
     "With which log level should a negative search be logged?": "На якому рівні журналу слід реєструвати негативний пошук?",
     "Time of the automatic check": "Час автоматичної перевірки",
     "More information": "Більше інформації",
-    "Allways update available state when message included last_seen status": "Завжди оновлюйте доступний стан, коли повідомлення містить статус last_seen"
+    "Always update available state when message included last_seen status": "Завжди оновлюйте доступний стан, коли повідомлення містить статус last_seen"
 }
