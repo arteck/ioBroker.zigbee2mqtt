@@ -131,7 +131,7 @@ class Zigbee2mqtt extends core.Adapter {
                 );
             });
 
-            mqttClient.subscribe('zigbee2mqtt/#');
+            mqttClient.subscribe(`${this.config.baseTopic}/#`);
 
             mqttClient.on('message', (topic, payload) => {
                 const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
@@ -371,7 +371,7 @@ class Zigbee2mqtt extends core.Adapter {
             const message = (await z2mController.createZ2MMessage(id, state)) || { topic: '', payload: '' };
 
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
-                mqttClient.publish(`zigbee2mqtt/${message.topic}`, JSON.stringify(message.payload));
+                mqttClient.publish(`${this.config.baseTopic}/${message.topic}`, JSON.stringify(message.payload));
             } else if (this.config.connectionType == 'ws') {
                 websocketController.send(JSON.stringify(message));
             }

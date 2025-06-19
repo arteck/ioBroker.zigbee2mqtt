@@ -13,6 +13,7 @@
   "Use Auth-Token": "使用认证令牌",
   "Auth-Token (special characters are not supported)": "认证令牌（不支持特殊字符）",
   "Create a dummy MQTT-Server for Zigbee2MQTT": "为 Zigbee2MQTT 创建虚拟 MQTT 服务器",
+  "Base MQTT topic": "MQTT 基础主题",
   "External MQTT-Server IP-Address": "外部 MQTT 服务器 IP 地址",
   "External MQTT-Server Port": "外部 MQTT 服务器端口",
   "MQTT-Server IP-Address bind": "MQTT 服务器绑定的 IP 地址",

@@ -13,6 +13,7 @@
     "Use Auth-Token": "Використовуйте Auth-Token",
     "Auth-Token (special characters are not supported)": "Auth-Token (спеціальні символи не підтримуються)",
     "Create a dummy MQTT-Server for Zigbee2MQTT": "Створіть фіктивний MQTT-сервер для Zigbee2MQTT",
+    "Base MQTT topic": "Базова тема MQTT",
     "External MQTT-Server IP-Address": "IP-адреса зовнішнього MQTT-сервера",
     "External MQTT-Server Port": "Зовнішній порт MQTT-сервера",
     "MQTT-Server IP-Address bind": "Прив’язка IP-адреси MQTT-сервера",

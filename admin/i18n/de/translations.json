@@ -11,6 +11,7 @@
     "Websocket IP-Address": "Websocket IP-Adresse",
     "Websocket Port": "Websocket Port",
     "Create a dummy MQTT-Server for Zigbee2MQTT": "Internen MQTT-Server für Zigbee2MQTT erstellen",
+    "Base MQTT topic": "MQTT Basis-Topic",
     "External MQTT-Server IP-Address": "IP-Adresse des externen MQTT-Servers",
     "External MQTT-Server Port": "Externer MQTT-Server Port",
     "MQTT-Server IP-Address bind": "MQTT-Server IP-Adresse binden",

@@ -72,6 +72,17 @@
           ],
           "newLine": true
         },
+        "baseTopic": {
+          "type": "text",
+          "label": "Base MQTT topic",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "default": "zigbee2mqtt",
+          "newLine": true
+        },
         "spacer01": {
           "type": "staticText",
           "text": "",

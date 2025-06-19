@@ -13,6 +13,7 @@
     "Use Auth-Token": "Usar token de autenticación",
     "Auth-Token (special characters are not supported)": "Auth-Token (los caracteres especiales no son compatibles)",
     "Create a dummy MQTT-Server for Zigbee2MQTT": "Cree un servidor MQTT ficticio para Zigbee2MQTT",
+    "Base MQTT topic": "Tema base MQTT",
     "External MQTT-Server IP-Address": "Dirección IP del servidor MQTT externo",
     "External MQTT-Server Port": "Puerto de servidor MQTT externo",
     "MQTT-Server IP-Address bind": "Enlace de dirección IP del servidor MQTT",
