@@ -45,5 +45,5 @@
     "With which log level should a negative search be logged?": "Met welk logniveau moet een negatieve zoekopdracht worden geregistreerd?",
     "Time of the automatic check": "Tijdstip van de automatische controle",
     "More information": "Meer informatie",
-    "Allways update available state when message included last_seen status": "Altijd de beschikbare status bijwerken wanneer het bericht de last_seen-status bevat"
+    "Always update available state when message included last_seen status": "Altijd de beschikbare status bijwerken wanneer het bericht de last_seen-status bevat"
 }
