@@ -32,6 +32,8 @@ let z2mController;
 let websocketController;
 let mqttServerController;
 
+let messageParseMutex = Promise.resolve();
+
 class Zigbee2mqtt extends core.Adapter {
     constructor(options) {
         super({
@@ -177,107 +179,118 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async messageParse(message) {
-        // If the MQTT output type is set to attribute_and_json, the non-valid JSON must be checked here.
-        if (utils.isJson(message) == false) {
-            return;
-        }
+        // Mutex lock: queue up calls to messageParse
+        let release;
+        const lock = new Promise((resolve) => (release = resolve));
+        const prev = messageParseMutex;
+        messageParseMutex = lock;
+        await prev;
+        try {
+            // If the MQTT output type is set to attribute_and_json, the non-valid JSON must be checked here.
+            if (utils.isJson(message) == false) {
+                return;
+            }
 
-        const messageObj = JSON.parse(message);
+            const messageObj = JSON.parse(message);
 
-        switch (messageObj.topic) {
-            case 'bridge/config':
-                break;
-            case 'bridge/info':
-                if (showInfo) {
-                    zigbee2mqttInfo(messageObj.payload, this.log);
-                    checkConfig(messageObj.payload.config, this.log, messageObj.payload.version);
-                    showInfo = false;
-                }
-                break;
-            case 'bridge/state':
-                if (messageObj.payload.state != 'online') {
-                    statesController.setAllAvailableToFalse();
-                }
-                this.setStateChanged('info.connection', messageObj.payload.state == 'online', true);
-                break;
-            case 'bridge/devices':
-                await deviceController.createDeviceDefinitions(messageObj.payload);
-                await deviceController.createOrUpdateDevices();
-                await deviceController.checkAndProgressDeviceRemove();
-                await statesController.subscribeWritableStates();
-                statesController.processQueue();
-                break;
-            case 'bridge/groups':
-                await deviceController.createGroupDefinitions(messageObj.payload);
-                await deviceController.createOrUpdateDevices();
-                await statesController.subscribeWritableStates();
-                statesController.processQueue();
-                break;
-            case 'bridge/event':
-                break;
-            case 'bridge/response/coordinator_check':
-                deviceController.processCoordinatorCheck(messageObj.payload);
-                break;
-            case 'bridge/response/device/remove':
-                break;
-            case 'bridge/response/device/options':
-                break;
-            case 'bridge/response/permit_join':
-                break;
-            case 'bridge/extensions':
-                break;
-            case 'bridge/logging':
-                if (this.config.proxyZ2MLogs == true) {
-                    z2mController.proxyZ2MLogs(messageObj);
-                }
-                break;
-            case 'bridge/response/device/configure':
-                break;
-            case 'bridge/response/device/rename':
-                await deviceController.renameDeviceInCache(messageObj);
-                await deviceController.createOrUpdateDevices();
-                statesController.processQueue();
-                break;
-            case 'bridge/response/networkmap':
-                break;
-            case 'bridge/response/touchlink/scan':
-                break;
-            case 'bridge/response/touchlink/identify':
-                break;
-            case 'bridge/response/touchlink/factory_reset':
-                break;
-            default:
-                {
-                    // is the payload an availability status?
-                    if (messageObj.topic.endsWith('/availability')) {
-                        // If an availability message for an old device ID comes with a payload of NULL, this is the indicator that a device has been unnamed.
-                        if (messageObj.payload == 'null') {
-                            return;
-                        }
-                        // is it a viable payload?
-                        if (messageObj.payload && messageObj.payload.state) {
-                            // {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
-                            const newMessage = {
-                                payload: { available: messageObj.payload.state == 'online' },
-                                topic: messageObj.topic.replace('/availability', ''),
-                            };
-                            statesController.processDeviceMessage(newMessage);
-                        }
-                        // States
-                    } else {
-                        // With the MQTT output type attribute_and_json, primitive payloads arrive here that must be discarded.
-                        if (utils.isObject(messageObj.payload) == false) {
-                            return;
-                        }
-                        // If MQTT is used, I have to filter the self-sent 'set' commands.
-                        if (messageObj.topic.endsWith('/set')) {
-                            return;
-                        }
-
-                        statesController.processDeviceMessage(messageObj);
+            switch (messageObj.topic) {
+                case 'bridge/config':
+                    break;
+                case 'bridge/info':
+                    if (showInfo) {
+                        zigbee2mqttInfo(messageObj.payload, this.log);
+                        checkConfig(messageObj.payload.config, this.log, messageObj.payload.version);
+                        showInfo = false;
                     }
-                }
-                break;
+                    break;
+                case 'bridge/state':
+                    if (messageObj.payload.state != 'online') {
+                        statesController.setAllAvailableToFalse();
+                    }
+                    this.setStateChanged('info.connection', messageObj.payload.state == 'online', true);
+                    break;
+                case 'bridge/devices':
+                    await deviceController.createDeviceDefinitions(messageObj.payload);
+                    await deviceController.createOrUpdateDevices();
+                    await deviceController.checkAndProgressDeviceRemove();
+                    await statesController.subscribeWritableStates();
+                    statesController.processQueue();
+                    break;
+                case 'bridge/groups':
+                    await deviceController.createGroupDefinitions(messageObj.payload);
+                    await deviceController.createOrUpdateDevices();
+                    await statesController.subscribeWritableStates();
+                    statesController.processQueue();
+                    break;
+                case 'bridge/event':
+                    break;
+                case 'bridge/response/coordinator_check':
+                    deviceController.processCoordinatorCheck(messageObj.payload);
+                    break;
+                case 'bridge/response/device/remove':
+                    break;
+                case 'bridge/response/device/options':
+                    break;
+                case 'bridge/response/permit_join':
+                    break;
+                case 'bridge/extensions':
+                    break;
+                case 'bridge/logging':
+                    if (this.config.proxyZ2MLogs == true) {
+                        z2mController.proxyZ2MLogs(messageObj);
+                    }
+                    break;
+                case 'bridge/response/device/configure':
+                    break;
+                case 'bridge/response/device/rename':
+                    await deviceController.renameDeviceInCache(messageObj);
+                    await deviceController.createOrUpdateDevices();
+                    statesController.processQueue();
+                    break;
+                case 'bridge/response/networkmap':
+                    break;
+                case 'bridge/response/touchlink/scan':
+                    break;
+                case 'bridge/response/touchlink/identify':
+                    break;
+                case 'bridge/response/touchlink/factory_reset':
+                    break;
+                default:
+                    {
+                        // is the payload an availability status?
+                        if (messageObj.topic.endsWith('/availability')) {
+                            // If an availability message for an old device ID comes with a payload of NULL, this is the indicator that a device has been unnamed.
+                            if (messageObj.payload == 'null') {
+                                return;
+                            }
+                            // is it a viable payload?
+                            if (messageObj.payload && messageObj.payload.state) {
+                                // {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
+                                const newMessage = {
+                                    payload: { available: messageObj.payload.state == 'online' },
+                                    topic: messageObj.topic.replace('/availability', ''),
+                                };
+
+                                statesController.processDeviceMessage(newMessage);
+                            }
+                            // States
+                        } else {
+                            // With the MQTT output type attribute_and_json, primitive payloads arrive here that must be discarded.
+                            if (utils.isObject(messageObj.payload) == false) {
+                                return;
+                            }
+                            // If MQTT is used, I have to filter the self-sent 'set' commands.
+                            if (messageObj.topic.endsWith('/set')) {
+                                return;
+                            }
+
+                            statesController.processDeviceMessage(messageObj);
+                        }
+                    }
+                    break;
+            }
+        } finally {
+            release();
         }
     }
 
