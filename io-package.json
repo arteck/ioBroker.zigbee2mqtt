@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.8",
+    "version": "3.0.9",
     "news": {
+      "3.0.9": {
+        "en": "queue up message parsing\nSupport for non-default MQTT base topics",
+        "de": "nachrichtenparsing löschen\nUnterstützung für nicht-Standard-MQTT-Basisthemen",
+        "ru": "очередь сообщения парсинг\nПоддержка базовых тем MQTT без по умолчанию",
+        "pt": "processamento de mensagens em fila\nSuporte para tópicos de base MQTT não padrão",
+        "nl": "wachtrij bericht ontleden\nOndersteuning voor niet-standaard MQTT-basisonderwerpen",
+        "fr": "analyse des messages en attente\nPrise en charge des sujets de base MQTT non par défaut",
+        "it": "code up messaggio parsing\nSupporto per argomenti di base MQTT non di default",
+        "es": "mensaje de búsqueda\nApoyo a los temas básicos de MQTT no predeterminados",
+        "pl": "kolejka w górę wiadomości parsing\nWsparcie dla niedomyślnych tematów bazowych MQTT",
+        "uk": "чергування повідомлень\nПідтримка нерозголошення MQTT базових тем",
+        "zh-cn": "排队分析信件\n支持非默认 MQTT 基础主题"
+      },
       "3.0.8": {
         "en": "fix device is deleted\nfix translation",
         "de": "fix device wird gelöscht\nbersetzung",
@@ -80,19 +93,6 @@
         "pl": "krzak świetlny (del luminance _ raw)\nindicator.alarm.powódź",
         "uk": "апошні\nіндикатор.alarm.flood",
         "zh-cn": "corr 灯光( del 灯光_ raw)\n指标. alarm.flood"
-      },
-      "3.0.2": {
-        "en": "corr WebSocket connection",
-        "de": "korr WebSocket Verbindung",
-        "ru": "гофровое соединение WebSocket",
-        "pt": "conexão da WebSocket",
-        "nl": "corr WebSocket-verbinding",
-        "fr": "corr Connexion WebSocket",
-        "it": "collegamento corr WebSocket",
-        "es": "corr WebSocket connection",
-        "pl": "połączenie corr WebSocket",
-        "uk": "корр WebSocket підключення",
-        "zh-cn": "corr WebSocket 连接"
       }
     },
     "messages": [
@@ -236,10 +236,10 @@
     "wsServerIP": "",
     "wsServerPort": 8080,
     "wsTokenEnabled": false,
-      "wsToken": "",
-      "dummyMqtt": false,
-      "baseTopic": "zigbee2mqtt",
-      "externalMqttServerIP": "",
+    "wsToken": "",
+    "dummyMqtt": false,
+    "baseTopic": "zigbee2mqtt",
+    "externalMqttServerIP": "",
     "externalMqttServerPort": 1883,
     "externalMqttServerCredentials": false,
     "externalMqttServerUsername": "",

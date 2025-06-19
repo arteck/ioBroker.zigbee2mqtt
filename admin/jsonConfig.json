@@ -80,8 +80,8 @@
           "md": 6,
           "lg": 4,
           "xl": 4,
-          "default": "zigbee2mqtt",
-          "newLine": true
+          "default": "zigbee2mqtt",          
+          "hidden": "data.connectionType != 'exmqtt'"
         },
         "spacer01": {
           "type": "staticText",
