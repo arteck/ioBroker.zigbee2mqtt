@@ -194,9 +194,13 @@ class Zigbee2mqtt extends core.Adapter {
             const messageObj = JSON.parse(message);
 
             switch (messageObj.topic) {
+		case 'bridge/health':
+			// https://github.com/Koenkk/zigbee2mqtt/pull/27164
+		    break;  
                 case 'bridge/config':
                     break;
                 case 'bridge/info':
+			// https://github.com/Koenkk/zigbee2mqtt/pull/27164
                     if (showInfo) {
                         zigbee2mqttInfo(messageObj.payload, this.log);
                         checkConfig(messageObj.payload.config, this.log, messageObj.payload.version);
