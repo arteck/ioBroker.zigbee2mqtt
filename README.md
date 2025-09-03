@@ -22,6 +22,9 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### **WORK IN PROGRESS**
+-   (arteck) Dependencies have been updated
+
 ### 3.0.9 (2025-06-19)
 -   (bjoernbusch) queue up message parsing
 -   (dotcom84) Support for non-default MQTT base topics
