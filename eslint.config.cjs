@@ -11,7 +11,20 @@ const compat = new FlatCompat({
 
 module.exports = [
     {
-        ignores: ['.dev-server/**'],
+        ignores: [
+            '.dev-server/',
+            '.vscode/',
+            '*.test.js',
+            'test/**/*.js',
+            '*.config.mjs',
+            'build',
+            'dist',
+            'admin/build', 
+            'admin/words.js',
+            'admin/admin.d.ts',
+            'admin/blockly.js',
+            '**/adapter-config.d.ts',
+        ],
     },
     ...compat.extends('eslint:recommended', 'plugin:prettier/recommended'),
     {
