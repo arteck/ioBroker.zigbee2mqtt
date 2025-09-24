@@ -1,8 +1,15 @@
 {
+    "workbench.commandPalette.experimental.enableNaturalLanguageSearch": false,
+    "workbench.experimental.cloudChanges.partialMatches.enabled": false,
+    "workbench.externalBrowser": "Firefox",
+    "workbench.editor.autoLockGroups": {
+        "workbench.editor.chatSession": false
+    },
+    "telemetry.editStats.enabled": false,
 	"eslint.enable": true,
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"json.schemas": [
+    "json.schemas": [
 		{
 			"fileMatch": ["io-package.json"],
 			"url": "https://json.schemastore.org/io-package"
