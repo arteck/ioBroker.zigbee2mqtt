@@ -19,7 +19,7 @@ module.exports = [
             '*.config.mjs',
             'build',
             'dist',
-            'admin/build', 
+            'admin/build',
             'admin/words.js',
             'admin/admin.d.ts',
             'admin/blockly.js',
