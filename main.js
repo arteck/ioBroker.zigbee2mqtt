@@ -352,6 +352,8 @@ class Zigbee2mqtt extends core.Adapter {
             this.log.error(e);
         }
 
+        this.setState('info.connection', false, true);
+
         callback();
     }
 

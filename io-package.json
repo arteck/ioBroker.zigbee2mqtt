@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.10",
+    "version": "3.0.11",
     "news": {
+      "3.0.11": {
+        "en": "fix info.connection",
+        "de": "fix info.connection",
+        "ru": "обсуждение fix info.connection",
+        "pt": "corrigir info.connection",
+        "nl": "fix info.connection",
+        "fr": "corriger info.connection",
+        "it": "fix info.connection",
+        "es": "arreglar info.conexión",
+        "pl": "fix info.connection",
+        "uk": "фіксувати інформацію.connection",
+        "zh-cn": "修复信息.连接"
+      },
       "3.0.10": {
         "en": "Dependencies have been updated\nChanged role of `color_temp_startup` state to `level` to avoid double `level.temperature` in one device\nfix ZBMINIR2 inching DP\ndelete DP colortempstartup",
         "de": "Abhängigkeiten wurden aktualisiert\nÄnderung der Rolle von `color_temp_startup` Zustand auf `level`, um Doppel `level.temperature` in einem Gerät zu vermeiden\nzBMINIR2 Inch DP reparieren\nlöschen DP colortempstartup",
@@ -80,19 +93,6 @@
         "pl": "dodaj dodatkowy folder dla niektórych urządzeń (np. czujnik dymu)\nstan. js cleanup\nustaw dostępny stan na true jeśli wiadomość urządzenia zawiera status last _ seen",
         "uk": "додати додаткову папку для деяких пристроїв (наприклад, детектор диму)\nстан.js cleanup\nвстановити доступну державу, якщо повідомлення про пристрій включають статус останнього_seen",
         "zh-cn": "为一些设备添加额外的文件夹( 如烟雾探测器)\n状态.js 清理\n如果设备消息包含最后的_ Seenn 状态, 将可用状态设定为 true"
-      },
-      "3.0.4": {
-        "en": "update admin",
-        "de": "admin",
-        "ru": "обновление admin",
-        "pt": "atualização admin",
-        "nl": "admin bijwerken",
-        "fr": "mettre à jour l'administrateur",
-        "it": "aggiornamento",
-        "es": "actualización admin",
-        "pl": "aktualizacja admin",
-        "uk": "оновлення адмін",
-        "zh-cn": "更新管理员"
       }
     },
     "messages": [
