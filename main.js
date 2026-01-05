@@ -68,8 +68,7 @@ class Zigbee2mqtt extends core.Adapter {
         }
 
         const logfilterState = await this.getStateAsync('info.logfilter');
-        if (logfilterState && logfilterState.val) {
-            // @ts-ignore
+        if (logfilterState && logfilterState.val) {            
             logCustomizations.logfilter = String(logfilterState.val)
                 .split(';')
                 .filter((x) => x); // filter removes empty strings here
@@ -111,9 +110,8 @@ class Zigbee2mqtt extends core.Adapter {
                     `mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`,
                     mqttClientOptions
                 );
-            }
+            } else {
             // Internal MQTT-Server
-            else {
                 mqttServerController = new MqttServerController(this);
                 await mqttServerController.createMQTTServer();
                 await this.delay(1500);
@@ -137,9 +135,8 @@ class Zigbee2mqtt extends core.Adapter {
                 const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
                 this.messageParse(newMessage);
             });
-        }
+        }  else if (this.config.connectionType == 'ws') {
         // Websocket
-        else if (this.config.connectionType == 'ws') {
             if (this.config.wsServerIP == '') {
                 this.log.warn('Please configure the Websoket connection!');
                 return;
@@ -316,9 +313,8 @@ class Zigbee2mqtt extends core.Adapter {
             } catch (e) {
                 this.log.error(e);
             }
-        }
+        } else if (this.config.connectionType == 'ws') {
         // Websocket
-        else if (this.config.connectionType == 'ws') {
             try {
                 if (websocketController) {
                     websocketController.closeConnection();
@@ -384,8 +380,8 @@ class Zigbee2mqtt extends core.Adapter {
 if (require.main !== module) {
     // Export the constructor in compact mode
     /**
-	 * @param {Partial<core.AdapterOptions>} [options={}]
-	 */
+     * @param {Partial<core.AdapterOptions>} [options]
+     */
     module.exports = (options) => new Zigbee2mqtt(options);
 } else {
     // otherwise start the instance directly
