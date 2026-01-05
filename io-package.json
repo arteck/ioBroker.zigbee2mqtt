@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.11",
+    "version": "3.0.12",
     "news": {
+      "3.0.12": {
+        "en": "Dependencies have been updated\ntypo fix",
+        "de": "Abhängigkeiten wurden aktualisiert\ntypo fix",
+        "ru": "Зависимости были обновлены\nисправление опечаток",
+        "pt": "As dependências foram atualizadas\nerro de digitação",
+        "nl": "Afhankelijkheden zijn bijgewerkt\ntypo-fix",
+        "fr": "Les dépendances ont été actualisées\ncorrection du type",
+        "it": "Le dipendenze sono state aggiornate\ncorrezione di errore",
+        "es": "Se han actualizado las dependencias\ntypo fix",
+        "pl": "Zaktualizowano zależności\nfix typo",
+        "uk": "Залежність було оновлено\nтипофікс",
+        "zh-cn": "依赖关系已更新\n类型修复"
+      },
       "3.0.11": {
         "en": "fix info.connection",
         "de": "fix info.connection",
@@ -80,19 +93,6 @@
         "pl": "restrukturyzacja ustawień\nnie znaleziono ikony",
         "uk": "реструктуризація параметрів\nне знайдено повідомлення",
         "zh-cn": "设置调整\n未找到消息的修复图标"
-      },
-      "3.0.5": {
-        "en": "add additional folder for some devices (like smoke detector)\nstate.js cleanup\nset available State to true if device message include last_seen status",
-        "de": "zusätzliche ordner für einige geräte hinzufügen (wie rauchmelder)\nstate.js cleanup\neingestellt verfügbar Zustand, um wahr zu sein, wenn die Gerätenachricht last_seen status enthält",
-        "ru": "добавьте дополнительную папку для некоторых устройств (например, детектор дыма)\nочистка state.js\nустановленное состояние истинно, если сообщение устройства включает в себя статус last_seen",
-        "pt": "adicionar pasta adicional para alguns dispositivos (como detector de fumaça)\nlimpeza state.js\nset available Estado para true se a mensagem do dispositivo incluir status last_seen",
-        "nl": "extra map toevoegen voor sommige apparaten (zoals rookmelder)\nstate.js opruimen\nbeschikbare status instellen op true als apparaatbericht laatste_geziene status bevat",
-        "fr": "ajouter un dossier supplémentaire pour certains appareils (comme le détecteur de fumée)\nétat.js nettoyage\ndéfinir l'État disponible à true si le message de périphérique inclut le statut last_seen",
-        "it": "aggiungere cartella aggiuntiva per alcuni dispositivi (come rilevatore di fumo)\nstato.js pulizia\nse il messaggio del dispositivo include lo stato di last_seen",
-        "es": "añadir carpeta adicional para algunos dispositivos (como detector de humos)\nestado.js limpieza\nestado disponible para ver si el mensaje del dispositivo incluye el estado de último visto",
-        "pl": "dodaj dodatkowy folder dla niektórych urządzeń (np. czujnik dymu)\nstan. js cleanup\nustaw dostępny stan na true jeśli wiadomość urządzenia zawiera status last _ seen",
-        "uk": "додати додаткову папку для деяких пристроїв (наприклад, детектор диму)\nстан.js cleanup\nвстановити доступну державу, якщо повідомлення про пристрій включають статус останнього_seen",
-        "zh-cn": "为一些设备添加额外的文件夹( 如烟雾探测器)\n状态.js 清理\n如果设备消息包含最后的_ Seenn 状态, 将可用状态设定为 true"
       }
     },
     "messages": [
