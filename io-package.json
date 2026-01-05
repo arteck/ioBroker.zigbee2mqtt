@@ -211,8 +211,7 @@
         "pl": "Zigbee2MQTT",
         "zh-cn": "Zigbee2MQTT"
       },
-      "link": "%webUIScheme%://%webUIServer%:%webUIPort%",
-      "fa-icon": "</i><img style='width:24px;margin-bottom:-6px;' src='/adapter/zigbee2mqtt/zigbee2mqtt.png'><i>"
+      "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
     },
     "localLinks": {
       "_default": {
