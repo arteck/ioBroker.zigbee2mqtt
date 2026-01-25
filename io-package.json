@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.12",
+    "version": "3.0.13",
     "news": {
+      "3.0.13": {
+        "en": "add action dp",
+        "de": "aktion dp hinzufügen",
+        "ru": "добавить действие dp",
+        "pt": "adicionar ação dp",
+        "nl": "actie dp toevoegen",
+        "fr": "ajouter action dp",
+        "it": "aggiungere azione",
+        "es": "añadir acción dp",
+        "pl": "dodaj działanie dp",
+        "uk": "додати дію dp",
+        "zh-cn": "添加动作 dp"
+      },
       "3.0.12": {
         "en": "Dependencies have been updated\ntypo fix",
         "de": "Abhängigkeiten wurden aktualisiert\ntypo fix",
@@ -80,19 +93,6 @@
         "pl": "fix jsconconf",
         "uk": "закріпити jsconconf",
         "zh-cn": "修复 jsconconconf"
-      },
-      "3.0.6": {
-        "en": "settings restructure\nfix icon not found message",
-        "de": "einstellungen restrukturieren\nsymbol nicht gefunden",
-        "ru": "реструктуризация настроек\nисправить иконку не найдено сообщение",
-        "pt": "reestruturação de configurações\ncorrigir ícone não encontrado mensagem",
-        "nl": "instellingen herstructureren\npictogram niet gevonden bericht herstellen",
-        "fr": "restructuration des paramètres\ncorrection icône non trouvée message",
-        "it": "installazione\nfix icona non trovato messaggio",
-        "es": "configuración de reestructuración\nfijar icono no encontrado mensaje",
-        "pl": "restrukturyzacja ustawień\nnie znaleziono ikony",
-        "uk": "реструктуризація параметрів\nне знайдено повідомлення",
-        "zh-cn": "设置调整\n未找到消息的修复图标"
       }
     },
     "messages": [
