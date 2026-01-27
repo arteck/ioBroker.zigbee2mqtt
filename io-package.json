@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.14",
+    "version": "3.0.15",
     "news": {
+      "3.0.15": {
+        "en": "update",
+        "de": "aktualisierung",
+        "ru": "обновление",
+        "pt": "atualizar",
+        "nl": "bijwerken",
+        "fr": "mise à jour",
+        "it": "aggiornamento",
+        "es": "actualización",
+        "pl": "aktualizacja",
+        "uk": "оновлення",
+        "zh-cn": "更新"
+      },
       "3.0.14": {
         "en": "back to sharp 0.33.5",
         "de": "zurück zu sharp 0,33,5",
@@ -80,32 +93,6 @@
         "pl": "kolejka w górę wiadomości parsing\nWsparcie dla niedomyślnych tematów bazowych MQTT",
         "uk": "чергування повідомлень\nПідтримка нерозголошення MQTT базових тем",
         "zh-cn": "排队分析信件\n支持非默认 MQTT 基础主题"
-      },
-      "3.0.8": {
-        "en": "fix device is deleted\nfix translation",
-        "de": "fix device wird gelöscht\nbersetzung",
-        "ru": "фиксировать устройство удалено\nперевод",
-        "pt": "dispositivo de correção é excluído\ncorrigir tradução",
-        "nl": "fix apparaat wordt verwijderd\nfix vertaling",
-        "fr": "le dispositif de correction est supprimé\ncorriger la traduction",
-        "it": "dispositivo di correzione viene eliminato\ncorrezione della traduzione",
-        "es": "dispositivo de solución se elimina\ntraducción",
-        "pl": "urządzenie naprawcze zostaje usunięte\ntłumaczenie",
-        "uk": "видалити пристрій\nфіксувати переклад",
-        "zh-cn": "固定设备被删除\n固定翻译"
-      },
-      "3.0.7": {
-        "en": "fix jsconconf",
-        "de": "fix jsconf",
-        "ru": "исправить jsconconf",
-        "pt": "corrigir jsconconf",
-        "nl": "jsconconf repareren",
-        "fr": "corriger jsconconf",
-        "it": "correzione jsconconf",
-        "es": "jsconf",
-        "pl": "fix jsconconf",
-        "uk": "закріпити jsconconf",
-        "zh-cn": "修复 jsconconconf"
       }
     },
     "messages": [
