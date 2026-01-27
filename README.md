@@ -22,6 +22,9 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### 3.0.14 (2026-01-27)
+* (arteck) back to sharp 0.33.5
+
 ### 3.0.13 (2026-01-25)
 * (arteck) add action dp
 
