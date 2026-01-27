@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.13",
+    "version": "3.0.14",
     "news": {
+      "3.0.14": {
+        "en": "back to sharp 0.33.5",
+        "de": "zurück zu sharp 0,33,5",
+        "ru": "вернуться к sharp 0.33.5",
+        "pt": "voltar ao valor nítido 0,33,5",
+        "nl": "terug naar sharp 0,335",
+        "fr": "retour à la version 0.33.5",
+        "it": "torna a 0,33,5 tagliente",
+        "es": "de nuevo al 0,33,5",
+        "pl": "powrót do sharp 0,33,5",
+        "uk": "назад до sharp 0.33.5",
+        "zh-cn": "回到清晰的 0.33.5"
+      },
       "3.0.13": {
         "en": "add action dp",
         "de": "aktion dp hinzufügen",
