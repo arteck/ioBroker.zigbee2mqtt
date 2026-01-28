@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.16",
+    "version": "3.0.17",
     "news": {
+      "3.0.17": {
+        "en": "typo",
+        "de": "typo",
+        "ru": "опечатка",
+        "pt": "erro de digitação",
+        "nl": "type",
+        "fr": "typo",
+        "it": "tipo",
+        "es": "typo",
+        "pl": "typo",
+        "uk": "типи",
+        "zh-cn": "类型"
+      },
       "3.0.16": {
         "en": "fix action dp",
         "de": "funktion dp",
@@ -80,19 +93,6 @@
         "pl": "fix info.connection",
         "uk": "фіксувати інформацію.connection",
         "zh-cn": "修复信息.连接"
-      },
-      "3.0.10": {
-        "en": "Dependencies have been updated\nChanged role of `color_temp_startup` state to `level` to avoid double `level.temperature` in one device\nfix ZBMINIR2 inching DP\ndelete DP colortempstartup",
-        "de": "Abhängigkeiten wurden aktualisiert\nÄnderung der Rolle von `color_temp_startup` Zustand auf `level`, um Doppel `level.temperature` in einem Gerät zu vermeiden\nzBMINIR2 Inch DP reparieren\nlöschen DP colortempstartup",
-        "ru": "Зависимости были обновлены\nИзменилась роль состояния «color_temp_startup» до «level», чтобы избежать двойной «level.temperature» в одном устройстве\nzBMINIR2 Inching DP\nудалить DP colortempstartup",
-        "pt": "As dependências foram atualizadas\nPapel alterado do estado de `color_temp_startup` para `level` para evitar o duplo `level.temperature` em um dispositivo\ncorrigir ZBMINIR2 nching DP\napagar DP colortempstartup",
-        "nl": "Afhankelijkheden zijn bijgewerkt\nVeranderde rol van Color_temp_startup\nfix ZBMINIR2 inching DP\nverwijderen DP colortempstartup",
-        "fr": "Les dépendances ont été actualisées\nChangement du rôle de l'état `color_temp_startup` à `level` pour éviter le double `level.temperature` dans un seul appareil\ncorrection de l'encoche ZBMINIR2 DP\nsupprimer DP colortempstartup",
-        "it": "Le dipendenze sono state aggiornate\nCambiato ruolo di `color_temp_startup` stato a `level` per evitare doppio `level.temperature` in un dispositivo\ncorrezione ZBMINIR2 inching DP\neliminare DP colortempstartup",
-        "es": "Se han actualizado las dependencias\nCambiar el papel de `color_temp_startup` estado a `nivel` para evitar el doble `nivel.temperatura` en un dispositivo\nfijar ZBMINIR2 inching DP\neliminar DP colortempstartup",
-        "pl": "Zaktualizowano zależności\nZmieniona rola 'color _ temp _ startup' stanu na 'poziom', aby uniknąć podwójnego 'level.temperature' w jednym urządzeniu\nfix ZBMINIR2 inching DP\nusuń odtwarzacz kolorów DP",
-        "uk": "Залежність було оновлено\nЗмінена роль `color_temp_startup` для `level`, щоб уникнути подвійного рівня `level. Температура` в одному пристрої\nзафіксувати ZBMINIR2 інвертор ДП\nвидалити DP Colortempstartup",
-        "zh-cn": "依赖关系已更新\n将“color_temp_startup”状态的作用改为“level”,以避免一个设备中的双“level.teperature”\n修补 ZBMINIR2 插入 DP\n删除 DP 调色符启动"
       }
     },
     "messages": [
