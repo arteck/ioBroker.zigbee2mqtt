@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.17",
+    "version": "3.0.18",
     "news": {
+      "3.0.18": {
+        "en": "typo",
+        "de": "typo",
+        "ru": "опечатка",
+        "pt": "erro de digitação",
+        "nl": "type",
+        "fr": "typo",
+        "it": "tipo",
+        "es": "typo",
+        "pl": "typo",
+        "uk": "типи",
+        "zh-cn": "类型"
+      },
       "3.0.17": {
         "en": "typo",
         "de": "typo",
@@ -80,19 +93,6 @@
         "pl": "Zaktualizowano zależności\nfix typo",
         "uk": "Залежність було оновлено\nтипофікс",
         "zh-cn": "依赖关系已更新\n类型修复"
-      },
-      "3.0.11": {
-        "en": "fix info.connection",
-        "de": "fix info.connection",
-        "ru": "обсуждение fix info.connection",
-        "pt": "corrigir info.connection",
-        "nl": "fix info.connection",
-        "fr": "corriger info.connection",
-        "it": "fix info.connection",
-        "es": "arreglar info.conexión",
-        "pl": "fix info.connection",
-        "uk": "фіксувати інформацію.connection",
-        "zh-cn": "修复信息.连接"
       }
     },
     "messages": [
