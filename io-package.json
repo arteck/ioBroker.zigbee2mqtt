@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.18",
+    "version": "3.0.19",
     "news": {
+      "3.0.19": {
+        "en": "modify action dp",
+        "de": "änderung der aktion dp",
+        "ru": "модифицировать действие dp",
+        "pt": "modificar ação dp",
+        "nl": "actie dp wijzigen",
+        "fr": "modifier l'action dp",
+        "it": "modificare l'azione",
+        "es": "modificar la acción dp",
+        "pl": "modyfikacja działania dp",
+        "uk": "змінити дію dp",
+        "zh-cn": "修改动作 dp"
+      },
       "3.0.18": {
         "en": "typo",
         "de": "typo",
@@ -80,19 +93,6 @@
         "pl": "dodaj działanie dp",
         "uk": "додати дію dp",
         "zh-cn": "添加动作 dp"
-      },
-      "3.0.12": {
-        "en": "Dependencies have been updated\ntypo fix",
-        "de": "Abhängigkeiten wurden aktualisiert\ntypo fix",
-        "ru": "Зависимости были обновлены\nисправление опечаток",
-        "pt": "As dependências foram atualizadas\nerro de digitação",
-        "nl": "Afhankelijkheden zijn bijgewerkt\ntypo-fix",
-        "fr": "Les dépendances ont été actualisées\ncorrection du type",
-        "it": "Le dipendenze sono state aggiornate\ncorrezione di errore",
-        "es": "Se han actualizado las dependencias\ntypo fix",
-        "pl": "Zaktualizowano zależności\nfix typo",
-        "uk": "Залежність було оновлено\nтипофікс",
-        "zh-cn": "依赖关系已更新\n类型修复"
       }
     },
     "messages": [
