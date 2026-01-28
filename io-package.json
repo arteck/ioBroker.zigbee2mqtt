@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.15",
+    "version": "3.0.16",
     "news": {
+      "3.0.16": {
+        "en": "fix action dp",
+        "de": "funktion dp",
+        "ru": "исправить действие dp",
+        "pt": "corrigir ação dp",
+        "nl": "fix actie dp",
+        "fr": "corriger l'action dp",
+        "it": "fix azione dp",
+        "es": "arreglar acción dp",
+        "pl": "fix action dp",
+        "uk": "фіксувати дію dp",
+        "zh-cn": "固定动作 dp"
+      },
       "3.0.15": {
         "en": "update",
         "de": "aktualisierung",
@@ -80,19 +93,6 @@
         "pl": "Zaktualizowano zależności\nZmieniona rola 'color _ temp _ startup' stanu na 'poziom', aby uniknąć podwójnego 'level.temperature' w jednym urządzeniu\nfix ZBMINIR2 inching DP\nusuń odtwarzacz kolorów DP",
         "uk": "Залежність було оновлено\nЗмінена роль `color_temp_startup` для `level`, щоб уникнути подвійного рівня `level. Температура` в одному пристрої\nзафіксувати ZBMINIR2 інвертор ДП\nвидалити DP Colortempstartup",
         "zh-cn": "依赖关系已更新\n将“color_temp_startup”状态的作用改为“level”,以避免一个设备中的双“level.teperature”\n修补 ZBMINIR2 插入 DP\n删除 DP 调色符启动"
-      },
-      "3.0.9": {
-        "en": "queue up message parsing\nSupport for non-default MQTT base topics",
-        "de": "nachrichtenparsing löschen\nUnterstützung für nicht-Standard-MQTT-Basisthemen",
-        "ru": "очередь сообщения парсинг\nПоддержка базовых тем MQTT без по умолчанию",
-        "pt": "processamento de mensagens em fila\nSuporte para tópicos de base MQTT não padrão",
-        "nl": "wachtrij bericht ontleden\nOndersteuning voor niet-standaard MQTT-basisonderwerpen",
-        "fr": "analyse des messages en attente\nPrise en charge des sujets de base MQTT non par défaut",
-        "it": "code up messaggio parsing\nSupporto per argomenti di base MQTT non di default",
-        "es": "mensaje de búsqueda\nApoyo a los temas básicos de MQTT no predeterminados",
-        "pl": "kolejka w górę wiadomości parsing\nWsparcie dla niedomyślnych tematów bazowych MQTT",
-        "uk": "чергування повідомлень\nПідтримка нерозголошення MQTT базових тем",
-        "zh-cn": "排队分析信件\n支持非默认 MQTT 基础主题"
       }
     },
     "messages": [
