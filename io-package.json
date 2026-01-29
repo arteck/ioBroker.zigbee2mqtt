@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.19",
+    "version": "3.0.20",
     "news": {
+      "3.0.20": {
+        "en": "check payload if undefined",
+        "de": "prüfen sie die nutzlast",
+        "ru": "проверьте полезную нагрузку, если не определено",
+        "pt": "verificar a carga útil se não for definida",
+        "nl": "payload controleren indien niet gedefinieerd",
+        "fr": "vérifier la charge utile si elle n'est pas définie",
+        "it": "controllare il carico utile se non definito",
+        "es": "check payload si no está definido",
+        "pl": "sprawdzanie ładunku użytecznego, jeżeli nie określono",
+        "uk": "перевірити навантаження, якщо не визначено",
+        "zh-cn": "检查未定义的有效载荷"
+      },
       "3.0.19": {
         "en": "modify action dp",
         "de": "änderung der aktion dp",
@@ -80,19 +93,6 @@
         "pl": "powrót do sharp 0,33,5",
         "uk": "назад до sharp 0.33.5",
         "zh-cn": "回到清晰的 0.33.5"
-      },
-      "3.0.13": {
-        "en": "add action dp",
-        "de": "aktion dp hinzufügen",
-        "ru": "добавить действие dp",
-        "pt": "adicionar ação dp",
-        "nl": "actie dp toevoegen",
-        "fr": "ajouter action dp",
-        "it": "aggiungere azione",
-        "es": "añadir acción dp",
-        "pl": "dodaj działanie dp",
-        "uk": "додати дію dp",
-        "zh-cn": "添加动作 dp"
       }
     },
     "messages": [
