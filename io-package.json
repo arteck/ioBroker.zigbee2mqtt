@@ -363,6 +363,19 @@
       "native": {}
     },
     {
+      "_id": "info.coordinator_status",
+      "type": "state",
+      "common": {
+        "name": "Coordinator status",
+        "type": "string",
+        "role": "state",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
       "_id": "",
       "type": "meta",
       "common": {

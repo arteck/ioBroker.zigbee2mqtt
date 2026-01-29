@@ -191,7 +191,8 @@ class Zigbee2mqtt extends core.Adapter {
             const messageObj = JSON.parse(message);
 
             switch (messageObj.topic) {
-                case 'bridge/config':
+                case 'Coordinator/availability':
+                    this.setStateChanged('info.coordinator_status', messageObj.payload.state, true);
                     break;
                 case 'bridge/info':
                     if (showInfo) {
@@ -219,37 +220,31 @@ class Zigbee2mqtt extends core.Adapter {
                     await statesController.subscribeWritableStates();
                     statesController.processQueue();
                     break;
-                case 'bridge/event':
-                    break;
                 case 'bridge/response/coordinator_check':
                     deviceController.processCoordinatorCheck(messageObj.payload);
-                    break;
-                case 'bridge/response/device/remove':
-                    break;
-                case 'bridge/response/device/options':
-                    break;
-                case 'bridge/response/permit_join':
-                    break;
-                case 'bridge/extensions':
                     break;
                 case 'bridge/logging':
                     if (this.config.proxyZ2MLogs == true) {
                         z2mController.proxyZ2MLogs(messageObj);
                     }
                     break;
-                case 'bridge/response/device/configure':
-                    break;
                 case 'bridge/response/device/rename':
                     await deviceController.renameDeviceInCache(messageObj);
                     await deviceController.createOrUpdateDevices();
                     statesController.processQueue();
                     break;
+                case 'bridge/config':
+                case 'bridge/health':
+                case 'bridge/definitions':
+                case 'bridge/response/device/configure':
+                case 'bridge/event':
+                case 'bridge/response/device/remove':
+                case 'bridge/response/device/options':
+                case 'bridge/response/permit_join':
+                case 'bridge/extensions':
                 case 'bridge/response/networkmap':
-                    break;
                 case 'bridge/response/touchlink/scan':
-                    break;
                 case 'bridge/response/touchlink/identify':
-                    break;
                 case 'bridge/response/touchlink/factory_reset':
                     break;
                 default:
