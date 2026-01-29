@@ -236,12 +236,12 @@ class Zigbee2mqtt extends core.Adapter {
                 case 'bridge/config':
                 case 'bridge/health':
                 case 'bridge/definitions':
-                case 'bridge/response/device/configure':
                 case 'bridge/event':
+                case 'bridge/extensions':
+                case 'bridge/response/device/configure':
                 case 'bridge/response/device/remove':
                 case 'bridge/response/device/options':
                 case 'bridge/response/permit_join':
-                case 'bridge/extensions':
                 case 'bridge/response/networkmap':
                 case 'bridge/response/touchlink/scan':
                 case 'bridge/response/touchlink/identify':

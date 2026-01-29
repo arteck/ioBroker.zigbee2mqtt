@@ -22,9 +22,11 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### 3.0.21 (2026-01-29)
+* (arteck) add coordinator status info
+
 ### 3.0.20 (2026-01-29)
 * (arteck) check payload if undefined
-* (arteck) add coordinator status info
 
 ### 3.0.19 (2026-01-28)
 * (arteck) modify action dp
