@@ -45,7 +45,7 @@
     "@tsconfig/node14": "^14.1.8",
     "@types/node": "^25.5.2",
     "@types/node-schedule": "^2.1.8",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.2"
   },
   "main": "main.js",
   "files": [
