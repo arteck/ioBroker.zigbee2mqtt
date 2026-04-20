@@ -123,6 +123,7 @@ class Zigbee2mqtt extends core.Adapter {
                 this.log.info(
                     `Connect to Zigbee2MQTT over ${this.config.connectionType === 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
                 );
+                this.setStateChanged('info.connection', true, true);
                 this.mqttClient.subscribe(`${this.config.baseTopic}/#`, (err) => {
                     if (err) {
                         this.log.error(`MQTT subscribe error: ${err && err.message ? err.message : String(err)}`);
@@ -130,11 +131,33 @@ class Zigbee2mqtt extends core.Adapter {
                 });
             });
 
+            this.mqttClient.on('reconnect', () => {
+                this.log.info('MQTT client reconnecting to Zigbee2MQTT...');
+            });
+
+            this.mqttClient.on('offline', async () => {
+                this.log.warn('MQTT client offline – connection to Zigbee2MQTT lost.');
+                this.setStateChanged('info.connection', false, true);
+                try {
+                    if (this.statesController) {
+                        await this.statesController.setAllAvailableToFalse();
+                    }
+                } catch (e) {
+                    this.log.error(`MQTT offline setAllAvailableToFalse error: ${e}`);
+                }
+            });
+
             this.mqttClient.on('error', (err) => {
                 this.log.error(`MQTT client error: ${err && err.message ? err.message : String(err)}`);
             });
 
             this.mqttClient.on('message', (topic, payload) => {
+                // baseTopic aus dem Topic entfernen – Guard falls kein '/' vorhanden
+                const sepIdx = topic.indexOf('/');
+                if (sepIdx === -1) {
+                    this.log.debug(`MQTT message with unexpected topic format: ${topic}`);
+                    return;
+                }
                 const payloadStr = payload.toString();
                 let parsedPayload;
                 try {
@@ -144,7 +167,7 @@ class Zigbee2mqtt extends core.Adapter {
                 }
                 const messageObj = {
                     payload: parsedPayload,
-                    topic: topic.slice(topic.indexOf('/') + 1),
+                    topic: topic.slice(sepIdx + 1),
                 };
                 this.messageParse(messageObj).catch((err) => {
                     this.log.error(`messageParse error: ${err}`);
@@ -431,7 +454,8 @@ class Zigbee2mqtt extends core.Adapter {
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
                 if (this.mqttClient && !this.mqttClient.disconnected) {
                     try {
-                        this.mqttClient.end();
+                        this.mqttClient.removeAllListeners();
+                        this.mqttClient.end(true);
                     } catch (e) {
                         this.log.error(e);
                     }
@@ -513,7 +537,19 @@ class Zigbee2mqtt extends core.Adapter {
                     this.log.warn(`Cannot publish state, MQTT client not connected. (${id})`);
                     return;
                 }
-                this.mqttClient.publish(`${this.config.baseTopic}/${message.topic}`, JSON.stringify(message.payload));
+                try {
+                    this.mqttClient.publish(
+                        `${this.config.baseTopic}/${message.topic}`,
+                        JSON.stringify(message.payload),
+                        (err) => {
+                            if (err) {
+                                this.log.error(`MQTT publish error for ${id}: ${err && err.message ? err.message : String(err)}`);
+                            }
+                        }
+                    );
+                } catch (e) {
+                    this.log.error(`MQTT publish exception for ${id}: ${e}`);
+                }
             } else if (this.config.connectionType === 'ws') {
                 if (!this.websocketController) {
                     this.log.warn(`Cannot send state, WebSocket not initialized. (${id})`);
