@@ -217,6 +217,10 @@ class Zigbee2mqtt extends core.Adapter {
             if (!messageObj || typeof messageObj !== 'object') {
                 return;
             }
+            if (!this.statesController || !this.deviceController || !this.z2mController) {
+                this.log.debug('messageParse: controllers not yet initialized, dropping message.');
+                return;
+            }
 
             switch (messageObj.topic) {
                 case 'Coordinator/availability': {
@@ -524,6 +528,11 @@ class Zigbee2mqtt extends core.Adapter {
             if (id.endsWith('info.logfilter')) {
                 this.logCustomizations.logfilter = String(state.val || '').split(';').filter((x) => x);
                 this.setState(id, state.val, true);
+                return;
+            }
+
+            if (!this.z2mController) {
+                this.log.debug(`onStateChange: z2mController not yet initialized, dropping state change for ${id}.`);
                 return;
             }
 
