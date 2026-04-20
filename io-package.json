@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.0.22",
+    "version": "3.1.0",
     "news": {
+      "3.1.0": {
+        "en": "refactoring",
+        "de": "refaktor",
+        "ru": "рефакторинг",
+        "pt": "refatorização",
+        "nl": "refactoring",
+        "fr": "refactoration",
+        "it": "refactoring",
+        "es": "refactoring",
+        "pl": "refaktoring",
+        "uk": "рефакторинг",
+        "zh-cn": "正在重构"
+      },
       "3.0.22": {
         "en": "Dependencies have been updated",
         "de": "Abhängigkeiten wurden aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "typo",
         "uk": "типи",
         "zh-cn": "类型"
-      },
-      "3.0.16": {
-        "en": "fix action dp",
-        "de": "funktion dp",
-        "ru": "исправить действие dp",
-        "pt": "corrigir ação dp",
-        "nl": "fix actie dp",
-        "fr": "corriger l'action dp",
-        "it": "fix azione dp",
-        "es": "arreglar acción dp",
-        "pl": "fix action dp",
-        "uk": "фіксувати дію dp",
-        "zh-cn": "固定动作 dp"
       }
     },
     "messages": [

@@ -1,7 +1,4 @@
 'use strict';
-/*
- * Created with @iobroker/create-adapter v2.2.1
- */
 
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
@@ -18,134 +15,150 @@ const StatesController = require('./lib/statesController').StatesController;
 const WebsocketController = require('./lib/websocketController').WebsocketController;
 const MqttServerController = require('./lib/mqttServerController').MqttServerController;
 
-let mqttClient;
-
-let deviceCache = [];
-
-let groupCache = [];
-const createCache = {};
-const logCustomizations = { debugDevices: '', logfilter: [] };
-let showInfo = true;
-let statesController;
-let deviceController;
-let z2mController;
-let websocketController;
-let mqttServerController;
-
-let messageParseMutex = Promise.resolve();
-
 class Zigbee2mqtt extends core.Adapter {
     constructor(options) {
         super({
             ...options,
             name: 'zigbee2mqtt',
         });
+
+        // Instance-level state (kein Modul-globaler Zustand)
+        this.mqttClient = null;
+        this.deviceCache = [];
+        this.groupCache = [];
+        this.createCache = {};
+        this.logCustomizations = { debugDevices: '', logfilter: [] };
+        this.showInfo = true;
+        this.statesController = null;
+        this.deviceController = null;
+        this.z2mController = null;
+        this.websocketController = null;
+        this.mqttServerController = null;
+        this.messageParseMutex = Promise.resolve();
+
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
 
     async onReady() {
-        statesController = new StatesController(this, deviceCache, groupCache, logCustomizations, createCache);
-        deviceController = new DeviceController(
+        this.statesController = new StatesController(this, this.deviceCache, this.groupCache, this.logCustomizations, this.createCache);
+        this.deviceController = new DeviceController(
             this,
-            deviceCache,
-            groupCache,
+            this.deviceCache,
+            this.groupCache,
             this.config,
-            logCustomizations,
-            createCache
+            this.logCustomizations,
+            this.createCache
         );
-        z2mController = new Z2mController(this, deviceCache, groupCache, logCustomizations);
+        this.z2mController = new Z2mController(this, this.deviceCache, this.groupCache, this.logCustomizations);
 
-        // Initialize your adapter here
-        adapterInfo(this.config, this.log);
+        // Fix 2: adapterInfo ist async → awaiten
+        await adapterInfo(this.config, this.log);
 
         this.setState('info.connection', false, true);
 
         const debugDevicesState = await this.getStateAsync('info.debugmessages');
         if (debugDevicesState && debugDevicesState.val) {
-            logCustomizations.debugDevices = String(debugDevicesState.val);
+            this.logCustomizations.debugDevices = String(debugDevicesState.val);
         }
 
         const logfilterState = await this.getStateAsync('info.logfilter');
-        if (logfilterState && logfilterState.val) {            
-            logCustomizations.logfilter = String(logfilterState.val)
+        if (logfilterState && logfilterState.val) {
+            this.logCustomizations.logfilter = String(logfilterState.val)
                 .split(';')
-                .filter((x) => x); // filter removes empty strings here
+                .filter((x) => x);
         }
 
-        if (this.config.coordinatorCheck == true) {
+        if (this.config.coordinatorCheck === true) {
             try {
-                schedule.scheduleJob('coordinatorCheck', this.config.coordinatorCheckCron, () =>
-                    this.onStateChange('manual_trigger._.info.coordinator_check', { ack: false })
-                );
+                schedule.scheduleJob('coordinatorCheck', this.config.coordinatorCheckCron, () => {
+                    this.onStateChange('manual_trigger._.info.coordinator_check', { ack: false, val: null })
+                        .catch((e) => this.log.error(`coordinatorCheck trigger error: ${e}`));
+                });
             } catch (e) {
                 this.log.error(e);
             }
         }
+
         // MQTT
         if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
             // External MQTT-Server
-            if (this.config.connectionType == 'exmqtt') {
-                if (this.config.externalMqttServerIP == '') {
+            if (this.config.connectionType === 'exmqtt') {
+                if (!this.config.externalMqttServerIP) {
                     this.log.warn('Please configure the External MQTT-Server connection!');
                     return;
                 }
 
-                // MQTT connection settings
                 const mqttClientOptions = {
                     clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
                     clean: true,
                     reconnectPeriod: 500,
                 };
 
-                // Set external mqtt credentials
-                if (this.config.externalMqttServerCredentials == true) {
+                if (this.config.externalMqttServerCredentials === true) {
                     mqttClientOptions.username = this.config.externalMqttServerUsername;
                     mqttClientOptions.password = this.config.externalMqttServerPassword;
                 }
 
-                // Init connection
-                mqttClient = mqtt.connect(
+                this.mqttClient = mqtt.connect(
                     `mqtt://${this.config.externalMqttServerIP}:${this.config.externalMqttServerPort}`,
                     mqttClientOptions
                 );
             } else {
-            // Internal MQTT-Server
-                mqttServerController = new MqttServerController(this);
-                await mqttServerController.createMQTTServer();
+                // Internal MQTT-Server
+                this.mqttServerController = new MqttServerController(this);
+                await this.mqttServerController.createMQTTServer();
                 await this.delay(1500);
-                mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, {
+                this.mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, {
                     clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
                     clean: true,
                     reconnectPeriod: 500,
                 });
             }
 
-            // MQTT Client
-            mqttClient.on('connect', () => {
+            // MQTT Client Events
+            this.mqttClient.on('connect', () => {
                 this.log.info(
-                    `Connect to Zigbee2MQTT over ${this.config.connectionType == 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
+                    `Connect to Zigbee2MQTT over ${this.config.connectionType === 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
                 );
+                this.mqttClient.subscribe(`${this.config.baseTopic}/#`, (err) => {
+                    if (err) {
+                        this.log.error(`MQTT subscribe error: ${err && err.message ? err.message : String(err)}`);
+                    }
+                });
             });
 
-            mqttClient.subscribe(`${this.config.baseTopic}/#`);
-
-            mqttClient.on('message', (topic, payload) => {
-                const newMessage = `{"payload":${payload.toString() == '' ? '"null"' : payload.toString()},"topic":"${topic.slice(topic.search('/') + 1)}"}`;
-                this.messageParse(newMessage);
+            this.mqttClient.on('error', (err) => {
+                this.log.error(`MQTT client error: ${err && err.message ? err.message : String(err)}`);
             });
-        }  else if (this.config.connectionType == 'ws') {
-        // Websocket
-            if (this.config.wsServerIP == '') {
+
+            this.mqttClient.on('message', (topic, payload) => {
+                const payloadStr = payload.toString();
+                let parsedPayload;
+                try {
+                    parsedPayload = payloadStr === '' ? null : JSON.parse(payloadStr);
+                } catch {
+                    parsedPayload = payloadStr;
+                }
+                const messageObj = {
+                    payload: parsedPayload,
+                    topic: topic.slice(topic.indexOf('/') + 1),
+                };
+                this.messageParse(messageObj).catch((err) => {
+                    this.log.error(`messageParse error: ${err}`);
+                });
+            });
+        } else if (this.config.connectionType === 'ws') {
+            // Websocket
+            if (!this.config.wsServerIP) {
                 this.log.warn('Please configure the Websoket connection!');
                 return;
             }
 
-            // Dummy MQTT-Server
-            if (this.config.dummyMqtt == true) {
-                mqttServerController = new MqttServerController(this);
-                await mqttServerController.createDummyMQTTServer();
+            if (this.config.dummyMqtt === true) {
+                this.mqttServerController = new MqttServerController(this);
+                await this.mqttServerController.createDummyMQTTServer();
                 await this.delay(1500);
             }
 
@@ -154,132 +167,142 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     startWebsocket() {
-        websocketController = new WebsocketController(this);
-        const wsClient = websocketController.initWsClient();
-
-        if (wsClient) {
-            wsClient.on('open', () => {
-                this.log.info('Connect to Zigbee2MQTT over websocket connection.');
-            });
-
-            wsClient.on('message', (message) => {
-                this.messageParse(message);
-            });
-
-            wsClient.on('close', async () => {
-                this.setStateChanged('info.connection', false, true);
-                await statesController.setAllAvailableToFalse();
-                deviceCache = [];
-                groupCache = [];
-            });
+        // Controller nur einmal erstellen – bei Reconnect wird derselbe wiederverwendet
+        if (!this.websocketController) {
+            this.websocketController = new WebsocketController(this);
         }
+        this.websocketController.initWsClient();
     }
 
-    async messageParse(message) {
-        // Mutex lock: queue up calls to messageParse
-        let release;
-        const lock = new Promise((resolve) => (release = resolve));
-        const prev = messageParseMutex;
-        messageParseMutex = lock;
-        await prev;
+    async messageParse(messageObj) {
+        let release = () => {};
         try {
-            // If the MQTT output type is set to attribute_and_json, the non-valid JSON must be checked here.
-            if (utils.isJson(message) == false) {
+            const lock = new Promise((resolve) => (release = resolve));
+            const prev = this.messageParseMutex;
+            this.messageParseMutex = lock;
+            await prev;
+        } catch {
+        }
+        try {
+            if (!messageObj || typeof messageObj !== 'object') {
                 return;
             }
 
-            const messageObj = JSON.parse(message);
-
             switch (messageObj.topic) {
-                case 'Coordinator/availability':
-                    this.setStateChanged('info.coordinator_status', messageObj.payload.state, true);
+                case 'Coordinator/availability': {
+                    const coordState = typeof messageObj.payload === 'object' && messageObj.payload !== null
+                        ? messageObj.payload.state
+                        : messageObj.payload;
+                    this.setStateChanged('info.coordinator_status', coordState, true);
                     break;
+                }
                 case 'bridge/info':
-                    if (showInfo) {
-                        zigbee2mqttInfo(messageObj.payload, this.log);
-                        checkConfig(messageObj.payload.config, this.log, messageObj.payload.version);
-                        showInfo = false;
+                    if (this.showInfo && messageObj.payload) {
+                        await zigbee2mqttInfo(messageObj.payload, this.log);
+                        if (messageObj.payload.config && messageObj.payload.version) {
+                            checkConfig(messageObj.payload.config, this.log, messageObj.payload.version);
+                        }
+                        this.showInfo = false;
                     }
                     break;
-                case 'bridge/state':
-                    if (messageObj.payload.state != 'online') {
-                        statesController.setAllAvailableToFalse();
+                case 'bridge/state': {
+                    const bridgeState = typeof messageObj.payload === 'object' && messageObj.payload !== null
+                        ? messageObj.payload.state
+                        : messageObj.payload;
+                    if (bridgeState !== 'online') {
+                        await this.statesController.setAllAvailableToFalse();
+                        this.showInfo = true;
                     }
-                    this.setStateChanged('info.connection', messageObj.payload.state == 'online', true);
+                    this.setStateChanged('info.connection', bridgeState === 'online', true);
                     break;
+                }
                 case 'bridge/devices':
-                    await deviceController.createDeviceDefinitions(messageObj.payload);
-                    await deviceController.createOrUpdateDevices();
-                    await deviceController.checkAndProgressDeviceRemove();
-                    await statesController.subscribeWritableStates();
-                    statesController.processQueue();
+                    await this.deviceController.createDeviceDefinitions(messageObj.payload);
+                    await this.deviceController.createOrUpdateDevices();
+                    await this.deviceController.checkAndProgressDeviceRemove();
+                    await this.statesController.subscribeWritableStates();
+                    await this.statesController.processQueue();
                     break;
                 case 'bridge/groups':
-                    await deviceController.createGroupDefinitions(messageObj.payload);
-                    await deviceController.createOrUpdateDevices();
-                    await statesController.subscribeWritableStates();
-                    statesController.processQueue();
+                    await this.deviceController.createGroupDefinitions(messageObj.payload);
+                    await this.deviceController.createOrUpdateDevices();
+                    await this.statesController.subscribeWritableStates();
+                    await this.statesController.processQueue();
                     break;
                 case 'bridge/response/coordinator_check':
-                    deviceController.processCoordinatorCheck(messageObj.payload);
+                    await this.deviceController.processCoordinatorCheck(messageObj.payload);
                     break;
                 case 'bridge/logging':
-                    if (this.config.proxyZ2MLogs == true) {
-                        z2mController.proxyZ2MLogs(messageObj);
+                    if (this.config.proxyZ2MLogs === true) {
+                        await this.z2mController.proxyZ2MLogs(messageObj);
                     }
                     break;
                 case 'bridge/response/device/rename':
-                    await deviceController.renameDeviceInCache(messageObj);
-                    await deviceController.createOrUpdateDevices();
-                    statesController.processQueue();
+                    await this.deviceController.renameDeviceInCache(messageObj);
+                    await this.deviceController.createOrUpdateDevices();
+                    await this.statesController.processQueue();
                     break;
+                case 'bridge/event': {
+                    const evType = messageObj.payload && messageObj.payload.type;
+                    const evData = messageObj.payload && messageObj.payload.data;
+                    if (evType === 'device_announce' && evData && evData.friendly_name) {
+                        const newMessage = { payload: { available: true }, topic: evData.friendly_name };
+                        await this.statesController.processDeviceMessage(newMessage);
+                    } else if (evType === 'device_leave' && evData && evData.friendly_name) {
+                        const newMessage = { payload: { available: false }, topic: evData.friendly_name };
+                        await this.statesController.processDeviceMessage(newMessage);
+                    }
+                    break;
+                }
                 case 'bridge/config':
                 case 'bridge/health':
                 case 'bridge/definitions':
-                case 'bridge/event':
                 case 'bridge/extensions':
                 case 'bridge/response/device/configure':
                 case 'bridge/response/device/remove':
                 case 'bridge/response/device/options':
+                case 'bridge/response/device/interview':
                 case 'bridge/response/permit_join':
                 case 'bridge/response/networkmap':
+                case 'bridge/response/options':
+                case 'bridge/response/restart':
+                case 'bridge/response/backup':
+                case 'bridge/response/install_code/add':
+                case 'bridge/response/group/add':
+                case 'bridge/response/group/remove':
+                case 'bridge/response/group/members/add':
+                case 'bridge/response/group/members/remove':
                 case 'bridge/response/touchlink/scan':
                 case 'bridge/response/touchlink/identify':
                 case 'bridge/response/touchlink/factory_reset':
                     break;
-                default:
-                    {
-                        // is the payload an availability status?
-                        if (messageObj.topic.endsWith('/availability')) {
-                            // If an availability message for an old device ID comes with a payload of NULL, this is the indicator that a device has been unnamed.
-                            if (messageObj.payload == 'null') {
-                                return;
-                            }
-                            // is it a viable payload?
-                            if (messageObj.payload && messageObj.payload.state) {
-                                // {"payload":{"state":"online"},"topic":"FL.Licht.Links/availability"}  ---->  {"payload":{"available":true},"topic":"FL.Licht.Links"}
-                                const newMessage = {
-                                    payload: { available: messageObj.payload.state == 'online' },
-                                    topic: messageObj.topic.replace('/availability', ''),
-                                };
-
-                                statesController.processDeviceMessage(newMessage);
-                            }
-                            // States
-                        } else {
-                            // With the MQTT output type attribute_and_json, primitive payloads arrive here that must be discarded.
-                            if (utils.isObject(messageObj.payload) == false) {
-                                return;
-                            }
-                            // If MQTT is used, I have to filter the self-sent 'set' commands.
-                            if (messageObj.topic.endsWith('/set')) {
-                                return;
-                            }
-
-                            statesController.processDeviceMessage(messageObj);
+                default: {
+                    if (!messageObj.topic || typeof messageObj.topic !== 'string') {
+                        break;
+                    }
+                    if (messageObj.topic.endsWith('/availability')) {
+                        if (messageObj.payload == null) {
+                            break;
                         }
+                        const availState = typeof messageObj.payload === 'object'
+                            ? messageObj.payload.state
+                            : messageObj.payload;
+                        const newMessage = {
+                            payload: { available: availState === 'online' },
+                            topic: messageObj.topic.replace('/availability', ''),
+                        };
+                        await this.statesController.processDeviceMessage(newMessage);
+                    } else {
+                        if (!utils.isObject(messageObj.payload)) {
+                            break;
+                        }
+                        if (messageObj.topic.endsWith('/set')) {
+                            break;
+                        }
+                        await this.statesController.processDeviceMessage(messageObj);
                     }
                     break;
+                }
             }
         } finally {
             release();
@@ -287,98 +310,84 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async onUnload(callback) {
-        // Close MQTT connections
-        if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
-            if (mqttClient && !mqttClient.closed) {
+        try {
+            if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
+                if (this.mqttClient && !this.mqttClient.disconnected) {
+                    try { this.mqttClient.end(); } catch (e) { this.log.error(e); }
+                }
+            }
+            if (this.config.connectionType === 'intmqtt' || this.config.dummyMqtt === true) {
                 try {
-                    if (mqttClient) {
-                        mqttClient.end();
-                    }
-                } catch (e) {
-                    this.log.error(e);
-                }
+                    if (this.mqttServerController) { this.mqttServerController.closeServer(); }
+                } catch (e) { this.log.error(e); }
+            } else if (this.config.connectionType === 'ws') {
+                try {
+                    if (this.websocketController) { this.websocketController.closeConnection(); }
+                } catch (e) { this.log.error(e); }
             }
-        }
-        // Internal or Dummy MQTT-Server
-        if (this.config.connectionType == 'intmqtt' || this.config.dummyMqtt == true) {
-            try {
-                if (mqttServerController) {
-                    mqttServerController.closeServer();
-                }
-            } catch (e) {
-                this.log.error(e);
-            }
-        } else if (this.config.connectionType == 'ws') {
-        // Websocket
-            try {
-                if (websocketController) {
-                    websocketController.closeConnection();
-                }
-            } catch (e) {
-                this.log.error(e);
-            }
-        }
-        // Set all device available states of false
-        try {
-            if (statesController) {
-                await statesController.setAllAvailableToFalse();
-            }
-        } catch (e) {
-            this.log.error(e);
-        }
-        // Clear all websocket timers
-        try {
-            if (websocketController) {
-                await websocketController.allTimerClear();
-            }
-        } catch (e) {
-            this.log.error(e);
-        }
-        // Clear all state timers
-        try {
-            if (statesController) {
-                await statesController.allTimerClear();
-            }
-        } catch (e) {
-            this.log.error(e);
-        }
 
-        this.setState('info.connection', false, true);
+            try {
+                if (this.statesController) { await this.statesController.setAllAvailableToFalse(); }
+            } catch (e) { this.log.error(e); }
+            try {
+                if (this.websocketController) { await this.websocketController.allTimerClear(); }
+            } catch (e) { this.log.error(e); }
+            try {
+                if (this.statesController) { await this.statesController.allTimerClear(); }
+            } catch (e) { this.log.error(e); }
 
-        callback();
+            this.setState('info.connection', false, true);
+
+            // Schedule-Job beenden
+            const job = schedule.scheduledJobs['coordinatorCheck'];
+            if (job) { job.cancel(); }
+        } finally {
+            // Fix 8: callback() wird IMMER aufgerufen – auch wenn oben etwas wirft
+            // Ohne das hängt der Adapter-Stop dauerhaft
+            callback();
+        }
     }
 
     async onStateChange(id, state) {
-        if (state && state.ack == false) {
+        if (state && state.ack === false) {
             if (id.endsWith('info.debugmessages')) {
-                logCustomizations.debugDevices = state.val;
+                this.logCustomizations.debugDevices = String(state.val || '');
                 this.setState(id, state.val, true);
                 return;
             }
             if (id.endsWith('info.logfilter')) {
-                logCustomizations.logfilter = state.val.split(';').filter((x) => x); // filter removes empty strings here
+                this.logCustomizations.logfilter = String(state.val || '').split(';').filter((x) => x);
                 this.setState(id, state.val, true);
                 return;
             }
 
-            const message = (await z2mController.createZ2MMessage(id, state)) || { topic: '', payload: '' };
+            const message = await this.z2mController.createZ2MMessage(id, state);
+            if (!message || !message.topic) {
+                return;
+            }
 
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
-                mqttClient.publish(`${this.config.baseTopic}/${message.topic}`, JSON.stringify(message.payload));
-            } else if (this.config.connectionType == 'ws') {
-                websocketController.send(JSON.stringify(message));
+                if (!this.mqttClient || this.mqttClient.disconnected) {
+                    this.log.warn(`Cannot publish state, MQTT client not connected. (${id})`);
+                    return;
+                }
+                this.mqttClient.publish(`${this.config.baseTopic}/${message.topic}`, JSON.stringify(message.payload));
+            } else if (this.config.connectionType === 'ws') {
+                if (!this.websocketController) {
+                    this.log.warn(`Cannot send state, WebSocket not initialized. (${id})`);
+                    return;
+                }
+                this.websocketController.send(JSON.stringify({ topic: message.topic, payload: message.payload }));
             }
         }
     }
 }
 
 if (require.main !== module) {
-    // Export the constructor in compact mode
     /**
      * @param {Partial<core.AdapterOptions>} [options]
      */
     module.exports = (options) => new Zigbee2mqtt(options);
 } else {
-    // otherwise start the instance directly
     new Zigbee2mqtt();
 }
