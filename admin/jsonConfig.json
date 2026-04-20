@@ -560,6 +560,43 @@
           "lg": 12,
           "xl": 12,
           "newLine": true
+        },
+        "spacerDeleteStates": {
+          "type": "staticText",
+          "text": "",
+          "xs": 12,
+          "newLine": true
+        },
+        "headerDeleteStates": {
+          "type": "header",
+          "text": "coming soon ",
+          "size": 4,
+          "newLine": true
+        },
+        "buttonDeleteOldStates": {
+          "type": "sendTo",
+          "command": "deleteOldStates",
+          "label": "Delete old / unused states",
+          "variant": "contained",
+          "color": "secondary",
+          "icon": "delete",
+          "disabled": "1 === 1",
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "_deleteOldStatesResult": {
+          "type": "staticText",
+          "text": "",
+          "xs": 12,
+          "newLine": false,
+          "style": {
+            "marginTop": 8,
+            "fontStyle": "italic"
+          }
         }
       }
     }

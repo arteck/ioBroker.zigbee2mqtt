@@ -38,6 +38,7 @@ class Zigbee2mqtt extends core.Adapter {
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
+        this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
 
@@ -175,14 +176,20 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     async messageParse(messageObj) {
+        // Mutex: serialisiert alle messageParse-Aufrufe
+        // Wichtig: lock muss IMMER wieder freigegeben werden, auch bei early return / Fehler.
         let release = () => {};
+        const lock = new Promise((resolve) => (release = resolve));
+        const prev = this.messageParseMutex;
+        this.messageParseMutex = lock;
+
+        // Wenn prev rejected hat, wollen wir trotzdem weiterarbeiten (sonst blockiert alles)
         try {
-            const lock = new Promise((resolve) => (release = resolve));
-            const prev = this.messageParseMutex;
-            this.messageParseMutex = lock;
             await prev;
         } catch {
+            // ignore
         }
+
         try {
             if (!messageObj || typeof messageObj !== 'object') {
                 return;
@@ -281,7 +288,7 @@ class Zigbee2mqtt extends core.Adapter {
                         break;
                     }
                     if (messageObj.topic.endsWith('/availability')) {
-                        if (messageObj.payload == null) {
+                        if (messageObj.payload === null || messageObj.payload === undefined) {
                             break;
                         }
                         const availState = typeof messageObj.payload === 'object'
@@ -305,7 +312,117 @@ class Zigbee2mqtt extends core.Adapter {
                 }
             }
         } finally {
+            // Mutex immer freigeben
             release();
+        }
+    }
+
+    async onMessage(obj) {
+        if (!obj || !obj.command) {
+            return;
+        }
+
+        if (obj.command === 'deleteOldStates') {
+            const deletedList = [];
+            const errorList  = [];
+            try {
+                // Guard: Caches müssen gefüllt sein – sonst würden ALLE States gelöscht
+                if (this.deviceCache.length === 0 && this.groupCache.length === 0) {
+                    const warn = 'deleteOldStates: device list is empty – adapter not connected to Zigbee2MQTT yet. Aborting.';
+                    this.log.warn(warn);
+                    if (obj.callback) {
+                        this.sendTo(obj.from, obj.command, { error: warn }, obj.callback);
+                    }
+                    return;
+                }
+
+                // Nur echte Geräte (kein group_*) – Gruppen werden beim Löschen komplett ausgelassen
+                const knownStateIDs = new Set();
+                for (const device of this.deviceCache) {
+                    if (!device || !device.ieee_address || !Array.isArray(device.states)) {
+                        continue;
+                    }
+                    const base = `${this.namespace}.${device.ieee_address}`;
+                    for (const state of device.states) {
+                        if (state && state.id) {
+                            knownStateIDs.add(`${base}.${state.id}`);
+                        }
+                    }
+                    // additional-Channel und Pflicht-States immer erlauben
+                    knownStateIDs.add(`${base}.additional`);
+                    knownStateIDs.add(`${base}.available`);
+                    knownStateIDs.add(`${base}.last_seen`);
+                    knownStateIDs.add(`${base}.send_payload`);
+                }
+
+                // Alle vorhandenen Adapter-Objekte laden
+                const allObjects = await this.getAdapterObjectsAsync();
+                for (const id of Object.keys(allObjects)) {
+                    const iobObj = allObjects[id];
+
+                    // Nur States löschen – keine channels, devices, folders
+                    if (!iobObj || iobObj.type !== 'state') {
+                        continue;
+                    }
+
+                    // info.* States niemals löschen
+                    if (id.includes('.info.')) {
+                        continue;
+                    }
+
+                    // Gruppen-States (group_*) niemals löschen
+                    // Format: adapter.instance.ieee_address.stateid → parts[2] ist ieee_address
+                    const parts = id.split('.');
+                    if (parts.length >= 3 && parts[2].startsWith('group_')) {
+                        continue;
+                    }
+
+                    // additional.* Sub-States erlauben
+                    if (parts.length >= 5) {
+                        const additionalBase = parts.slice(0, 4).join('.');
+                        if (knownStateIDs.has(additionalBase)) {
+                            continue;
+                        }
+                    }
+
+                    // Wenn nicht im bekannten Set → löschen
+                    if (!knownStateIDs.has(id)) {
+                        try {
+                            await this.delObjectAsync(id);
+                            deletedList.push(id);
+                            this.log.debug(`deleteOldStates: deleted ${id}`);
+                        } catch (e) {
+                            errorList.push(id);
+                            this.log.warn(`deleteOldStates: could not delete ${id}: ${e}`);
+                        }
+                    }
+                }
+
+                // Liste aller gelöschten States als Warning ausgeben
+                if (deletedList.length > 0) {
+                    this.log.warn(`deleteOldStates: deleted ${deletedList.length} state(s):`);
+                    for (const deletedId of deletedList) {
+                        this.log.warn(`  - ${deletedId}`);
+                    }
+                }
+                if (errorList.length > 0) {
+                    this.log.warn(`deleteOldStates: failed to delete ${errorList.length} state(s):`);
+                    for (const errId of errorList) {
+                        this.log.warn(`  - ${errId}`);
+                    }
+                }
+
+                const msg = `Deleted ${deletedList.length} old state(s)${errorList.length > 0 ? `, ${errorList.length} error(s)` : ''}.`;
+                this.log.info(`deleteOldStates: ${msg}`);
+                if (obj.callback) {
+                    this.sendTo(obj.from, obj.command, { result: msg }, obj.callback);
+                }
+            } catch (e) {
+                this.log.error(`deleteOldStates error: ${e}`);
+                if (obj.callback) {
+                    this.sendTo(obj.from, obj.command, { error: String(e) }, obj.callback);
+                }
+            }
         }
     }
 
@@ -313,36 +430,61 @@ class Zigbee2mqtt extends core.Adapter {
         try {
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
                 if (this.mqttClient && !this.mqttClient.disconnected) {
-                    try { this.mqttClient.end(); } catch (e) { this.log.error(e); }
+                    try {
+                        this.mqttClient.end();
+                    } catch (e) {
+                        this.log.error(e);
+                    }
                 }
             }
             if (this.config.connectionType === 'intmqtt' || this.config.dummyMqtt === true) {
                 try {
-                    if (this.mqttServerController) { this.mqttServerController.closeServer(); }
-                } catch (e) { this.log.error(e); }
+                    if (this.mqttServerController) {
+                        this.mqttServerController.closeServer();
+                    }
+                } catch (e) {
+                    this.log.error(e);
+                }
             } else if (this.config.connectionType === 'ws') {
                 try {
-                    if (this.websocketController) { this.websocketController.closeConnection(); }
-                } catch (e) { this.log.error(e); }
+                    if (this.websocketController) {
+                        this.websocketController.closeConnection();
+                    }
+                } catch (e) {
+                    this.log.error(e);
+                }
             }
-
             try {
-                if (this.statesController) { await this.statesController.setAllAvailableToFalse(); }
-            } catch (e) { this.log.error(e); }
+                if (this.statesController) {
+                    await this.statesController.setAllAvailableToFalse();
+                }
+            } catch (e) {
+                this.log.error(e);
+            }
             try {
-                if (this.websocketController) { await this.websocketController.allTimerClear(); }
-            } catch (e) { this.log.error(e); }
+                if (this.websocketController) {
+                    await this.websocketController.allTimerClear();
+                }
+            } catch (e) {
+                this.log.error(e);
+            }
             try {
-                if (this.statesController) { await this.statesController.allTimerClear(); }
-            } catch (e) { this.log.error(e); }
+                if (this.statesController) {
+                    await this.statesController.allTimerClear();
+                }
+            } catch (e) {
+                this.log.error(e);
+            }
 
             this.setState('info.connection', false, true);
 
             // Schedule-Job beenden
             const job = schedule.scheduledJobs['coordinatorCheck'];
-            if (job) { job.cancel(); }
+            if (job) {
+                job.cancel();
+            }
         } finally {
-            // Fix 8: callback() wird IMMER aufgerufen – auch wenn oben etwas wirft
+            // callback() wird IMMER aufgerufen – auch wenn oben etwas wirft
             // Ohne das hängt der Adapter-Stop dauerhaft
             callback();
         }
