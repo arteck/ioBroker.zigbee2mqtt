@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "news": {
+      "3.1.1": {
+        "en": "fix connection handling",
+        "de": "befestigungstechnik",
+        "ru": "фиксировать связь",
+        "pt": "corrigir o tratamento da ligação",
+        "nl": "fix verbinding handling",
+        "fr": "fixer la manipulation de la connexion",
+        "it": "gestione del collegamento",
+        "es": "corrección de conexión",
+        "pl": "naprawić obsługę połączenia",
+        "uk": "кріплення з'єднання",
+        "zh-cn": "固定连接处理"
+      },
       "3.1.0": {
         "en": "refactoring",
         "de": "refaktor",
@@ -69,19 +82,6 @@
         "zh-cn": "修改动作 dp"
       },
       "3.0.18": {
-        "en": "typo",
-        "de": "typo",
-        "ru": "опечатка",
-        "pt": "erro de digitação",
-        "nl": "type",
-        "fr": "typo",
-        "it": "tipo",
-        "es": "typo",
-        "pl": "typo",
-        "uk": "типи",
-        "zh-cn": "类型"
-      },
-      "3.0.17": {
         "en": "typo",
         "de": "typo",
         "ru": "опечатка",
