@@ -21,7 +21,9 @@ concurrency:
 jobs:
   # Performs quick checks before the expensive test runs
   check-and-lint:
-    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    if: |
+      contains(github.event.head_commit.message, '[skip ci]') == false &&
+      startsWith(github.ref, 'refs/tags/v') == false
 
     runs-on: ubuntu-latest
 
@@ -36,7 +38,9 @@ jobs:
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
     needs: [check-and-lint]
-    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    if: |
+      contains(github.event.head_commit.message, '[skip ci]') == false &&
+      startsWith(github.ref, 'refs/tags/v') == false
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -59,9 +63,6 @@ jobs:
   # Deploys the final package to NPM
   # Deploys the final package to NPM and Github Actions
   deploy:
-    # Define which jobst must succeed before the release
-    needs: [adapter-tests]
-    
     # Trigger this step only when a commit on master is tagged with a version number
     if: |
       contains(github.event.head_commit.message, '[skip ci]') == false &&
