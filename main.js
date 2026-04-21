@@ -36,9 +36,15 @@ class Zigbee2mqtt extends core.Adapter {
         this.mqttServerController = null;
         this.messageParseMutex = Promise.resolve();
 
-        this.on('ready', this.onReady.bind(this));
-        this.on('stateChange', this.onStateChange.bind(this));
-        this.on('message', this.onMessage.bind(this));
+        this.on('ready', () => {
+            this.onReady().catch((e) => this.log.error(`onReady error: ${e}`));
+        });
+        this.on('stateChange', (id, state) => {
+            this.onStateChange(id, state).catch((e) => this.log.error(`onStateChange error: ${e}`));
+        });
+        this.on('message', (obj) => {
+            this.onMessage(obj).catch((e) => this.log.error(`onMessage error: ${e}`));
+        });
         this.on('unload', this.onUnload.bind(this));
     }
 
@@ -124,6 +130,10 @@ class Zigbee2mqtt extends core.Adapter {
                     `Connect to Zigbee2MQTT over ${this.config.connectionType === 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
                 );
                 this.setStateChanged('info.connection', true, true);
+                if (!this.config.baseTopic) {
+                    this.log.error('baseTopic is not configured – cannot subscribe to MQTT topics!');
+                    return;
+                }
                 this.mqttClient.subscribe(`${this.config.baseTopic}/#`, (err) => {
                     if (err) {
                         this.log.error(`MQTT subscribe error: ${err && err.message ? err.message : String(err)}`);
@@ -135,16 +145,18 @@ class Zigbee2mqtt extends core.Adapter {
                 this.log.info('MQTT client reconnecting to Zigbee2MQTT...');
             });
 
-            this.mqttClient.on('offline', async () => {
-                this.log.warn('MQTT client offline – connection to Zigbee2MQTT lost.');
-                this.setStateChanged('info.connection', false, true);
-                try {
-                    if (this.statesController) {
-                        await this.statesController.setAllAvailableToFalse();
+            this.mqttClient.on('offline', () => {
+                (async () => {
+                    this.log.warn('MQTT client offline – connection to Zigbee2MQTT lost.');
+                    this.setStateChanged('info.connection', false, true);
+                    try {
+                        if (this.statesController) {
+                            await this.statesController.setAllAvailableToFalse();
+                        }
+                    } catch (e) {
+                        this.log.error(`MQTT offline setAllAvailableToFalse error: ${e}`);
                     }
-                } catch (e) {
-                    this.log.error(`MQTT offline setAllAvailableToFalse error: ${e}`);
-                }
+                })().catch((e) => this.log.error(`MQTT offline handler error: ${e}`));
             });
 
             this.mqttClient.on('error', (err) => {
@@ -152,9 +164,9 @@ class Zigbee2mqtt extends core.Adapter {
             });
 
             this.mqttClient.on('message', (topic, payload) => {
-                // baseTopic aus dem Topic entfernen – Guard falls kein '/' vorhanden
-                const sepIdx = topic.indexOf('/');
-                if (sepIdx === -1) {
+                // baseTopic-Prefix vollständig entfernen – funktioniert auch bei mehrstufigem baseTopic (z.B. home/zigbee2mqtt)
+                const basePrefix = this.config.baseTopic ? `${this.config.baseTopic}/` : null;
+                if (!basePrefix || !topic.startsWith(basePrefix)) {
                     this.log.debug(`MQTT message with unexpected topic format: ${topic}`);
                     return;
                 }
@@ -167,7 +179,7 @@ class Zigbee2mqtt extends core.Adapter {
                 }
                 const messageObj = {
                     payload: parsedPayload,
-                    topic: topic.slice(sepIdx + 1),
+                    topic: topic.slice(basePrefix.length),
                 };
                 this.messageParse(messageObj).catch((err) => {
                     this.log.error(`messageParse error: ${err}`);
@@ -318,12 +330,16 @@ class Zigbee2mqtt extends core.Adapter {
                         if (messageObj.payload === null || messageObj.payload === undefined) {
                             break;
                         }
+                        const deviceTopic = messageObj.topic.replace('/availability', '');
+                        if (!deviceTopic) {
+                            break;
+                        }
                         const availState = typeof messageObj.payload === 'object'
                             ? messageObj.payload.state
                             : messageObj.payload;
                         const newMessage = {
                             payload: { available: availState === 'online' },
-                            topic: messageObj.topic.replace('/availability', ''),
+                            topic: deviceTopic,
                         };
                         await this.statesController.processDeviceMessage(newMessage);
                     } else {
@@ -384,6 +400,9 @@ class Zigbee2mqtt extends core.Adapter {
 
                 // Alle vorhandenen Adapter-Objekte laden
                 const allObjects = await this.getAdapterObjectsAsync();
+                if (!allObjects) {
+                    throw new Error('getAdapterObjectsAsync returned null');
+                }
                 for (const id of Object.keys(allObjects)) {
                     const iobObj = allObjects[id];
 
@@ -504,7 +523,7 @@ class Zigbee2mqtt extends core.Adapter {
                 this.log.error(e);
             }
 
-            this.setState('info.connection', false, true);
+            await this.setStateAsync('info.connection', false, true);
 
             // Schedule-Job beenden
             const job = schedule.scheduledJobs['coordinatorCheck'];
@@ -521,12 +540,14 @@ class Zigbee2mqtt extends core.Adapter {
     async onStateChange(id, state) {
         if (state && state.ack === false) {
             if (id.endsWith('info.debugmessages')) {
-                this.logCustomizations.debugDevices = String(state.val || '');
+                this.logCustomizations.debugDevices = state.val != null ? String(state.val) : '';
                 this.setState(id, state.val, true);
                 return;
             }
             if (id.endsWith('info.logfilter')) {
-                this.logCustomizations.logfilter = String(state.val || '').split(';').filter((x) => x);
+                this.logCustomizations.logfilter = state.val != null
+                    ? String(state.val).split(';').filter((x) => x)
+                    : [];
                 this.setState(id, state.val, true);
                 return;
             }
@@ -544,6 +565,10 @@ class Zigbee2mqtt extends core.Adapter {
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
                 if (!this.mqttClient || this.mqttClient.disconnected) {
                     this.log.warn(`Cannot publish state, MQTT client not connected. (${id})`);
+                    return;
+                }
+                if (!this.config.baseTopic) {
+                    this.log.error('baseTopic is not configured – cannot publish state!');
                     return;
                 }
                 try {
