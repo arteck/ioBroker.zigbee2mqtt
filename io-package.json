@@ -16,32 +16,6 @@
         "uk": "кріплення з'єднання",
         "zh-cn": "固定连接处理"
       },
-      "3.1.0": {
-        "en": "refactoring",
-        "de": "refaktor",
-        "ru": "рефакторинг",
-        "pt": "refatorização",
-        "nl": "refactoring",
-        "fr": "refactoration",
-        "it": "refactoring",
-        "es": "refactoring",
-        "pl": "refaktoring",
-        "uk": "рефакторинг",
-        "zh-cn": "正在重构"
-      },
-      "3.0.22": {
-        "en": "Dependencies have been updated",
-        "de": "Abhängigkeiten wurden aktualisiert",
-        "ru": "Зависимости были обновлены",
-        "pt": "As dependências foram atualizadas",
-        "nl": "Afhankelijkheden zijn bijgewerkt",
-        "fr": "Les dépendances ont été actualisées",
-        "it": "Le dipendenze sono state aggiornate",
-        "es": "Se han actualizado las dependencias",
-        "pl": "Zaktualizowano zależności",
-        "uk": "Залежність було оновлено",
-        "zh-cn": "依赖关系已更新"
-      },
       "3.0.21": {
         "en": "add coordinator status info",
         "de": "koordinator statusinfo hinzufügen",
