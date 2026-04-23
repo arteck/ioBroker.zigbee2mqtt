@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.3",
+    "version": "3.1.4",
     "news": {
+      "3.1.4": {
+        "en": "fix illuminance if not exists. we calculate it ourselves",
+        "de": "fixe beleuchtungsstärke, wenn nicht vorhanden. wir berechnen es selbst",
+        "ru": "установить свет, если его нет. мы сами вычисляем",
+        "pt": "fixar a iluminação se não existir. nós mesmos calculamos",
+        "nl": "fix verlichtingssterkte indien niet bestaat. we berekenen het zelf",
+        "fr": "fixer l'éclairage s'il n'existe pas. nous le calculons nous-mêmes",
+        "it": "fissare l'illuminazione se non esiste. noi lo calcoliamo noi stessi",
+        "es": "fijar la iluminación si no existe. lo calculamos nosotros mismos",
+        "pl": "naprawić oświetlenie, jeśli nie istnieje. sami to obliczymy",
+        "uk": "зафіксувати ілюмінанс, якщо не існує. ми розраховуємо самі",
+        "zh-cn": "如果不存在的话, 则固定灯光。 我们自己计算"
+      },
       "3.1.3": {
         "en": "fix illuminance_raw \nfix illuminance\nfix action state",
         "de": "fix illuminance raw\nbefestigungsleuchten\nfixer aktionszustand",
@@ -80,19 +93,6 @@
         "pl": "modyfikacja działania dp",
         "uk": "змінити дію dp",
         "zh-cn": "修改动作 dp"
-      },
-      "3.0.18": {
-        "en": "typo",
-        "de": "typo",
-        "ru": "опечатка",
-        "pt": "erro de digitação",
-        "nl": "type",
-        "fr": "typo",
-        "it": "tipo",
-        "es": "typo",
-        "pl": "typo",
-        "uk": "типи",
-        "zh-cn": "类型"
       }
     },
     "messages": [
