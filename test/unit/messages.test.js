@@ -15,9 +15,9 @@ function makeLogSpy() {
 }
 
 describe('messages.adapterInfo', () => {
-    it('bricht ohne Fehler ab wenn config/log null', async () => {
-        await assert.doesNotReject(() => adapterInfo(null, null));
-        await assert.doesNotReject(() => adapterInfo({}, null));
+    it('bricht ohne Fehler ab wenn config/log null', () => {
+        assert.doesNotThrow(() => adapterInfo(null, null));
+        assert.doesNotThrow(() => adapterInfo({}, null));
     });
 
     it('enthält keine Tippfehler "Externanl" mehr', async () => {
@@ -60,9 +60,9 @@ describe('messages.adapterInfo', () => {
 });
 
 describe('messages.zigbee2mqttInfo', () => {
-    it('bricht ohne Fehler ab wenn payload/log null', async () => {
-        await assert.doesNotReject(() => zigbee2mqttInfo(null, makeLogSpy()));
-        await assert.doesNotReject(() => zigbee2mqttInfo({}, null));
+    it('bricht ohne Fehler ab wenn payload/log null', () => {
+        assert.doesNotThrow(() => zigbee2mqttInfo(null, makeLogSpy()));
+        assert.doesNotThrow(() => zigbee2mqttInfo({}, null));
     });
 
     it('loggt Version und Coordinator-Info', async () => {

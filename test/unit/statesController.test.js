@@ -18,7 +18,10 @@ function makeAdapterMock(overrides = {}) {
         setStateAsync: async (id, val, ack) => setStateHistory.push({ id, val, ack }),
         setStateChangedAsync: async (id, val, ack) => setStateHistory.push({ id, val, ack, changed: true }),
         setObjectNotExistsAsync: async () => {},
-        getStatesAsync: async (pattern) => ({}),
+        getStatesAsync: async (_pattern) => ({}),
+        // ioBroker-Timer-API (wird vom StatesController verwendet)
+        setTimeout: (fn, ms) => setTimeout(fn, ms),
+        clearTimeout: (handle) => clearTimeout(handle),
         config: { allwaysUpdateAvailableState: false, allwaysUpdateOccupancyState: false },
         ...overrides,
     };
@@ -129,32 +132,84 @@ describe('StatesController.setStateChangedSafelyAsync', () => {
 
 // ─── setStateWithTimeoutAsync ────────────────────────────────────────────────
 describe('StatesController.setStateWithTimeoutAsync', () => {
-    it('setzt Wert sofort und dann Reset nach Timeout', async () => {
+    it('setzt value=true sofort und resettet nach Timeout auf false', async () => {
         const { ctrl, adapter } = makeController();
         await ctrl.setStateWithTimeoutAsync('0xAA.action', true, 50);
 
-        // Sofortige Setzung
+        // Sofortige Setzung auf true
         assert.ok(adapter.setStateHistory.some((s) => s.id === '0xAA.action' && s.val === true));
 
-        // Warten auf Reset
-        await new Promise((r) => setTimeout(r, 100));
+        // Noch kein Reset (Timer noch nicht abgelaufen)
+        assert.ok(!adapter.setStateHistory.some((s) => s.id === '0xAA.action' && s.val === false));
+
+        // Warten bis Timer feuert
+        await new Promise((r) => setTimeout(r, 120));
         assert.ok(adapter.setStateHistory.some((s) => s.id === '0xAA.action' && s.val === false));
     });
 
-    it('bricht ohne Fehler ab bei null-Wert', async () => {
-        const { ctrl } = makeController();
-        await assert.doesNotReject(() => ctrl.setStateWithTimeoutAsync('0xAA.action', null, 50));
+    it('setzt value=false sofort und startet KEINEN Auto-Reset-Timer', async () => {
+        const { ctrl, adapter } = makeController();
+        await ctrl.setStateWithTimeoutAsync('0xAA.move', false, 50);
+
+        // Sofortige Setzung auf false
+        assert.ok(adapter.setStateHistory.some((s) => s.id === '0xAA.move' && s.val === false));
+
+        // Kein Timer eingetragen
+        assert.strictEqual(ctrl.timeOutCache['0xAA.move'], undefined);
+
+        // Nach Ablauf der Timeout-Zeit darf kein true erscheinen
+        await new Promise((r) => setTimeout(r, 120));
+        assert.ok(!adapter.setStateHistory.some((s) => s.id === '0xAA.move' && s.val === true));
     });
 
-    it('überschreibt bestehenden Timer bei erneutem Aufruf', async () => {
+    it('bricht ohne Fehler ab bei null/undefined-Wert', async () => {
         const { ctrl, adapter } = makeController();
-        // Zweimal aufrufen – nur der zweite Timer soll feuern
+        await assert.doesNotReject(() => ctrl.setStateWithTimeoutAsync('0xAA.action', null, 50));
+        await assert.doesNotReject(() => ctrl.setStateWithTimeoutAsync('0xAA.action', undefined, 50));
+        assert.strictEqual(adapter.setStateHistory.length, 0);
+    });
+
+    it('löscht timeOutCache-Eintrag nach dem Reset', async () => {
+        const { ctrl } = makeController();
         await ctrl.setStateWithTimeoutAsync('0xAA.action', true, 50);
-        await ctrl.setStateWithTimeoutAsync('0xAA.action', true, 50);
+        assert.ok(ctrl.timeOutCache['0xAA.action'] !== undefined);
+
         await new Promise((r) => setTimeout(r, 120));
-        // Reset darf max. 2× eingetragen sein (pro Aufruf)
+        assert.strictEqual(ctrl.timeOutCache['0xAA.action'], undefined);
+    });
+
+    it('überschreibt bestehenden Timer bei erneutem Aufruf mit value=true (kein Doppel-Reset)', async () => {
+        const { ctrl, adapter } = makeController();
+        // Erster Aufruf, dann sofort zweiter – erster Timer wird gecancelt
+        await ctrl.setStateWithTimeoutAsync('0xAA.action', true, 80);
+        await ctrl.setStateWithTimeoutAsync('0xAA.action', true, 80);
+
+        await new Promise((r) => setTimeout(r, 200));
+
+        // Reset darf nur EINMAL geschrieben worden sein (zweiter Timer hat ersten gecancelt)
         const resets = adapter.setStateHistory.filter((s) => s.id === '0xAA.action' && s.val === false);
-        assert.ok(resets.length <= 2);
+        assert.strictEqual(resets.length, 1);
+    });
+
+    it('value=false nach value=true cancelt laufenden Timer (kein false→true-Flip)', async () => {
+        const { ctrl, adapter } = makeController();
+        // Erst true setzen (startet Reset-Timer)
+        await ctrl.setStateWithTimeoutAsync('0xAA.move', true, 80);
+        // Dann sofort false setzen (Stop-Signal, soll Timer canceln)
+        await ctrl.setStateWithTimeoutAsync('0xAA.move', false, 80);
+
+        // Kein Timer mehr aktiv
+        assert.strictEqual(ctrl.timeOutCache['0xAA.move'], undefined);
+
+        await new Promise((r) => setTimeout(r, 200));
+
+        // State-Reihenfolge: true, dann false – kein weiteres true danach
+        const history = adapter.setStateHistory.filter((s) => s.id === '0xAA.move');
+        assert.ok(history.length >= 2);
+        assert.strictEqual(history[history.length - 1].val, false);
+        // Kein auto-Reset auf true nach dem Stop
+        const trueAfterStop = history.slice(2).some((s) => s.val === true);
+        assert.strictEqual(trueAfterStop, false);
     });
 });
 
@@ -214,11 +269,17 @@ describe('StatesController.setAllAvailableToFalse', () => {
 // ─── allTimerClear ────────────────────────────────────────────────────────────
 describe('StatesController.allTimerClear', () => {
     it('löscht alle Timer und leert timeOutCache', async () => {
+        const { ctrl, adapter } = makeController();
+        // Timer über adapter.setTimeout eintragen (so wie der Code es tut)
+        ctrl.timeOutCache['test1'] = adapter.setTimeout(() => {}, 10000);
+        ctrl.timeOutCache['test2'] = adapter.setTimeout(() => {}, 10000);
+        ctrl.allTimerClear();
+        assert.deepStrictEqual(ctrl.timeOutCache, {});
+    });
+
+    it('funktioniert auch mit leerem timeOutCache', () => {
         const { ctrl } = makeController();
-        // Timer manuell eintragen
-        ctrl.timeOutCache['test1'] = setTimeout(() => {}, 10000);
-        ctrl.timeOutCache['test2'] = setTimeout(() => {}, 10000);
-        await ctrl.allTimerClear();
+        assert.doesNotThrow(() => ctrl.allTimerClear());
         assert.deepStrictEqual(ctrl.timeOutCache, {});
     });
 });

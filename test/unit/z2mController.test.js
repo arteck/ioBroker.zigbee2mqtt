@@ -15,8 +15,10 @@ function makeAdapterMock() {
             error: (m) => logs.error.push(m),
             debug: (m) => logs.debug.push(m),
         },
+        // Z2mController nutzt jetzt setStateAsync (await) statt setState
+        setStateAsync: async (id, val, ack) => setStates.push({ id, val, ack }),
         setState: (id, val, ack) => setStates.push({ id, val, ack }),
-        getStateAsync: async (id) => ({ val: null }),
+        getStateAsync: async (_id) => ({ val: null }),
         config: {},
     };
 }

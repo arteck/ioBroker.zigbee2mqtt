@@ -30,6 +30,9 @@ function makeAdapterMock() {
         statesController: null,
         setStateChanged: () => {},
         messageParse: async () => {},
+        // ioBroker-Timer-API
+        setTimeout:   (fn, ms) => setTimeout(fn, ms),
+        clearTimeout: (handle) => clearTimeout(handle),
     };
 }
 
@@ -78,13 +81,13 @@ describe('WebsocketController.closeConnection', () => {
 
 // ─── allTimerClear ────────────────────────────────────────────────────────────
 describe('WebsocketController.allTimerClear', () => {
-    it('löscht alle internen Timer ohne Fehler', async () => {
+    it('löscht alle internen Timer ohne Fehler', () => {
         const adapter = makeAdapterMock();
         const ctrl = new WebsocketController(adapter);
-        ctrl.ping = setTimeout(() => {}, 10000);
-        ctrl.pingTimeout = setTimeout(() => {}, 10000);
-        ctrl.autoRestartTimeout = setTimeout(() => {}, 10000);
-        await assert.doesNotReject(() => ctrl.allTimerClear());
+        ctrl.ping            = adapter.setTimeout(() => {}, 10000);
+        ctrl.pingTimeout     = adapter.setTimeout(() => {}, 10000);
+        ctrl.autoRestartTimeout = adapter.setTimeout(() => {}, 10000);
+        assert.doesNotThrow(() => ctrl.allTimerClear());
     });
 });
 

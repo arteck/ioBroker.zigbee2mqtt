@@ -16,6 +16,11 @@ const WebsocketController = require('./lib/websocketController').WebsocketContro
 const MqttServerController = require('./lib/mqttServerController').MqttServerController;
 
 class Zigbee2mqtt extends core.Adapter {
+    /**
+     * Erstellt eine neue Instanz des Zigbee2MQTT-Adapters.
+     *
+     * @param {object} [options] Optionale Adapter-Konfiguration (AdapterOptions)
+     */
     constructor(options) {
         super({
             ...options,
@@ -48,6 +53,10 @@ class Zigbee2mqtt extends core.Adapter {
         this.on('unload', this.onUnload.bind(this));
     }
 
+    /**
+     * Wird aufgerufen sobald der Adapter bereit ist (alle Objekte initialisiert).
+     * Initialisiert alle Controller und baut die Verbindung zu Zigbee2MQTT auf.
+     */
     async onReady() {
         this.statesController = new StatesController(this, this.deviceCache, this.groupCache, this.logCustomizations, this.createCache);
         this.deviceController = new DeviceController(
@@ -60,8 +69,7 @@ class Zigbee2mqtt extends core.Adapter {
         );
         this.z2mController = new Z2mController(this, this.deviceCache, this.groupCache, this.logCustomizations);
 
-        // Fix 2: adapterInfo ist async → awaiten
-        await adapterInfo(this.config, this.log);
+        adapterInfo(this.config, this.log);
 
         await this.setStateAsync('info.connection', false, true);
 
@@ -116,7 +124,8 @@ class Zigbee2mqtt extends core.Adapter {
                 // Internal MQTT-Server
                 this.mqttServerController = new MqttServerController(this);
                 await this.mqttServerController.createMQTTServer();
-                await this.delay(1500);
+                // Kurze Pause damit der OS-Socket tatsächlich bereit ist (createMQTTServer wartet bereits auf listen)
+                await this.delay(200);
                 this.mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, {
                     clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
                     clean: true,
@@ -129,7 +138,9 @@ class Zigbee2mqtt extends core.Adapter {
                 this.log.info(
                     `Connect to Zigbee2MQTT over ${this.config.connectionType === 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
                 );
-                this.setStateChanged('info.connection', true, true);
+                this.setStateChangedAsync('info.connection', true, true).catch((e) =>
+                    this.log.error(`MQTT connect setStateChangedAsync error: ${e}`)
+                );
                 if (!this.config.baseTopic) {
                     this.log.error('baseTopic is not configured – cannot subscribe to MQTT topics!');
                     return;
@@ -148,7 +159,7 @@ class Zigbee2mqtt extends core.Adapter {
             this.mqttClient.on('offline', () => {
                 (async () => {
                     this.log.warn('MQTT client offline – connection to Zigbee2MQTT lost.');
-                    this.setStateChanged('info.connection', false, true);
+                    await this.setStateChangedAsync('info.connection', false, true);
                     try {
                         if (this.statesController) {
                             await this.statesController.setAllAvailableToFalse();
@@ -195,13 +206,17 @@ class Zigbee2mqtt extends core.Adapter {
             if (this.config.dummyMqtt === true) {
                 this.mqttServerController = new MqttServerController(this);
                 await this.mqttServerController.createDummyMQTTServer();
-                await this.delay(1500);
+                await this.delay(200);
             }
 
             this.startWebsocket();
         }
     }
 
+    /**
+     * Erstellt (einmalig) den WebsocketController und initiiert die WS-Verbindung.
+     * Wird beim Start und nach einem Verbindungsabbruch aufgerufen.
+     */
     startWebsocket() {
         // Controller nur einmal erstellen – bei Reconnect wird derselbe wiederverwendet
         if (!this.websocketController) {
@@ -210,6 +225,13 @@ class Zigbee2mqtt extends core.Adapter {
         this.websocketController.initWsClient();
     }
 
+    /**
+     * Parst eine eingehende MQTT- oder WebSocket-Nachricht von Zigbee2MQTT
+     * und leitet sie an den zuständigen Controller weiter.
+     * Alle Aufrufe werden serialisiert (Mutex), um Race-Conditions zu vermeiden.
+     *
+     * @param {{ topic: string, payload: any }} messageObj Die zu verarbeitende Nachricht
+     */
     async messageParse(messageObj) {
         // Mutex: serialisiert alle messageParse-Aufrufe
         // Wichtig: lock muss IMMER wieder freigegeben werden, auch bei early return / Fehler.
@@ -239,7 +261,7 @@ class Zigbee2mqtt extends core.Adapter {
                     const coordState = typeof messageObj.payload === 'object' && messageObj.payload !== null
                         ? messageObj.payload.state
                         : messageObj.payload;
-                    this.setStateChanged('info.coordinator_status', coordState, true);
+                    await this.setStateChangedAsync('info.coordinator_status', coordState, true);
                     break;
                 }
                 case 'bridge/info':
@@ -259,7 +281,7 @@ class Zigbee2mqtt extends core.Adapter {
                         await this.statesController.setAllAvailableToFalse();
                         this.showInfo = true;
                     }
-                    this.setStateChanged('info.connection', bridgeState === 'online', true);
+                    await this.setStateChangedAsync('info.connection', bridgeState === 'online', true);
                     break;
                 }
                 case 'bridge/devices':
@@ -360,6 +382,11 @@ class Zigbee2mqtt extends core.Adapter {
         }
     }
 
+    /**
+     * Verarbeitet interne ioBroker-Nachrichten (z.B. Admin-UI-Kommandos).
+     *
+     * @param {ioBroker.Message} obj Das eingehende Nachrichtenobjekt
+     */
     async onMessage(obj) {
         if (!obj || !obj.command) {
             return;
@@ -401,7 +428,12 @@ class Zigbee2mqtt extends core.Adapter {
                 // Alle vorhandenen Adapter-Objekte laden
                 const allObjects = await this.getAdapterObjectsAsync();
                 if (!allObjects) {
-                    throw new Error('getAdapterObjectsAsync returned null');
+                    const warn = 'deleteOldStates: getAdapterObjectsAsync returned null – aborting.';
+                    this.log.error(warn);
+                    if (obj.callback) {
+                        this.sendTo(obj.from, obj.command, { error: warn }, obj.callback);
+                    }
+                    return;
                 }
                 for (const id of Object.keys(allObjects)) {
                     const iobObj = allObjects[id];
@@ -472,6 +504,12 @@ class Zigbee2mqtt extends core.Adapter {
         }
     }
 
+    /**
+     * Wird beim Stoppen des Adapters aufgerufen.
+     * Trennt alle Verbindungen, stoppt Timer und ruft abschließend callback() auf.
+     *
+     * @param {() => void} callback Muss am Ende zwingend aufgerufen werden
+     */
     async onUnload(callback) {
         try {
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
@@ -510,14 +548,14 @@ class Zigbee2mqtt extends core.Adapter {
             }
             try {
                 if (this.websocketController) {
-                    await this.websocketController.allTimerClear();
+                    this.websocketController.allTimerClear();
                 }
             } catch (e) {
                 this.log.error(e);
             }
             try {
                 if (this.statesController) {
-                    await this.statesController.allTimerClear();
+                    this.statesController.allTimerClear();
                 }
             } catch (e) {
                 this.log.error(e);
@@ -537,18 +575,25 @@ class Zigbee2mqtt extends core.Adapter {
         }
     }
 
+    /**
+     * Reagiert auf Änderungen von ioBroker-States.
+     * Wandelt den State-Change in eine Zigbee2MQTT-Nachricht um und sendet sie.
+     *
+     * @param {string} id        Vollständige State-ID (z.B. zigbee2mqtt.0.0xAABB.state)
+     * @param {ioBroker.State | null | undefined} state Das neue State-Objekt
+     */
     async onStateChange(id, state) {
         if (state && state.ack === false) {
             if (id.endsWith('info.debugmessages')) {
                 this.logCustomizations.debugDevices = state.val != null ? String(state.val) : '';
-                this.setState(id, state.val, true);
+                await this.setStateAsync(id, state.val, true);
                 return;
             }
             if (id.endsWith('info.logfilter')) {
                 this.logCustomizations.logfilter = state.val != null
                     ? String(state.val).split(';').filter((x) => x)
                     : [];
-                this.setState(id, state.val, true);
+                await this.setStateAsync(id, state.val, true);
                 return;
             }
 
@@ -597,7 +642,7 @@ class Zigbee2mqtt extends core.Adapter {
 
 if (require.main !== module) {
     /**
-     * @param {Partial<core.AdapterOptions>} [options]
+     * @param {object} [options] Optionale Adapter-Konfiguration (AdapterOptions)
      */
     module.exports = (options) => new Zigbee2mqtt(options);
 } else {

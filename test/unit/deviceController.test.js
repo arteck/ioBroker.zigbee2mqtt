@@ -213,16 +213,16 @@ describe('DeviceController.createGroupDefinitions', () => {
 
 // ─── processCoordinatorCheck ──────────────────────────────────────────────────
 describe('DeviceController.processCoordinatorCheck', () => {
-    it('setzt States und loggt Warnung bei missing_routers', () => {
+    it('setzt States und loggt Warnung bei missing_routers', async () => {
         const setStates = [];
         const adapter = {
             ...makeAdapterMock(),
-            setState: (id, val, ack) => setStates.push({ id, val, ack }),
+            setStateAsync: async (id, val, ack) => setStates.push({ id, val, ack }),
         };
         adapter.config.coordinatorCheckLogLvl = 'warn';
         const ctrl = new DeviceController(adapter, [], [], adapter.config, { debugDevices: '' }, {});
 
-        ctrl.processCoordinatorCheck({
+        await ctrl.processCoordinatorCheck({
             data: { missing_routers: [{ ieee_address: '0xdead' }] },
         });
 
@@ -231,10 +231,11 @@ describe('DeviceController.processCoordinatorCheck', () => {
         assert.ok(adapter.logs.warn.length > 0);
     });
 
-    it('loggt info wenn keine missing_routers', () => {
-        const adapter = { ...makeAdapterMock(), setState: () => {} };
+    it('loggt info wenn keine missing_routers', async () => {
+        const setStates = [];
+        const adapter = { ...makeAdapterMock(), setStateAsync: async (id, val, ack) => setStates.push({ id, val, ack }) };
         const ctrl = new DeviceController(adapter, [], [], adapter.config, { debugDevices: '' }, {});
-        ctrl.processCoordinatorCheck({ data: { missing_routers: [] } });
+        await ctrl.processCoordinatorCheck({ data: { missing_routers: [] } });
         assert.ok(adapter.logs.info.some((m) => m.includes('No missing router')));
     });
 });
