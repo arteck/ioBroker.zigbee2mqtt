@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.4",
+    "version": "3.1.5",
     "news": {
+      "3.1.5": {
+        "en": "fix illuminance",
+        "de": "befestigungsleuchten",
+        "ru": "фиксировать освещенность",
+        "pt": "fixar a iluminação",
+        "nl": "fix verlichtingssterkte",
+        "fr": "fixer l'éclairage",
+        "it": "illuminazione di correzione",
+        "es": "iluminación de fijación",
+        "pl": "podświetlenie",
+        "uk": "фіксувати ілюмінанс",
+        "zh-cn": "修补灯光"
+      },
       "3.1.4": {
         "en": "fix illuminance if not exists. we calculate it ourselves",
         "de": "fixe beleuchtungsstärke, wenn nicht vorhanden. wir berechnen es selbst",
@@ -80,19 +93,6 @@
         "pl": "sprawdzanie ładunku użytecznego, jeżeli nie określono",
         "uk": "перевірити навантаження, якщо не визначено",
         "zh-cn": "检查未定义的有效载荷"
-      },
-      "3.0.19": {
-        "en": "modify action dp",
-        "de": "änderung der aktion dp",
-        "ru": "модифицировать действие dp",
-        "pt": "modificar ação dp",
-        "nl": "actie dp wijzigen",
-        "fr": "modifier l'action dp",
-        "it": "modificare l'azione",
-        "es": "modificar la acción dp",
-        "pl": "modyfikacja działania dp",
-        "uk": "змінити дію dp",
-        "zh-cn": "修改动作 dp"
       }
     },
     "messages": [
