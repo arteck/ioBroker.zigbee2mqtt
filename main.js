@@ -63,7 +63,7 @@ class Zigbee2mqtt extends core.Adapter {
         // Fix 2: adapterInfo ist async → awaiten
         await adapterInfo(this.config, this.log);
 
-        this.setState('info.connection', false, true);
+        await this.setStateAsync('info.connection', false, true);
 
         const debugDevicesState = await this.getStateAsync('info.debugmessages');
         if (debugDevicesState && debugDevicesState.val) {

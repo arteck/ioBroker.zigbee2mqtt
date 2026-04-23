@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "news": {
+      "3.1.2": {
+        "en": "add test",
+        "de": "test hinzufügen",
+        "ru": "добавить тест",
+        "pt": "adicionar teste",
+        "nl": "test toevoegen",
+        "fr": "ajouter un essai",
+        "it": "aggiungere test",
+        "es": "agregar la prueba",
+        "pl": "dodać test",
+        "uk": "додати тест",
+        "zh-cn": "添加测试"
+      },
       "3.1.1": {
         "en": "fix connection handling",
         "de": "befestigungstechnik",
