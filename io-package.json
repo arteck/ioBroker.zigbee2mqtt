@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.6",
+    "version": "3.1.7",
     "news": {
+      "3.1.7": {
+        "en": "fix illuminance = 0",
+        "de": "fixe beleuchtungsstärke = 0",
+        "ru": "фиксированная освещенность = 0",
+        "pt": "iluminação de fixação = 0",
+        "nl": "fix verlichtingssterkte = 0",
+        "fr": "fixer l'éclairage = 0",
+        "it": "illuminazione di correzione = 0",
+        "es": "iluminación de fijación = 0",
+        "pl": "podświetlenie = 0",
+        "uk": "фіксувати ілюмінанс = 0",
+        "zh-cn": "固定灯光=0"
+      },
       "3.1.6": {
         "en": "fix illuminance = 0",
         "de": "fixe beleuchtungsstärke = 0",
@@ -80,19 +93,6 @@
         "pl": "naprawić obsługę połączenia",
         "uk": "кріплення з'єднання",
         "zh-cn": "固定连接处理"
-      },
-      "3.0.21": {
-        "en": "add coordinator status info",
-        "de": "koordinator statusinfo hinzufügen",
-        "ru": "добавить информацию о статусе координатора",
-        "pt": "adicionar informações sobre o estado do coordenador",
-        "nl": "coordinator status info toevoegen",
-        "fr": "ajouter le statut du coordonnateur info",
-        "it": "aggiungere coordinate status info",
-        "es": "añadir información sobre el estado de coordinador",
-        "pl": "dodaj informacje o statusie koordynatora",
-        "uk": "додати інформацію про статус координатора",
-        "zh-cn": "添加协调员状态信息"
       }
     },
     "messages": [
