@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.5",
+    "version": "3.1.6",
     "news": {
+      "3.1.6": {
+        "en": "fix illuminance = 0",
+        "de": "fixe beleuchtungsstärke = 0",
+        "ru": "фиксированная освещенность = 0",
+        "pt": "iluminação de fixação = 0",
+        "nl": "fix verlichtingssterkte = 0",
+        "fr": "fixer l'éclairage = 0",
+        "it": "illuminazione di correzione = 0",
+        "es": "iluminación de fijación = 0",
+        "pl": "podświetlenie = 0",
+        "uk": "фіксувати ілюмінанс = 0",
+        "zh-cn": "固定灯光=0"
+      },
       "3.1.5": {
         "en": "fix illuminance",
         "de": "befestigungsleuchten",
@@ -80,19 +93,6 @@
         "pl": "dodaj informacje o statusie koordynatora",
         "uk": "додати інформацію про статус координатора",
         "zh-cn": "添加协调员状态信息"
-      },
-      "3.0.20": {
-        "en": "check payload if undefined",
-        "de": "prüfen sie die nutzlast",
-        "ru": "проверьте полезную нагрузку, если не определено",
-        "pt": "verificar a carga útil se não for definida",
-        "nl": "payload controleren indien niet gedefinieerd",
-        "fr": "vérifier la charge utile si elle n'est pas définie",
-        "it": "controllare il carico utile se non definito",
-        "es": "check payload si no está definido",
-        "pl": "sprawdzanie ładunku użytecznego, jeżeli nie określono",
-        "uk": "перевірити навантаження, якщо не визначено",
-        "zh-cn": "检查未定义的有效载荷"
       }
     },
     "messages": [
