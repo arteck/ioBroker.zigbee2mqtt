@@ -29,45 +29,6 @@
         "uk": "застібка WS",
         "zh-cn": "修复 WS 关闭"
       },
-      "3.1.8": {
-        "en": "back to old dependency aedes",
-        "de": "zurück zu den alten abhängigkeiten",
-        "ru": "возвращение к старой зависимости",
-        "pt": "voltar ao velho aedes dependência",
-        "nl": "terug naar oude afhankelijkheid",
-        "fr": "retour à de vieilles dépendances",
-        "it": "torna alla vecchia dipendenza",
-        "es": "volver a las viejas",
-        "pl": "powrót do dawnej zależności",
-        "uk": "назад до старих залежностей",
-        "zh-cn": "回到旧的依附物"
-      },
-      "3.1.7": {
-        "en": "fix illuminance = 0",
-        "de": "fixe beleuchtungsstärke = 0",
-        "ru": "фиксированная освещенность = 0",
-        "pt": "iluminação de fixação = 0",
-        "nl": "fix verlichtingssterkte = 0",
-        "fr": "fixer l'éclairage = 0",
-        "it": "illuminazione di correzione = 0",
-        "es": "iluminación de fijación = 0",
-        "pl": "podświetlenie = 0",
-        "uk": "фіксувати ілюмінанс = 0",
-        "zh-cn": "固定灯光=0"
-      },
-      "3.1.6": {
-        "en": "fix illuminance = 0",
-        "de": "fixe beleuchtungsstärke = 0",
-        "ru": "фиксированная освещенность = 0",
-        "pt": "iluminação de fixação = 0",
-        "nl": "fix verlichtingssterkte = 0",
-        "fr": "fixer l'éclairage = 0",
-        "it": "illuminazione di correzione = 0",
-        "es": "iluminación de fijación = 0",
-        "pl": "podświetlenie = 0",
-        "uk": "фіксувати ілюмінанс = 0",
-        "zh-cn": "固定灯光=0"
-      },
       "3.1.5": {
         "en": "fix illuminance",
         "de": "befestigungsleuchten",
@@ -80,19 +41,6 @@
         "pl": "podświetlenie",
         "uk": "фіксувати ілюмінанс",
         "zh-cn": "修补灯光"
-      },
-      "3.1.4": {
-        "en": "fix illuminance if not exists. we calculate it ourselves",
-        "de": "fixe beleuchtungsstärke, wenn nicht vorhanden. wir berechnen es selbst",
-        "ru": "установить свет, если его нет. мы сами вычисляем",
-        "pt": "fixar a iluminação se não existir. nós mesmos calculamos",
-        "nl": "fix verlichtingssterkte indien niet bestaat. we berekenen het zelf",
-        "fr": "fixer l'éclairage s'il n'existe pas. nous le calculons nous-mêmes",
-        "it": "fissare l'illuminazione se non esiste. noi lo calcoliamo noi stessi",
-        "es": "fijar la iluminación si no existe. lo calculamos nosotros mismos",
-        "pl": "naprawić oświetlenie, jeśli nie istnieje. sami to obliczymy",
-        "uk": "зафіксувати ілюмінанс, якщо не існує. ми розраховуємо самі",
-        "zh-cn": "如果不存在的话, 则固定灯光。 我们自己计算"
       }
     },
     "messages": [
@@ -227,7 +175,8 @@
       {
         "admin": ">=7.6.20"
       }
-    ]
+    ],
+    "installedFrom": "arteck/ioBroker.zigbee2mqtt#4f3389ec3a9070f87bccb8f67d0d31dc7ea9aae7"
   },
   "native": {
     "connectionType": "ws",

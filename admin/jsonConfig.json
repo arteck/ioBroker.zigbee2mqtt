@@ -465,6 +465,11 @@
           "type": "header",
           "text": "Expert Settings. Please only use if you know what you're doing",
           "size": 2,
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12,
           "newLine": true
         },
         "coordinatorCheck": {
@@ -591,7 +596,11 @@
         "_deleteOldStatesResult": {
           "type": "staticText",
           "text": "",
-          "xs": 12,
+           "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
           "newLine": false,
           "style": {
             "marginTop": 8,
