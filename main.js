@@ -71,7 +71,7 @@ class Zigbee2mqtt extends core.Adapter {
 
         adapterInfo(this.config, this.log);
 
-        await this.setStateAsync('info.connection', false, true);
+        this.setState('info.connection', false, true);
 
         const debugDevicesState = await this.getStateAsync('info.debugmessages');
         if (debugDevicesState && debugDevicesState.val) {
@@ -570,7 +570,7 @@ class Zigbee2mqtt extends core.Adapter {
                 this.log.error(e);
             }
 
-            await this.setStateAsync('info.connection', false, true);
+            this.setState('info.connection', false, true);
 
             // Schedule-Job beenden
             const job = schedule.scheduledJobs['coordinatorCheck'];
@@ -595,14 +595,14 @@ class Zigbee2mqtt extends core.Adapter {
         if (state && state.ack === false) {
             if (id.endsWith('info.debugmessages')) {
                 this.logCustomizations.debugDevices = state.val != null ? String(state.val) : '';
-                await this.setStateAsync(id, state.val, true);
+                this.setState(id, state.val, true);
                 return;
             }
             if (id.endsWith('info.logfilter')) {
                 this.logCustomizations.logfilter = state.val != null
                     ? String(state.val).split(';').filter((x) => x)
                     : [];
-                await this.setStateAsync(id, state.val, true);
+                this.setState(id, state.val, true);
                 return;
             }
 

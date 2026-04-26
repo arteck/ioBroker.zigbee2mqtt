@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.9",
+    "version": "3.2.0",
     "news": {
+      "3.2.0": {
+        "en": "del deprectated setStateAsync",
+        "de": "del deprected setStateAsync",
+        "ru": "обсуждение StateAsync",
+        "pt": "del deprectated setStateAsync",
+        "nl": "del deprectated setStateAsync",
+        "fr": "set dépréciéStateAsync",
+        "it": "del set deprettatoStateAsync",
+        "es": "del deprectated setStateAsync",
+        "pl": "del deprectated setStateAsync",
+        "uk": "deprectated setStateAsync",
+        "zh-cn": "已贬值的设置"
+      },
       "3.1.9": {
         "en": "fix WS close",
         "de": "wS schließen",
@@ -80,19 +93,6 @@
         "pl": "naprawić oświetlenie, jeśli nie istnieje. sami to obliczymy",
         "uk": "зафіксувати ілюмінанс, якщо не існує. ми розраховуємо самі",
         "zh-cn": "如果不存在的话, 则固定灯光。 我们自己计算"
-      },
-      "3.1.3": {
-        "en": "fix illuminance_raw \nfix illuminance\nfix action state",
-        "de": "fix illuminance raw\nbefestigungsleuchten\nfixer aktionszustand",
-        "ru": "осветительный прибор raw\nфиксировать освещенность\nопределить состояние",
-        "pt": "corrigir illuminance  raw\nfixar a iluminação\ncorrigir o estado da ação",
-        "nl": "fix illuminantie raw\nfix verlichtingssterkte\nfix actiestatus",
-        "fr": "correction de l'éclairage raw\nfixer l'éclairage\nfixer l'état d'action",
-        "it": "correzione illuminazione raw\nilluminazione di correzione\nfix azione stato",
-        "es": "iluminación raw\niluminación de fijación\nestado de acción",
-        "pl": "fix lightinance _ raw\npodświetlenie\nstan działania",
-        "uk": "фіксація талії raw\nфіксувати ілюмінанс\nфіксувати стан дії",
-        "zh-cn": "修补灯光  raw\n修补灯光\n固定动作状态"
       }
     },
     "messages": [
