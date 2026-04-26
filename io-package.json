@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.7",
+    "version": "3.1.8",
     "news": {
+      "3.1.8": {
+        "en": "back to old dependency aedes",
+        "de": "zurück zu den alten abhängigkeiten",
+        "ru": "возвращение к старой зависимости",
+        "pt": "voltar ao velho aedes dependência",
+        "nl": "terug naar oude afhankelijkheid",
+        "fr": "retour à de vieilles dépendances",
+        "it": "torna alla vecchia dipendenza",
+        "es": "volver a las viejas",
+        "pl": "powrót do dawnej zależności",
+        "uk": "назад до старих залежностей",
+        "zh-cn": "回到旧的依附物"
+      },
       "3.1.7": {
         "en": "fix illuminance = 0",
         "de": "fixe beleuchtungsstärke = 0",
@@ -80,19 +93,6 @@
         "pl": "dodać test",
         "uk": "додати тест",
         "zh-cn": "添加测试"
-      },
-      "3.1.1": {
-        "en": "fix connection handling",
-        "de": "befestigungstechnik",
-        "ru": "фиксировать связь",
-        "pt": "corrigir o tratamento da ligação",
-        "nl": "fix verbinding handling",
-        "fr": "fixer la manipulation de la connexion",
-        "it": "gestione del collegamento",
-        "es": "corrección de conexión",
-        "pl": "naprawić obsługę połączenia",
-        "uk": "кріплення з'єднання",
-        "zh-cn": "固定连接处理"
       }
     },
     "messages": [

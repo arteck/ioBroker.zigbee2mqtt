@@ -109,6 +109,7 @@ class Zigbee2mqtt extends core.Adapter {
                     clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
                     clean: true,
                     reconnectPeriod: 500,
+                    connectTimeout: 10000,
                 };
 
                 if (this.config.externalMqttServerCredentials === true) {
@@ -130,6 +131,7 @@ class Zigbee2mqtt extends core.Adapter {
                     clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
                     clean: true,
                     reconnectPeriod: 500,
+                    connectTimeout: 10000,
                 });
             }
 
@@ -156,18 +158,25 @@ class Zigbee2mqtt extends core.Adapter {
                 this.log.info('MQTT client reconnecting to Zigbee2MQTT...');
             });
 
-            this.mqttClient.on('offline', () => {
-                (async () => {
-                    this.log.warn('MQTT client offline – connection to Zigbee2MQTT lost.');
-                    await this.setStateChangedAsync('info.connection', false, true);
-                    try {
-                        if (this.statesController) {
-                            await this.statesController.setAllAvailableToFalse();
-                        }
-                    } catch (e) {
-                        this.log.error(`MQTT offline setAllAvailableToFalse error: ${e}`);
+            this.mqttClient.on('offline', async () => {
+                this.log.warn('MQTT client offline – connection to Zigbee2MQTT lost.');
+                await this.setStateChangedAsync('info.connection', false, true).catch((e) =>
+                    this.log.error(`MQTT offline setStateChangedAsync error: ${e}`)
+                );
+                try {
+                    if (this.statesController) {
+                        await this.statesController.setAllAvailableToFalse();
                     }
-                })().catch((e) => this.log.error(`MQTT offline handler error: ${e}`));
+                } catch (e) {
+                    this.log.error(`MQTT offline setAllAvailableToFalse error: ${e}`);
+                }
+            });
+
+            this.mqttClient.on('close', async () => {
+                this.log.debug('MQTT client connection closed.');
+                await this.setStateChangedAsync('info.connection', false, true).catch((e) =>
+                    this.log.error(`MQTT close setStateChangedAsync error: ${e}`)
+                );
             });
 
             this.mqttClient.on('error', (err) => {
@@ -513,7 +522,7 @@ class Zigbee2mqtt extends core.Adapter {
     async onUnload(callback) {
         try {
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
-                if (this.mqttClient && !this.mqttClient.disconnected) {
+                if (this.mqttClient && this.mqttClient.connected) {
                     try {
                         this.mqttClient.removeAllListeners();
                         this.mqttClient.end(true);
@@ -608,7 +617,7 @@ class Zigbee2mqtt extends core.Adapter {
             }
 
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
-                if (!this.mqttClient || this.mqttClient.disconnected) {
+                if (!this.mqttClient || !this.mqttClient.connected) {
                     this.log.warn(`Cannot publish state, MQTT client not connected. (${id})`);
                     return;
                 }
