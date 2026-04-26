@@ -77,3 +77,7 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.1.3 (2026-04-23)
+* (arteck) fix illuminance_raw 
+* (arteck) fix illuminance
+* (arteck) fix action state

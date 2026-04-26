@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.1.8",
+    "version": "3.1.9",
     "news": {
+      "3.1.9": {
+        "en": "fix WS close",
+        "de": "wS schließen",
+        "ru": "закрыть WS Close",
+        "pt": "corrigir WS fechar",
+        "nl": "wS sluiten herstellen",
+        "fr": "correction WS fermer",
+        "it": "fix WS chiudi",
+        "es": "arreglar WS close",
+        "pl": "fix WS close",
+        "uk": "застібка WS",
+        "zh-cn": "修复 WS 关闭"
+      },
       "3.1.8": {
         "en": "back to old dependency aedes",
         "de": "zurück zu den alten abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "fix lightinance _ raw\npodświetlenie\nstan działania",
         "uk": "фіксація талії raw\nфіксувати ілюмінанс\nфіксувати стан дії",
         "zh-cn": "修补灯光  raw\n修补灯光\n固定动作状态"
-      },
-      "3.1.2": {
-        "en": "add test",
-        "de": "test hinzufügen",
-        "ru": "добавить тест",
-        "pt": "adicionar teste",
-        "nl": "test toevoegen",
-        "fr": "ajouter un essai",
-        "it": "aggiungere test",
-        "es": "agregar la prueba",
-        "pl": "dodać test",
-        "uk": "додати тест",
-        "zh-cn": "添加测试"
       }
     },
     "messages": [
