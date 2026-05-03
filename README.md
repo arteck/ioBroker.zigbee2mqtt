@@ -40,6 +40,8 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 ### 3.1.5 (2026-04-23)
 * (arteck) fix illuminance
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 MIT License
