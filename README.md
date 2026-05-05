@@ -22,7 +22,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 3.2.1 (2026-05-05)
 * (copilot) Adapter requires node.js >= 22 now
 * (arteck) upd device manager
 * (arteck) fix aedes-persistence
@@ -39,11 +39,6 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ### 3.1.7 (2026-04-24)
 * (arteck) fix illuminance = 0
-
-### 3.1.5 (2026-04-23)
-* (arteck) fix illuminance
-
-[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## License
 
