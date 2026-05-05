@@ -175,8 +175,7 @@
       {
         "admin": ">=7.6.20"
       }
-    ],
-    "installedFrom": "arteck/ioBroker.zigbee2mqtt#4f3389ec3a9070f87bccb8f67d0d31dc7ea9aae7"
+    ]
   },
   "native": {
     "connectionType": "ws",
