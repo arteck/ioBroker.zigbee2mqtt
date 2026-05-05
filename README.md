@@ -26,6 +26,7 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 * (copilot) Adapter requires node.js >= 22 now
 * (arteck) upd device manager
 * (arteck) fix aedes-persistence
+* (arteck) fix illuminance
 
 ### 3.2.0 (2026-04-26)
 * (arteck) del deprectated setStateAsync
