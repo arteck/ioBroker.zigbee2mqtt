@@ -28,7 +28,7 @@
     "@iobroker/dm-utils": "^3.0.17",
     "aedes": "^0.51.3",
     "aedes-persistence": "^9.1.2",
-    "axios": "^1.15.2",
+    "axios": "^1.16.0",
     "mqtt": "^5.15.1",
     "net": "^1.0.2",
     "node-schedule": "^2.1.1",
