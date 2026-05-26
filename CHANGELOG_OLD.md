@@ -77,6 +77,9 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.1.7 (2026-04-24)
+* (arteck) fix illuminance = 0
+
 ## 3.1.5 (2026-04-23)
 * (arteck) fix illuminance
 
