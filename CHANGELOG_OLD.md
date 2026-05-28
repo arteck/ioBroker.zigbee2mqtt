@@ -1,4 +1,4 @@
-<img src="admin/mspa.png" width="200" />
+<img src="admin/zigbee2mqtt.png" width="200" />
 
 # ioBroker.zigbee2mqtt
 
