@@ -24,7 +24,7 @@ jobs:
       - name: Auto-merge Dependabot PRs
         uses: iobroker-bot-orga/action-automerge-dependabot@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
           # Optional: Path to your auto-merge configuration file
           # config-file-path: '.github/auto-merge.yml'
           # Optional: Merge method (merge, squash, or rebase)
