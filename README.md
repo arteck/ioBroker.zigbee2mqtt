@@ -23,7 +23,8 @@ This adapter allows to control the data points of the devices of a Zigbee2MQTT i
 
 ## Changelog
 * (arteck) fix some warnings
-* (arteck) fix internal mqtt 
+* (arteck) fix internal mqtt
++ (arteck) fix languages
 
 ### 3.2.2 (2026-05-26)
 * (arteck) Dependencies have been updated
