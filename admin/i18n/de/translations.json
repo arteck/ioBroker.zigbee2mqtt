@@ -48,6 +48,16 @@
     "More information": "Mehr Informationen",
     "Expert Settings. Please only use if you know what you're doing": "Expert Einstellungen. Bitte nur verwenden, wenn Du weisst was du machst",
   	"Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System" : "Aktualisiert immer den Status für die Bewegung, wenn eine Nachricht vom zigbee2mqtt-Server eintrifft (nur bei true). Erhöht die Last auf dem ioBroker",
-    "Always update available state when message included last_seen status": "Aktualisiert immer den available Status, wenn die Nachricht last_seen Status enthält"
-
+    "Always update available state when message included last_seen status": "Aktualisiert immer den available Status, wenn die Nachricht last_seen Status enthält",
+    "main_settings": "Haupteinstellungen",
+    "welcome_to_zigbee2mqtt_adapter": "Willkommen beim Zigbee2MQTT Adapter",
+    "ws": "WS",
+    "wss_ssl": "WSS (SSL)",
+    "http": "HTTP",
+    "https": "HTTPS",
+    "device_image_configurations": "Gerätebild-Konfigurationen",
+    "size_of_object_icons_in_pixels": "Größe der Objekt-Icons in Pixeln",
+    "expert_configurations": "Experten-Konfigurationen",
+    "coming_soon": "coming soon ",
+    "delete_old_unused_states": "Alte/nicht verwendete States löschen"
 }

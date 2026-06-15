@@ -170,7 +170,8 @@
         "it": "Zigbee2MQTT",
         "es": "Zigbee2MQTT",
         "pl": "Zigbee2MQTT",
-        "zh-cn": "Zigbee2MQTT"
+        "zh-cn": "Zigbee2MQTT",
+        "uk": "Zigbee2MQTT"
       },
       "link": "%webUIScheme%://%webUIServer%:%webUIPort%"
     },

@@ -45,5 +45,19 @@
     "Automatic check for missing routers in the coordinator memory.": "Comprobación automática de enrutadores faltantes en la memoria del coordinador.",
     "With which log level should a negative search be logged?": "¿Con qué nivel de registro se debe registrar una búsqueda negativa?",
     "Time of the automatic check": "Hora del control automático",
-    "More information": "Más información"
+    "More information": "Más información",
+    "Expert Settings. Please only use if you know what you're doing": "Expert Settings. Please only use if you know what you're doing",
+    "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+    "Always update available state when message included last_seen status": "Siempre actualizar el estado disponible cuando el mensaje incluya el estado last_seen",
+    "main_settings": "Main Settings",
+    "welcome_to_zigbee2mqtt_adapter": "Welcome to Zigbee2MQTT Adapter",
+    "ws": "WS",
+    "wss_ssl": "WSS (SSL)",
+    "http": "HTTP",
+    "https": "HTTPS",
+    "device_image_configurations": "Device image configurations",
+    "size_of_object_icons_in_pixels": "Size of the object icons in pixels",
+    "expert_configurations": "Expert configurations",
+    "coming_soon": "coming soon ",
+    "delete_old_unused_states": "Delete old / unused states"
 }

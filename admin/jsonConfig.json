@@ -7,11 +7,11 @@
   "items": {
     "_tab_Start": {
       "type": "panel",
-      "label": "Main Settings",
+      "label": "$(main_settings)",
       "items": {
         "header_Start": {
             "type": "header",
-            "text": "Welcome to Zigbee2MQTT Adapter",
+            "text": "$(welcome_to_zigbee2mqtt_adapter)",
             "size": 2
         },
         "_textStart": {
@@ -108,11 +108,11 @@
           "label": "Scheme",
           "options": [
             {
-              "label": "WS",
+              "label": "$(ws)",
               "value": "ws"
             },
             {
-              "label": "WSS (SSL)",
+              "label": "$(wss_ssl)",
               "value": "wss"
             }
           ],
@@ -280,11 +280,11 @@
           "label": "Scheme",
           "options": [
             {
-              "label": "HTTP",
+              "label": "$(http)",
               "value": "http"
             },
             {
-              "label": "HTTPS",
+              "label": "$(https)",
               "value": "https"
             }
           ],
@@ -404,7 +404,7 @@
     },
     "_tab_Image Settings": {
       "type": "panel",
-      "label": "Device image configurations",
+      "label": "$(device_image_configurations)",
       "items": {
         "useDeviceIcons": {
           "type": "checkbox",
@@ -419,7 +419,7 @@
         },
         "deviceIconsSize": {
           "type": "number",
-          "label": "Size of the object icons in pixels",
+          "label": "$(size_of_object_icons_in_pixels)",
           "min": 8,
           "xs": 12,
           "sm": 12,
@@ -459,7 +459,7 @@
     },
     "_tab_Expert Settings": {
       "type": "panel",
-      "label": "Expert configurations",
+      "label": "$(expert_configurations)",
       "items": {
         "expertHeader": {
           "type": "header",
@@ -578,14 +578,14 @@
         },
         "headerDeleteStates": {
           "type": "header",
-          "text": "coming soon ",
+          "text": "$(coming_soon)",
           "size": 4,
           "newLine": true
         },
         "buttonDeleteOldStates": {
           "type": "sendTo",
           "command": "deleteOldStates",
-          "label": "Delete old / unused states",
+          "label": "$(delete_old_unused_states)",
           "variant": "contained",
           "color": "secondary",
           "icon": "delete",
