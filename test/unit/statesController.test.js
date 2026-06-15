@@ -22,7 +22,7 @@ function makeAdapterMock(overrides = {}) {
         // ioBroker-Timer-API (wird vom StatesController verwendet)
         setTimeout: (fn, ms) => setTimeout(fn, ms),
         clearTimeout: (handle) => clearTimeout(handle),
-        config: { allwaysUpdateAvailableState: false, allwaysUpdateOccupancyState: false },
+        config: { alwaysUpdateAvailableState: false, alwaysUpdateOccupancyState: false },
         ...overrides,
     };
 }

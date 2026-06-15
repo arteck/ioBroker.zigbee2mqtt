@@ -224,8 +224,8 @@
     "coordinatorCheck": false,
     "coordinatorCheckLogLvl": "info",
     "coordinatorCheckCron": "0 3 * * *",
-    "allwaysUpdateOccupancyState": false,
-    "allwaysUpdateAvailableState": false
+    "alwaysUpdateOccupancyState": false,
+    "alwaysUpdateAvailableState": false
   },
   "protectedNative": [
     "externalMqttServerPassword",

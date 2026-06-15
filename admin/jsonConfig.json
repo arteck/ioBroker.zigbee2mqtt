@@ -546,7 +546,7 @@
           "hidden": "data.coordinatorCheck != true"
         },
 
-        "allwaysUpdateOccupancyState": {
+        "alwaysUpdateOccupancyState": {
           "type": "checkbox",
           "label": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
           "xs": 12,
@@ -556,7 +556,7 @@
           "xl": 12,
           "newLine": true
         },
-        "allwaysUpdateAvailableState": {
+        "alwaysUpdateAvailableState": {
           "type": "checkbox",
           "label": "Always update available state when message included last_seen status",
           "xs": 12,

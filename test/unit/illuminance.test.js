@@ -61,8 +61,8 @@ const adapterStub = {
         simpleHoldReleaseState:      false,
         simpleMoveStopState:         false,
         simplePressReleaseState:     false,
-        allwaysUpdateAvailableState: false,
-        allwaysUpdateOccupancyState: false,
+        alwaysUpdateAvailableState: false,
+        alwaysUpdateOccupancyState: false,
     },
     log: { debug: () => {}, warn: () => {}, error: () => {}, info: () => {} },
 };

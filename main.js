@@ -40,6 +40,7 @@ class Zigbee2mqtt extends core.Adapter {
         this.websocketController = null;
         this.mqttServerController = null;
         this.messageParseMutex = Promise.resolve();
+        this.mqttReconnectAttempts = 0;
 
         this.on('ready', () => {
             this.onReady().catch((e) => this.log.error(`onReady error: ${e}`));
@@ -124,7 +125,12 @@ class Zigbee2mqtt extends core.Adapter {
             } else {
                 // Internal MQTT-Server
                 this.mqttServerController = new MqttServerController(this);
-                await this.mqttServerController.createMQTTServer();
+                const serverStarted = await this.mqttServerController.createMQTTServer();
+                if (!serverStarted) {
+                    this.log.error('Internal MQTT server could not be started. The adapter cannot connect to Zigbee2MQTT.');
+                    this.setState('info.connection', false, true);
+                    return;
+                }
                 // Kurze Pause damit der OS-Socket tatsächlich bereit ist (createMQTTServer wartet bereits auf listen)
                 await this.delay(200);
                 this.mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, {
@@ -137,6 +143,7 @@ class Zigbee2mqtt extends core.Adapter {
 
             // MQTT Client Events
             this.mqttClient.on('connect', () => {
+                this.mqttReconnectAttempts = 0;
                 this.log.info(
                     `Connect to Zigbee2MQTT over ${this.config.connectionType === 'exmqtt' ? 'external mqtt' : 'internal mqtt'} connection.`
                 );
@@ -155,7 +162,20 @@ class Zigbee2mqtt extends core.Adapter {
             });
 
             this.mqttClient.on('reconnect', () => {
-                this.log.info('MQTT client reconnecting to Zigbee2MQTT...');
+                this.mqttReconnectAttempts++;
+                if (this.mqttReconnectAttempts > 20) {
+                    this.log.error(
+                        `MQTT client gave up after ${this.mqttReconnectAttempts} reconnect attempts (10 seconds). ` +
+                        `Please check whether Zigbee2MQTT is running and the MQTT connection settings are correct.`
+                    );
+                    if (this.mqttClient) {
+                        this.mqttClient.end(true);
+                    }
+                    return;
+                }
+                this.log.info(
+                    `MQTT client reconnecting to Zigbee2MQTT... (attempt ${this.mqttReconnectAttempts}/20)`
+                );
             });
 
             this.mqttClient.on('offline', async () => {
@@ -214,7 +234,12 @@ class Zigbee2mqtt extends core.Adapter {
 
             if (this.config.dummyMqtt === true) {
                 this.mqttServerController = new MqttServerController(this);
-                await this.mqttServerController.createDummyMQTTServer();
+                const serverStarted = await this.mqttServerController.createDummyMQTTServer();
+                if (!serverStarted) {
+                    this.log.error('Dummy MQTT server could not be started – WebSocket mode cannot continue.');
+                    this.setState('info.connection', false, true);
+                    return;
+                }
                 await this.delay(200);
             }
 
@@ -527,7 +552,7 @@ class Zigbee2mqtt extends core.Adapter {
                         this.mqttClient.removeAllListeners();
                         this.mqttClient.end(true);
                     } catch (e) {
-                        this.log.error(e);
+                        this.log.error(`[onUnload] Fehler beim Schließen des MQTT-Clients: ${e.message}`);
                     }
                 }
             }
@@ -537,15 +562,16 @@ class Zigbee2mqtt extends core.Adapter {
                         this.mqttServerController.closeServer();
                     }
                 } catch (e) {
-                    this.log.error(e);
+                    this.log.error(`[onUnload] Fehler beim Schließen des MQTT-Servers: ${e.message}`);
                 }
-            } else if (this.config.connectionType === 'ws') {
+            }
+            if (this.config.connectionType === 'ws') {
                 try {
                     if (this.websocketController) {
                         this.websocketController.closeConnection();
                     }
                 } catch (e) {
-                    this.log.error(e);
+                    this.log.error(`[onUnload] Fehler beim Schließen der WebSocket-Verbindung: ${e.message}`);
                 }
             }
             try {
@@ -553,21 +579,21 @@ class Zigbee2mqtt extends core.Adapter {
                     await this.statesController.setAllAvailableToFalse();
                 }
             } catch (e) {
-                this.log.error(e);
+                this.log.error(`[onUnload] Fehler beim Setzen aller States auf false: ${e.message}`);
             }
             try {
                 if (this.websocketController) {
                     this.websocketController.allTimerClear();
                 }
             } catch (e) {
-                this.log.error(e);
+                this.log.error(`[onUnload] Fehler beim Zurücksetzen der WebSocket-Timer: ${e.message}`);
             }
             try {
                 if (this.statesController) {
                     this.statesController.allTimerClear();
                 }
             } catch (e) {
-                this.log.error(e);
+                this.log.error(`[onUnload] Fehler beim Zurücksetzen der States-Timer: ${e.message}`);
             }
 
             this.setState('info.connection', false, true);
@@ -595,14 +621,14 @@ class Zigbee2mqtt extends core.Adapter {
         if (state && state.ack === false) {
             if (id.endsWith('info.debugmessages')) {
                 this.logCustomizations.debugDevices = state.val != null ? String(state.val) : '';
-                this.setState(id, state.val, true);
+                await this.setState(id, state.val, true).catch(e => this.log.error(`[stateChange] Fehler beim Setzen von ${id}: ${e.message}`));
                 return;
             }
             if (id.endsWith('info.logfilter')) {
                 this.logCustomizations.logfilter = state.val != null
                     ? String(state.val).split(';').filter((x) => x)
                     : [];
-                this.setState(id, state.val, true);
+                await this.setState(id, state.val, true).catch(e => this.log.error(`[stateChange] Fehler beim Setzen von ${id}: ${e.message}`));
                 return;
             }
 
