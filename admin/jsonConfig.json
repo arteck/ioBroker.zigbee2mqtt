@@ -7,11 +7,11 @@
   "items": {
     "_tab_Start": {
       "type": "panel",
-      "label": "$(main_settings)",
+      "label": "Main Settings",
       "items": {
         "header_Start": {
             "type": "header",
-            "text": "$(welcome_to_zigbee2mqtt_adapter)",
+            "text": "Welcome to Zigbee2MQTT Adapter",
             "size": 2
         },
         "_textStart": {
@@ -108,11 +108,11 @@
           "label": "Scheme",
           "options": [
             {
-              "label": "$(ws)",
+              "label": "WS",
               "value": "ws"
             },
             {
-              "label": "$(wss_ssl)",
+              "label": "WS (SSL)",
               "value": "wss"
             }
           ],
@@ -280,11 +280,11 @@
           "label": "Scheme",
           "options": [
             {
-              "label": "$(http)",
+              "label": "HTTP",
               "value": "http"
             },
             {
-              "label": "$(https)",
+              "label": "HTTPS",
               "value": "https"
             }
           ],
@@ -419,7 +419,7 @@
         },
         "deviceIconsSize": {
           "type": "number",
-          "label": "$(size_of_object_icons_in_pixels)",
+          "label": "Size of the object icons in pixels",
           "min": 8,
           "xs": 12,
           "sm": 12,
@@ -459,7 +459,7 @@
     },
     "_tab_Expert Settings": {
       "type": "panel",
-      "label": "$(expert_configurations)",
+      "label": "Expert configurations",
       "items": {
         "expertHeader": {
           "type": "header",
@@ -578,14 +578,14 @@
         },
         "headerDeleteStates": {
           "type": "header",
-          "text": "$(coming_soon)",
+          "text": "coming soon",
           "size": 4,
           "newLine": true
         },
         "buttonDeleteOldStates": {
           "type": "sendTo",
           "command": "deleteOldStates",
-          "label": "$(delete_old_unused_states)",
+          "label": "Delete old / unused states",
           "variant": "contained",
           "color": "secondary",
           "icon": "delete",
