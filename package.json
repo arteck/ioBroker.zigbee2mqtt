@@ -32,7 +32,7 @@
     "mqtt": "^5.15.1",
     "net": "^1.0.2",
     "node-schedule": "^2.1.1",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.0",
     "ws": "^8.20.0"
   },
   "devDependencies": {
