@@ -80,7 +80,12 @@ As a prerequisite here is a submitted Docker server give!
         log_level: warn
     device_options:
         legacy: false
-    availability: true
+    availability:
+      enabled: true
+      active:
+         timeout: 10
+      passive:
+         timeout: 1100
    ```
 3. As can be seen, an MQTT server is required, which currently has no function for this adapter, but is required for startup.
    For this purpose, one can be configured in the adapter in ioBroker or an additional Docker container (https://www.zigbee2mqtt.io/guide/getting-started/#_2-setup-and-start-zigbee2mqtt) can be used as in the original documentation.
