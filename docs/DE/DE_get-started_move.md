@@ -83,7 +83,12 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung gegeben!
       log_level: warn
    device_options:
       legacy: false
-   availability: true
+   availability:
+      enabled: true
+      active:
+         timeout: 10
+      passive:
+         timeout: 1100
    ```
 
    für Version v2.
