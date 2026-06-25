@@ -404,7 +404,7 @@
     },
     "_tab_Image Settings": {
       "type": "panel",
-      "label": "$(device_image_configurations)",
+      "label": "Device image configurations",
       "items": {
         "useDeviceIcons": {
           "type": "checkbox",

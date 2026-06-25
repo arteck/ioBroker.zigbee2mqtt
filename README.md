@@ -30,9 +30,11 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### 3.2.3 (2026-06-25)
+* (arteck) typo
 * (arteck) fix some warnings
 * (arteck) fix internal mqtt
-+ (arteck) fix languages
+* (arteck) fix languages
 
 ### 3.2.2 (2026-05-26)
 * (arteck) Dependencies have been updated
@@ -48,9 +50,6 @@ check you VM Settings
 
 ### 3.1.9 (2026-04-26)
 * (arteck) fix WS close
-
-### 3.1.8 (2026-04-26)
-* (arteck) back to old dependency aedes
 
 ## License
 

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.2",
+    "version": "3.2.3",
     "news": {
+      "3.2.3": {
+        "en": "typo\nfix some warnings\nfix internal mqtt\nfix languages",
+        "de": "Tippfehler\nEinige Warnungen beheben\nInternes MQTT reparieren\nSprachen korrigieren",
+        "ru": "опечатка\nИсправлены некоторые предупреждения\nисправление внутреннего MQTT\nисправить языки",
+        "pt": "erro de digitação\nCorrigir alguns avisos\ncorrigir MQTT interno\ncorrigir idiomas",
+        "nl": "typfout\nEnkele waarschuwingen verhelpen\ninterne MQTT-problemen oplossen\ntalen corrigeren",
+        "fr": "faute de frappe\nCorrection de certains avertissements\ncorrection du MQTT interne\ncorriger les langues",
+        "it": "errore di battitura\ncorreggere alcuni avvisi\ncorrezione interna MQTT\nlinguaggi corretti",
+        "es": "error de tipografía\ncorregir algunas advertencias\ncorregir mqtt interno\ncorregir idiomas",
+        "pl": "literówka\nnapraw niektóre ostrzeżenia\nnapraw wewnętrzny MQTT\nnaprawić języki",
+        "uk": "друкарська помилка\nвиправити деякі попередження\nвиправити внутрішній mqtt\nвиправити мови",
+        "zh-cn": "拼写错误\n修复一些警告\n修复内部 MQTT\n修复语言"
+      },
       "3.2.2": {
         "en": "Dependencies have been updated",
         "de": "Abhängigkeiten wurden aktualisiert",
