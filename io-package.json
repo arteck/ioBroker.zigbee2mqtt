@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "news": {
+      "3.2.4": {
+        "en": "Dependencies have been updated\n",
+        "de": "Die Abhängigkeiten wurden aktualisiert.\n",
+        "ru": "Зависимости обновлены.\n",
+        "pt": "As dependências foram atualizadas.\n",
+        "nl": "Afhankelijkheden zijn bijgewerkt.\n",
+        "fr": "Les dépendances ont été mises à jour\n",
+        "it": "Le dipendenze sono state aggiornate\n",
+        "es": "Se han actualizado las dependencias.\n",
+        "pl": "Zaktualizowano zależności\n",
+        "uk": "Залежності оновлено\n",
+        "zh-cn": "依赖项已更新\n"
+      },
       "3.2.3": {
         "en": "typo\nfix some warnings\nfix internal mqtt\nfix languages",
         "de": "Tippfehler\nEinige Warnungen beheben\nInternes MQTT reparieren\nSprachen korrigieren",
