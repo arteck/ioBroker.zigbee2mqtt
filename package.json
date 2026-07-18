@@ -29,7 +29,7 @@
     "aedes": "^0.51.3",
     "aedes-persistence": "^9.1.2",
     "axios": "^1.17.0",
-    "mqtt": "^5.15.1",
+    "mqtt": "^5.15.2",
     "net": "^1.0.2",
     "node-schedule": "^2.1.1",
     "sharp": "^0.34.5",
