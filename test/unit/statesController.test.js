@@ -6,18 +6,25 @@ const { StatesController } = require('../../lib/statesController');
 function makeAdapterMock(overrides = {}) {
     const logs = { info: [], warn: [], error: [], debug: [] };
     const setStateHistory = [];
+    const setObjectHistory = [];
     return {
         logs,
         setStateHistory,
+        setObjectHistory,
         log: {
             info:  (m) => logs.info.push(m),
             warn:  (m) => logs.warn.push(m),
             error: (m) => logs.error.push(m),
             debug: (m) => logs.debug.push(m),
         },
+        // Synchrone setState-API (gibt ein Promise zurück, da der Code teils .catch() nutzt)
+        setState: (id, val, ack) => {
+            setStateHistory.push({ id, val, ack });
+            return Promise.resolve();
+        },
         setStateAsync: async (id, val, ack) => setStateHistory.push({ id, val, ack }),
         setStateChangedAsync: async (id, val, ack) => setStateHistory.push({ id, val, ack, changed: true }),
-        setObjectNotExistsAsync: async () => {},
+        setObjectNotExistsAsync: async (id, obj) => { setObjectHistory.push({ id, obj }); },
         getStatesAsync: async (_pattern) => ({}),
         // ioBroker-Timer-API (wird vom StatesController verwendet)
         setTimeout: (fn, ms) => setTimeout(fn, ms),
@@ -96,6 +103,168 @@ describe('StatesController.processDeviceMessage', () => {
         // createCache ist leer → State noch nicht erstellt
         await ctrl.processDeviceMessage({ topic: '0xAABB', payload: { brightness: 200 } });
         assert.ok(ctrl.incStatsQueue.length > 0);
+    });
+});
+
+// ─── findDeviceByTopic (Map-Cache) ───────────────────────────────────────────
+describe('StatesController.findDeviceByTopic', () => {
+    it('gibt null zurück bei leerem Topic', () => {
+        const { ctrl } = makeController();
+        assert.strictEqual(ctrl.findDeviceByTopic(''), null);
+        assert.strictEqual(ctrl.findDeviceByTopic(undefined), null);
+    });
+
+    it('findet ein Gerät aus dem deviceCache und cached es in der deviceMap', () => {
+        const { ctrl, deviceCache } = makeController();
+        const dev = { id: '0xAABB', ieee_address: '0xAABB', states: [] };
+        deviceCache.push(dev);
+        const found = ctrl.findDeviceByTopic('0xAABB');
+        assert.strictEqual(found, dev);
+        // Nach dem ersten Lookup muss der Eintrag im Map-Cache liegen
+        assert.strictEqual(ctrl.deviceMap.get('0xAABB'), dev);
+    });
+
+    it('findet eine Gruppe aus dem groupCache', () => {
+        const { ctrl, groupCache } = makeController();
+        const grp = { id: 'group_1', ieee_address: 'group_1', states: [] };
+        groupCache.push(grp);
+        assert.strictEqual(ctrl.findDeviceByTopic('group_1'), grp);
+    });
+
+    it('gibt null zurück für unbekanntes Topic', () => {
+        const { ctrl } = makeController();
+        assert.strictEqual(ctrl.findDeviceByTopic('0xNope'), null);
+    });
+
+    it('liefert bei wiederholtem Aufruf den gecachten Eintrag (Map-Treffer)', () => {
+        const { ctrl, deviceCache } = makeController();
+        const dev = { id: '0xCACHE', ieee_address: '0xCACHE', states: [] };
+        deviceCache.push(dev);
+        assert.strictEqual(ctrl.findDeviceByTopic('0xCACHE'), dev);
+        // deviceCache leeren – der Map-Cache muss den Eintrag weiterhin liefern
+        deviceCache.length = 0;
+        assert.strictEqual(ctrl.findDeviceByTopic('0xCACHE'), dev);
+    });
+});
+
+// ─── clearDeviceMap (Cache-Invalidierung) ────────────────────────────────────
+describe('StatesController.clearDeviceMap', () => {
+    it('leert deviceMap und ensuredObjects', async () => {
+        const { ctrl, deviceCache } = makeController();
+        const dev = { id: '0xINV', ieee_address: '0xINV', states: [] };
+        deviceCache.push(dev);
+        // Map und ensuredObjects befüllen
+        ctrl.findDeviceByTopic('0xINV');
+        await ctrl.ensureObjectOnce('0xINV.foo', { type: 'state', common: {}, native: {} });
+        assert.strictEqual(ctrl.deviceMap.size, 1);
+        assert.strictEqual(ctrl.ensuredObjects.size, 1);
+
+        ctrl.clearDeviceMap();
+        assert.strictEqual(ctrl.deviceMap.size, 0);
+        assert.strictEqual(ctrl.ensuredObjects.size, 0);
+    });
+
+    it('liefert nach clearDeviceMap eine neue Objektreferenz aus dem neu befüllten Cache', () => {
+        const { ctrl, deviceCache } = makeController();
+        const oldDev = { id: '0xNEW', ieee_address: '0xNEW', states: [] };
+        deviceCache.push(oldDev);
+        assert.strictEqual(ctrl.findDeviceByTopic('0xNEW'), oldDev);
+
+        // Cache neu aufbauen mit neuer Referenz + Map invalidieren
+        deviceCache.length = 0;
+        ctrl.clearDeviceMap();
+        const newDev = { id: '0xNEW', ieee_address: '0xNEW', states: [] };
+        deviceCache.push(newDev);
+
+        const found = ctrl.findDeviceByTopic('0xNEW');
+        assert.strictEqual(found, newDev);
+        assert.notStrictEqual(found, oldDev);
+    });
+});
+
+// ─── ensureObjectOnce (Session-Cache) ────────────────────────────────────────
+describe('StatesController.ensureObjectOnce', () => {
+    it('ruft setObjectNotExistsAsync nur einmal pro ID auf', async () => {
+        const { ctrl, adapter } = makeController();
+        const objDef = { type: 'state', common: {}, native: {} };
+        await ctrl.ensureObjectOnce('0xAA.foo', objDef);
+        await ctrl.ensureObjectOnce('0xAA.foo', objDef);
+        await ctrl.ensureObjectOnce('0xAA.foo', objDef);
+        const calls = adapter.setObjectHistory.filter((c) => c.id === '0xAA.foo');
+        assert.strictEqual(calls.length, 1);
+        assert.ok(ctrl.ensuredObjects.has('0xAA.foo'));
+    });
+
+    it('ignoriert leere IDs', async () => {
+        const { ctrl, adapter } = makeController();
+        await ctrl.ensureObjectOnce('', {});
+        await ctrl.ensureObjectOnce(undefined, {});
+        assert.strictEqual(adapter.setObjectHistory.length, 0);
+    });
+
+    it('markiert ID nicht als ensured wenn setObjectNotExistsAsync fehlschlägt', async () => {
+        const { ctrl } = makeController({
+            setObjectNotExistsAsync: async () => { throw new Error('boom'); },
+        });
+        await ctrl.ensureObjectOnce('0xAA.bar', {});
+        assert.ok(!ctrl.ensuredObjects.has('0xAA.bar'));
+    });
+});
+
+// ─── setDeviceStateSafely – available & additional ───────────────────────────
+describe('StatesController.setDeviceStateSafely (available/additional)', () => {
+    it('setzt available=true wenn last_seen im Payload und Option aktiv', async () => {
+        const { ctrl, adapter, deviceCache, createCache } = makeController({
+            config: { alwaysUpdateAvailableState: true, alwaysUpdateOccupancyState: false },
+        });
+        deviceCache.push({
+            id: '0xLS',
+            ieee_address: '0xLS',
+            states: [{ id: 'last_seen', prop: 'last_seen', type: 'number' }],
+        });
+        createCache['0xLS'] = { last_seen: { created: true } };
+        await ctrl.processDeviceMessage({ topic: '0xLS', payload: { last_seen: 12345 } });
+        assert.ok(adapter.setStateHistory.some((s) => s.id === '0xLS.available' && s.val === true));
+    });
+
+    it('legt additional-Objekt für unbekannte Payload-Keys nur einmal an', async () => {
+        const { ctrl, adapter, deviceCache, createCache } = makeController();
+        deviceCache.push({
+            id: '0xADD',
+            ieee_address: '0xADD',
+            states: [{ id: 'brightness', prop: 'brightness', type: 'number' }],
+        });
+        createCache['0xADD'] = { brightness: { created: true } };
+        // unbekannter Key "custom" → additional-Channel + State
+        await ctrl.processDeviceMessage({ topic: '0xADD', payload: { brightness: 50, custom: 'x' } });
+        await ctrl.processDeviceMessage({ topic: '0xADD', payload: { brightness: 60, custom: 'y' } });
+        const addStateCreates = adapter.setObjectHistory.filter((c) => c.id === '0xADD.additional.custom');
+        // ensureObjectOnce → nur ein Anlege-Aufruf trotz zweier Nachrichten
+        assert.strictEqual(addStateCreates.length, 1);
+        // additional-Wert wurde geschrieben
+        assert.ok(adapter.setStateHistory.some((s) => s.id === '0xADD.additional.custom'));
+    });
+
+    it('schreibt mehrere States einer Nachricht (parallel)', async () => {
+        const { ctrl, adapter, deviceCache, createCache } = makeController();
+        deviceCache.push({
+            id: '0xMULTI',
+            ieee_address: '0xMULTI',
+            states: [
+                { id: 'brightness', prop: 'brightness', type: 'number' },
+                { id: 'state', prop: 'state', type: 'boolean' },
+                { id: 'linkquality', prop: 'linkquality', type: 'number' },
+            ],
+        });
+        createCache['0xMULTI'] = {
+            brightness: { created: true },
+            state: { created: true },
+            linkquality: { created: true },
+        };
+        await ctrl.processDeviceMessage({ topic: '0xMULTI', payload: { brightness: 100, state: true, linkquality: 80 } });
+        assert.ok(adapter.setStateHistory.some((s) => s.id === '0xMULTI.brightness' && s.val === 100));
+        assert.ok(adapter.setStateHistory.some((s) => s.id === '0xMULTI.state' && s.val === true));
+        assert.ok(adapter.setStateHistory.some((s) => s.id === '0xMULTI.linkquality' && s.val === 80));
     });
 });
 

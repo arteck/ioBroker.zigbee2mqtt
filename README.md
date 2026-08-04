@@ -30,9 +30,12 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+* (arteck) State updates lag issue https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662
+
 ### 3.2.4 (2026-06-26)
 * (arteck) Dependencies have been updated
-*
 
 ### 3.2.3 (2026-06-25)
 * (arteck) typo
