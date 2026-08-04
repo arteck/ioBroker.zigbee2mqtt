@@ -77,6 +77,9 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.2.0 (2026-04-26)
+* (arteck) del deprectated setStateAsync
+
 ## 3.1.9 (2026-04-26)
 * (arteck) fix WS close
 

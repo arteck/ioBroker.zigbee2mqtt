@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.4",
+    "version": "3.2.5",
     "news": {
+      "3.2.5": {
+        "en": "State updates lag issue https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "de": "Problem mit verzögerten Statusaktualisierungen https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "ru": "Проблема задержки обновления состояния: https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "pt": "Problema de atraso nas atualizações de estado https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "nl": "Probleem met vertraging bij statusupdates: https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "fr": "Problème de latence lors de la mise à jour de l'état : https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "it": "Problema di ritardo nell'aggiornamento dello stato https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "es": "Problema de retraso en las actualizaciones de estado https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "pl": "Problem z opóźnieniem aktualizacji stanu https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "uk": "Проблема із затримкою оновлення стану https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
+        "zh-cn": "状态更新延迟问题 https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662"
+      },
       "3.2.4": {
         "en": "Dependencies have been updated\n",
         "de": "Die Abhängigkeiten wurden aktualisiert.\n",

@@ -30,8 +30,7 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 3.2.5 (2026-08-04)
 * (arteck) State updates lag issue https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662
 
 ### 3.2.4 (2026-06-26)
@@ -51,9 +50,6 @@ check you VM Settings
 * (arteck) upd device manager
 * (arteck) fix aedes-persistence
 * (arteck) fix illuminance
-
-### 3.2.0 (2026-04-26)
-* (arteck) del deprectated setStateAsync
 
 ## License
 
