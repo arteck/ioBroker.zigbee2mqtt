@@ -10,37 +10,37 @@
       "label": "Main Settings",
       "items": {
         "header_Start": {
-            "type": "header",
-            "text": "Welcome to Zigbee2MQTT Adapter",
-            "size": 2
+          "type": "header",
+          "text": "Welcome to Zigbee2MQTT Adapter",
+          "size": 2
         },
         "_textStart": {
-            "type": "staticText",
-            "text": "A detailed documentation with explanations and all further information can be found on this GitHub page",
-            "xs": 12,
-            "sm": 12,
-            "md": 6,
-            "lg": 4,
-            "xl": 4,
-            "style": {
-                "fontSize": 14,
-                "marginTop": 0
-            }
+          "type": "staticText",
+          "text": "A detailed documentation with explanations and all further information can be found on this GitHub page",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "style": {
+            "fontSize": 14,
+            "marginTop": 0
+          }
         },
         "_documentationLink": {
-            "type": "staticLink",
-            "label": "click for Documentation",
-            "button": true,
-            "href": "https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md",
-            "xs": 12,
-            "sm": 12,
-            "md": 6,
-            "lg": 4,
-            "xl": 4,
-            "style": {
-                "fontSize": 18,
-                "marginTop": 0
-            }
+          "type": "staticLink",
+          "label": "click for Documentation",
+          "button": true,
+          "href": "https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "style": {
+            "fontSize": 18,
+            "marginTop": 0
+          }
         },
         "connectionHeader": {
           "type": "header",
@@ -80,7 +80,7 @@
           "md": 6,
           "lg": 4,
           "xl": 4,
-          "default": "zigbee2mqtt",          
+          "default": "zigbee2mqtt",
           "hidden": "data.connectionType != 'exmqtt'"
         },
         "spacer01": {
@@ -434,7 +434,6 @@
       "type": "panel",
       "label": "Other configurations",
       "items": {
-
         "proxyZ2MLogs": {
           "type": "checkbox",
           "label": "Proxy Zigbee2MQTT logs to ioBroker logs",
@@ -494,31 +493,23 @@
           "label": "With which log level should a negative search be logged?",
           "options": [
             {
-              "label": {
-                "en": "Debug"
-              },
+              "label": "Debug",
               "value": "debug"
             },
             {
-              "label": {
-                "en": "Info"
-              },
+              "label": "Info",
               "value": "info"
             },
             {
-              "label": {
-                "en": "Warning"
-              },
+              "label": "Warning",
               "value": "warn"
             },
             {
-              "label": {
-                "en": "Error"
-              },
+              "label": "Error",
               "value": "error"
             }
           ],
-          "newLine": true,         
+          "newLine": true,
           "hidden": "data.coordinatorCheck != true"
         },
         "coordinatorCheckCron": {
@@ -545,7 +536,6 @@
           "newLine": true,
           "hidden": "data.coordinatorCheck != true"
         },
-
         "alwaysUpdateOccupancyState": {
           "type": "checkbox",
           "label": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
@@ -600,7 +590,7 @@
         "_deleteOldStatesResult": {
           "type": "staticText",
           "text": "",
-           "xs": 12,
+          "xs": 12,
           "sm": 6,
           "md": 4,
           "lg": 3,

@@ -46,8 +46,8 @@
     "With which log level should a negative search be logged?": "¿Con qué nivel de registro se debe registrar una búsqueda negativa?",
     "Time of the automatic check": "Hora del control automático",
     "More information": "Más información",
-    "Expert Settings. Please only use if you know what you're doing": "Expert Settings. Please only use if you know what you're doing",
-    "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+    "Expert Settings. Please only use if you know what you're doing": "Configuración de expertos. Úselo solo si sabe lo que está haciendo",
+    "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "Actualizar siempre el estado de ocupación cuando llega un mensaje del servidor zigbee2mqtt (solo para estado verdadero). Aumenta la carga en el sistema ioBroker",
     "Always update available state when message included last_seen status": "Siempre actualizar el estado disponible cuando el mensaje incluya el estado last_seen",
     "WS": "WS",
   	"WS (SSL)": "WS (SSL)",
@@ -59,5 +59,9 @@
     "Size of the object icons in pixels": "Tamaño de los iconos de objetos en píxeles",
     "Expert configurations": "Configuraciones avanzadas",
     "coming soon": "próximamente",
-    "Delete old / unused states": "Eliminar estados antiguos / no utilizados"
+    "Delete old / unused states": "Eliminar estados antiguos / no utilizados",
+    "Debug": "Depuración",
+    "Info": "Información",
+    "Warning": "Advertencia",
+    "Error": "Error"
 }

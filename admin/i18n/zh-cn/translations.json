@@ -59,5 +59,9 @@
   "Size of the object icons in pixels": "对象图标大小（像素）",
   "Expert configurations": "高级配置",
   "coming soon": "即将推出",
-  "Delete old / unused states": "删除旧的/未使用的状态"
+  "Delete old / unused states": "删除旧的/未使用的状态",
+  "Debug": "调试",
+  "Info": "信息",
+  "Warning": "警告",
+  "Error": "错误"
 }

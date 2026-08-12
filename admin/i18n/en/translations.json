@@ -59,5 +59,9 @@
 	"Size of the object icons in pixels": "Size of the object icons in pixels",
 	"Expert configurations": "Expert configurations",
 	"coming soon": "coming soon ",
-	"Delete old / unused states": "Delete old / unused states"
+	"Delete old / unused states": "Delete old / unused states",
+	"Debug": "Debug",
+	"Info": "Info",
+	"Warning": "Warning",
+	"Error": "Error"
 }

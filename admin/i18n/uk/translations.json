@@ -46,8 +46,8 @@
     "With which log level should a negative search be logged?": "На якому рівні журналу слід реєструвати негативний пошук?",
     "Time of the automatic check": "Час автоматичної перевірки",
     "More information": "Більше інформації",
-    "Expert Settings. Please only use if you know what you're doing": "Expert Settings. Please only use if you know what you're doing",
-    "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
+    "Expert Settings. Please only use if you know what you're doing": "Експертні налаштування. Використовуйте лише якщо ви знаєте, що робите",
+    "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System": "Завжди оновлювати стан зайнятості при надходженні повідомлення від сервера zigbee2mqtt (тільки для істинного стану). Збільшує навантаження на систему ioBroker",
     "Always update available state when message included last_seen status": "Завжди оновлюйте доступний стан, коли повідомлення містить статус last_seen",
     "WS": "WS",
   	"WS (SSL)": "WS (SSL)",
@@ -59,5 +59,9 @@
     "Size of the object icons in pixels": "Розмір значків об'єктів у пікселях",
     "Expert configurations": "Розширені налаштування",
     "coming soon": "незабаром",
-    "Delete old / unused states": "Видалити старі / невикористовувані стани"
+    "Delete old / unused states": "Видалити старі / невикористовувані стани",
+    "Debug": "Налагодження",
+    "Info": "Інформація",
+    "Warning": "Попередження",
+    "Error": "Помилка"
 }

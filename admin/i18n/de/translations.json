@@ -59,5 +59,9 @@
     "Size of the object icons in pixels": "Größe der Objekt-Symbole in Pixeln",
     "Expert configurations": "Experteneinstellungen",
     "coming soon": "kommt bald",
-    "Delete old / unused states": "Alte / ungenutzte Zustände löschen"
+    "Delete old / unused states": "Alte / ungenutzte Zustände löschen",
+    "Debug": "Debug",
+    "Info": "Info",
+    "Warning": "Warnung",
+    "Error": "Fehler"
 }
