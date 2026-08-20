@@ -20,8 +20,6 @@ describe('module to test => function to test', () => {
         const result = 5;
         // assign result a value from functionToTest
         expect(result).to.equal(expected);
-        // or using the should() syntax
-        result.should.equal(expected);
     });
     // ... more tests => it
 });

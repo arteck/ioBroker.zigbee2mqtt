@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.5",
+    "version": "3.2.6",
     "news": {
+      "3.2.6": {
+        "en": "add wait time for internal mqtt server into settings",
+        "de": "Füge in den Einstellungen eine Wartezeit für den internen MQTT-Server hinzu.",
+        "ru": "Добавить время ожидания для внутреннего MQTT-сервера в настройки.",
+        "pt": "Adicionar tempo de espera para o servidor MQTT interno nas configurações",
+        "nl": "Voeg de wachttijd voor de interne MQTT-server toe aan de instellingen.",
+        "fr": "Ajouter un délai d'attente pour le serveur MQTT interne dans les paramètres",
+        "it": "Aggiungi il tempo di attesa per il server MQTT interno alle impostazioni",
+        "es": "agregar tiempo de espera para el servidor mqtt interno en la configuración",
+        "pl": "dodaj czas oczekiwania na wewnętrzny serwer MQTT do ustawień",
+        "uk": "додати час очікування для внутрішнього сервера mqtt у налаштування",
+        "zh-cn": "在设置中添加内部 MQTT 服务器的等待时间"
+      },
       "3.2.5": {
         "en": "State updates lag issue https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
         "de": "Problem mit verzögerten Statusaktualisierungen https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
@@ -80,19 +93,6 @@
         "pl": "del deprectated setStateAsync",
         "uk": "deprectated setStateAsync",
         "zh-cn": "已贬值的设置"
-      },
-      "3.1.5": {
-        "en": "fix illuminance",
-        "de": "befestigungsleuchten",
-        "ru": "фиксировать освещенность",
-        "pt": "fixar a iluminação",
-        "nl": "fix verlichtingssterkte",
-        "fr": "fixer l'éclairage",
-        "it": "illuminazione di correzione",
-        "es": "iluminación de fijación",
-        "pl": "podświetlenie",
-        "uk": "фіксувати ілюмінанс",
-        "zh-cn": "修补灯光"
       }
     },
     "messages": [
@@ -233,7 +233,7 @@
   "native": {
     "connectionType": "ws",
     "wsScheme": "ws",
-    "wsServerIP": "",
+    "wsServerIP": "0.0.0.0",
     "wsServerPort": 8080,
     "wsTokenEnabled": false,
     "wsToken": "",
@@ -249,6 +249,7 @@
     "webUIScheme": "http",
     "webUIServer": "",
     "webUIPort": 8080,
+    "webUIWait": 200,
     "debugLogEnabled": false,
     "proxyZ2MLogs": true,
     "useKelvin": false,

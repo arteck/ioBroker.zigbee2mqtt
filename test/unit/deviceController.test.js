@@ -28,6 +28,8 @@ function makeAdapterMock() {
         instance: 0,
         namespace: 'zigbee2mqtt.0',
         // ioBroker-API-Stubs
+        on: () => {},
+        setState: async () => {},
         extendObjectAsync: async () => {},
         getDevicesAsync: async () => [],
         getForeignObjectsAsync: async () => ({}),
@@ -217,7 +219,7 @@ describe('DeviceController.processCoordinatorCheck', () => {
         const setStates = [];
         const adapter = {
             ...makeAdapterMock(),
-            setStateAsync: async (id, val, ack) => setStates.push({ id, val, ack }),
+            setState: async (id, val, ack) => setStates.push({ id, val, ack }),
         };
         adapter.config.coordinatorCheckLogLvl = 'warn';
         const ctrl = new DeviceController(adapter, [], [], adapter.config, { debugDevices: '' }, {});

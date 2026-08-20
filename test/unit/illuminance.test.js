@@ -89,10 +89,10 @@ describe('illuminance – statesDefs getter', () => {
     describe('illuminance_raw_from_lux.getter', () => {
         const getter = statesDefs.illuminance_raw_from_lux.getter;
 
-        it('Fall 1: gibt undefined zurück wenn illuminance_raw im Payload vorhanden ist', () => {
+        it('Fall 1: gibt den vorhandenen illuminance_raw-Wert zurück', () => {
             const payload = { illuminance: 500, illuminance_raw: 27000 };
-            assert.strictEqual(getter(payload), undefined,
-                'illuminance_raw_direct soll den Rohwert setzen – kein Überschreiben durch diesen getter');
+            assert.strictEqual(getter(payload), 27000,
+                'illuminance_raw_from_lux übernimmt den bereits im Payload vorhandenen Rohwert');
         });
 
         it('Fall 2: berechnet illuminance_raw aus illuminance (Lux)', () => {
@@ -250,9 +250,9 @@ describe('illuminance – createDeviceFromExposes State-Registrierung', () => {
             assert.strictEqual(s.getter({ illuminance: 100 }), 20001);
         });
 
-        it('illuminance_raw getter gibt undefined wenn illuminance_raw schon im Payload', () => {
+        it('illuminance_raw getter übernimmt den vorhandenen illuminance_raw-Wert', () => {
             const s = findState(deviceStates, 'illuminance_raw');
-            assert.strictEqual(s.getter({ illuminance: 100, illuminance_raw: 20000 }), undefined);
+            assert.strictEqual(s.getter({ illuminance: 100, illuminance_raw: 20000 }), 20000);
         });
     });
 
@@ -335,15 +335,13 @@ describe('illuminance – createDeviceFromExposes State-Registrierung', () => {
             // Wenn kein getter → illuminance_direct wurde registriert (direkt übernehmen) ✅
         });
 
-        it('Fall 1 – illuminance_raw getter gibt undefined (illuminance_raw_direct setzt direkt)', () => {
+        it('Fall 1 – illuminance_raw getter übernimmt vorhandenen illuminance_raw-Wert', () => {
             const s = findState(deviceStates, 'illuminance_raw');
-            if (s.getter) {
-                assert.strictEqual(
-                    s.getter({ illuminance: 500, illuminance_raw: 27000 }),
-                    undefined,
-                    'Wenn illuminance_raw im Payload → illuminance_raw_direct setzt direkt, getter=undefined'
-                );
-            }
+            assert.strictEqual(
+                s.getter({ illuminance: 500, illuminance_raw: 27000 }),
+                27000,
+                'Wenn illuminance_raw im Payload → Getter liefert den vorhandenen Rohwert'
+            );
         });
     });
 });
@@ -504,8 +502,8 @@ describe('illuminance_lux – alle 3 Properties gleichzeitig im Payload (Extremf
     const luxFromRaw  = statesDefs.illuminance_from_raw.getter;
     const payload = { illuminance: 500, illuminance_lux: 500, illuminance_raw: 27000 };
 
-    it('illuminance_raw_from_lux gibt undefined (illuminance_raw im Payload)', () => {
-        assert.strictEqual(rawFromLux(payload), undefined);
+    it('illuminance_raw_from_lux übernimmt den vorhandenen illuminance_raw-Wert', () => {
+        assert.strictEqual(rawFromLux(payload), 27000);
     });
 
     it('illuminance_raw_from_lux2 gibt undefined (illuminance_raw im Payload)', () => {

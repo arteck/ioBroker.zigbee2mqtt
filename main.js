@@ -132,7 +132,7 @@ class Zigbee2mqtt extends core.Adapter {
                     return;
                 }
                 // Kurze Pause damit der OS-Socket tatsächlich bereit ist (createMQTTServer wartet bereits auf listen)
-                await this.delay(200);
+                await this.delay(this.config.webUIWait || 200);
                 this.mqttClient = mqtt.connect(`mqtt://${this.config.mqttServerIPBind}:${this.config.mqttServerPort}`, {
                     clientId: `ioBroker.zigbee2mqtt_${Math.random().toString(16).slice(2, 8)}`,
                     clean: true,

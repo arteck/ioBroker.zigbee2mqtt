@@ -314,6 +314,21 @@
           "lg": 4,
           "xl": 4,
           "newLine": false
+        },
+        "webUIWait": {
+          "type": "number",
+          "label": "WebUi wait for internal mqtt server",
+          "help": "zigbee2mqtt wait in ms for internal mqtt server",
+          "hidden": "data.connectionType != 'intmqtt'",
+          "min": 200,
+          "max": 10000,
+          "default": 200,
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": false
         }
       }
     },

@@ -77,6 +77,12 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.2.1 (2026-05-05)
+* (copilot) Adapter requires node.js >= 22 now
+* (arteck) upd device manager
+* (arteck) fix aedes-persistence
+* (arteck) fix illuminance
+
 ## 3.2.0 (2026-04-26)
 * (arteck) del deprectated setStateAsync
 
