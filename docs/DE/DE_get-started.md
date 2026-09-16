@@ -91,6 +91,6 @@ Als Voraussetzung ist hier ein eingereichter Docker Server geben!
 
 5. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
 
-6. Konfiguration des Adapters Siehe dazu [Adapter Konfiguration](./DE/DE_AdapterConfig.md)
+6. Konfiguration des Adapters Siehe dazu [Adapter Konfiguration](./DE_AdapterConfig.md)
 
 7. Nun sollte alles laufen und die Geräte können angelernt werden. Dazu hier eine detaillierte Anleitung: https://www.zigbee2mqtt.io/guide/usage/pairing_devices.html
