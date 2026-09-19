@@ -77,6 +77,12 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.2.3 (2026-06-25)
+* (arteck) typo
+* (arteck) fix some warnings
+* (arteck) fix internal mqtt
+* (arteck) fix languages
+
 ## 3.2.2 (2026-05-26)
 * (arteck) Dependencies have been updated
 

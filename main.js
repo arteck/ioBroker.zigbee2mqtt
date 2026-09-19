@@ -290,10 +290,12 @@ class Zigbee2mqtt extends core.Adapter {
 
     /**
      * Lädt die Geräteliste einmalig über die Z2M-WebUI-REST-API nach, falls nach
-     * dem MQTT-Connect innerhalb von 5s kein bridge/devices empfangen wurde.
-     * Wird u.a. benötigt, wenn bei "intmqtt" der interne Broker (In-Memory-Persistenz)
-     * neu erzeugt wurde und Zigbee2MQTT die Retained-Nachrichten nicht von sich aus
-     * erneut published (Z2M selbst läuft weiter, ohne eigenen Neustart).
+     * dem Verbindungsaufbau (MQTT-connect ODER WebSocket-open) innerhalb von 5s kein
+     * bridge/devices empfangen wurde. Wird u.a. benötigt, wenn bei "intmqtt" der interne
+     * Broker (In-Memory-Persistenz) neu erzeugt wurde und Zigbee2MQTT die Retained-
+     * Nachrichten nicht von sich aus erneut published, oder wenn bei "ws" (inkl.
+     * dummyMqtt) Z2M nach einem Verbindungsabbruch nicht sofort den vollständigen
+     * State über die WebSocket-API nachsendet.
      */
     async tryFallbackDeviceReload() {
         if (this.deviceCache.length > 0) {

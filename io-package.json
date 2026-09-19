@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.7",
+    "version": "3.2.8",
     "news": {
+      "3.2.8": {
+        "en": "fix also fpor dummy mqtt if ws selected",
+        "de": "Fix auch für Dummy-MQT, falls gewählt",
+        "ru": "исправить также фиктивный matt, если мы выбрали",
+        "pt": "fixe também para dummy matt se eu escolher",
+        "nl": "ook opgelost voor dummy-mqt, indien geselecteerd",
+        "fr": "fix aussi pour le faux MQT si sélectionné",
+        "it": "fix anche per dummy mtt se scelto",
+        "es": "corregir también para MQT ficticio si lo elegí",
+        "pl": "napraw również fpor dummy mqtt, jeśli wybrano ws",
+        "uk": "Виправте також фпор фіктивний mqtt, якщо вибрано WS",
+        "zh-cn": "如果我们选择了，还修复了虚拟 mqtt 的问题"
+      },
       "3.2.7": {
         "en": "fix available status direct after new device is paired\nfix internal mqtt handling",
         "de": "Verfügbarkeit direkt nach Kopplung korrigieren\nFix internes MQTT-Handling",
@@ -80,19 +93,6 @@
         "pl": "Zaktualizowano zależności",
         "uk": "Залежність було оновлено",
         "zh-cn": "依赖关系已更新"
-      },
-      "3.2.1": {
-        "en": "Adapter requires node.js >= 22 now\nupd device manager\nfix aedes-persistence\nfix illuminance",
-        "de": "Adapter benötigt node.js >= 22 jetzt\nupd device manager\naedes-persistence reparieren\nbefestigungsleuchten",
-        "ru": "Адаптер требует node.js >= 22 сейчас\nобновленный device manager\nфиксировать стойкость\nфиксировать освещенность",
-        "pt": "Adaptador requer nod.js >= 22 agora\ngerenciador de dispositivos upd\ncorrigir aedes-persistência\nfixar a iluminação",
-        "nl": "Voor de adapter zijn node.js < 22 nu nodig\nupd apparaatbeheer\nfix aedes-persistence\nfix verlichtingssterkte",
-        "fr": "Adaptateur nécessite node.js >= 22 maintenant\ngestionnaire de périphérique mis à jour\nfixer la persistance des aedes\nfixer l'éclairage",
-        "it": "Adattatore richiede node.js >= 22 ora\nupd device manager\nfissare aedes-persistenza\nilluminazione di correzione",
-        "es": "Adaptador requiere node.js ю= 22 ahora\nupd device manager\narreglar aedes-persistence\niluminación de fijación",
-        "pl": "Adapter wymaga node.js > = 22\nmenedżer urządzenia upd\nfix aedes- trwałość\npodświetlenie",
-        "uk": "Адаптер вимагає node.js >= 22 тепер\nдиспетчер пристроїв\nфіксувати адисистентність\nфіксувати ілюмінанс",
-        "zh-cn": "适配器需要节点.js 现在22\n上调设备管理器\n固定死因-持久性\n修补灯光"
       }
     },
     "messages": [
