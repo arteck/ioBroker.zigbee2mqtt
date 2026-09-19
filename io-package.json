@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.8",
+    "version": "3.2.9",
     "news": {
+      "3.2.9": {
+        "en": "url fix",
+        "de": "URL-Fix",
+        "ru": "исправление URL-адреса",
+        "pt": "url fix",
+        "nl": "URL-correctie",
+        "fr": "url fix",
+        "it": "url fix",
+        "es": "url fix",
+        "pl": "poprawka adresu URL",
+        "uk": "виправлення URL-адреси",
+        "zh-cn": "网址修复"
+      },
       "3.2.8": {
         "en": "fix also fpor dummy mqtt if ws selected",
         "de": "Fix auch für Dummy-MQT, falls gewählt",
@@ -80,19 +93,6 @@
         "pl": "literówka\nnapraw niektóre ostrzeżenia\nnapraw wewnętrzny MQTT\nnaprawić języki",
         "uk": "друкарська помилка\nвиправити деякі попередження\nвиправити внутрішній mqtt\nвиправити мови",
         "zh-cn": "拼写错误\n修复一些警告\n修复内部 MQTT\n修复语言"
-      },
-      "3.2.2": {
-        "en": "Dependencies have been updated",
-        "de": "Abhängigkeiten wurden aktualisiert",
-        "ru": "Зависимости были обновлены",
-        "pt": "As dependências foram atualizadas",
-        "nl": "Afhankelijkheden zijn bijgewerkt",
-        "fr": "Les dépendances ont été actualisées",
-        "it": "Le dipendenze sono state aggiornate",
-        "es": "Se han actualizado las dependencias",
-        "pl": "Zaktualizowano zależności",
-        "uk": "Залежність було оновлено",
-        "zh-cn": "依赖关系已更新"
       }
     },
     "messages": [

@@ -77,6 +77,9 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.2.4 (2026-06-26)
+* (arteck) Dependencies have been updated
+
 ## 3.2.3 (2026-06-25)
 * (arteck) typo
 * (arteck) fix some warnings
