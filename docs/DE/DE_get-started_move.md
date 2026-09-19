@@ -168,7 +168,7 @@ Als Voraussetzung ist hier eine eingereichtete Docker Server Umgebung gegeben!
 
 5. Installation des Zigbee2MQTT Adapters über den Adapter Tab im ioBroker
 
-6. Konfiguration des Adapters Siehe dazu [Adapter Konfiguration](./DE/DE_AdapterConfig.md)
+6. Konfiguration des Adapters Siehe dazu [Adapter Konfiguration](./DE_AdapterConfig.md)
 
 7. Wenn jetzt alles gut gegangen ist, haben wir unsere Zigbee Netzwerk erfolgreich umgestellt und wir können noch ein paar anpassungen machen an dem neuen System.
    - Gelöschte Gruppen wieder anlegen
