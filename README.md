@@ -30,8 +30,11 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### **WORK IN PROGRESS**
+* (arteck) url fix 
+
 ### 3.2.8 (2026-09-19)
-* (arteck) fix also fpor dummy mqtt if ws selected
+* (arteck) fix also for dummy mqtt if ws selected
 
 ### 3.2.7 (2026-09-19)
 * (arteck) fix available status direct after new device is paired

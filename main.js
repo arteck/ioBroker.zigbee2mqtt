@@ -4,7 +4,6 @@
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
 const mqtt = require('mqtt');
-const axios = require('axios');
 const utils = require('./lib/utils');
 const schedule = require('node-schedule');
 const checkConfig = require('./lib/check').checkConfig;
@@ -275,8 +274,11 @@ class Zigbee2mqtt extends core.Adapter {
     /**
      * Plant einen einmaligen Fallback-Timer: Kommt innerhalb von 5 Sekunden kein
      * bridge/devices von Zigbee2MQTT an (deviceCache bleibt leer), wird versucht,
-     * die Geräteliste über die Z2M-WebUI-REST-API (`/api/devices`) nachzuladen.
-     * Wird KEIN neuer MQTT-Client / Broker erzeugt – nur ein einmaliger HTTP-Call.
+     * die Geräteliste über einen kurzlebigen WebSocket-Request gegen die Z2M-WebUI
+     * nachzuladen (Zigbee2MQTT bietet dort KEINE REST-API – nur den WebSocket unter
+     * `/api`, denselben, den auch connectionType "ws" nutzt).
+     * Wird KEIN neuer MQTT-Client / Broker erzeugt – nur eine einmalige, kurzlebige
+     * zusätzliche WS-Verbindung.
      */
     scheduleDeviceReloadFallback() {
         if (this.deviceReloadTimer) {
@@ -289,13 +291,16 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     /**
-     * Lädt die Geräteliste einmalig über die Z2M-WebUI-REST-API nach, falls nach
-     * dem Verbindungsaufbau (MQTT-connect ODER WebSocket-open) innerhalb von 5s kein
-     * bridge/devices empfangen wurde. Wird u.a. benötigt, wenn bei "intmqtt" der interne
-     * Broker (In-Memory-Persistenz) neu erzeugt wurde und Zigbee2MQTT die Retained-
-     * Nachrichten nicht von sich aus erneut published, oder wenn bei "ws" (inkl.
-     * dummyMqtt) Z2M nach einem Verbindungsabbruch nicht sofort den vollständigen
-     * State über die WebSocket-API nachsendet.
+     * Lädt die Geräteliste einmalig nach, falls nach dem Verbindungsaufbau
+     * (MQTT-connect ODER WebSocket-open) innerhalb von 5s kein bridge/devices
+     * empfangen wurde. Wird u.a. benötigt, wenn bei "intmqtt"/"ws"+dummyMqtt der
+     * interne Broker neu erzeugt wurde und Zigbee2MQTT die Retained-Nachrichten
+     * nicht von sich aus erneut published.
+     *
+     * Zigbee2MQTT hat keine REST-API für Geräte – daher wird hierfür kurzzeitig
+     * (max. 8s) eine zusätzliche WebSocket-Verbindung zur Z2M-WebUI (`/api`)
+     * aufgebaut, auf die erste `bridge/devices`-Nachricht gewartet und die
+     * Verbindung danach sofort wieder geschlossen.
      */
     async tryFallbackDeviceReload() {
         if (this.deviceCache.length > 0) {
@@ -306,35 +311,95 @@ class Zigbee2mqtt extends core.Adapter {
             this.log.debug('Fallback device reload skipped – WebUI address/port not configured.');
             return;
         }
-        this.log.warn(
-            'No bridge/devices received from Zigbee2MQTT within 5s – trying fallback via WebUI REST API. ' +
-            'This can happen if the internal MQTT broker was recreated (adapter restart) while Zigbee2MQTT itself keeps running.'
-        );
-        try {
-            const scheme = this.config.webUIScheme || 'http';
-            const url = `${scheme}://${this.config.webUIServer}:${this.config.webUIPort}/api/devices`;
-            const response = await axios.get(url, { timeout: 5000 });
-            const devices = response && response.data;
-            if (!Array.isArray(devices) || devices.length === 0) {
-                this.log.warn('Fallback device reload: WebUI API returned no devices.');
-                return;
-            }
-            if (!this.deviceController || !this.statesController) {
-                this.log.debug('Fallback device reload: controllers not yet initialized, aborting.');
-                return;
-            }
-            await this.deviceController.createDeviceDefinitions(devices);
-            await this.deviceController.createOrUpdateDevices();
-            await this.statesController.subscribeWritableStates();
-            await this.statesController.processQueue();
-            this.log.info(`Fallback device reload completed – ${devices.length} device(s) imported via WebUI API.`);
-        } catch (e) {
-            this.log.error(
-                `Fallback device reload via WebUI API failed: ${e && e.message ? e.message : String(e)}. ` +
-                'Please verify that the Zigbee2MQTT frontend is enabled and reachable, or restart Zigbee2MQTT once ' +
-                'to force it to re-publish bridge/devices.'
-            );
+        if (!this.deviceController || !this.statesController) {
+            this.log.debug('Fallback device reload: controllers not yet initialized, aborting.');
+            return;
         }
+        this.log.warn(
+            'No bridge/devices received from Zigbee2MQTT within 5s – trying fallback via a temporary WebSocket ' +
+            'request to the Zigbee2MQTT WebUI. This can happen if the internal/dummy MQTT broker was recreated ' +
+            '(adapter restart) while Zigbee2MQTT itself keeps running.'
+        );
+
+        const WebSocketClient = require('ws');
+        const wsScheme = this.config.webUIScheme === 'https' ? 'wss' : 'ws';
+        const url = `${wsScheme}://${this.config.webUIServer}:${this.config.webUIPort}/api`;
+        const FALLBACK_TIMEOUT_MS = 8000;
+
+        await new Promise((resolvePromise) => {
+            let settled = false;
+            let fallbackWs = null;
+            let timeoutHandle = null;
+
+            const finish = (errorMessage) => {
+                if (settled) {
+                    return;
+                }
+                settled = true;
+                if (timeoutHandle) {
+                    clearTimeout(timeoutHandle);
+                }
+                if (fallbackWs) {
+                    try {
+                        fallbackWs.removeAllListeners();
+                        fallbackWs.terminate();
+                    } catch {
+                        // ignore cleanup errors
+                    }
+                }
+                if (errorMessage) {
+                    this.log.error(
+                        `Fallback device reload via WebUI WebSocket failed: ${errorMessage}. ` +
+                        'Please verify that the Zigbee2MQTT frontend is enabled and reachable, or restart ' +
+                        'Zigbee2MQTT once to force it to re-publish bridge/devices.'
+                    );
+                }
+                resolvePromise();
+            };
+
+            try {
+                fallbackWs = new WebSocketClient(url, { rejectUnauthorized: false });
+            } catch (e) {
+                finish(e && e.message ? e.message : String(e));
+                return;
+            }
+
+            timeoutHandle = setTimeout(() => finish('timeout waiting for bridge/devices'), FALLBACK_TIMEOUT_MS);
+
+            fallbackWs.on('message', (data) => {
+                let msg;
+                try {
+                    msg = JSON.parse(data.toString());
+                } catch {
+                    return;
+                }
+                if (!msg || msg.topic !== 'bridge/devices' || !Array.isArray(msg.payload)) {
+                    return;
+                }
+                (async () => {
+                    try {
+                        await this.deviceController.createDeviceDefinitions(msg.payload);
+                        await this.deviceController.createOrUpdateDevices();
+                        await this.statesController.subscribeWritableStates();
+                        await this.statesController.processQueue();
+                        this.log.info(
+                            `Fallback device reload completed – ${msg.payload.length} device(s) imported via WebUI WebSocket.`
+                        );
+                        finish();
+                    } catch (e) {
+                        finish(e && e.message ? e.message : String(e));
+                    }
+                })();
+            });
+
+            fallbackWs.on('error', (err) => {
+                finish(err && err.message ? err.message : String(err));
+            });
+
+            fallbackWs.on('close', () => {
+                finish('WebSocket closed before bridge/devices arrived');
+            });
+        });
     }
 
     /**
