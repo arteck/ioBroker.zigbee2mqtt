@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.6",
+    "version": "3.2.7",
     "news": {
+      "3.2.7": {
+        "en": "fix available status direct after new device is paired\nfix internal mqtt handling",
+        "de": "Verfügbarkeit direkt nach Kopplung korrigieren\nFix internes MQTT-Handling",
+        "ru": "исправить доступный статус сразу после сопряжения нового устройства\nисправить внутреннюю обработку mqtt",
+        "pt": "corrige o status disponível logo após o emparelhamento\nfixe o uso interno de matt",
+        "nl": "de beschikbare status herstellen direct nadat een nieuw apparaat is gekoppeld\ninterne mqtt-afhandeling repareren",
+        "fr": "corriger le statut disponible dès le jumelage d'un nouvel appareil\ngestion interne des tapis",
+        "it": "aggiusta subito dopo l'abbinamento del nuovo dispositivo\nfix gestione interna mqtt",
+        "es": "arreglar el estado disponible justo después de emparejar el nuevo\narreglar el manejo interno de MQTT",
+        "pl": "napraw dostępny status bezpośrednio po sparowaniu nowego urządzenia\nnaprawić wewnętrzną obsługę mqtt",
+        "uk": "виправлення доступного стану безпосередньо після створення пари нового пристрою\nвиправлено внутрішню обробку mqtt",
+        "zh-cn": "新设备配对后直接修复可用状态\n修复内部 mqtt 处理"
+      },
       "3.2.6": {
         "en": "add wait time for internal mqtt server into settings",
         "de": "Füge in den Einstellungen eine Wartezeit für den internen MQTT-Server hinzu.",
@@ -80,19 +93,6 @@
         "pl": "Adapter wymaga node.js > = 22\nmenedżer urządzenia upd\nfix aedes- trwałość\npodświetlenie",
         "uk": "Адаптер вимагає node.js >= 22 тепер\nдиспетчер пристроїв\nфіксувати адисистентність\nфіксувати ілюмінанс",
         "zh-cn": "适配器需要节点.js 现在22\n上调设备管理器\n固定死因-持久性\n修补灯光"
-      },
-      "3.2.0": {
-        "en": "del deprectated setStateAsync",
-        "de": "del deprected setStateAsync",
-        "ru": "обсуждение StateAsync",
-        "pt": "del deprectated setStateAsync",
-        "nl": "del deprectated setStateAsync",
-        "fr": "set dépréciéStateAsync",
-        "it": "del set deprettatoStateAsync",
-        "es": "del deprectated setStateAsync",
-        "pl": "del deprectated setStateAsync",
-        "uk": "deprectated setStateAsync",
-        "zh-cn": "已贬值的设置"
       }
     },
     "messages": [

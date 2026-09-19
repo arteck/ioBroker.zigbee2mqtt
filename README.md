@@ -30,8 +30,9 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 3.2.7 (2026-09-19)
 * (arteck) fix available status direct after new device is paired
+* (arteck) fix internal mqtt handling
 
 ### 3.2.6 (2026-08-20)
 * (arteck) add wait time for internal mqtt server into settings
@@ -47,9 +48,6 @@ check you VM Settings
 * (arteck) fix some warnings
 * (arteck) fix internal mqtt
 * (arteck) fix languages
-
-### 3.2.2 (2026-05-26)
-* (arteck) Dependencies have been updated
 
 ## License
 

@@ -4,6 +4,7 @@
 // you need to create an adapter
 const core = require('@iobroker/adapter-core');
 const mqtt = require('mqtt');
+const axios = require('axios');
 const utils = require('./lib/utils');
 const schedule = require('node-schedule');
 const checkConfig = require('./lib/check').checkConfig;
@@ -41,6 +42,14 @@ class Zigbee2mqtt extends core.Adapter {
         this.mqttServerController = null;
         this.messageParseMutex = Promise.resolve();
         this.mqttReconnectAttempts = 0;
+        // Fallback: Wenn nach dem Verbindungsaufbau kein bridge/devices eintrifft
+        // (z.B. weil bei "intmqtt" der interne Broker samt Retained-Nachrichten neu
+        // erzeugt wurde und Zigbee2MQTT diese nicht von sich aus erneut published),
+        // wird EINMALIG versucht, die Geräteliste über die Z2M-WebUI-REST-API
+        // nachzuladen. Es wird NIE erneut onReady()/mqtt.connect() aufgerufen, um
+        // doppelte Clients/Listener bzw. Port-Konflikte (EADDRINUSE bei intmqtt) zu
+        // vermeiden.
+        this.deviceReloadTimer = null;
 
         this.on('ready', () => {
             this.onReady().catch((e) => this.log.error(`onReady error: ${e}`));
@@ -159,6 +168,10 @@ class Zigbee2mqtt extends core.Adapter {
                         this.log.error(`MQTT subscribe error: ${err && err.message ? err.message : String(err)}`);
                     }
                 });
+                // Einmaliger Fallback-Check: kommt innerhalb von 5s kein bridge/devices
+                // (z.B. verlorene Retained-Messages bei intmqtt-Neustart), versuche die
+                // Geräteliste über die Z2M-WebUI-REST-API nachzuladen.
+                this.scheduleDeviceReloadFallback();
             });
 
             this.mqttClient.on('reconnect', () => {
@@ -260,6 +273,69 @@ class Zigbee2mqtt extends core.Adapter {
     }
 
     /**
+     * Plant einen einmaligen Fallback-Timer: Kommt innerhalb von 5 Sekunden kein
+     * bridge/devices von Zigbee2MQTT an (deviceCache bleibt leer), wird versucht,
+     * die Geräteliste über die Z2M-WebUI-REST-API (`/api/devices`) nachzuladen.
+     * Wird KEIN neuer MQTT-Client / Broker erzeugt – nur ein einmaliger HTTP-Call.
+     */
+    scheduleDeviceReloadFallback() {
+        if (this.deviceReloadTimer) {
+            clearTimeout(this.deviceReloadTimer);
+        }
+        this.deviceReloadTimer = setTimeout(() => {
+            this.deviceReloadTimer = null;
+            this.tryFallbackDeviceReload().catch((e) => this.log.error(`tryFallbackDeviceReload error: ${e}`));
+        }, 5000);
+    }
+
+    /**
+     * Lädt die Geräteliste einmalig über die Z2M-WebUI-REST-API nach, falls nach
+     * dem MQTT-Connect innerhalb von 5s kein bridge/devices empfangen wurde.
+     * Wird u.a. benötigt, wenn bei "intmqtt" der interne Broker (In-Memory-Persistenz)
+     * neu erzeugt wurde und Zigbee2MQTT die Retained-Nachrichten nicht von sich aus
+     * erneut published (Z2M selbst läuft weiter, ohne eigenen Neustart).
+     */
+    async tryFallbackDeviceReload() {
+        if (this.deviceCache.length > 0) {
+            // bridge/devices ist zwischenzeitlich normal eingetroffen – nichts zu tun
+            return;
+        }
+        if (!this.config.webUIServer || !this.config.webUIPort) {
+            this.log.debug('Fallback device reload skipped – WebUI address/port not configured.');
+            return;
+        }
+        this.log.warn(
+            'No bridge/devices received from Zigbee2MQTT within 5s – trying fallback via WebUI REST API. ' +
+            'This can happen if the internal MQTT broker was recreated (adapter restart) while Zigbee2MQTT itself keeps running.'
+        );
+        try {
+            const scheme = this.config.webUIScheme || 'http';
+            const url = `${scheme}://${this.config.webUIServer}:${this.config.webUIPort}/api/devices`;
+            const response = await axios.get(url, { timeout: 5000 });
+            const devices = response && response.data;
+            if (!Array.isArray(devices) || devices.length === 0) {
+                this.log.warn('Fallback device reload: WebUI API returned no devices.');
+                return;
+            }
+            if (!this.deviceController || !this.statesController) {
+                this.log.debug('Fallback device reload: controllers not yet initialized, aborting.');
+                return;
+            }
+            await this.deviceController.createDeviceDefinitions(devices);
+            await this.deviceController.createOrUpdateDevices();
+            await this.statesController.subscribeWritableStates();
+            await this.statesController.processQueue();
+            this.log.info(`Fallback device reload completed – ${devices.length} device(s) imported via WebUI API.`);
+        } catch (e) {
+            this.log.error(
+                `Fallback device reload via WebUI API failed: ${e && e.message ? e.message : String(e)}. ` +
+                'Please verify that the Zigbee2MQTT frontend is enabled and reachable, or restart Zigbee2MQTT once ' +
+                'to force it to re-publish bridge/devices.'
+            );
+        }
+    }
+
+    /**
      * Parst eine eingehende MQTT- oder WebSocket-Nachricht von Zigbee2MQTT
      * und leitet sie an den zuständigen Controller weiter.
      * Alle Aufrufe werden serialisiert (Mutex), um Race-Conditions zu vermeiden.
@@ -319,6 +395,10 @@ class Zigbee2mqtt extends core.Adapter {
                     break;
                 }
                 case 'bridge/devices':
+                    if (this.deviceReloadTimer) {
+                        clearTimeout(this.deviceReloadTimer);
+                        this.deviceReloadTimer = null;
+                    }
                     await this.deviceController.createDeviceDefinitions(messageObj.payload);
                     await this.deviceController.createOrUpdateDevices();
                     await this.deviceController.checkAndProgressDeviceRemove();
@@ -546,6 +626,10 @@ class Zigbee2mqtt extends core.Adapter {
      */
     async onUnload(callback) {
         try {
+            if (this.deviceReloadTimer) {
+                clearTimeout(this.deviceReloadTimer);
+                this.deviceReloadTimer = null;
+            }
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
                 if (this.mqttClient && this.mqttClient.connected) {
                     try {

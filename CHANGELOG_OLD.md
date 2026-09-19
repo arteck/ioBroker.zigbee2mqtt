@@ -77,6 +77,9 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.2.2 (2026-05-26)
+* (arteck) Dependencies have been updated
+
 ## 3.2.1 (2026-05-05)
 * (copilot) Adapter requires node.js >= 22 now
 * (arteck) upd device manager
