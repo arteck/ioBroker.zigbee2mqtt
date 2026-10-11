@@ -49,6 +49,7 @@ class Zigbee2mqtt extends core.Adapter {
         // doppelte Clients/Listener bzw. Port-Konflikte (EADDRINUSE bei intmqtt) zu
         // vermeiden.
         this.deviceReloadTimer = null;
+        this.deviceReloadInProgress = false;
 
         this.on('ready', () => {
             this.onReady().catch((e) => this.log.error(`onReady error: ${e}`));
@@ -279,15 +280,31 @@ class Zigbee2mqtt extends core.Adapter {
      * `/api`, denselben, den auch connectionType "ws" nutzt).
      * Wird KEIN neuer MQTT-Client / Broker erzeugt – nur eine einmalige, kurzlebige
      * zusätzliche WS-Verbindung.
+     *
+     * @param {string} reason Grund des Reloads (z.B. startup/runtime:event)
+     * @param {number} delayMs Verzögerung bis zum Reload-Start in Millisekunden
+     * @param {boolean} force  Auch bei bereits gefülltem deviceCache ausführen
      */
-    scheduleDeviceReloadFallback() {
+    scheduleDeviceReloadFallback(reason = 'startup', delayMs = 5000, force = false) {
         if (this.deviceReloadTimer) {
             clearTimeout(this.deviceReloadTimer);
         }
         this.deviceReloadTimer = setTimeout(() => {
             this.deviceReloadTimer = null;
-            this.tryFallbackDeviceReload().catch((e) => this.log.error(`tryFallbackDeviceReload error: ${e}`));
-        }, 5000);
+            this.tryFallbackDeviceReload({ reason, force }).catch((e) => this.log.error(`tryFallbackDeviceReload error: ${e}`));
+        }, delayMs);
+    }
+
+    /**
+     * Plant ein kurzfristiges, erzwungenes Nachladen der Device-Liste zur Laufzeit
+     * (z.B. nach device_joined / device_interview_*), damit neue Geräte ohne
+     * Adapter-Neustart erscheinen.
+     *
+     * @param {string} trigger Auslösendes Event/Topic
+     */
+    scheduleRuntimeDeviceReload(trigger) {
+        this.log.debug(`Scheduling runtime device reload (trigger: ${trigger})`);
+        this.scheduleDeviceReloadFallback(`runtime:${trigger}`, 2500, true);
     }
 
     /**
@@ -301,9 +318,19 @@ class Zigbee2mqtt extends core.Adapter {
      * (max. 8s) eine zusätzliche WebSocket-Verbindung zur Z2M-WebUI (`/api`)
      * aufgebaut, auf die erste `bridge/devices`-Nachricht gewartet und die
      * Verbindung danach sofort wieder geschlossen.
+     *
+     * @param {{ reason?: string, force?: boolean }} [options] Steuerung für Runtime/Startup-Reload
      */
-    async tryFallbackDeviceReload() {
-        if (this.deviceCache.length > 0) {
+    async tryFallbackDeviceReload(options = {}) {
+        const force = options && options.force === true;
+        const reason = options && options.reason ? String(options.reason) : 'unknown';
+
+        if (this.deviceReloadInProgress) {
+            this.log.debug(`Skipping fallback device reload (${reason}) - already in progress.`);
+            return;
+        }
+
+        if (!force && this.deviceCache.length > 0) {
             // bridge/devices ist zwischenzeitlich normal eingetroffen – nichts zu tun
             return;
         }
@@ -315,10 +342,12 @@ class Zigbee2mqtt extends core.Adapter {
             this.log.debug('Fallback device reload: controllers not yet initialized, aborting.');
             return;
         }
+        const deviceController = this.deviceController;
+        const statesController = this.statesController;
+        this.deviceReloadInProgress = true;
         this.log.warn(
-            'No bridge/devices received from Zigbee2MQTT within 5s – trying fallback via a temporary WebSocket ' +
-            'request to the Zigbee2MQTT WebUI. This can happen if the internal/dummy MQTT broker was recreated ' +
-            '(adapter restart) while Zigbee2MQTT itself keeps running.'
+            `No recent bridge/devices update detected (${reason}) - trying fallback via temporary WebSocket ` +
+            'request to the Zigbee2MQTT WebUI.'
         );
 
         const WebSocketClient = require('ws');
@@ -326,80 +355,84 @@ class Zigbee2mqtt extends core.Adapter {
         const url = `${wsScheme}://${this.config.webUIServer}:${this.config.webUIPort}/api`;
         const FALLBACK_TIMEOUT_MS = 8000;
 
-        await new Promise((resolvePromise) => {
-            let settled = false;
-            let fallbackWs = null;
-            let timeoutHandle = null;
+        try {
+            await new Promise((resolvePromise) => {
+                let settled = false;
+                let fallbackWs = null;
+                let timeoutHandle = null;
 
-            const finish = (errorMessage) => {
-                if (settled) {
-                    return;
-                }
-                settled = true;
-                if (timeoutHandle) {
-                    clearTimeout(timeoutHandle);
-                }
-                if (fallbackWs) {
-                    try {
-                        fallbackWs.removeAllListeners();
-                        fallbackWs.terminate();
-                    } catch {
-                        // ignore cleanup errors
+                const finish = (errorMessage) => {
+                    if (settled) {
+                        return;
                     }
-                }
-                if (errorMessage) {
-                    this.log.error(
-                        `Fallback device reload via WebUI WebSocket failed: ${errorMessage}. ` +
-                        'Please verify that the Zigbee2MQTT frontend is enabled and reachable, or restart ' +
-                        'Zigbee2MQTT once to force it to re-publish bridge/devices.'
-                    );
-                }
-                resolvePromise();
-            };
-
-            try {
-                fallbackWs = new WebSocketClient(url, { rejectUnauthorized: false });
-            } catch (e) {
-                finish(e && e.message ? e.message : String(e));
-                return;
-            }
-
-            timeoutHandle = setTimeout(() => finish('timeout waiting for bridge/devices'), FALLBACK_TIMEOUT_MS);
-
-            fallbackWs.on('message', (data) => {
-                let msg;
-                try {
-                    msg = JSON.parse(data.toString());
-                } catch {
-                    return;
-                }
-                if (!msg || msg.topic !== 'bridge/devices' || !Array.isArray(msg.payload)) {
-                    return;
-                }
-                (async () => {
-                    try {
-                        await this.deviceController.createDeviceDefinitions(msg.payload);
-                        await this.deviceController.createOrUpdateDevices();
-                        await this.statesController.subscribeWritableStates();
-                        await this.statesController.processQueue();
-                        this.log.info(
-                            `Fallback device reload completed – ${msg.payload.length} device(s) imported via WebUI WebSocket.`
+                    settled = true;
+                    if (timeoutHandle) {
+                        clearTimeout(timeoutHandle);
+                    }
+                    if (fallbackWs) {
+                        try {
+                            fallbackWs.removeAllListeners();
+                            fallbackWs.terminate();
+                        } catch {
+                            // ignore cleanup errors
+                        }
+                    }
+                    if (errorMessage) {
+                        this.log.error(
+                            `Fallback device reload via WebUI WebSocket failed: ${errorMessage}. ` +
+                            'Please verify that the Zigbee2MQTT frontend is enabled and reachable, or restart ' +
+                            'Zigbee2MQTT once to force it to re-publish bridge/devices.'
                         );
-                        finish();
-                    } catch (e) {
-                        finish(e && e.message ? e.message : String(e));
                     }
-                })();
-            });
+                    resolvePromise(undefined);
+                };
 
-            fallbackWs.on('error', (err) => {
-                finish(err && err.message ? err.message : String(err));
-            });
+                try {
+                    fallbackWs = new WebSocketClient(url, { rejectUnauthorized: false });
+                } catch (e) {
+                    finish(e && e.message ? e.message : String(e));
+                    return;
+                }
 
-            fallbackWs.on('close', () => {
-                finish('WebSocket closed before bridge/devices arrived');
+                timeoutHandle = setTimeout(() => finish('timeout waiting for bridge/devices'), FALLBACK_TIMEOUT_MS);
+
+                fallbackWs.on('message', (data) => {
+                    let msg;
+                    try {
+                        msg = JSON.parse(data.toString());
+                    } catch {
+                        return;
+                    }
+                    if (!msg || msg.topic !== 'bridge/devices' || !Array.isArray(msg.payload)) {
+                        return;
+                    }
+                    (async () => {
+                        try {
+                            await deviceController.createDeviceDefinitions(msg.payload);
+                            await deviceController.createOrUpdateDevices();
+                            await statesController.subscribeWritableStates();
+                            await statesController.processQueue();
+                            this.log.info(
+                                `Fallback device reload completed - ${msg.payload.length} device(s) imported via WebUI WebSocket.`
+                            );
+                            finish();
+                        } catch (e) {
+                            finish(e && e.message ? e.message : String(e));
+                        }
+                    })();
+                });
+
+                fallbackWs.on('error', (err) => {
+                    finish(err && err.message ? err.message : String(err));
+                });
+
+                fallbackWs.on('close', () => {
+                    finish('WebSocket closed before bridge/devices arrived');
+                });
             });
-        });
+        } finally {
+            this.deviceReloadInProgress = false;
+        }
     }
 
     /**
@@ -491,12 +524,26 @@ class Zigbee2mqtt extends core.Adapter {
                     await this.deviceController.createOrUpdateDevices();
                     await this.statesController.processQueue();
                     break;
+                case 'bridge/response/device/interview': {
+                    const interviewPayload = messageObj.payload || {};
+                    const interviewStatus = interviewPayload.status || (interviewPayload.data && interviewPayload.data.status);
+                    if (['successful', 'ok', 'finished', 'completed'].includes(String(interviewStatus).toLowerCase())) {
+                        this.scheduleRuntimeDeviceReload('bridge/response/device/interview');
+                    }
+                    break;
+                }
                 case 'bridge/event': {
                     const evType = messageObj.payload && messageObj.payload.type;
                     const evData = messageObj.payload && messageObj.payload.data;
                     if (evType === 'device_announce' && evData && evData.friendly_name) {
                         const newMessage = { payload: { available: true }, topic: evData.friendly_name };
                         await this.statesController.processDeviceMessage(newMessage);
+                    } else if (
+                        evType === 'device_joined' ||
+                        evType === 'device_interview' ||
+                        evType === 'device_interview_successful'
+                    ) {
+                        this.scheduleRuntimeDeviceReload(`bridge/event:${evType}`);
                     } else if (evType === 'device_leave' && evData && evData.friendly_name) {
                         const newMessage = { payload: { available: false }, topic: evData.friendly_name };
                         await this.statesController.processDeviceMessage(newMessage);
@@ -510,7 +557,6 @@ class Zigbee2mqtt extends core.Adapter {
                 case 'bridge/response/device/configure':
                 case 'bridge/response/device/remove':
                 case 'bridge/response/device/options':
-                case 'bridge/response/device/interview':
                 case 'bridge/response/permit_join':
                 case 'bridge/response/networkmap':
                 case 'bridge/response/options':
