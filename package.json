@@ -27,7 +27,7 @@
     "@iobroker/adapter-core": "^3.4.3",
     "@iobroker/dm-utils": "^3.2.1",
     "aedes": "^0.51.3",
-    "aedes-persistence": "^9.1.2",
+    "aedes-persistence": "^11.0.0",
     "axios": "^1.20.0",
     "mqtt": "^5.15.2",
     "node-schedule": "^2.1.1",
