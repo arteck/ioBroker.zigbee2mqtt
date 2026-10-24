@@ -63,6 +63,7 @@ describe('WebsocketController.closeConnection', () => {
         ctrl.wsClient = {
             readyState: 1,
             removeAllListeners: () => {},
+            on: () => {},
             close: () => {},
         };
         ctrl.closeConnection();

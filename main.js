@@ -381,6 +381,18 @@ class Zigbee2mqtt extends core.Adapter {
                     if (fallbackWs) {
                         try {
                             fallbackWs.removeAllListeners();
+                            // Fix #701: Wird terminate() auf einem WebSocket aufgerufen, das sich
+                            // noch im CONNECTING-Zustand befindet, emittiert die 'ws'-Bibliothek
+                            // synchron ein neues 'error'-Event ("WebSocket was closed before the
+                            // connection was established"). Da removeAllListeners() den zuvor
+                            // registrierten Error-Handler bereits entfernt hat, führte dieses
+                            // Event zu einer unhandled exception und damit zum Absturz des
+                            // gesamten Adapters (UNCAUGHT_EXCEPTION / Restart-Loop). Ein No-Op-
+                            // Error-Listener fängt dieses nachträgliche Event ab.
+                            fallbackWs.on('error', () => {
+                                // Erwartetes Event beim Abbruch eines noch nicht verbundenen
+                                // WebSockets - absichtlich ignoriert.
+                            });
                             fallbackWs.terminate();
                         } catch {
                             // ignore cleanup errors
