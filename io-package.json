@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.9",
+    "version": "3.2.10",
     "news": {
+      "3.2.10": {
+        "en": "Dependencies have been updated\nfix high CPU load: skip reprocessing of unchanged bridge/devices and bridge/groups payloads (e.g. caused by a device in a rejoin/announce loop)\nfix restart loop",
+        "de": "Abhängigkeiten wurden aktualisiert\nhohe CPU-Last beheben: überspringe die Neuverarbeitung unveränderter Bridge/Geräte- und Gruppen-Payloads (z. B. durch ein Gerät im Rejoin/Announce-Loop)\nNeustartschleife reparieren",
+        "ru": "Зависимости обновлены\nисправление высокой нагрузки на процессор: пропустите повторную обработку неизмененных полезных нагрузок мостов/устройств и мостов/групп (например, из-за того, что устройство находится в цикле rejoin/announce)\nисправить цикл перезапуска",
+        "pt": "As dependências foram atualizadas\ncorrija a alta carga da CPU: ignore o reprocessamento de cargas inalteradas de pontes e grupos (p. ex., causadas por um dispositivo em um ciclo de rejunção/anúncio)\nfix restart loop",
+        "nl": "Afhankelijkheden zijn bijgewerkt\nhoge CPU-belasting corrigeren: herverwerking overslaan van ongewijzigde payloads van bridge/apparaten en bridge/groepen (bijvoorbeeld veroorzaakt door een apparaat dat zich in een rejoin/announce loop bevindt)\nrepareer de herstartlus",
+        "fr": "Les dépendances ont été mises à jour\ncorriger une charge CPU élevée : ignorez le retraitement des charges utiles inchangées (par exemple à cause d'un appareil dans une boucle d'annonce)\nfix restart loop",
+        "it": "Le dipendenze sono aggiornate\ncorreggere l'elevato carico della CPU: salta il riprocessamento di payload di bridge/dispositivi e gruppi invariati (ad esempio)\nfix restart",
+        "es": "Se han actualizado las dependencias\ncorregir la alta carga de la CPU: omitir el reprocesamiento de cargas útiles de puente/dispositivos y puentes/grupos sin cambios (por ejemplo, provocado por un dispositivo en un bucle de unión o anuncio)\narreglar el bucle",
+        "pl": "Zależności zostały zaktualizowane\nnaprawa wysokiego obciążenia procesora: pomiń ponowne przetwarzanie niezmienionych mostów/urządzeń i obciążeń mostów/grup (np. spowodowanych przez urządzenie w pętli ponownego/ogłaszania)\nnaprawić pętlę ponownego uruchomienia",
+        "uk": "Залежності оновлено\nвиправлення високого навантаження на процесор: пропустіть повторну обробку незмінних мостів/пристроїв та міст/груп корисних навантажень (наприклад, викликаних пристроєм у циклі зворотності/оголошення)\nвиправлення циклу перезавантаження",
+        "zh-cn": "依赖关系已更新\n修复 CPU 负载过高的问题：跳过对未更改的网桥/设备和网桥/群组有效负载的重新处理（例如，由设备在重新加入/宣布循环中引起）\n修复重启循环"
+      },
       "3.2.9": {
         "en": "url fix",
         "de": "URL-Fix",
