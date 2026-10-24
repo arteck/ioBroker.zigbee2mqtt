@@ -30,6 +30,10 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### **WORK IN PROGRESS**
+* (arteck) Dependencies have been updated
+* (arteck) fix high CPU load: skip reprocessing of unchanged bridge/devices and bridge/groups payloads (e.g. caused by a device in a rejoin/announce loop)
+
 ### 3.2.9 (2026-09-19)
 * (arteck) url fix
 

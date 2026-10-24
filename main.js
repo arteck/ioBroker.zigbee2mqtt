@@ -50,6 +50,15 @@ class Zigbee2mqtt extends core.Adapter {
         // vermeiden.
         this.deviceReloadTimer = null;
         this.deviceReloadInProgress = false;
+        // Fix #692: Zigbee2MQTT republished bridge/devices bzw. bridge/groups bei JEDEM
+        // device_announce (z.B. ein Endgerät im Rejoin-Loop alle ~15s), auch wenn sich
+        // am Inhalt nichts geändert hat. Ohne diesen Vergleich wurde dadurch für ALLE
+        // Geräte createDeviceDefinitions/createOrUpdateDevices (inkl. unindiziertem
+        // getForeignObjectsAsync je Gerät für die scene_*-Bereinigung) permanent neu
+        // durchlaufen -> dauerhaft hohe js-controller/Objects-DB-Last. Identische
+        // Payloads werden daher übersprungen.
+        this.lastDevicesJson = null;
+        this.lastGroupsJson = null;
 
         this.on('ready', () => {
             this.onReady().catch((e) => this.log.error(`onReady error: ${e}`));
@@ -490,6 +499,13 @@ class Zigbee2mqtt extends core.Adapter {
                     if (bridgeState !== 'online') {
                         await this.statesController.setAllAvailableToFalse();
                         this.showInfo = true;
+                        // Fix #692: nach einem Bridge-Offline-Event (z.B. Reconnect) den
+                        // gecachten bridge/devices-/bridge/groups-Hash verwerfen, damit die
+                        // nächste (ggf. inhaltlich gleiche) Payload einmalig wieder voll
+                        // verarbeitet wird - sichert Konsistenz, falls sich währenddessen
+                        // doch etwas geändert hat.
+                        this.lastDevicesJson = null;
+                        this.lastGroupsJson = null;
                     }
                     await this.setStateChangedAsync('info.connection', bridgeState === 'online', true);
                     break;
@@ -499,6 +515,17 @@ class Zigbee2mqtt extends core.Adapter {
                         clearTimeout(this.deviceReloadTimer);
                         this.deviceReloadTimer = null;
                     }
+                    // Fix #692: identische bridge/devices-Payloads (z.B. durch ein Gerät im
+                    // Rejoin-/Announce-Loop) nicht erneut komplett verarbeiten -> vermeidet
+                    // unnötige, teure Objects-DB-Zugriffe für ALLE Geräte.
+                    {
+                        const devicesJson = JSON.stringify(messageObj.payload);
+                        if (devicesJson === this.lastDevicesJson) {
+                            this.log.debug('bridge/devices unchanged - skipped');
+                            break;
+                        }
+                        this.lastDevicesJson = devicesJson;
+                    }
                     await this.deviceController.createDeviceDefinitions(messageObj.payload);
                     await this.deviceController.createOrUpdateDevices();
                     await this.deviceController.checkAndProgressDeviceRemove();
@@ -506,6 +533,15 @@ class Zigbee2mqtt extends core.Adapter {
                     await this.statesController.processQueue();
                     break;
                 case 'bridge/groups':
+                    // Fix #692: analog zu bridge/devices - identische Gruppen-Payloads überspringen.
+                    {
+                        const groupsJson = JSON.stringify(messageObj.payload);
+                        if (groupsJson === this.lastGroupsJson) {
+                            this.log.debug('bridge/groups unchanged - skipped');
+                            break;
+                        }
+                        this.lastGroupsJson = groupsJson;
+                    }
                     await this.deviceController.createGroupDefinitions(messageObj.payload);
                     await this.deviceController.createOrUpdateDevices();
                     await this.statesController.subscribeWritableStates();
