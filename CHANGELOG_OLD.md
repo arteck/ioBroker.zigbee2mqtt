@@ -77,6 +77,9 @@
 ### 0.1.0 (2022-09-29)
 
 -   (o0shojo0o) first release
+## 3.2.5 (2026-08-04)
+* (arteck) State updates lag issue https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662
+
 ## 3.2.4 (2026-06-26)
 * (arteck) Dependencies have been updated
 
