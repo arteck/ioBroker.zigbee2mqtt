@@ -136,3 +136,27 @@ describe('WebsocketController.initWsClient (Config-Guard)', () => {
         assert.ok(adapter.logs.error.some((m) => m.includes('config incomplete')));
     });
 });
+
+// ─── _onWsClose – Caches und bridge/devices-Hash ─────────────────────────────
+describe('WebsocketController._onWsClose', () => {
+    it('verwirft mit den Caches auch den bridge/devices-/bridge/groups-Hash', async () => {
+        const adapter = makeAdapterMock();
+        adapter.setStateChangedAsync = async () => {};
+        adapter.deviceCache.push({ ieee_address: '0x00158d0001a2b3c4', id: 'Lamp' });
+        adapter.groupCache.push({ ieee_address: 'group_1', id: 'group_1' });
+        adapter.lastDevicesJson = '[{"ieee_address":"0x00158d0001a2b3c4"}]';
+        adapter.lastGroupsJson = '[{"id":1}]';
+        const ctrl = new WebsocketController(adapter);
+        ctrl._intentionalClose = true; // kein Reconnect im Test
+
+        // z.B. nach "WebSocket connection timed out – terminating." (Code 1006)
+        await ctrl._onWsClose(1006, Buffer.from(''));
+
+        assert.strictEqual(adapter.deviceCache.length, 0);
+        assert.strictEqual(adapter.groupCache.length, 0);
+        // Sonst wird das beim Reconnect unverändert erneut gesendete bridge/devices
+        // als "unchanged" übersprungen und der deviceCache bleibt leer.
+        assert.strictEqual(adapter.lastDevicesJson, null);
+        assert.strictEqual(adapter.lastGroupsJson, null);
+    });
+});
