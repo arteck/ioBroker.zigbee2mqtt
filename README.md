@@ -30,7 +30,7 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 3.2.11 (2026-11-07)
 * (DutchmanNL) fix devices staying unknown and commands being dropped after a WebSocket reconnect (e.g. heartbeat timeout): the bridge/devices and bridge/groups hash is now reset together with the caches
 
 ### 3.2.10 (2026-10-24)
@@ -47,9 +47,6 @@ check you VM Settings
 ### 3.2.7 (2026-09-19)
 * (arteck) fix available status direct after new device is paired
 * (arteck) fix internal mqtt handling
-
-### 3.2.6 (2026-08-20)
-* (arteck) add wait time for internal mqtt server into settings
 
 ## License
 

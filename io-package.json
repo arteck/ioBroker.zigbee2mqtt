@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "zigbee2mqtt",
-    "version": "3.2.10",
+    "version": "3.2.11",
     "news": {
+      "3.2.11": {
+        "en": "fix devices staying unknown and commands being dropped after a WebSocket reconnect (e.g. heartbeat timeout): the bridge/devices and bridge/groups hash is now reset together with the caches",
+        "de": "beheben, dass Geräte und Befehle nach einer WebSocket-Verbindung unbekannt bleiben (z. B. Heartbeat-Timeout): Der Bridge/Geräte- und Bridge/Groups-Hash wird nun zusammen mit den Caches zurückgesetzt",
+        "ru": "исправляйте неизвестные устройства и отбрасываемые команды после повторного подключения к WebSocket (например, время ожидания сердцебиения): хэш моста/устройств и моста/групп теперь обнуляется вместе с кешами",
+        "pt": "corrige dispositivos desconhecidos e comandos perdidos após uma reconexão do WebSocket (ex. pulsação): o hash bridge/devices e bridge/groups agora é redefinido junto com os caches",
+        "nl": "apparaten repareren die onbekend blijven en opdrachten die worden weggelaten nadat een WebSocket-verbinding opnieuw is verbonden (bijv. een time-out voor de hartslag): de hash van de bridge/apparaten en bridge/groepen wordt nu samen met de caches gereset",
+        "fr": "réparer les appareils inconnus et les commandes supprimées après une reconnexion au WebSocket (par exemple, heartbeat timeout) : le hachage bridge/devices et bridge/groups est désormais réinitialisé avec les caches",
+        "it": "corregge i dispositivi sconosciuti e i comandi eliminati dopo una riconnessione WebSocket (ad es. heartbeat timeout): l'hash bridge/devices e bridge/groups è ora resettato insieme alle cache",
+        "es": "arreglar los dispositivos que permanecen desconocidos y los comandos que se omiten tras la reconexión de WebSocket (p. ej., tiempo de espera): el hash de puente/dispositivos y puente/grupos se restablece junto con las cachés",
+        "pl": "naprawa urządzeń pozostających nieznanych i poleceń wycofywanych po ponownym połączeniu WebSocket (np. przekroczenie czasu bicia serca): skrót mostów/urządzeń i mostów/grup jest teraz resetowany wraz z pamięcią podręczną",
+        "uk": "виправлення пристроїв, які залишаються невідомими, а команди скидаються після повторного підключення WebSocket (наприклад, тайм-аут серцебиття): хеш мост/пристроїв та мостів/груп тепер скидається разом із кешами",
+        "zh-cn": "修复在 WebSocket 重新连接（例如心跳超时）后设备保持未知状态和命令丢失的问题：网桥/设备和网桥/群组的哈希值现在与缓存一起重置"
+      },
       "3.2.10": {
         "en": "Dependencies have been updated\nfix high CPU load: skip reprocessing of unchanged bridge/devices and bridge/groups payloads (e.g. caused by a device in a rejoin/announce loop)\nfix restart loop",
         "de": "Abhängigkeiten wurden aktualisiert\nhohe CPU-Last beheben: überspringe die Neuverarbeitung unveränderter Bridge/Geräte- und Gruppen-Payloads (z. B. durch ein Gerät im Rejoin/Announce-Loop)\nNeustartschleife reparieren",
@@ -80,19 +93,6 @@
         "pl": "Problem z opóźnieniem aktualizacji stanu https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
         "uk": "Проблема із затримкою оновлення стану https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662",
         "zh-cn": "状态更新延迟问题 https://github.com/arteck/ioBroker.zigbee2mqtt/issues/662"
-      },
-      "3.2.4": {
-        "en": "Dependencies have been updated\n",
-        "de": "Die Abhängigkeiten wurden aktualisiert.\n",
-        "ru": "Зависимости обновлены.\n",
-        "pt": "As dependências foram atualizadas.\n",
-        "nl": "Afhankelijkheden zijn bijgewerkt.\n",
-        "fr": "Les dépendances ont été mises à jour\n",
-        "it": "Le dipendenze sono state aggiornate\n",
-        "es": "Se han actualizado las dependencias.\n",
-        "pl": "Zaktualizowano zależności\n",
-        "uk": "Залежності оновлено\n",
-        "zh-cn": "依赖项已更新\n"
       }
     },
     "messages": [
