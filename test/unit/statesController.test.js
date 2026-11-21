@@ -452,3 +452,57 @@ describe('StatesController.allTimerClear', () => {
         assert.deepStrictEqual(ctrl.timeOutCache, {});
     });
 });
+
+
+describe('StatesController climate reception timestamps', () => {
+    for (const id of ['temperature', 'humidity', 'local_temperature']) {
+        it(`writes repeated ${id} reports without change-only filtering`, async () => {
+            const { ctrl, adapter, deviceCache, createCache } = makeController();
+            deviceCache.push({ id: 'sensor', ieee_address: 'sensor', states: [{ id, prop: id }] });
+            createCache.sensor = { [id]: { created: true } };
+            for (let i = 0; i < 2; i++) {
+                await ctrl.processDeviceMessage({ topic: 'sensor', payload: { [id]: 20 } });
+            }
+            assert.strictEqual(adapter.setStateHistory.filter(s => s.id !== 'sensor.available').length, 2);
+            assert.ok(adapter.setStateHistory.filter(s => s.id !== 'sensor.available').every(s => s.id === `sensor.${id}` && s.val === 20 && s.ack === true && !s.changed));
+        });
+    }
+
+    it('keeps change-only behavior for other states and does not invent absent readings', async () => {
+        const { ctrl, adapter, deviceCache, createCache } = makeController();
+        const ids = ['temperature', 'humidity', 'battery'];
+        deviceCache.push({ id: 'sensor', ieee_address: 'sensor', states: ids.map(id => ({ id, prop: id })) });
+        createCache.sensor = Object.fromEntries(ids.map(id => [id, { created: true }]));
+        await ctrl.processDeviceMessage({ topic: 'sensor', payload: { battery: 100 } });
+        assert.deepStrictEqual(adapter.setStateHistory.filter(s => s.id !== 'sensor.available'), [{ id: 'sensor.battery', val: 100, ack: true, changed: true }]);
+    });
+
+    it('uses getters and ignores invalid climate measurements', async () => {
+        const { ctrl, adapter, deviceCache, createCache } = makeController();
+        deviceCache.push({ id: 'sensor', ieee_address: 'sensor', states: [
+            { id: 'temperature', prop: 'temperature', getter: p => p.temperature / 100 },
+            { id: 'humidity', prop: 'humidity' },
+        ] });
+        createCache.sensor = { temperature: { created: true }, humidity: { created: true } };
+        await ctrl.processDeviceMessage({ topic: 'sensor', payload: { temperature: 2050 } });
+        assert.strictEqual(adapter.setStateHistory.find(s => s.id === 'sensor.temperature').val, 20.5);
+        for (const humidity of [null, undefined, NaN, Infinity, '50']) {
+            await ctrl.processDeviceMessage({ topic: 'sensor', payload: { humidity } });
+        }
+        assert.strictEqual(adapter.setStateHistory.filter(s => s.id !== 'sensor.available').length, 1);
+    });
+
+    it('waits for asynchronous writes and handles write failures', async () => {
+        let done = false;
+        const { ctrl, adapter, deviceCache, createCache } = makeController({
+            setStateAsync: async () => { await new Promise(resolve => setTimeout(resolve, 10)); done = true; },
+        });
+        deviceCache.push({ id: 'sensor', ieee_address: 'sensor', states: [{ id: 'temperature', prop: 'temperature' }] });
+        createCache.sensor = { temperature: { created: true } };
+        await ctrl.processDeviceMessage({ topic: 'sensor', payload: { temperature: 20 } });
+        assert.strictEqual(done, true);
+        adapter.setStateAsync = async () => { throw new Error('write failed'); };
+        await ctrl.processDeviceMessage({ topic: 'sensor', payload: { temperature: 20 } });
+        assert.ok(adapter.logs.warn.some(message => message.includes('write failed')));
+    });
+});

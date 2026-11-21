@@ -29,6 +29,10 @@ check you VM Settings
 
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
+## Climate update timestamps
+
+Temperature, humidity and thermostat local-temperature states are updated for every value received from Zigbee2MQTT, even if unchanged. ioBroker's `ts` indicates the latest received update, while `lc` still indicates the last value change. Zigbee2MQTT can include cached values in its payloads, so `ts` is not a guarantee of a new physical measurement. Sensor reporting intervals and change-only history settings are unaffected.
+
 ## Changelog
 ### 3.2.11 (2026-11-07)
 * (DutchmanNL) fix devices staying unknown and commands being dropped after a WebSocket reconnect (e.g. heartbeat timeout): the bridge/devices and bridge/groups hash is now reset together with the caches
