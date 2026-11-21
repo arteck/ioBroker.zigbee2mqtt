@@ -265,6 +265,7 @@
     "coordinatorCheck": false,
     "coordinatorCheckLogLvl": "info",
     "coordinatorCheckCron": "0 3 * * *",
+    "alwaysUpdateStates": false,
     "alwaysUpdateOccupancyState": false,
     "alwaysUpdateAvailableState": false
   },

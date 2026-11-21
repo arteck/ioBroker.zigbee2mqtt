@@ -63,5 +63,7 @@
     "Debug": "Debug",
     "Info": "Info",
     "Warning": "Warnung",
-    "Error": "Fehler"
+    "Error": "Fehler",
+    "Always update received states, even when unchanged": "Empfangene Zustände immer aktualisieren, auch bei gleichem Wert",
+    "Refreshes the update timestamp (ts) for all received regular states. The change timestamp (lc) and action/event handling remain unchanged. Increases ioBroker load.": "Aktualisiert den Empfangszeitstempel (ts) aller empfangenen regulären Zustände. Änderungszeitstempel (lc) und Ereignisbehandlung bleiben unverändert. Erhöht die ioBroker-Last."
 }

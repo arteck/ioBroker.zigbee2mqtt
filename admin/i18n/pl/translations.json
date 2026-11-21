@@ -63,5 +63,7 @@
     "Debug": "Debugowanie",
     "Info": "Informacja",
     "Warning": "Ostrzeżenie",
-    "Error": "Błąd"
+    "Error": "Błąd",
+    "Always update received states, even when unchanged": "Always update received states, even when unchanged",
+    "Refreshes the update timestamp (ts) for all received regular states. The change timestamp (lc) and action/event handling remain unchanged. Increases ioBroker load.": "Refreshes the update timestamp (ts) for all received regular states. The change timestamp (lc) and action/event handling remain unchanged. Increases ioBroker load."
 }

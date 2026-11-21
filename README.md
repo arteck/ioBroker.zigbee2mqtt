@@ -29,6 +29,12 @@ check you VM Settings
 
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
+## Update timestamps
+
+Enable **Always update received states, even when unchanged** in the instance configuration to write every regular state contained in a received Zigbee2MQTT payload. This follows ioBroker's timestamp semantics: `ts` tracks updates and `lc` tracks value changes. The option is disabled by default to preserve existing behavior and reduce writes. It applies to all regular states, including additional fields, while action/event and impulse handling remain unchanged.
+
+Missing fields are not refreshed. Zigbee2MQTT can include cached values, so `ts` does not guarantee a new physical measurement. Sensor reporting intervals and history settings are unaffected.
+
 ## Changelog
 ### 3.2.11 (2026-11-07)
 * (DutchmanNL) fix devices staying unknown and commands being dropped after a WebSocket reconnect (e.g. heartbeat timeout): the bridge/devices and bridge/groups hash is now reset together with the caches

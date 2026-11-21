@@ -452,3 +452,63 @@ describe('StatesController.allTimerClear', () => {
         assert.deepStrictEqual(ctrl.timeOutCache, {});
     });
 });
+
+
+describe('StatesController optional reception timestamps', () => {
+    function setup(config = {}) {
+        const h = makeController({config});
+        const ids = ['temperature', 'humidity', 'local_temperature', 'battery', 'state', 'mode'];
+        h.deviceCache.push({id: 'sensor', ieee_address: 'sensor', states: ids.map(id => ({id, prop: id}))});
+        h.createCache.sensor = Object.fromEntries(ids.map(id => [id, {created: true}]));
+        return h;
+    }
+    for (const enabled of [undefined, false, true]) {
+        it(`applies the switch to numeric, boolean and string fields (enabled=${enabled})`, async () => {
+            const {ctrl, adapter} = setup({alwaysUpdateStates: enabled});
+            for (let i = 0; i < 2; i++) {
+                await ctrl.processDeviceMessage({topic: 'sensor', payload: {temperature: 20, battery: 100, state: false, mode: 'heat'}});
+            }
+            const writes = adapter.setStateHistory.filter(s => s.id !== 'sensor.available');
+            assert.strictEqual(writes.length, 8);
+            assert.ok(writes.every(s => s.ack === true && Boolean(s.changed) === (enabled !== true)));
+        });
+    }
+    it('does not invent absent readings or write null values', async () => {
+        const {ctrl, adapter} = setup({alwaysUpdateStates: true});
+        await ctrl.processDeviceMessage({topic: 'sensor', payload: {battery: 100, temperature: null}});
+        assert.deepStrictEqual(adapter.setStateHistory.filter(s => s.id !== 'sensor.available'), [{id: 'sensor.battery', val: 100, ack: true}]);
+    });
+    it('uses getter conversions', async () => {
+        const h = setup({alwaysUpdateStates: true});
+        h.deviceCache[0].states[0].getter = p => p.temperature / 100;
+        await h.ctrl.processDeviceMessage({topic: 'sensor', payload: {temperature: 2050}});
+        assert.strictEqual(h.adapter.setStateHistory.find(s => s.id === 'sensor.temperature').val, 20.5);
+    });
+    it('applies the option to additional fields as well', async () => {
+        for (const enabled of [false, true]) {
+            const h = setup({alwaysUpdateStates: enabled});
+            await h.ctrl.processDeviceMessage({topic: 'sensor', payload: {temperature: 20, extra: 'value'}});
+            const extra = h.adapter.setStateHistory.find(s => s.id.includes('.additional.extra'));
+            assert.ok(extra);
+            assert.strictEqual(Boolean(extra.changed), !enabled);
+        }
+    });
+    it('preserves action handling when the option is enabled', async () => {
+        const h = setup({alwaysUpdateStates: true});
+        h.deviceCache[0].states.push({id: 'action', prop: 'action', getter: p => p.action});
+        h.createCache.sensor.action = {created: true};
+        await h.ctrl.processDeviceMessage({topic: 'sensor', payload: {action: 'single'}});
+        const action = h.adapter.setStateHistory.find(s => s.id === 'sensor.action');
+        assert.ok(action.changed);
+    });
+    it('waits for asynchronous writes and handles failures', async () => {
+        const h = setup({alwaysUpdateStates: true});
+        let done = false;
+        h.adapter.setStateAsync = async () => {await new Promise(r => setTimeout(r, 10)); done = true;};
+        await h.ctrl.processDeviceMessage({topic: 'sensor', payload: {temperature: 20}});
+        assert.ok(done);
+        h.adapter.setStateAsync = async () => {throw new Error('write failed');};
+        await h.ctrl.processDeviceMessage({topic: 'sensor', payload: {temperature: 20}});
+        assert.ok(h.adapter.logs.warn.some(s => s.includes('write failed')));
+    });
+});
