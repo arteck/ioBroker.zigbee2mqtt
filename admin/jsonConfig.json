@@ -551,6 +551,17 @@
           "newLine": true,
           "hidden": "data.coordinatorCheck != true"
         },
+        "alwaysUpdateStates": {
+          "type": "checkbox",
+          "label": "Always update received states, even when unchanged",
+          "help": "Refreshes the update timestamp (ts) for all received regular states. The change timestamp (lc) and action/event handling remain unchanged. Increases ioBroker load.",
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12,
+          "newLine": true
+        },
         "alwaysUpdateOccupancyState": {
           "type": "checkbox",
           "label": "Always update state for occupancy when message arrives from zigbee2mqtt server (Only for true state). Increases load on ioBroker System",
