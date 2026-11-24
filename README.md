@@ -30,6 +30,9 @@ check you VM Settings
 [Adapter Documentation](https://github.com/arteck/ioBroker.zigbee2mqtt/blob/main/docs/wiki.md)
 
 ## Changelog
+### **WORK IN PROGRESS**
+* (DutchmanNL) add pairing from ioBroker: the switch `info.permit_join` opens Zigbee2MQTT's permit join for 254 seconds (false closes it), `info.permit_join_timeout` counts the seconds left and `info.pairing_message` reports open/closed, joined devices and interview results. While Zigbee2MQTT is offline or unreachable the switch stays closed and a request is refused at once
+
 ### 3.2.11 (2026-11-07)
 * (DutchmanNL) fix devices staying unknown and commands being dropped after a WebSocket reconnect (e.g. heartbeat timeout): the bridge/devices and bridge/groups hash is now reset together with the caches
 

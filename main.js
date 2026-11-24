@@ -14,6 +14,7 @@ const DeviceController = require('./lib/deviceController').DeviceController;
 const StatesController = require('./lib/statesController').StatesController;
 const WebsocketController = require('./lib/websocketController').WebsocketController;
 const MqttServerController = require('./lib/mqttServerController').MqttServerController;
+const PermitJoinController = require('./lib/permitJoinController').PermitJoinController;
 
 class Zigbee2mqtt extends core.Adapter {
     /**
@@ -39,6 +40,7 @@ class Zigbee2mqtt extends core.Adapter {
         this.z2mController = null;
         this.websocketController = null;
         this.mqttServerController = null;
+        this.permitJoinController = null;
         this.messageParseMutex = Promise.resolve();
         this.mqttReconnectAttempts = 0;
         // Fallback: Wenn nach dem Verbindungsaufbau kein bridge/devices eintrifft
@@ -87,6 +89,9 @@ class Zigbee2mqtt extends core.Adapter {
             this.createCache
         );
         this.z2mController = new Z2mController(this, this.deviceCache, this.groupCache, this.logCustomizations);
+        this.permitJoinController = new PermitJoinController(this);
+        // Ein beim letzten Lauf offenes Anlernen gilt bis zum ersten bridge/info als geschlossen
+        await this.closePermitJoin('adapter restarted');
 
         adapterInfo(this.config, this.log);
 
@@ -205,6 +210,7 @@ class Zigbee2mqtt extends core.Adapter {
                 await this.setStateChangedAsync('info.connection', false, true).catch((e) =>
                     this.log.error(`MQTT offline setStateChangedAsync error: ${e}`)
                 );
+                await this.closePermitJoin('connection to Zigbee2MQTT lost');
                 try {
                     if (this.statesController) {
                         await this.statesController.setAllAvailableToFalse();
@@ -219,6 +225,7 @@ class Zigbee2mqtt extends core.Adapter {
                 await this.setStateChangedAsync('info.connection', false, true).catch((e) =>
                     this.log.error(`MQTT close setStateChangedAsync error: ${e}`)
                 );
+                await this.closePermitJoin('connection to Zigbee2MQTT lost');
             });
 
             this.mqttClient.on('error', (err) => {
@@ -314,6 +321,85 @@ class Zigbee2mqtt extends core.Adapter {
     scheduleRuntimeDeviceReload(trigger) {
         this.log.debug(`Scheduling runtime device reload (trigger: ${trigger})`);
         this.scheduleDeviceReloadFallback(`runtime:${trigger}`, 2500, true);
+    }
+
+    /**
+     * Führt fn in derselben Warteschlange (Mutex) wie messageParse aus, damit es sich nicht
+     * mit einer gerade laufenden Nachricht verzahnt. Nie aus messageParse heraus aufrufen
+     * (würde auf sich selbst warten).
+     *
+     * @param {() => Promise<void>} fn Die auszuführende Funktion
+     */
+    async runSerialized(fn) {
+        const prev = this.messageParseMutex;
+        const run = (async () => {
+            try {
+                await prev;
+            } catch {
+                // ignore
+            }
+            await fn();
+        })();
+        // vor dem ersten await eingereiht; die Warteschlange läuft auch weiter, wenn fn wirft
+        this.messageParseMutex = run.catch(() => {});
+        await run;
+    }
+
+    /**
+     * Meldet das Anlernen (permit_join) als geschlossen, z.B. wenn Zigbee2MQTT nicht mehr
+     * erreichbar ist. Läuft im Mutex von messageParse: ein bridge/info davor ist dann ganz
+     * verarbeitet, eines danach öffnet erst wieder nach bridge/state "online".
+     * Fehler werden nur geloggt, damit der aufrufende Ablauf weiterläuft.
+     *
+     * @param {string} reason Grund für info.pairing_message
+     */
+    async closePermitJoin(reason) {
+        const controller = this.permitJoinController;
+        if (!controller) {
+            return;
+        }
+        await this.runSerialized(async () => {
+            try {
+                await controller.close(reason);
+            } catch (e) {
+                this.log.error(`closePermitJoin error: ${e && e.message ? e.message : String(e)}`);
+            }
+        });
+    }
+
+    /**
+     * Gibt bridge/state an das Anlernen weiter. Nur aus messageParse aufrufen (hält den Mutex schon).
+     * Fehler werden nur geloggt.
+     *
+     * @param {boolean} online true, wenn Zigbee2MQTT "online" meldet
+     */
+    async permitJoinBridgeState(online) {
+        if (!this.permitJoinController) {
+            return;
+        }
+        try {
+            await this.permitJoinController.onBridgeState(online);
+        } catch (e) {
+            this.log.error(`permit_join bridge/state error: ${e && e.message ? e.message : String(e)}`);
+        }
+    }
+
+    /**
+     * Eine Nachricht an Zigbee2MQTT konnte nicht gesendet werden. Betrifft sie permit_join,
+     * wird der Schalter auf den letzten bekannten Zustand zurückgesetzt und der Grund gemeldet.
+     *
+     * @param {{topic: string}} message Die nicht gesendete Z2M-Nachricht
+     * @param {string}          reason  Grund für info.pairing_message
+     */
+    async reportSendFailure(message, reason) {
+        if (!this.permitJoinController || !message || message.topic !== 'bridge/request/permit_join') {
+            return;
+        }
+        try {
+            await this.permitJoinController.onRequestFailed(reason);
+        } catch (e) {
+            this.log.error(`reportSendFailure error: ${e && e.message ? e.message : String(e)}`);
+        }
     }
 
     /**
@@ -496,6 +582,9 @@ class Zigbee2mqtt extends core.Adapter {
                     break;
                 }
                 case 'bridge/info':
+                    if (this.permitJoinController) {
+                        await this.permitJoinController.onBridgeInfo(messageObj.payload);
+                    }
                     if (this.showInfo && messageObj.payload) {
                         await zigbee2mqttInfo(messageObj.payload, this.log);
                         if (messageObj.payload.config && messageObj.payload.version) {
@@ -509,6 +598,8 @@ class Zigbee2mqtt extends core.Adapter {
                         ? messageObj.payload.state
                         : messageObj.payload;
                     if (bridgeState !== 'online') {
+                        // zuerst: ein Fehler in setAllAvailableToFalse darf das Schließen nicht überspringen
+                        await this.permitJoinBridgeState(false);
                         await this.statesController.setAllAvailableToFalse();
                         this.showInfo = true;
                         // Fix #692: nach einem Bridge-Offline-Event (z.B. Reconnect) den
@@ -520,6 +611,9 @@ class Zigbee2mqtt extends core.Adapter {
                         this.lastGroupsJson = null;
                     }
                     await this.setStateChangedAsync('info.connection', bridgeState === 'online', true);
+                    if (bridgeState === 'online') {
+                        await this.permitJoinBridgeState(true);
+                    }
                     break;
                 }
                 case 'bridge/devices':
@@ -580,7 +674,15 @@ class Zigbee2mqtt extends core.Adapter {
                     }
                     break;
                 }
+                case 'bridge/response/permit_join':
+                    if (this.permitJoinController) {
+                        await this.permitJoinController.onPermitJoinResponse(messageObj.payload);
+                    }
+                    break;
                 case 'bridge/event': {
+                    if (this.permitJoinController) {
+                        await this.permitJoinController.onBridgeEvent(messageObj.payload);
+                    }
                     const evType = messageObj.payload && messageObj.payload.type;
                     const evData = messageObj.payload && messageObj.payload.data;
                     if (evType === 'device_announce' && evData && evData.friendly_name) {
@@ -605,7 +707,6 @@ class Zigbee2mqtt extends core.Adapter {
                 case 'bridge/response/device/configure':
                 case 'bridge/response/device/remove':
                 case 'bridge/response/device/options':
-                case 'bridge/response/permit_join':
                 case 'bridge/response/networkmap':
                 case 'bridge/response/options':
                 case 'bridge/response/restart':
@@ -840,6 +941,10 @@ class Zigbee2mqtt extends core.Adapter {
             } catch (e) {
                 this.log.error(`[onUnload] Fehler beim Zurücksetzen der States-Timer: ${e.message}`);
             }
+            await this.closePermitJoin('adapter stopped');
+            if (this.permitJoinController) {
+                this.permitJoinController.allTimerClear();
+            }
 
             this.setState('info.connection', false, true);
 
@@ -887,13 +992,26 @@ class Zigbee2mqtt extends core.Adapter {
                 return;
             }
 
+            // Ohne Zigbee2MQTT online käme keine Antwort: sofort ablehnen statt beim unbestätigten Wunsch zu bleiben
+            if (
+                message.topic === 'bridge/request/permit_join' &&
+                this.permitJoinController &&
+                this.permitJoinController.bridgeOnline !== true
+            ) {
+                this.log.warn(`Cannot send permit_join, Zigbee2MQTT is offline. (${id})`);
+                await this.reportSendFailure(message, 'Zigbee2MQTT is offline');
+                return;
+            }
+
             if (['exmqtt', 'intmqtt'].includes(this.config.connectionType)) {
                 if (!this.mqttClient || !this.mqttClient.connected) {
                     this.log.warn(`Cannot publish state, MQTT client not connected. (${id})`);
+                    await this.reportSendFailure(message, 'no connection to Zigbee2MQTT');
                     return;
                 }
                 if (!this.config.baseTopic) {
                     this.log.error('baseTopic is not configured – cannot publish state!');
+                    await this.reportSendFailure(message, 'baseTopic is not configured');
                     return;
                 }
                 try {
@@ -903,18 +1021,24 @@ class Zigbee2mqtt extends core.Adapter {
                         (err) => {
                             if (err) {
                                 this.log.error(`MQTT publish error for ${id}: ${err && err.message ? err.message : String(err)}`);
+                                this.reportSendFailure(message, 'MQTT publish error');
                             }
                         }
                     );
                 } catch (e) {
                     this.log.error(`MQTT publish exception for ${id}: ${e}`);
+                    await this.reportSendFailure(message, 'MQTT publish error');
                 }
             } else if (this.config.connectionType === 'ws') {
                 if (!this.websocketController) {
                     this.log.warn(`Cannot send state, WebSocket not initialized. (${id})`);
+                    await this.reportSendFailure(message, 'no connection to Zigbee2MQTT');
                     return;
                 }
-                this.websocketController.send(JSON.stringify({ topic: message.topic, payload: message.payload }));
+                const sent = this.websocketController.send(JSON.stringify({ topic: message.topic, payload: message.payload }));
+                if (!sent) {
+                    await this.reportSendFailure(message, 'no connection to Zigbee2MQTT');
+                }
             }
         }
     }

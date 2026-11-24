@@ -48,6 +48,17 @@ describe('Z2mController.createZ2MMessage', () => {
         assert.deepStrictEqual(result.payload, {});
     });
 
+    it('gibt permit_join-Topic zurück (öffnen und schließen)', async () => {
+        const { ctrl } = makeController();
+        const open = await ctrl.createZ2MMessage('zigbee2mqtt.0.info.permit_join', { val: true, ack: false });
+        assert.ok(open);
+        assert.strictEqual(open.topic, 'bridge/request/permit_join');
+        assert.deepStrictEqual(open.payload, { value: true, time: 254 });
+        const close = await ctrl.createZ2MMessage('zigbee2mqtt.0.info.permit_join', { val: false, ack: false });
+        assert.ok(close);
+        assert.deepStrictEqual(close.payload, { value: false, time: 0 });
+    });
+
     it('gibt undefined zurück wenn Gerät nicht im Cache', async () => {
         const { ctrl } = makeController();
         const result = await ctrl.createZ2MMessage(

@@ -378,6 +378,46 @@
       "native": {}
     },
     {
+      "_id": "info.permit_join",
+      "type": "state",
+      "common": {
+        "name": "Pairing: allow new devices to join (true opens it for 254 seconds, false closes it)",
+        "type": "boolean",
+        "role": "switch",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.permit_join_timeout",
+      "type": "state",
+      "common": {
+        "name": "Pairing: seconds until it closes",
+        "type": "number",
+        "role": "value",
+        "unit": "s",
+        "read": true,
+        "write": false,
+        "def": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.pairing_message",
+      "type": "state",
+      "common": {
+        "name": "Pairing: last message (opened, closed, device joined, interview)",
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": false,
+        "def": ""
+      },
+      "native": {}
+    },
+    {
       "_id": "",
       "type": "meta",
       "common": {
