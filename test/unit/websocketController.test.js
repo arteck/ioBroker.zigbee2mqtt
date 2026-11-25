@@ -159,4 +159,32 @@ describe('WebsocketController._onWsClose', () => {
         assert.strictEqual(adapter.lastDevicesJson, null);
         assert.strictEqual(adapter.lastGroupsJson, null);
     });
+
+    it('schließt das Anlernen (permit_join), wenn die Verbindung abbricht', async () => {
+        const adapter = makeAdapterMock();
+        adapter.setStateChangedAsync = async () => {};
+        /** @type {string[]} */
+        const reasons = [];
+        adapter.closePermitJoin = async (reason) => reasons.push(reason);
+        const ctrl = new WebsocketController(adapter);
+        ctrl._intentionalClose = true; // kein Reconnect im Test
+
+        await ctrl._onWsClose(1006, Buffer.from(''));
+
+        assert.deepStrictEqual(reasons, ['connection to Zigbee2MQTT lost']);
+    });
+});
+
+// ─── send – Rückgabewert ─────────────────────────────────────────────────────
+describe('WebsocketController.send Rückgabewert', () => {
+    it('false ohne Verbindung, true wenn gesendet', () => {
+        const adapter = makeAdapterMock();
+        const ctrl = new WebsocketController(adapter);
+        assert.strictEqual(ctrl.send('{"test":1}'), false);
+        /** @type {string[]} */
+        const sent = [];
+        ctrl.wsClient = { readyState: 1 /* OPEN */, send: (m) => sent.push(m) };
+        assert.strictEqual(ctrl.send('{"test":1}'), true);
+        assert.deepStrictEqual(sent, ['{"test":1}']);
+    });
 });
